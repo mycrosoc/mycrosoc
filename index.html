@@ -1499,7 +1499,7 @@ li.ok .ff-blank{background:var(--good-soft);border-bottom-color:var(--good)}li.n
 .td-hd small{font-size:.8rem;color:var(--muted)}
 .todo2>button{display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:center;text-align:left;border:0;background:none;padding:12px 2px;border-radius:12px;color:inherit}
 .todo2>button+button{border-top:1px dashed var(--line);border-radius:0}
-.todo2>button:hover{background:var(--paper)}
+.todo2>button{transition:background .15s}@media (hover:hover){.todo2>button:hover{background:var(--paper);border-radius:12px}.todo2>button:hover+button{border-top-color:transparent}}.todo2>button:active{background:var(--paper);border-radius:12px}
 .td-ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(155deg,#FF7A7A 0%,#F24A4A 50%,#E31414 100%);box-shadow:0 4px 12px rgba(227,20,20,.22)}
 .td-ic svg{width:22px;height:22px}
 .td-m{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -3437,7 +3437,7 @@ text.gg-mn{fill:#2B1A1F}text.gg-mx{fill:#9C7A76}
 .gh-bd{margin:0}
 
 
-.tt{display:flex;flex-direction:column;background:#fff;border-radius:26px;box-shadow:0 18px 36px -24px rgba(80,10,20,.55);overflow:hidden;isolation:isolate}
+section.tt{display:flex;flex-direction:column;background:#fff;border-radius:26px;box-shadow:0 18px 36px -24px rgba(80,10,20,.55);overflow:hidden;isolation:isolate}
 .tt-hero{position:relative;padding:20px 18px 58px;color:#fff;background:radial-gradient(circle at 105% -10%,rgba(242,74,74,.85) 0,rgba(242,74,74,.35) 34%,transparent 60%),radial-gradient(circle at -10% 110%,rgba(242,74,74,.25),transparent 45%),#2B1A1F}
 .tt-tag{font-size:.66rem;font-weight:700;color:#FFB0AA;letter-spacing:.03em}
 .tt-hero h2{margin:6px 0 10px;font-size:1.7rem;line-height:1.3}
@@ -4598,6 +4598,9 @@ body.ink-full{overflow:hidden}
 .ptabs button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
 .ptabs button[aria-selected="true"]::after{content:"";position:absolute;left:50%;bottom:-9px;margin-left:-6px;border:6px solid transparent;border-top-color:#E31414;filter:drop-shadow(0 2px 1px rgba(120,0,10,.2))}
 .of-sp{display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:14px;padding:9px 10px 9px 12px;background:#FFF8E6;box-shadow:inset 0 0 0 1px #F2DFA8;font-size:.7rem;color:#6B4A20}.of-sp b{color:#2B1A1F}.of-sp button{font:inherit;flex:none;font-size:.66rem;font-weight:700;border:0;border-radius:999px;padding:6px 11px;background:#2B1A1F;color:#fff;cursor:pointer}
+.agenda .at .tt,.at>.tt{display:block;background:none;border-radius:0;box-shadow:none;overflow:visible;isolation:auto;padding:0}
+.agenda .al{justify-self:end;width:auto;max-width:none;flex:none}.agenda .al.hot{display:inline-block;margin:0;grid-template-columns:none}.agenda .at .tt{overflow-wrap:break-word}.agenda .at small{overflow-wrap:break-word}
+.dyh{box-shadow:none;border:1px solid #F4D6D2}.dyh.done{border:1px solid #F4D6D2}main{overflow-clip-margin:8px}
 </style>
 
 <div class="app">
@@ -5798,7 +5801,7 @@ function vHome(){
   const todo=[
     [`lesson" data-t="${weak.id}`,`ทบทวน${weak.name}`,`หมวดที่ยังอ่อนที่สุดตอนนี้ · ${weak.mins} นาที`,ICO.book],
     [`start-topic" data-t="${weak.id}`,`ฝึกข้อสอบหมวด${weak.short}`,'ดูเฉลยและคำอธิบายทันทีหลังตอบ',ICO.bolt],
-    wrong?['start-wrong',`แก้ข้อที่เคยผิด ${wrong} ข้อ`,'ข้อที่ตอบถูกแล้วจะออกจากรายการ',ICO.redo]:[`nav" data-v="cards`,'ทวนการ์ดศัพท์',`เหลือ ${CARDS.length-known} คำที่ยังไม่แม่น`,ICO.scroll],
+    wrong?['start-wrong',`แก้ข้อที่เคยผิด ${wrong} ข้อ`,'ข้อที่ตอบถูกแล้วจะออกจากรายการ',ICO.redo]:CARDS.length-known>0?[`nav" data-v="cards`,'ทวนการ์ดศัพท์',`เหลือ ${CARDS.length-known} คำที่ยังไม่แม่น`,ICO.scroll]:['start-mock','สุ่มข้อสอบจับเวลา','ทุกหมวดผ่านแล้ว ลองจับเวลาเพื่อรักษาฟอร์ม',ICO.clip],
     nextCase?[`case" data-c="${nextCase.id}`,`เคสจำลอง: ${nextCase.title}`,'ฝึกตัดสินใจแบบนักสังคมสงเคราะห์',ICO.people]:null
   ].filter(Boolean);
   return `<div class="home">
