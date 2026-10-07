@@ -5578,6 +5578,10 @@ async function codeLogin(raw){const c=acNorm(raw);if(c.length!==11)return {err:'
   const v=[...b.slice(0,32)].map(x=>x.toString(16).padStart(2,'0')).join('');const e=ACODES.codes.find(x=>x.v===v);if(!e)return {err:'ไม่พบรหัสนี้ ตรวจตัวอักษรอีกครั้ง หรือทักพี่วอลส์'};
   const ak=await crypto.subtle.importKey('raw',b.slice(32),'AES-GCM',false,['decrypt']);const ub=s=>Uint8Array.from(atob(s),ch=>ch.charCodeAt(0));
   const p=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.i)},ak,ub(e.c))));return {id:'code:'+v.slice(0,16),p}}
+function applyCode(r){const p=r.p,id=r.id;const first=!META.users[id];
+      const u=Object.assign({goals:['tu'],created:Date.now()},META.users[id]||{},{role:p.role,cs:p.cs||'',locked:!!p.locked,spare:!!p.spare,codeAcct:true});if(p.role==='tutor'){u.tutorCode=true;u.goals=[]}
+      if(p.locked){u.nick=p.nick;u.fname=p.fname;u.lname=p.lname}META.users[id]=u;saveMeta();V.acErr='';V.acv='';enter(id);if(p.role!=='tutor'){S.unlock=true;save()}
+      if(p.spare&&!u.nick){go('profile');setTimeout(()=>{toast('กรอกชื่อเล่น ชื่อ และนามสกุลก่อนเริ่มเรียนนะ');const f=document.getElementById('pf-form');if(f)f.scrollIntoView({block:'start'})},80)}else{go('home');if(first)setTimeout(()=>toast('ยินดีต้อนรับ'+(p.role==='tutor'?'พี่':'น้อง')+u.nick),250)}}
 const UNLOCK_HASH='5f59aee8ba9b973f948c886775c403942775e4a4e0761e9b0e1b4e84c26cab71';
 const cleanId=x=>String(x||'').replace(/\D/g,'');
 function idOk(x){const d=cleanId(x);if(d.length!==13)return false;let sum=0;for(let i=0;i<12;i++)sum+=(+d[i])*(13-i);return (11-sum%11)%10===+d[12]}
@@ -5587,7 +5591,7 @@ async function sha256(t){const b=await crypto.subtle.digest('SHA-256',new TextEn
 const unlocked=()=>!!(S&&S.unlock)||canTeach();
 function vGate(){const u=me()||{};return `<div class="gate"><section class="gt-card"><img src="${LOGO}" alt="MYCROSOC" class="gt-logo">
   <span class="gt-eb">เฉพาะนักเรียนคอร์ส</span><h1>สวัสดี${u.nick?' '+esc(u.nick):''}</h1><p>ห้องเรียนนี้เปิดให้เฉพาะน้องที่ลงทะเบียนคอร์ส THE FINALIST แล้ว ใส่รหัสคอร์สที่ได้จากพี่วอลส์ครั้งเดียว ก็เข้าเรียนได้ทุกครั้ง</p>
-  <form id="f-unlock" class="gt-form"><input id="un-code" placeholder="รหัสคอร์ส" autocomplete="off" aria-label="รหัสคอร์ส"><button class="btn primary" type="submit">เข้าห้องเรียน</button></form>${V.unErr?`<p class="ferr">${V.unErr}</p>`:''}
+  <form id="f-unlock" class="gt-form"><input id="un-code" placeholder="รหัสคอร์ส หรือ MYC-XXXX-XXXX" autocomplete="off" aria-label="รหัสคอร์ส"><button class="btn primary" type="submit">เข้าห้องเรียน</button></form>${V.unErr?`<p class="ferr">${V.unErr}</p>`:''}
   <div class="gt-or"><span>ยังไม่มีรหัส</span></div>
   <div class="gt-acts"><button class="btn" data-act="nav" data-v="enroll">สมัครเรียน</button><a class="btn" href="${SITE}" target="_blank" rel="noopener">ทักไอจี @mycrosoc</a></div>
   <button class="link gt-out" data-act="logout">ออกจากระบบ</button></section></div>`}
@@ -9257,17 +9261,14 @@ document.addEventListener('submit',e=>{
     S.mySets=S.mySets||{};const id=V.editId||('s'+Date.now().toString(36));const old=S.mySets[id];let next=old?Math.max(0,...old.cards.map(c=>c.k||0))+1:1;
     const cards=rows.map(r=>{const prev=old&&old.cards.find(c=>c.term===r.term);return {k:prev?prev.k:next++,term:r.term,def:r.def}});
     S.mySets[id]={name,cards,created:old?old.created:Date.now()};syncMyCards();save();V.err='';LQ=null;MG=null;go('cards',{set:{k:'my',v:id},cmode:'hub',lt:'my'});return}
-  if(e.target.id==='f-unlock'){e.preventDefault();const c=($('#un-code').value||'').trim().toUpperCase();if(!c)return;sha256(c).then(h=>{if(h===UNLOCK_HASH){S.unlock=true;META.unlock=true;saveMeta();save();V.unErr='';V.lockFull=0;render()}else{V.unErr='รหัสไม่ถูกต้อง ตรวจตัวพิมพ์อีกครั้ง หรือติดต่อพี่วอลส์';render()}}).catch(()=>{V.unErr='เครื่องนี้ตรวจรหัสไม่ได้ ลองเปิดด้วยเบราว์เซอร์อื่น';render()});return}
+  if(e.target.id==='f-unlock'){e.preventDefault();const c=($('#un-code').value||'').trim().toUpperCase();if(!c)return;sha256(c).then(h=>{if(h===UNLOCK_HASH){S.unlock=true;META.unlock=true;saveMeta();save();V.unErr='';V.lockFull=0;render()}else{codeLogin(c).then(r=>{if(r.err){V.unErr='รหัสไม่ถูกต้อง ตรวจตัวพิมพ์อีกครั้ง หรือติดต่อพี่วอลส์';render();return}V.unErr='';applyCode(r)}).catch(()=>{V.unErr='รหัสไม่ถูกต้อง ตรวจตัวพิมพ์อีกครั้ง หรือติดต่อพี่วอลส์';render()})}}).catch(()=>{V.unErr='เครื่องนี้ตรวจรหัสไม่ได้ ลองเปิดด้วยเบราว์เซอร์อื่น';render()});return}
   if(e.target.id==='f-cloud'){e.preventDefault();const p=readProfile('cl');V.draft=p;
     const miss=!p.nick?'ชื่อเล่น':!p.fname?'ชื่อ':!p.lname?'นามสกุล':!p.goals.length?'เป้าหมายอย่างน้อย 1 ข้อ':'';
     if(miss){V.err='กรอก'+miss+'ก่อนสร้างบัญชี';render();return}
     if(!$('#cl-ok').checked){V.err='ติ๊กยินยอมการเก็บข้อมูลก่อนสร้างบัญชี';render();return}
     cloudCreate(p).then(()=>{V.err='';go('home')}).catch(err=>{V.err='สร้างบัญชีออนไลน์ไม่สำเร็จ ('+((err&&err.code)||'error')+') ลองใหม่อีกครั้ง หรือใช้บัญชีในเครื่องไปก่อน';render()});return}
   if(e.target.id==='f-code'){e.preventDefault();const raw=$('#ac-in').value;V.acv=raw;const btn=e.target.querySelector('button');if(btn){btn.disabled=true;btn.textContent='กำลังตรวจ…'}
-    codeLogin(raw).then(r=>{if(r.err){V.acErr=r.err;render();return}const p=r.p,id=r.id;const first=!META.users[id];
-      const u=Object.assign({goals:['tu'],created:Date.now()},META.users[id]||{},{role:p.role,cs:p.cs||'',locked:!!p.locked,spare:!!p.spare,codeAcct:true});if(p.role==='tutor'){u.tutorCode=true;u.goals=[]}
-      if(p.locked){u.nick=p.nick;u.fname=p.fname;u.lname=p.lname}META.users[id]=u;saveMeta();V.acErr='';V.acv='';enter(id);if(p.role!=='tutor'){S.unlock=true;save()}
-      if(p.spare&&!u.nick){go('profile');setTimeout(()=>{toast('กรอกชื่อเล่น ชื่อ และนามสกุลก่อนเริ่มเรียนนะ');const f=document.getElementById('pf-form');if(f)f.scrollIntoView({block:'start'})},80)}else{go('home');if(first)setTimeout(()=>toast('ยินดีต้อนรับ'+(p.role==='tutor'?'พี่':'น้อง')+u.nick),250)}}).catch(()=>{V.acErr='เครื่องนี้ตรวจรหัสไม่ได้ ลองเปิดด้วย Safari หรือ Chrome รุ่นล่าสุด';render()});return}
+    codeLogin(raw).then(r=>{if(r.err){V.acErr=r.err;render();return}applyCode(r)}).catch(()=>{V.acErr='เครื่องนี้ตรวจรหัสไม่ได้ ลองเปิดด้วย Safari หรือ Chrome รุ่นล่าสุด';render()});return}
   if(e.target.id==='f-login'){e.preventDefault();const em=$('#li-email').value.trim().toLowerCase(),pw=$('#li-pw').value;V.em=em;
     if(!emailOk(em)){V.err='กรอกอีเมลให้ถูกต้อง เช่น name@email.com';render();return}
     const st=STAFF.find(x=>x.em===em);
