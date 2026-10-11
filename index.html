@@ -12203,7 +12203,8 @@ function vProfile(){
   <button class="btn logout" data-pt="acct" data-act="logout">ออกจากระบบ</button>
   </div>`;
 }
-function enter(id){META.current=id;saveMeta();loadState();go('home')}
+function enter(id){META.current=id;saveMeta();loadState();go('home');setTimeout(codeRefresh,50)}
+setTimeout(codeRefresh,600);
 
 
 /* ---- activity log, spaced review, missions, badges ---- */
@@ -12329,9 +12330,10 @@ async function codeLogin(raw){const c=acNorm(raw);if(c.length!==11)return {err:'
   const b=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:new TextEncoder().encode(ACODES.salt),iterations:ACODES.it},k,512));
   const v=[...b.slice(0,32)].map(x=>x.toString(16).padStart(2,'0')).join('');const e=ACODES.codes.find(x=>x.v===v);if(!e)return {err:'ไม่พบรหัสนี้ ตรวจตัวอักษรอีกครั้ง หรือทักพี่วอลส์'};
   const ak=await crypto.subtle.importKey('raw',b.slice(32),'AES-GCM',false,['decrypt']);const ub=s=>Uint8Array.from(atob(s),ch=>ch.charCodeAt(0));
-  const p=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.i)},ak,ub(e.c))));return {id:'code:'+v.slice(0,16),p}}
+  const p=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.i)},ak,ub(e.c))));return {id:'code:'+v.slice(0,16),p,v,k:btoa(String.fromCharCode(...b.slice(32)))}}
+async function codeRefresh(){try{const u=me();if(!u||!u.codeAcct||!u.ck||!u.cv)return;const e=ACODES.codes.find(x=>x.v===u.cv);if(!e)return;const ub=s=>Uint8Array.from(atob(s),ch=>ch.charCodeAt(0));const ak=await crypto.subtle.importKey('raw',ub(u.ck),'AES-GCM',false,['decrypt']);const p=JSON.parse(new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:ub(e.i)},ak,ub(e.c))));let ch=false;const pk=+p.packs||0;if(pk>(+u.packs||0)){u.packs=pk;ch=true}if(p.edu==='uni'&&u.edu!=='uni'){u.edu='uni';u.plan=p.plan;u.school=p.school;if(!u.ustat)u.ustat='นักศึกษา';ch=true}if(p.locked&&(u.nick!==p.nick||u.fname!==p.fname||u.lname!==p.lname)){u.nick=p.nick;u.fname=p.fname;u.lname=p.lname;ch=true}if(ch){saveMeta();render()}}catch(err){}}
 function applyCode(r){const p=r.p,id=r.id;const first=!META.users[id];
-      const u=Object.assign({goals:['tu'],created:Date.now()},META.users[id]||{},{role:p.role,cs:p.cs||'',locked:!!p.locked,spare:!!p.spare,codeAcct:true});if(p.packs)u.packs=+p.packs||0;if(p.role==='tutor'){u.tutorCode=true;u.goals=[]}
+      const u=Object.assign({goals:['tu'],created:Date.now()},META.users[id]||{},{role:p.role,cs:p.cs||'',locked:!!p.locked,spare:!!p.spare,codeAcct:true,ck:r.k,cv:r.v});if(p.packs)u.packs=Math.max(+u.packs||0,+p.packs||0);if(p.role==='tutor'){u.tutorCode=true;u.goals=[]}
       if(p.locked){u.nick=p.nick;u.fname=p.fname;u.lname=p.lname}if(p.edu==='uni'){if(u.edu!=='uni'&&/^ม\.|ม\.6/.test(u.grade||''))u.grade='';u.edu='uni';u.plan=p.plan;u.school=p.school;if(!u.ustat)u.ustat='นักศึกษา';if(first)u.goals=['swpc','general']}META.users[id]=u;saveMeta();V.acErr='';V.acv='';enter(id);if(p.role!=='tutor'){S.unlock=true;save()}
       if(p.spare&&!u.nick){go('profile');setTimeout(()=>{toast('กรอกชื่อเล่น ชื่อ และนามสกุลก่อนเริ่มเรียนนะ');const f=document.getElementById('pf-form');if(f)f.scrollIntoView({block:'start'})},80)}else{go('home');if(first)setTimeout(()=>toast('ยินดีต้อนรับ'+(p.role==='tutor'?'พี่':'น้อง')+u.nick),250)}}
 const UNLOCK_HASH='5f59aee8ba9b973f948c886775c403942775e4a4e0761e9b0e1b4e84c26cab71';
