@@ -21133,7 +21133,7 @@ function zxDocW(td,T,inner,o){o=o||{};const l=zxLeft(td.id);return zvrDoc({code:
   body:(o.pg||'')+inner,foot:false})}
 function zxPg(n,i){return `<ol class="zx-pg">${Array.from({length:n},(_,k)=>`<li class="${k<i?'d':k===i?'c':''}"><i>${k+1}</i></li>`).join('')}</ol>`}
 function zxTag(t){return zxE(t).replace(/^\[(แดง|เหลือง|เขียว|ดำ)\]\s*/,(m,c)=>`<em class="zx-tg zx-${{'แดง':'r','เหลือง':'y','เขียว':'g','ดำ':'b'}[c]}">${c}</em>`)}
-function zxStep(){const C=S.zdrCur,id=C.busy,P=C.prog[id],T=zxTask(id),td=zxTD(id);if(!T)return;const s=T.steps[P.si];if(!s){zxFin(id);return}
+function zxStep(){const C=S.zdrCur;if(!C||!C.busy){st.dlg=null;drawDlg();return}const id=C.busy,P=C.prog[id],T=zxTask(id),td=zxTD(id);if(!T||!P){st.dlg=null;drawDlg();return}const s=T.steps[P.si];if(!s){zxFin(id);return}if(s.k!=='say'&&s.k!=='one'&&st.dlg){st.dlg=null}if(!st.dlg)drawDlg();
  const n=T.steps.length,role=td.unit+' · '+s.lab;
  if(s.k==='say'){openDlg({who:s.who,role,ap:NPCA[s.ap]||NPCA.head,text:s.t,choices:[{t:'ต่อไป',fn:()=>{st.dlg=null;P.si++;save();zxStep()}}]});return}
  if(s.k==='one'){openDlg({who:s.who,role,ap:NPCA[s.ap]||NPCA.head,text:s.t,choices:shuffle(s.o.slice()).map(o=>({t:o[0],fn:()=>{st.dlg=null;zxScore(id,s,o[1],2,o[1]<2?o[2]:null);const best=s.o.find(x=>x[1]===2);
@@ -21163,7 +21163,7 @@ function zxSub(){const C=S.zdrCur;if(!C||!C.busy)return;const id=C.busy,P=C.prog
  const gr=p===m?'ครบถ้วน':p>=m*.6?'ผ่าน':'ทบทวน';
  openHP(zxE(T.n),`<div class="zx-f">${zxDocW(td,T,zvrSec(P.si+1,'ผลการปฏิบัติ · '+zxE(zxLab(s.lab)),'ตรวจโดยผู้นิเทศการซ้อม')+`<div class="zx-res"><div><small>คะแนนขั้นนี้</small><b>${p}<span>/${m}</span></b></div><em class="zx-stamp ${p===m?'ok':p>=m*.6?'md':'no'}">${gr}</em></div><ul class="zx-fb">${res}</ul>${s.x?`<p class="zx-x"><b>หลักวิชาการ</b>${zxE(s.x)}</p>`:''}<div class="hp-row"><button class="g-btn big" data-h="zxnext">${P.si+1<n?'ขั้นถัดไป':'ปิดแบบฟอร์มนี้'}</button></div>`,{st:zxSt(s.lab),pg:zxPg(n,P.si)})}</div>`,'camp pcw zvr-hp zx')}
 function zxNext(){const C=S.zdrCur;if(!C||!C.busy)return;C.prog[C.busy].si++;save();closeHP();zxStep()}
-function zxFin(id){const C=S.zdrCur,P=C.prog[id],td=zxTD(id),T=zxTask(id);C.done[id]=1;C.pts[id]=P.p;C.max[id]=P.m;const l=zxLeft(id);C.late=C.late||{};if(l!=null&&l<0)C.late[id]=1;delete C.prog[id];C.busy=null;zcAdd(td.comp,P.p,P.m);zxLog('เสร็จ · '+T.n+' ('+P.p+'/'+P.m+')');save();hud();closeHP();
+function zxFin(id){const C=S.zdrCur,P=C.prog[id];if(!P)return;st.dlg=null;drawDlg();const td=zxTD(id),T=zxTask(id);C.done[id]=1;C.pts[id]=P.p;C.max[id]=P.m;const l=zxLeft(id);C.late=C.late||{};if(l!=null&&l<0)C.late[id]=1;delete C.prog[id];C.busy=null;zcAdd(td.comp,P.p,P.m);zxLog('เสร็จ · '+T.n+' ('+P.p+'/'+P.m+')');save();hud();closeHP();
  if(id==='cmd1'||id==='fic0'||id==='kid0'||id==='demob')toast('เสร็จแล้ว: '+T.n)}
 function zdDone(){}
 
