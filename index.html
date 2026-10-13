@@ -21106,10 +21106,8 @@ function zdStart(scid){const mk=zcMon();const sel=root&&root.querySelector('#zx-
 function zxPhase(n){const C=S.zdrCur;C.ph=n;if(n===1)C.t1=C.t;zxLog('เข้าสู่ระยะที่ '+(n+1)+' · '+ZX_PH[n]);C.pm=n;save();hud()}
 function zxPhMsg(n){const m=n===1?'ผู้บาดเจ็บระลอกแรกจะมาถึงในไม่กี่นาที\n\nตั้งศูนย์ข้อมูลครอบครัว (โถงผู้ป่วยนอก) และมุมเด็กพลัดหลง (ศูนย์พึ่งได้) ให้พร้อมก่อน':n===2?'ผู้บาดเจ็บระลอกแรกมาถึงแล้ว ญาติเริ่มหลั่งไหลเข้ามา\n\nงานจะเข้ามาที่จุดต่าง ๆ เรื่อย ๆ แต่ละงานมีเวลาจำกัด ถ้าไม่ไปทันจะนับว่าพลาด':'ไม่มีผู้บาดเจ็บระลอกใหม่แล้ว ศูนย์สั่งการเตรียมยุติแผน\n\nไปที่ศูนย์สั่งการ (ห้องประชุม) เพื่อส่งมอบงาน แล้วประชุมสรุปงานกับทีมที่ห้องสังคมสงเคราะห์';
  say('ศูนย์สั่งการโรงพยาบาล','ระยะที่ '+(n+1)+' · '+ZX_PH[n],NPCA.head,m)}
-function zdCrowd(){const sc=zxSc();if(!sc||st.bots.some(b=>b.zd))return;const P=[[3,30],[9,31],[14,30],[19,29],[29,31],[31,28]];
- (sc.crowd||[]).slice(0,6).forEach((c,i)=>{const p=P[i];const b={id:'zd_'+i,name:'ผู้ประสบภัยและญาติ',role:'รอความช่วยเหลือ',ap:AP(NPCA[c[0]]||NPCA.som),spd:220,pose:'',dir:'down',ri:0,wait:0,path:[],route:[[p[0],p[1],9e9,'','down','']],say:[c[1]],zd:1};botInit0(b);st.bots.push(b)})}
 function zxMiss(id){const C=S.zdrCur;C.miss[id]=1;const T=zxTask(id);C.max[id]=zxTMax(id);C.pts[id]=0;zcAdd(zxTD(id).comp,0,C.max[id]);zxLog('พลาด · '+(T?T.n:id));save();toast('เลยเวลา: '+(T?T.n:id))}
-function zdTick(){const C=S.zdrCur;if(!C)return;if(!C.v){S.zdrCur=null;save();return}const w=root&&root.querySelector('.g-wrap');if(w)w.classList.toggle('zx-on',!!st.hosp);if(!st.hosp)return;C.t++;if(zgTn%5===0)save();if(st.floor===1&&C.ph>=2)zdCrowd();
+function zdTick(){const C=S.zdrCur;if(!C)return;if(!C.v){S.zdrCur=null;save();return}const w=root&&root.querySelector('.g-wrap');if(w)w.classList.toggle('zx-on',!!st.hosp);if(!st.hosp)return;C.t++;if(zgTn%5===0)save();if(st.floor===1){zxScene();zxBarkTick()}
  if(C.t>=ZX_LIM&&!st.dlg){zdEnd(1);return}
  if(C.ph===0&&C.done.cmd1)zxPhase(1);
  else if(C.ph===1){const ok=(C.done.fic0||C.miss.fic0)&&(C.done.kid0||C.miss.kid0);if(!ok&&C.t-C.t1>300&&C.busy!=='fic0'&&C.busy!=='kid0'){['fic0','kid0'].forEach(k=>{if(!C.done[k]&&!C.miss[k])zxMiss(k)})}if((C.done.fic0||C.miss.fic0)&&(C.done.kid0||C.miss.kid0)){C.t2=C.t;zxPhase(2)}}
@@ -21189,6 +21187,61 @@ function zdInfo(){const C=S.zdrCur;if(!C)return;const sc=zxSc(),F=zxStat();
   id:`<dl class="zvr-id"><div><dt>เหตุการณ์</dt><dd>${zxE(sc.n)}</dd></div><div><dt>ระยะปัจจุบัน</dt><dd>${C.ph+1} · ${ZX_PH[C.ph]}</dd></div><div><dt>เวลาซ้อม</dt><dd>${zxMM(C.t)} / ${zxMM(ZX_LIM)}</dd></div><div><dt>ตำแหน่ง</dt><dd>หัวหน้าหน่วยช่วยเหลือผู้ป่วยและครอบครัว</dd></div></dl>`,body,sign:'ผู้บัญชาการเหตุการณ์'})}</div>`,'camp pcw zvr-hp zx')}
 function zdCard(){const mk=zcMon(),R=(S.zdr||{})[mk],C=S.zdrCur;const def=ZX_ORDER[(+mk.slice(5))%ZX_ORDER.length];
  return `<h4>วันซ้อมแผนรับอุบัติภัยหมู่ประจำเดือน</h4><div class="zd-card"><b>${C&&C.v?'กำลังซ้อม: '+zxE(ZX_SC[C.sc].n):R?'เดือนนี้ซ้อมแล้ว · ผล '+R.g:'เดือนนี้ยังไม่ได้ซ้อม'}</b><small>ซ้อมเต็มรูปแบบ 4 ระยะ ในบทบาทหัวหน้าหน่วยช่วยเหลือผู้ป่วยและครอบครัว 19 งาน ใช้เวลาประมาณ 30–40 นาที งานจะเข้ามาที่ห้องต่าง ๆ ชั้น 1 ตามเวลาจริง (เหรียญรางวัลเดือนละครั้ง)</small>${C&&C.v?'':`<label class="zx-pick"><span>ฉากซ้อม</span><select id="zx-sel">${ZX_ORDER.map(k=>`<option value="${k}" ${k===def?'selected':''}>${zxE(ZX_SC[k].n)}${k===def?' (ของเดือนนี้)':''}</option>`).join('')}</select></label><button class="g-btn ${R?'':'big'}" data-h="zdrgo">${R?'ซ้อมอีกครั้ง':'เริ่มซ้อมเลย'}</button>${S.zdrLast?'<button class="g-btn" data-h="zxaar">ดูผลการซ้อมครั้งล่าสุด</button>':''}`}</div>`}
+
+/* ---------- ฉากและตัวละครระหว่างซ้อมแผน ---------- */
+const ZX_R={er:[1,26,10,32],opd:[12,26,24,31],cant:[26,27,33,34],pt:[35,27,40,34],park:[1,34,22,36],kid:[1,13,7,21],psy:[11,13,16,21],mtg:[14,1,21,8],sw:[1,1,7,8],lo:[1,22,44,25]};
+const ZX_ROOMR={'ห้องฉุกเฉิน':'er','โถงผู้ป่วยนอก':'opd','โรงอาหาร':'cant','ห้องกายภาพ':'pt','ลานจอดรถ':'park','ศูนย์พึ่งได้':'kid','คลินิกจิตเวช':'psy','ห้องประชุม':'mtg','ห้องสังคมสงเคราะห์':'sw'};
+const ZX_BK={
+ fam:['ลูกฉันอยู่ไหน','ขอดูรายชื่อหน่อยค่ะ','รอมาชั่วโมงแล้วนะ','โทรหาเขาไม่ติดเลย','มีใครเห็นแม่ฉันไหม','ทำไมไม่มีใครบอกอะไร','ขอร้องล่ะ บอกหน่อย','เขาเป็นยังไงบ้าง','ให้เข้าไปดูหน่อย','ผมเป็นพ่อเขานะ'],
+ staff:['ขอเปลด่วน','แดงเข้ามาอีกสองราย','เคลียร์ทางด้วยค่ะ','ทางนี้ค่ะ','เตียงสามต้องการเลือด','ขอวิทยุหน่อย','ส่งต่อห้องผ่าตัด','ใครว่างมาช่วยที','ขอออกซิเจนเพิ่ม','ป้ายเหลืองไปฝั่งซ้าย'],
+ med:['ขอสัมภาษณ์หน่อยครับ','ตายกี่รายแล้วครับ','ถ่ายตรงนี้ได้ไหม','ไลฟ์อยู่นะครับ','ขอชื่อผู้บาดเจ็บหน่อย','ผู้บริหารอยู่ไหนครับ'],
+ kid:['หาแม่','หนูกลัว','อยากกลับบ้าน','พ่ออยู่ไหน','หิวน้ำ'],
+ vol:['ของมาอีกคันแล้ว','วางตรงไหนดีครับ','ผมเป็นอาสาครับ','น้ำดื่มมาแล้ว','มีผ้าห่มอีกสิบผืน'],
+ cmd:['รับทราบ เปลี่ยน','รายงานยอดล่าสุด','ขอกำลังเสริมที่โถง','ห้องผ่าตัดเต็มแล้ว','ประสาน รพ.จังหวัด','อัปเดตทุกสามสิบนาที'],
+ key:['ทางนี้ค่ะ ช่วยด้วย','รอคุณอยู่นะคะ','ขอคุยด้วยหน่อย','ด่วนเลยครับ'],
+ cal:['ขอนั่งพักตรงนี้','ขอบคุณที่ช่วยนะ','ใจยังสั่นอยู่เลย','ขอน้ำแก้วนึง']};
+const ZX_INJ={bus:['ขาผมขยับไม่ได้','เพื่อนผมอยู่ไหน','หนาวจัง','ครูล่ะครับ'],quake:['ตึกถล่มลงมาเลย','เพื่อนยังติดข้างใน','ปวดหลังมาก','พูดไทยไม่เก่ง'],flood:['น้ำมาเร็วมาก','ยาหายไปกับน้ำ','บ้านจมหมดแล้ว','แม่ยังอยู่ที่บ้าน'],chem:['แสบตามาก','หายใจไม่ค่อยออก','โทรศัพท์ฉันอยู่ไหน','เสื้อโดนตัดทิ้ง'],fire:['ควันเต็มห้องเลย','ย้ายมาตรงนี้ทำไม','ญาติรู้หรือยัง','ยาที่กินอยู่ล่ะ'],food:['ปวดท้องมาก','อาเจียนทั้งคืน','หลานก็ป่วยด้วย','เวียนหัวจัง']};
+function zxAp(k,o){return AP(Object.assign({},NPCA[k]||NPCA.som,o||{}))}
+function zxKeyWho(id){const T=zxTask(id);if(!T)return null;const s=T.steps.find(x=>x.who&&x.ap&&x.who!=='วิทยุสื่อสาร');return s?{who:s.who,ap:s.ap}:null}
+function zxCast(){const C=S.zdrCur,sc=zxSc(),ph=C.ph,L=[];const F=(id,ap,name,role,area,pool,o)=>L.push(Object.assign({id:'zd_'+id,ap,name,role,area,pool},o||{}));
+ const gown=k=>zxAp(k,{special:'gown'}),inj=ZX_INJ[C.sc]||ZX_INJ.bus,cr=sc.crowd||[];
+ F('ic',zxAp('head'),'ผู้บัญชาการเหตุการณ์','ศูนย์สั่งการ','mtg','cmd',{fix:[17,3],spd:300});
+ F('cm1',zxAp('nurse'),'พยาบาลประสานงาน','ศูนย์สั่งการ','mtg','cmd',{spd:200});F('cm2',zxAp('doc'),'แพทย์หัวหน้าเวร','ศูนย์สั่งการ','mtg','cmd',{spd:200});
+ F('rn1',zxAp('nurse'),'พยาบาล','กำลังวิ่งไปห้องฉุกเฉิน','lo','staff',{spd:150});
+ if(ph>=1){F('fic',zxAp('physio'),'น้องบีม','ศูนย์ข้อมูลครอบครัว','opd','staff',{spd:240});F('kd',zxAp('psych'),'พี่จิ๋ม','มุมเด็กพลัดหลง','kid','kid',{spd:300});
+  F('er1',zxAp('doc'),'แพทย์ห้องฉุกเฉิน','จุดคัดแยก','er','staff',{spd:160});F('er2',zxAp('nurse'),'พยาบาลคัดแยก','จุดคัดแยก','er','staff',{spd:160});
+  F('rs1',zxAp('som',{hat:'cap',hatC:'#E8913A',shirt:'#E8913A'}),'กู้ภัย','นำส่งผู้บาดเจ็บ','park','staff',{spd:180});
+  for(let i=0;i<(ph===1?3:0);i++){const c=cr[i%cr.length]||['soi',''];F('fa'+i,zxAp(c[0]),'ญาติผู้บาดเจ็บ','รอข้อมูล','opd','fam',{say:[c[1]],spd:260})}}
+ if(ph===2){
+  [[2,28],[4,28],[6,28],[8,28]].forEach((p,i)=>F('bd'+i,gown(['chan','son','fah','som'][i]),'ผู้บาดเจ็บ','รอการรักษา','er','inj',{fix:p,pose:'bed'}));
+  for(let i=0;i<4;i++)F('wi'+i,gown(['son','nid','shop','boon'][i]),'ผู้บาดเจ็บป้ายเขียว','รอตรวจ','er','inj',{spd:420});
+  F('er3',zxAp('nurse'),'พยาบาล','ห้องฉุกเฉิน','er','staff',{spd:150});
+  for(let i=0;i<12;i++){const c=cr[i%cr.length]||['soi',''];F('fa'+i,zxAp(i<cr.length?c[0]:['soi','som','boon','nid','son','shop'][i%6]),'ญาติผู้บาดเจ็บ','รอข้อมูล','opd','fam',{say:[c[1]||'ขอข้อมูลหน่อยค่ะ'],spd:240+i*15})}
+  for(let i=0;i<3;i++)F('md'+i,zxAp(i?'son':'shop',{hat:'cap',hatC:'#2B2F4A'}),'สื่อมวลชน','รอสัมภาษณ์','park','med',{spd:300});
+  F('ge0',zxAp('soi'),'ญาติผู้บาดเจ็บ','พยายามเข้าห้องฉุกเฉิน','park','fam',{spd:220});F('ge1',zxAp('som'),'ญาติผู้บาดเจ็บ','พยายามเข้าห้องฉุกเฉิน','park','fam',{spd:220});F('rs2',zxAp('som',{hat:'cap',hatC:'#E8913A',shirt:'#E8913A'}),'กู้ภัย','นำส่งผู้บาดเจ็บ','park','staff',{spd:170});
+  for(let i=0;i<4;i++)F('sv'+i,zxAp(['boon','chan','soi','son'][i]),'ผู้ประสบภัย','รอที่จุดพักญาติ','cant','cal',{spd:520});
+  F('ps',zxAp('psych'),'ทีมดูแลจิตใจ','จุดปฐมพยาบาลทางใจ','cant','cal',{spd:340});
+  for(let i=0;i<Math.min(4,Math.max(1,sc.kids));i++)F('kc'+i,zxAp(i%2?'fah':'physio'),'เด็กพลัดหลง','รอผู้ปกครอง','kid','kid',{spd:380});
+  for(let i=0;i<3;i++)F('vo'+i,zxAp(i?'som':'osm',i?{}:{}),'อาสาสมัคร','จุดรับของบริจาค','pt','vol',{spd:260});
+  F('rn2',zxAp('doc'),'แพทย์','กำลังวิ่งไปห้องผ่าตัด','lo','staff',{spd:140});F('rn3',zxAp('pharm'),'เภสัชกร','ขนยาฉุกเฉิน','lo','staff',{spd:170});
+  F('st1',gown('chan'),'ผู้บาดเจ็บบนเปล','รอส่งต่อ','lo','inj',{fix:[14,23],pose:'bed'});F('st2',gown('soi'),'ผู้บาดเจ็บบนเปล','รอส่งต่อ','lo','inj',{fix:[18,23],pose:'bed'});
+  F('swr',zxAp('sup'),'นักสังคมสงเคราะห์','ศูนย์ติดตามผู้ป่วย','sw','staff',{spd:300})}
+ if(ph===3){for(let i=0;i<3;i++){const c=cr[i%cr.length]||['soi',''];F('fa'+i,zxAp(c[0]),'ญาติผู้บาดเจ็บ','รอข้อมูลรอบสุดท้าย','opd','cal',{say:[c[1]],spd:400})}
+  [[2,28],[6,28]].forEach((p,i)=>F('bd'+i,gown(['chan','fah'][i]),'ผู้บาดเจ็บ','รอย้ายหอผู้ป่วย','er','inj',{fix:p,pose:'bed'}));F('sv0',zxAp('boon'),'ผู้ประสบภัย','รอญาติมารับ','cant','cal',{spd:520})}
+ ZX_T.forEach(x=>{if(!x.room||!zxAvail(x.id))return;const k=zxKeyWho(x.id);if(!k)return;const a=ZX_ROOMR[zxRoom(x)];if(!a)return;F('k_'+x.id,zxAp(k.ap),k.who,'รอคุณอยู่ · '+zxTask(x.id).n,a,'key',{zxT:x.id,spd:9e9,still:1})});
+ return L}
+function zxScene(){const C=S.zdrCur;if(!C||!st.hosp||st.floor!==1)return;const av=ZX_T.filter(x=>zxAvail(x.id)).map(x=>x.id).join(',');const sig=C.ph+'|'+av;const has=st.bots.some(b=>b.zd);if(has&&st.zxSig===sig)return;st.zxSig=sig;
+ const want=zxCast(),ids=new Set(want.map(w=>w.id));st.bots=st.bots.filter(b=>!b.zd||ids.has(b.id));const cur=new Set(st.bots.filter(b=>b.zd).map(b=>b.id));
+ want.forEach(w=>{if(cur.has(w.id))return;const R=ZX_R[w.area];const p=w.fix||randTile(R);const b={id:w.id,name:w.name,role:w.role,ap:w.ap,spd:w.spd||260,pose:w.pose||'',dir:'down',ri:0,wait:0,path:[],say:w.say&&w.say[0]?w.say:[(ZX_BK[w.pool]||ZX_BK.fam)[0]],zd:1,zp:w.pool,zxT:w.zxT||null};
+  if(w.fix||w.still)b.route=[[p[0],p[1],9e9,w.pose||'',w.still?'down':'down','']];else b.wander=R;botInit0(b);if(!w.fix&&!w.still){b.x=p[0];b.y=p[1];b.px=b.x*T;b.py=b.y*T}st.bots.push(b)})}
+function zxBarkTick(){const C=S.zdrCur;if(!C||!st.hosp||st.floor!==1)return;const now=performance.now(),me=st.me;const Z=st.bots.filter(b=>b.zd&&!b.hidden&&Math.abs(b.x-me.x)<=11&&Math.abs(b.y-me.y)<=9);
+ const act=Z.filter(b=>b.bkT>now).length;let n=Math.min(3,(C.ph===2?6:3)-act);while(n-->0&&Z.length){if(Math.random()>.8)break;const b=Z[Math.floor(Math.random()*Z.length)];if(b.bkT>now)continue;
+  const pool=b.zp==='inj'?ZX_INJ[C.sc]||ZX_INJ.bus:ZX_BK[b.zp]||ZX_BK.fam;b.bk=pool[Math.floor(Math.random()*pool.length)];b.bkT=now+2400+Math.random()*1200}}
+function zxBark(c,b){const now=performance.now();if(b.zxT){const y=b.py-16+Math.round(Math.sin(now/220)*1.5);c.fillStyle='#E31414';c.beginPath();c.arc(b.px+16,y,6,0,Math.PI*2);c.fill();c.fillStyle='#FFFFFF';c.fillRect(b.px+15,y-4,2,5);c.fillRect(b.px+15,y+2,2,2)}
+ if(!(b.bkT>now)||!b.bk)return;c.save();c.font='bold 8px "Chulalongkorn","IBM Plex Sans Thai",sans-serif';const w=Math.ceil(c.measureText(b.bk).width)+10,h=13,x=Math.round(b.px+16-w/2),y=Math.round(b.py-(b.zxT?36:22));
+ c.fillStyle='rgba(255,255,255,.96)';c.strokeStyle=b.zp==='staff'||b.zp==='cmd'?'#E31414':'#E8A598';c.lineWidth=1;c.beginPath();if(c.roundRect)c.roundRect(x+.5,y+.5,w,h,5);else c.rect(x+.5,y+.5,w,h);c.fill();c.stroke();
+ c.beginPath();c.moveTo(b.px+13,y+h);c.lineTo(b.px+16,y+h+4);c.lineTo(b.px+19,y+h);c.closePath();c.fillStyle='rgba(255,255,255,.96)';c.fill();
+ c.fillStyle=b.zp==='staff'||b.zp==='cmd'?'#B5141C':'#2B1A1F';c.textAlign='center';c.textBaseline='middle';c.fillText(b.bk,x+w/2+.5,y+h/2+1);c.restore()}
 
 /* ---------- จบการซ้อม ---------- */
 function zdEnd(timeout){const C=S.zdrCur;if(!C)return;ZX_T.forEach(x=>{if(!C.done[x.id]&&!C.miss[x.id]){C.miss[x.id]=1;C.max[x.id]=zxTMax(x.id);C.pts[x.id]=0}});
@@ -21604,7 +21657,7 @@ function interact(t){if(!t||st.dlg||st.mode!=='play')return;
   if(t.bot){const b=t.bot;if(b.critter){say(b.name||'เจ้าตัวเล็ก','',null,b.critter==='cat'?'เมี้ยว~ (คลอเคลียขา)':b.critter==='dog'?'โฮ่ง! (กระดิกหาง)':b.critter==='chick'?'กุ๊กๆ (คุ้ยดินหาอาหาร)':'(กระโดดดุ๊กดิ๊ก)',null,b.critter);return}
     if(b.onTalk){const m=st.me;if(b.pose!=='bed')b.dir=m.x>b.x?'right':m.x<b.x?'left':m.y>b.y?'down':'up';b.onTalk(b);return}
     const m=st.me;b.dir=m.x>b.x?'right':m.x<b.x?'left':m.y>b.y?'down':'up';b.wait=Math.max(b.wait,3000);
-    say(b.name,b.role,b.ap,'"'+b.say[Math.floor(Math.random()*b.say.length)]+'"');return}
+    if(b.zxT&&zxAvail(b.zxT)){zxRun(b.zxT);return}say(b.name,b.role,b.ap,'"'+b.say[Math.floor(Math.random()*b.say.length)]+'"');return}
   if(st.campus){campusAct(t);return}
   if(st.house){houseAct(t);return}
   const a=avail(t.key);
@@ -21665,7 +21718,7 @@ function draw(){if(!ctx||!DAY)return;const c=ctx,m=st.me,now=performance.now();
     else if(b.pose==='bed'){drawLyingChar(c,b.px+(bo?(bo.w-1)*16:0),b.py-4+(bo&&bo.h>1&&bo.w>1?10:0),b.ap)}
     else if(b.pose==='wheel'){drawWheelchair(c,b.px,b.py+2,b.dir);drawChar(c,b.px,b.py-2,b.ap,b.dir==='up'?'up':b.dir,0,'sit',true)}
     else drawChar(c,b.px,b.py,b.ap,b.dir,b.fr,b.mv?'':b.pose);
-    if(!b.mv&&b.bub)emoBub(c,b.px,b.py,b.bub);if(!b.mv&&b.alert&&b.alert())bubbleAt(c,b.px,b.py-(b.pose==='bed'?6:2),'!','#FFE27A')}})});
+    if(b.zd)zxBark(c,b);else if(!b.mv&&b.bub)emoBub(c,b.px,b.py,b.bub);if(!b.mv&&b.alert&&b.alert())bubbleAt(c,b.px,b.py-(b.pose==='bed'?6:2),'!','#FFE27A')}})});
   ents.push({y:(m.pose==='bed'||m.pose==='bath')?99:m.py/T+.06,f:()=>drawMe(c,m)});
   ents.sort((a,b)=>a.y-b.y).forEach(e=>e.f());
   if(st.hosp){const ca=csActNow();if(ca)st.objs.forEach(o=>{if(o.act&&ca.indexOf(o.act)>=0)bubbleAt(c,o.x*T+(o.w-1)*16,o.y*T-6,'!','#FFE27A')})}
