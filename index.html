@@ -10620,79 +10620,100 @@ button.zmv-gl{border:0;font-family:inherit;cursor:pointer}.zmv-gl u{text-decorat
 .zvr-pr{display:block;width:70%;height:4px;margin-top:4px;border-radius:999px;background:#EEDDD9;overflow:hidden}.zvr-pr u{display:block;height:100%;background:linear-gradient(90deg,#FFB3AB,#F24A4A)}
 .zvr-pn{font-style:normal;font-size:.54rem;font-weight:800;color:#E31414}
 .zvr-ft{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.zvr-ft div{display:flex;flex-direction:column;align-items:center;min-width:0}
-.zvr-ft span{display:block;width:100%;min-height:18px;padding-bottom:2px;border-bottom:1px dotted #C99A92;text-align:center;font-size:.68rem;font-weight:700;color:#B5141C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.zvr-ft small{margin-top:3px;font-size:.54rem;color:#9A6A60}/* ---- MCI drill ---- */
-.g-hp.zx{border:1px solid #F2C4C4;border-radius:16px;box-shadow:0 10px 28px rgba(227,20,20,.14);background:#FFFFFF}
-.zx-f,.zx-st{display:flex;flex-direction:column;gap:10px;color:#3A2328}
-.zx-hd{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:12px;background:linear-gradient(135deg,#FF7A7A,#F24A4A 55%,#E31414);color:#FFFFFF}
-.zx-hd .zx-u{font-size:.62rem;font-weight:600;opacity:.92}
-.zx-hd b{font-size:.92rem;line-height:1.3}
-.zx-hd small{font-size:.7rem;font-weight:600}
-.zx-dots{display:flex;gap:4px;margin:2px 0}
-.zx-dots i{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,.35)}
-.zx-dots i.d{background:#FFFFFF}
-.zx-dots i.c{background:#FFFFFF;box-shadow:0 0 0 2px rgba(255,255,255,.45)}
-.zx-i{margin:0;font-size:.78rem;line-height:1.6;padding:10px 12px;border-radius:4px 12px 12px 12px;background:#FFF7F7;border:1px solid #F7D3D3;border-left:4px solid #F24A4A;white-space:pre-line}
-.zx-g .zhv-o{font-size:.72rem}
-.zx-seq{display:flex;flex-direction:column;gap:6px}
-.zx-sq{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center;text-align:left;border:1px solid #F0C8C8;border-radius:12px;background:#FFFFFF;padding:9px 10px;font:inherit;font-size:.72rem;line-height:1.45;color:#3A2328;cursor:pointer}
-.zx-sq em{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.78rem;color:#FFFFFF;background:#F6D3D3}
-.zx-sq.on{background:#FFF1F1;border-color:#F24A4A}
-.zx-sq.on em{background:linear-gradient(135deg,#FF7A7A,#E31414)}
-.zx-ref{display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:12px;background:#FFF4F4;border:1px dashed #F2B9B9}
-.zx-ref div{display:grid;grid-template-columns:64px 1fr;gap:8px;font-size:.68rem;line-height:1.45}
-.zx-ref b{color:#C81010}
-.zx-map{display:flex;flex-direction:column;gap:8px}
-.zx-row{display:flex;flex-direction:column;gap:6px;padding:9px 10px;border:1px solid #F0C8C8;border-radius:12px;background:#FFFFFF}
-.zx-row span{font-size:.72rem;line-height:1.5}
-.zx-row select{font:inherit;font-size:.7rem;padding:8px;border-radius:10px;border:1.5px solid #F2CFCB;background:#FFF9F9;max-width:100%;color:#3A2328}
-.zx-tg{display:inline-block;font-style:normal;font-size:.62rem;font-weight:700;padding:1px 8px;border-radius:999px;margin-right:6px;vertical-align:1px}
-.zx-tg.zx-r{background:#E31414;color:#FFFFFF}
+.zvr-ft span{display:block;width:100%;min-height:18px;padding-bottom:2px;border-bottom:1px dotted #C99A92;text-align:center;font-size:.68rem;font-weight:700;color:#B5141C;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.zvr-ft small{margin-top:3px;font-size:.54rem;color:#9A6A60}/* ---- MCI drill (เอกสารเวชระเบียน) ---- */
+.g-hp.zx{border:1px solid #EBC9C2;border-radius:14px;box-shadow:0 12px 30px rgba(150,40,30,.18);background:#FBEEEA}
+.g-hp.zx .hp-hd b{color:#B5141C}
+.zx-f,.zx-st{display:flex;flex-direction:column;color:#2B1A1F}
+.zx .zvr-tt{font-size:.88rem}
+.zx .zvr-id dd.zx-hot{color:#E31414}
+.zx-pg{list-style:none;margin:10px 0 0;padding:0;display:flex;align-items:center}
+.zx-pg li{flex:1;display:flex;align-items:center}
+.zx-pg li::after{content:"";flex:1;height:2px;background:#F2D3CD}
+.zx-pg li:last-child{flex:none}.zx-pg li:last-child::after{display:none}
+.zx-pg li i{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.56rem;font-weight:800;color:#C99A92;background:#fff;box-shadow:inset 0 0 0 1.5px #EBC9C2}
+.zx-pg li.d i{color:#fff;background:#F7A9A0;box-shadow:none}.zx-pg li.d::after{background:#F7A9A0}
+.zx-pg li.c i{color:#fff;background:linear-gradient(135deg,#FF7A7A,#E31414);box-shadow:0 0 0 3px #FFE1DC}
+.zx-q{margin:0 0 8px;font-size:.74rem;line-height:1.65;padding:9px 11px;border:1px solid #EBC9C2;border-left:3px solid #E31414;border-radius:3px;background:linear-gradient(transparent 23px,#F8E3DE 24px) 0 4px/100% 24px,#FFFDFC;white-space:pre-line}
+.zx-g{display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;background:#fff}
+.zx-g .zhv-o{margin:0;border-radius:0;background:#fff;box-shadow:none;border-bottom:1px solid #F3DCD7;font-size:.7rem;padding:9px 10px}
+.zx-g .zhv-o:last-child{border-bottom:0}
+.zx-g .zhv-o i{border-radius:3px;box-shadow:inset 0 0 0 1.5px #E2A79C}
+.zx-g .zhv-o.on{background:#FFF3F1;box-shadow:inset 3px 0 0 #E31414}
+.zx-g .zhv-o.on i{position:relative;background:#E31414;box-shadow:none}
+.zx-g .zhv-o.on i::after{content:"";position:absolute;left:5px;top:2px;width:4px;height:8px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.zx-seq{display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;background:#fff}
+.zx-sq{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center;text-align:left;border:0;border-bottom:1px solid #F3DCD7;background:#fff;padding:9px 10px;font:inherit;font-size:.7rem;line-height:1.45;color:#2B1A1F;cursor:pointer}
+.zx-sq:last-child{border-bottom:0}
+.zx-sq em{width:26px;height:26px;border-radius:4px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:.76rem;color:#E31414;background:#fff;box-shadow:inset 0 0 0 1.5px #E2A79C}
+.zx-sq.on{background:#FFF3F1}
+.zx-sq.on em{color:#fff;background:#E31414;box-shadow:none}
+.zx-ref{display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;margin-bottom:8px;background:#FFFDFC}
+.zx-ref div{display:grid;grid-template-columns:62px 1fr;font-size:.64rem;line-height:1.5;border-bottom:1px solid #F3DCD7}
+.zx-ref div:last-child{border-bottom:0}
+.zx-ref b{padding:6px 7px;font-weight:800;color:#B5141C;background:#FFF1EE;border-right:1px solid #F3DCD7}
+.zx-ref span{padding:6px 8px}
+.zx-map{display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;background:#fff}
+.zx-row{display:flex;flex-direction:column;gap:6px;padding:9px 10px;border-bottom:1px solid #F3DCD7;counter-increment:zxr}
+.zx-row:last-child{border-bottom:0}
+.zx-row span{font-size:.7rem;line-height:1.5}
+.zx-row select{font:inherit;font-size:.68rem;padding:7px 8px;border-radius:4px;border:1px solid #E2A79C;background:#FFFBFA;max-width:100%;color:#2B1A1F}
+.zx-tg{display:inline-block;font-style:normal;font-size:.58rem;font-weight:800;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:1px}
+.zx-tg.zx-r{background:#E31414;color:#fff}
 .zx-tg.zx-y{background:#FFE08A;color:#6B4A00}
 .zx-tg.zx-g{background:#CDEBD3;color:#1E5A2E}
-.zx-tg.zx-b{background:#5A4A4E;color:#FFFFFF}
-.zx-res{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:#FFF1F1;border:1px solid #F7C6C6}
-.zx-res b{font-size:1.1rem;color:#C81010}
-.zx-res span{font-size:.74rem;color:#7A3B3B}
-.zx-fb{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.zx-fb li{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:10px;border:1px solid #F0D2D2;background:#FFFFFF}
-.zx-fb li em{font-style:normal;font-size:.6rem;font-weight:700;align-self:flex-start;padding:1px 8px;border-radius:999px;background:#F3E3E3;color:#7A4A4E}
-.zx-fb li.ok em{background:#E31414;color:#FFFFFF}
-.zx-fb li.ms em{background:#FFE4E4;color:#B3261E}
-.zx-fb li.no em{background:#5A4A4E;color:#FFFFFF}
-.zx-fb li b{font-size:.72rem;font-weight:600;line-height:1.45}
-.zx-fb li small{font-size:.64rem;line-height:1.45;color:#7A5A60}
-.zx-x{margin:0;font-size:.7rem;line-height:1.6;padding:9px 11px;border-radius:12px;background:#FFF7F7;border:1px solid #F7D3D3}
-.zx-x b{color:#C81010;margin-right:4px}
-.zx-menu .zx-mi{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;border:1px solid #F0C8C8;border-radius:12px;background:#FFFFFF;padding:10px 12px;font:inherit;cursor:pointer}
-.zx-menu .zx-mi b{font-size:.76rem;color:#3A2328}.zx-menu .zx-mi small{font-size:.64rem;color:#B3261E}
-.zx-sh{display:flex;flex-direction:column;gap:2px;padding:12px;border-radius:12px;background:linear-gradient(135deg,#FF7A7A,#E31414);color:#FFFFFF}
-.zx-sh small{font-size:.66rem;opacity:.95}.zx-sh b{font-size:1.25rem;line-height:1.2}.zx-sh span{font-size:.64rem;opacity:.95}
-.zx-st h4{margin:4px 0 0;font-size:.76rem;color:#C81010}
-.zx-ph{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
-.zx-ph li{display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center;font-size:.56rem;line-height:1.3;color:#9A7A80}
-.zx-ph li i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;background:#F6E1E1;color:#B3868B}
-.zx-ph li.d i{background:#F7B5B5;color:#FFFFFF}.zx-ph li.c i{background:linear-gradient(135deg,#FF7A7A,#E31414);color:#FFFFFF;box-shadow:0 0 0 3px #FFE1E1}.zx-ph li.c{color:#C81010;font-weight:700}
-.zx-k{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.zx-k div,.zx-k2 div{display:flex;flex-direction:column;align-items:center;padding:8px 4px;border-radius:10px;border:1px solid #F0D2D2;background:#FFFFFF}
-.zx-k b,.zx-k2 b{font-size:1rem}.zx-k span,.zx-k2 span{font-size:.58rem;color:#7A5A60;text-align:center;line-height:1.3}
-.zx-k .r{border-top:4px solid #E31414}.zx-k .y{border-top:4px solid #F2C94C}.zx-k .g{border-top:4px solid #8CCB98}.zx-k .b{border-top:4px solid #5A4A4E}
-.zx-k2{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.zx-tb{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
-.zx-tb li{display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:10px;border:1px solid #F0D2D2;background:#FFFFFF}
-.zx-tb li div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.zx-tb li b{font-size:.7rem;line-height:1.35}.zx-tb li small{font-size:.6rem;color:#8C6A73}
-.zx-tb li em{font-style:normal;font-size:.64rem;font-weight:700;color:#7A5A60;white-space:nowrap}
-.zx-tb li.on{border-color:#F24A4A;background:#FFF5F5}.zx-tb li.on em{color:#C81010}
-.zx-tb li.dn{opacity:.75}.zx-tb li.ms em{color:#5A4A4E}.zx-tb li.ms b{text-decoration:line-through;color:#8C6A73}
-.zx-bar{display:block;height:4px;border-radius:2px;background:#F6E1E1;overflow:hidden;margin-top:3px}.zx-bar u{display:block;height:100%;background:linear-gradient(90deg,#FF7A7A,#E31414)}
-.zx-jas{border:1px solid #F0D2D2;border-radius:10px;padding:8px 10px;background:#FFFBFB}.zx-jas summary{font-size:.72rem;font-weight:700;color:#C81010;cursor:pointer}.zx-jas p{margin:6px 0 0;font-size:.66rem;line-height:1.6;white-space:pre-line}
-.zx-log{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}.zx-log li{font-size:.64rem;line-height:1.45;color:#5A3A40}.zx-log li em{font-style:normal;font-weight:700;color:#C81010;margin-right:6px}
-.zx-dm{display:flex;flex-direction:column;gap:6px}.zx-dm div{display:grid;grid-template-columns:1fr 90px 40px;gap:8px;align-items:center;font-size:.66rem}
-.zx-dm i{height:7px;border-radius:4px;background:#F6E1E1;overflow:hidden}.zx-dm u{display:block;height:100%;background:linear-gradient(90deg,#FF7A7A,#E31414)}.zx-dm b{text-align:right;color:#C81010}
-.zx-ls{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:5px}.zx-ls li{font-size:.66rem;line-height:1.5}.zx-ls li b{display:block;font-size:.66rem;color:#7A3B3B}
+.zx-tg.zx-b{background:#4A3A3E;color:#fff}
+.zx-res{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;padding:10px 12px;border:1px solid #EBC9C2;border-radius:4px;background:#FFFDFC}
+.zx-res div{display:flex;flex-direction:column}
+.zx-res small{font-size:.56rem;font-weight:700;color:#B07A72}
+.zx-res b{font-size:1.5rem;line-height:1.1;color:#B5141C}.zx-res b span{font-size:.8rem;color:#C99A92}
+.zx-stamp{flex:none;font-style:normal;font-size:.82rem;font-weight:800;padding:4px 12px;border-radius:6px;border:2.5px solid currentColor;transform:rotate(-8deg);letter-spacing:0;opacity:.9}
+.zx-stamp.ok{color:#E31414}.zx-stamp.md{color:#C9645A}.zx-stamp.no{color:#7A5A60}
+.zx-fb{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;background:#fff}
+.zx-fb li{display:flex;flex-direction:column;gap:3px;padding:8px 10px;border-bottom:1px solid #F3DCD7}
+.zx-fb li:last-child{border-bottom:0}
+.zx-fb li em{font-style:normal;font-size:.56rem;font-weight:800;align-self:flex-start;padding:1px 7px;border-radius:3px;background:#F3E3E3;color:#7A4A4E}
+.zx-fb li.ok em{background:#E31414;color:#fff}
+.zx-fb li.ms em{background:#FFE4E0;color:#B3261E;box-shadow:inset 0 0 0 1px #F2B3AA}
+.zx-fb li.no em{background:#4A3A3E;color:#fff}
+.zx-fb li b{font-size:.7rem;font-weight:700;line-height:1.45}
+.zx-fb li small{font-size:.6rem;line-height:1.5;color:#9A6A60}
+.zx-x{margin:8px 0 0;font-size:.66rem;line-height:1.65;padding:9px 11px;border:1px dashed #E2A79C;border-radius:4px;background:#FFF7F5}
+.zx-x b{display:block;font-size:.6rem;color:#B5141C;margin-bottom:2px}
+.zx-f .hp-row,.zx-st .hp-row{margin-top:10px}
+.zx-f .hp-row .g-btn,.zx-st .hp-row .g-btn{flex:1}
+.zx-mis{display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;background:#fff}
+.zx-mi{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;column-gap:8px;align-items:center;text-align:left;border:0;border-bottom:1px solid #F3DCD7;background:#fff;padding:9px 10px;font:inherit;cursor:pointer}
+.zx-mi:last-child{border-bottom:0}
+.zx-mi em{grid-row:span 2;font-style:normal;font-size:.54rem;font-weight:800;color:#E31414;padding:1px 5px;border:1px solid #F24A4A;border-radius:3px}
+.zx-mi b{font-size:.72rem;color:#2B1A1F}.zx-mi small{font-size:.58rem;color:#9A6A60}
+.zx-mi span{grid-row:1/3;grid-column:3;font-size:.68rem;font-weight:800;color:#7A4A44}.zx-mi span.hot{color:#E31414}
+.zx-mi:hover{background:#FFF3F1}
+.zx-ph{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #EBC9C2;border-radius:4px;overflow:hidden;background:#fff}
+.zx-ph li{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 3px;text-align:center;font-size:.54rem;line-height:1.3;color:#B07A72;border-right:1px solid #F3DCD7}
+.zx-ph li:last-child{border-right:0}
+.zx-ph li i{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;color:#C99A92;box-shadow:inset 0 0 0 1.5px #EBC9C2}
+.zx-ph li.d i{background:#F7A9A0;color:#fff;box-shadow:none}
+.zx-ph li.c{background:#FFF1EE;color:#B5141C;font-weight:800}.zx-ph li.c i{background:#E31414;color:#fff;box-shadow:none}
+.zx-tri td{vertical-align:middle}.zx-tri td:first-child{width:56px}.zx-tri td:last-child{width:46px;text-align:center}.zx-tri td:last-child b{font-size:.82rem;color:#2B1A1F}
+.zx-kv3 dd{font-size:.8rem}
+.zx-tbd .zvr-mk{white-space:nowrap}
+.zx-lg td{font-size:.62rem;line-height:1.45}.zx-lg td.zvr-t{width:34px}.zvr-tbl.zx-lg td:last-child{width:auto;text-align:left;vertical-align:top}
+.zx-jas{border:1px solid #EBC9C2;border-radius:4px;padding:7px 10px;background:#FFFDFC}.zx-jas summary{font-size:.66rem;font-weight:800;color:#B5141C;cursor:pointer}.zx-jas p{margin:6px 0 0;font-size:.64rem;line-height:1.65;white-space:pre-line}
+.zx-jas .zvr-tbl{margin-top:6px}
+.zx-dm{display:flex;flex-direction:column;border:1px solid #EBC9C2;border-radius:4px;background:#fff}
+.zx-dm div{display:grid;grid-template-columns:1fr 80px 40px;gap:8px;align-items:center;font-size:.64rem;padding:6px 9px;border-bottom:1px solid #F3DCD7}
+.zx-dm div:last-child{border-bottom:0}
+.zx-dm i{height:6px;border-radius:3px;background:#F6DDD8;overflow:hidden}.zx-dm u{display:block;height:100%;background:linear-gradient(90deg,#FF7A7A,#E31414);text-decoration:none}.zx-dm b{text-align:right;color:#B5141C}
+.zx-ls{margin:0;padding:6px 10px 6px 26px;display:flex;flex-direction:column;gap:5px;border:1px solid #EBC9C2;border-radius:4px;background:#fff}
+.zx-ls li{font-size:.64rem;line-height:1.55}.zx-ls li b{display:block;font-size:.64rem;color:#B5141C}
+.zx-ls.no li b{color:#4A3A3E}
+.zx-qt{justify-content:flex-end}.zx-qt .g-btn{flex:none!important}
 .zx-pick{display:flex;flex-direction:column;gap:4px}.zx-pick span{font-size:.64rem;color:#7A4A44}.zx-pick select{font:inherit;font-size:.7rem;padding:8px;border-radius:10px;border:1.5px solid #F2CFCB;background:#FFFFFF}
 .g-wrap.zx-on .g-stage{box-shadow:inset 0 0 0 3px rgba(227,20,20,.55);animation:zxP 1.8s ease-in-out infinite}
 @keyframes zxP{50%{box-shadow:inset 0 0 0 3px rgba(227,20,20,.15)}}
+/* fullscreen: HUD ชิดมุมบน */
+.g-wrap.fs.fs>.g-hud,.g-wrap.fs.fs>.g-hud.old{top:calc(env(safe-area-inset-top) + 8px)}
+.g-wrap.fs.fs .g-stage>.g-mini{top:calc(env(safe-area-inset-top) + 98px)}
 
 /* ---- dialog: medical consult card ---- */
 .g-dlg:not(.scene){grid-template-columns:1fr;gap:0;padding:0;background:#FFFFFF;border:1px solid #F2C4C4;border-radius:16px;box-shadow:0 10px 28px rgba(227,20,20,.14),0 2px 6px rgba(227,20,20,.08);overflow:hidden;position:relative}
@@ -20895,25 +20916,25 @@ const ZX_SC={"bus":{"id":"bus","n":"รถบัสทัศนศึกษา�
 const ZX_LIM=2700;
 const ZX_PH=['แจ้งเหตุและประกาศแผน','ตั้งศูนย์','ผู้บาดเจ็บหลั่งไหล','ยุติแผนและสรุปบทเรียน'];
 const ZX_T=[
- {id:'cmd1',ph:0,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
- {id:'fic0',ph:1,room:'โถงผู้ป่วยนอก',comp:'coord',unit:'ศูนย์ข้อมูลครอบครัว'},
- {id:'kid0',ph:1,room:'ศูนย์พึ่งได้',comp:'ethic',unit:'มุมเด็กพลัดหลง'},
- {id:'tri',ph:2,at:0,dl:330,room:'ห้องฉุกเฉิน',comp:'assess',unit:'จุดคัดแยก'},
- {id:'fic1',ph:2,at:25,dl:420,room:'โถงผู้ป่วยนอก',comp:'comm',unit:'ศูนย์ข้อมูลครอบครัว'},
- {id:'match',ph:2,at:80,dl:480,room:'ห้องสังคมสงเคราะห์',comp:'assess',unit:'ศูนย์ติดตามผู้ป่วย'},
- {id:'kid',ph:2,at:120,dl:420,room:'ศูนย์พึ่งได้',comp:'ethic',unit:'มุมเด็กพลัดหลง'},
- {id:'media',ph:2,at:160,dl:300,room:'ลานจอดรถ',comp:'ethic',unit:'หน้าห้องฉุกเฉิน'},
- {id:'pfa',ph:2,at:190,dl:480,room:'โรงอาหาร',comp:'comm',unit:'จุดปฐมพยาบาลทางใจ'},
- {id:'sit1',ph:2,at:220,dl:240,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
- {id:'power',ph:2,at:260,dl:120,room:null,comp:'coord',unit:'ทุกจุด'},
- {id:'death',ph:2,at:300,dl:480,room:'คลินิกจิตเวช',comp:'comm',unit:'ห้องแจ้งข่าว'},
- {id:'don',ph:2,at:350,dl:360,room:'ห้องกายภาพ',comp:'coord',unit:'จุดรับของบริจาค'},
- {id:'rights',ph:2,at:390,dl:420,room:'ห้องสังคมสงเคราะห์',comp:'assess',unit:'จุดสิทธิและค่าใช้จ่าย'},
- {id:'angry',ph:2,at:430,dl:300,room:'โถงผู้ป่วยนอก',comp:'comm',unit:'ศูนย์ข้อมูลครอบครัว'},
- {id:'special',ph:2,at:470,dl:480,room:'*',comp:'coord',unit:'งานเฉพาะเหตุการณ์'},
- {id:'sit2',ph:2,at:560,dl:240,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
- {id:'demob',ph:3,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
- {id:'hot',ph:3,room:'ห้องสังคมสงเคราะห์',comp:'self',unit:'ทีมสังคมสงเคราะห์'}];
+ {id:'cmd1',f:'ICS-01',ph:0,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
+ {id:'fic0',f:'FIC-00',ph:1,room:'โถงผู้ป่วยนอก',comp:'coord',unit:'ศูนย์ข้อมูลครอบครัว'},
+ {id:'kid0',f:'UAC-00',ph:1,room:'ศูนย์พึ่งได้',comp:'ethic',unit:'มุมเด็กพลัดหลง'},
+ {id:'tri',f:'TRI-02',ph:2,at:0,dl:330,room:'ห้องฉุกเฉิน',comp:'assess',unit:'จุดคัดแยก'},
+ {id:'fic1',f:'FIC-01',ph:2,at:25,dl:420,room:'โถงผู้ป่วยนอก',comp:'comm',unit:'ศูนย์ข้อมูลครอบครัว'},
+ {id:'match',f:'PTR-03',ph:2,at:80,dl:480,room:'ห้องสังคมสงเคราะห์',comp:'assess',unit:'ศูนย์ติดตามผู้ป่วย'},
+ {id:'kid',f:'UAC-01',ph:2,at:120,dl:420,room:'ศูนย์พึ่งได้',comp:'ethic',unit:'มุมเด็กพลัดหลง'},
+ {id:'media',f:'PIO-01',ph:2,at:160,dl:300,room:'ลานจอดรถ',comp:'ethic',unit:'หน้าห้องฉุกเฉิน'},
+ {id:'pfa',f:'PFA-01',ph:2,at:190,dl:480,room:'โรงอาหาร',comp:'comm',unit:'จุดปฐมพยาบาลทางใจ'},
+ {id:'sit1',f:'SIT-01',ph:2,at:220,dl:240,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
+ {id:'power',f:'DT-01',ph:2,at:260,dl:120,room:null,comp:'coord',unit:'ทุกจุด'},
+ {id:'death',f:'DN-01',ph:2,at:300,dl:480,room:'คลินิกจิตเวช',comp:'comm',unit:'ห้องแจ้งข่าว'},
+ {id:'don',f:'DON-01',ph:2,at:350,dl:360,room:'ห้องกายภาพ',comp:'coord',unit:'จุดรับของบริจาค'},
+ {id:'rights',f:'RGT-01',ph:2,at:390,dl:420,room:'ห้องสังคมสงเคราะห์',comp:'assess',unit:'จุดสิทธิและค่าใช้จ่าย'},
+ {id:'angry',f:'FIC-02',ph:2,at:430,dl:300,room:'โถงผู้ป่วยนอก',comp:'comm',unit:'ศูนย์ข้อมูลครอบครัว'},
+ {id:'special',f:'SP-01',ph:2,at:470,dl:480,room:'*',comp:'coord',unit:'งานเฉพาะเหตุการณ์'},
+ {id:'sit2',f:'SIT-02',ph:2,at:560,dl:240,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
+ {id:'demob',f:'DMB-01',ph:3,room:'ห้องประชุม',comp:'coord',unit:'ศูนย์สั่งการ'},
+ {id:'hot',f:'DBF-01',ph:3,room:'ห้องสังคมสงเคราะห์',comp:'self',unit:'ทีมสังคมสงเคราะห์'}];
 const ZD_ST=ZX_T;
 const ZX_TRI_OPTS=["ติดตามและแจ้งญาติด่วน","ดูแลเป็นเด็กไม่มีผู้ปกครอง ส่งมุมเด็ก","จัดหาล่ามหรือผู้ช่วยสื่อสาร","ประสานยาหรืออุปกรณ์จำเป็นที่ขาด","จัดผู้ดูแลแทนให้ผู้สูงอายุหรือคนพิการ","คัดกรองประเด็นคุ้มครองหรือความรุนแรง","ยังไม่ต้องดำเนินการ เฝ้าติดตาม"];
 const ZX_JAS='บัตรหน้าที่ (Job Action Sheet)\nตำแหน่ง: หัวหน้าหน่วยช่วยเหลือผู้ป่วยและครอบครัว (Patient Family Assistance Branch)\nรายงานต่อ: หัวหน้าฝ่ายปฏิบัติการ ศูนย์สั่งการโรงพยาบาล\nหน่วยในความรับผิดชอบ: ศูนย์ข้อมูลครอบครัว ศูนย์ติดตามผู้ป่วย มุมเด็กพลัดหลง ห้องแจ้งข่าว จุดปฐมพยาบาลทางใจ\nชั่วโมงแรก: รายงานตัว รับข้อมูลสถานการณ์ มอบหมายลูกทีม ตั้งศูนย์ ประสานประชาสัมพันธ์ รายงานสถานการณ์ตามรอบ\nข้อห้าม: ไม่ให้ข้อมูลผู้ป่วยกับสื่อ ไม่แจ้งการเสียชีวิตทางโทรศัพท์ ไม่ส่งตัวเด็กโดยไม่ยืนยันผู้รับ ไม่ยืนยันตัวผู้ป่วยจากใบหน้าอย่างเดียว';
@@ -21102,12 +21123,17 @@ function zdTick(){const C=S.zdrCur;if(!C)return;if(!C.v){S.zdrCur=null;save();re
  const pw=ZX_T.find(x=>x.room===null&&zxAvail(x.id));if(pw){zxRun(pw.id);return}
  if(st.floor!==1||!st.room)return;const here=ZX_T.filter(x=>x.room&&zxAvail(x.id)&&st.room.indexOf(zxRoom(x))>=0&&!(C.snz[x.id]>C.t)&&!(C.snz['@'+zxRoom(x)]>C.t));
  if(!here.length)return;if(here.length===1){zxRun(here[0].id);return}
- const rm=zxRoom(here[0]);C.snz['@'+rm]=C.t+15;openHP('งานที่ '+rm,`<div class="zx-f zx-menu"><p class="zx-i">จุดนี้มีงานรออยู่ ${here.length} งาน เลือกงานที่เร่งด่วนที่สุดก่อน</p>${here.map(x=>{const l=zxLeft(x.id);return `<button class="zx-mi" data-h="zxgo" data-v="${x.id}"><b>${zxE(zxTask(x.id).n)}</b><small>${zxE(x.unit)}${l!=null?' · เหลือ '+zxMM(l):''}</small></button>`}).join('')}</div>`,'camp zx')}
+ const rm=zxRoom(here[0]);C.snz['@'+rm]=C.t+15;openHP('งานที่ '+rm,`<div class="zx-f zx-menu">${zvrDoc({code:'ICS-213',title:'ใบสั่งงาน ณ จุดปฏิบัติงาน',sub:zxE(rm)+' · มีงานรอ '+here.length+' งาน',id:`<dl class="zvr-id"><div><dt>เหตุการณ์</dt><dd>${zxE(zxSc().n)}</dd></div><div><dt>เวลาซ้อม</dt><dd>${zxMM(C.t)}</dd></div></dl>`,body:zvrSec('!','เลือกงานที่เร่งด่วนที่สุดก่อน','งานที่ใกล้หมดเวลาอยู่บนสุด')+`<div class="zx-mis">${here.slice().sort((a,b)=>(zxLeft(a.id)??1e9)-(zxLeft(b.id)??1e9)).map(x=>{const l=zxLeft(x.id);return `<button class="zx-mi" data-h="zxgo" data-v="${x.id}"><em>${x.f}</em><b>${zxE(zxTask(x.id).n)}</b><small>${zxE(x.unit)}</small><span class="${l!=null&&l<90?'hot':''}">${l!=null?zxMM(l):'ไม่จำกัด'}</span></button>`}).join('')}</div>`,foot:false})}</div>`,'camp pcw zvr-hp zx')}
 
 /* ---------- เครื่องเล่นขั้นตอน ---------- */
 function zxRun(id){const C=S.zdrCur;if(!C||!zxAvail(id))return;closeHP();C.busy=id;const P=C.prog[id]=C.prog[id]||{si:0,p:0,m:0};save();zxStep()}
 function zdRun(id){zxRun(typeof id==='string'?id:id&&id.id)}
-function zxHead(T,td,s,i,n){return `<div class="zx-hd"><span class="zx-u">${zxE(td.unit)} · ${zxE(zxRoom(td)||'ทุกจุด')}</span><b>${zxE(T.n)}</b><div class="zx-dots">${Array.from({length:n},(_,k)=>`<i class="${k<i?'d':k===i?'c':''}"></i>`).join('')}</div><small>${zxE(s.lab)}</small></div>`}
+function zxLab(l){const i=String(l).indexOf(' · ');return i>=0?l.slice(i+3):l}
+function zxSt(l){const m=String(l).match(/(\d+)\/(\d+)/);return m?m[1]+' / '+m[2]:'-'}
+function zxDocW(td,T,inner,o){o=o||{};const l=zxLeft(td.id);return zvrDoc({code:td.f||'MCI',title:zxE(T.n),sub:'แผนรับอุบัติภัยหมู่ · '+zxE(zxSc().n),
+  id:`<dl class="zvr-id"><div><dt>หน่วยปฏิบัติ</dt><dd>${zxE(td.unit)}</dd></div><div><dt>จุดปฏิบัติงาน</dt><dd>${zxE(zxRoom(td)||'ทุกจุด')}</dd></div><div><dt>ขั้นตอน</dt><dd>${o.st||'-'}</dd></div><div><dt>เวลาที่เหลือ</dt><dd class="${l!=null&&l<60?'zx-hot':''}">${l!=null?zxMM(Math.max(0,l))+' นาที':'ไม่จำกัด'}</dd></div></dl>`,
+  body:(o.pg||'')+inner,foot:false})}
+function zxPg(n,i){return `<ol class="zx-pg">${Array.from({length:n},(_,k)=>`<li class="${k<i?'d':k===i?'c':''}"><i>${k+1}</i></li>`).join('')}</ol>`}
 function zxTag(t){return zxE(t).replace(/^\[(แดง|เหลือง|เขียว|ดำ)\]\s*/,(m,c)=>`<em class="zx-tg zx-${{'แดง':'r','เหลือง':'y','เขียว':'g','ดำ':'b'}[c]}">${c}</em>`)}
 function zxStep(){const C=S.zdrCur,id=C.busy,P=C.prog[id],T=zxTask(id),td=zxTD(id);if(!T)return;const s=T.steps[P.si];if(!s){zxFin(id);return}
  const n=T.steps.length,role=td.unit+' · '+s.lab;
@@ -21115,10 +21141,10 @@ function zxStep(){const C=S.zdrCur,id=C.busy,P=C.prog[id],T=zxTask(id),td=zxTD(i
  if(s.k==='one'){openDlg({who:s.who,role,ap:NPCA[s.ap]||NPCA.head,text:s.t,choices:shuffle(s.o.slice()).map(o=>({t:o[0],fn:()=>{st.dlg=null;zxScore(id,s,o[1],2,o[1]<2?o[2]:null);const best=s.o.find(x=>x[1]===2);
    openDlg({who:myAvatar().name,role:'ผลการตัดสินใจ · '+s.lab,ap:myAvatar(),text:(o[1]===2?'เหมาะสมที่สุด\n\n'+o[2]:(o[1]===1?'พอใช้ แต่ยังไม่ดีที่สุด':'ไม่เหมาะสม')+'\n\n'+o[2]+'\n\nแนวทางที่ดีที่สุด: '+best[0]+'\n'+best[2]),choices:[{t:P.si+1<n?'ขั้นถัดไป':'เสร็จงานนี้',fn:()=>{st.dlg=null;P.si++;save();zxStep()}}]})}}))});return}
  let body='';
- if(s.k==='multi')body=`<p class="zx-i">${zxE(s.t)}</p><div class="zx-g">${shuffle(s.o.map((x,i)=>i)).map(i=>`<button type="button" class="zhv-o" data-i="${i}" onclick="this.classList.toggle('on')"><i></i>${zxE(s.o[i][0])}</button>`).join('')}</div><div class="hp-row"><button class="g-btn big" data-h="zxsub">ยืนยัน (เลือก ${s.need} ข้อ)</button></div>`;
- if(s.k==='seq')body=`<p class="zx-i">${zxE(s.t)}</p><div class="zx-seq">${shuffle(s.o.map((x,i)=>i)).map(i=>`<button type="button" class="zx-sq" data-i="${i}" onclick="zxSeqTap(this)"><em></em><span>${zxE(s.o[i])}</span></button>`).join('')}</div><div class="hp-row"><button class="g-btn" type="button" onclick="zxSeqClr(this)">เริ่มเรียงใหม่</button><button class="g-btn big" data-h="zxsub">ยืนยันลำดับ</button></div>`;
- if(s.k==='map')body=`<p class="zx-i">${zxE(s.t)}</p>${s.ref?`<div class="zx-ref">${s.ref.map(r=>`<div><b>${zxE(r[0])}</b><span>${zxE(r[1])}</span></div>`).join('')}</div>`:''}<div class="zx-map">${s.rows.map((r,i)=>{const op=r[3]||s.opts;return `<label class="zx-row"><span>${zxTag(r[0])}</span><select data-m="${i}"><option value="">เลือก</option>${op.map((o,j)=>`<option value="${j}">${zxE(o)}</option>`).join('')}</select></label>`}).join('')}</div><div class="hp-row"><button class="g-btn big" data-h="zxsub">ยืนยัน</button></div>`;
- openHP(zxE(T.n),`<div class="zx-f">${zxHead(T,td,s,P.si,n)}${body}</div>`,'camp zx')}
+ if(s.k==='multi')body=`<p class="zx-i zx-q">${zxE(s.t)}</p><div class="zx-g">${shuffle(s.o.map((x,i)=>i)).map(i=>`<button type="button" class="zhv-o" data-i="${i}" onclick="this.classList.toggle('on')"><i></i>${zxE(s.o[i][0])}</button>`).join('')}</div><div class="hp-row"><button class="g-btn big" data-h="zxsub">ยืนยัน (เลือก ${s.need} ข้อ)</button></div>`;
+ if(s.k==='seq')body=`<p class="zx-i zx-q">${zxE(s.t)}</p><div class="zx-seq">${shuffle(s.o.map((x,i)=>i)).map(i=>`<button type="button" class="zx-sq" data-i="${i}" onclick="zxSeqTap(this)"><em></em><span>${zxE(s.o[i])}</span></button>`).join('')}</div><div class="hp-row"><button class="g-btn" type="button" onclick="zxSeqClr(this)">เริ่มเรียงใหม่</button><button class="g-btn big" data-h="zxsub">ยืนยันลำดับ</button></div>`;
+ if(s.k==='map')body=`<p class="zx-i zx-q">${zxE(s.t)}</p>${s.ref?`<div class="zx-ref">${s.ref.map(r=>`<div><b>${zxE(r[0])}</b><span>${zxE(r[1])}</span></div>`).join('')}</div>`:''}<div class="zx-map">${s.rows.map((r,i)=>{const op=r[3]||s.opts;return `<label class="zx-row"><span>${zxTag(r[0])}</span><select data-m="${i}"><option value="">เลือก</option>${op.map((o,j)=>`<option value="${j}">${zxE(o)}</option>`).join('')}</select></label>`}).join('')}</div><div class="hp-row"><button class="g-btn big" data-h="zxsub">ยืนยัน</button></div>`;
+ openHP(zxE(T.n),`<div class="zx-f">${zxDocW(td,T,zvrSec(P.si+1,zxE(zxLab(s.lab)),s.k==='multi'?'เลือก '+s.need+' ข้อ':s.k==='seq'?'แตะเรียงลำดับ 1 ถึง '+s.o.length:s.k==='map'?'ระบุให้ครบ '+s.rows.length+' รายการ':'')+body,{st:zxSt(s.lab),pg:zxPg(n,P.si)})}</div>`,'camp pcw zvr-hp zx')}
 window.zxSeqTap=function(b){if(b.classList.contains('on'))return;const g=b.parentNode;const n=g.querySelectorAll('.zx-sq.on').length+1;b.classList.add('on');b.dataset.n=n;b.querySelector('em').textContent=n};
 window.zxSeqClr=function(b){b.closest('.zx-f').querySelectorAll('.zx-sq').forEach(x=>{x.classList.remove('on');delete x.dataset.n;x.querySelector('em').textContent=''})};
 function zdSubmit(){zxSub()}
@@ -21136,7 +21162,8 @@ function zxSub(){const C=S.zdrCur;if(!C||!C.busy)return;const id=C.busy,P=C.prog
   res=s.rows.map((r,i)=>{const ok=+v[i]===r[1];return `<li class="${ok?'ok':'no'}"><em>${ok?'ถูกต้อง':'คำตอบ: '+zxE(op(i)[r[1]])}</em><b>${zxTag(r[0])}</b><small>${ok?'':'คุณเลือก: '+zxE(op(i)[+v[i]])+' · '}${zxE(r[2])}</small></li>`}).join('');
   s.rows.forEach((r,i)=>{if(+v[i]!==r[1])C.fb.push([T.n,s.lab,r[2]])})}
  P.p+=p;P.m+=m;save();const td=zxTD(id),n=T.steps.length;
- openHP(zxE(T.n),`<div class="zx-f">${zxHead(T,td,s,P.si,n)}<div class="zx-res"><b>${p}/${m}</b><span>${p===m?'ครบถ้วนถูกต้อง':p>=m*.6?'ทำได้ดี แต่ยังมีจุดที่ควรปรับ':'ควรทบทวนขั้นนี้'}</span></div><ul class="zx-fb">${res}</ul>${s.x?`<p class="zx-x"><b>หลักวิชาการ</b> ${zxE(s.x)}</p>`:''}<div class="hp-row"><button class="g-btn big" data-h="zxnext">${P.si+1<n?'ขั้นถัดไป':'เสร็จงานนี้'}</button></div></div>`,'camp zx')}
+ const gr=p===m?'ครบถ้วน':p>=m*.6?'ผ่าน':'ทบทวน';
+ openHP(zxE(T.n),`<div class="zx-f">${zxDocW(td,T,zvrSec(P.si+1,'ผลการปฏิบัติ · '+zxE(zxLab(s.lab)),'ตรวจโดยผู้นิเทศการซ้อม')+`<div class="zx-res"><div><small>คะแนนขั้นนี้</small><b>${p}<span>/${m}</span></b></div><em class="zx-stamp ${p===m?'ok':p>=m*.6?'md':'no'}">${gr}</em></div><ul class="zx-fb">${res}</ul>${s.x?`<p class="zx-x"><b>หลักวิชาการ</b>${zxE(s.x)}</p>`:''}<div class="hp-row"><button class="g-btn big" data-h="zxnext">${P.si+1<n?'ขั้นถัดไป':'ปิดแบบฟอร์มนี้'}</button></div>`,{st:zxSt(s.lab),pg:zxPg(n,P.si)})}</div>`,'camp pcw zvr-hp zx')}
 function zxNext(){const C=S.zdrCur;if(!C||!C.busy)return;C.prog[C.busy].si++;save();closeHP();zxStep()}
 function zxFin(id){const C=S.zdrCur,P=C.prog[id],td=zxTD(id),T=zxTask(id);C.done[id]=1;C.pts[id]=P.p;C.max[id]=P.m;const l=zxLeft(id);C.late=C.late||{};if(l!=null&&l<0)C.late[id]=1;delete C.prog[id];C.busy=null;zcAdd(td.comp,P.p,P.m);zxLog('เสร็จ · '+T.n+' ('+P.p+'/'+P.m+')');save();hud();closeHP();
  if(id==='cmd1'||id==='fic0'||id==='kid0'||id==='demob')toast('เสร็จแล้ว: '+T.n)}
@@ -21146,18 +21173,20 @@ function zdDone(){}
 function zdChip(){const C=S.zdrCur;if(!C||!C.v)return '';const act=ZX_T.filter(x=>zxAvail(x.id));const urg=act.filter(x=>zxLeft(x.id)!=null).sort((a,b)=>zxLeft(a.id)-zxLeft(b.id))[0]||act[0];
  return `<button class="zd-c" data-h="zdinfo"><b>ซ้อมแผน · ระยะ ${C.ph+1} ${ZX_PH[C.ph]} · ${zxMM(C.t)}</b><span>${urg?zxE(zxTask(urg.id).n)+' · '+zxE(zxRoom(urg)||'ทุกจุด')+(zxLeft(urg.id)!=null?' · เหลือ '+zxMM(zxLeft(urg.id)):''):'ดูกระดานงาน'}</span></button>`}
 function zdInfo(){const C=S.zdrCur;if(!C)return;const sc=zxSc(),F=zxStat();
- const row=x=>{const T=zxTask(x.id),l=zxLeft(x.id),st2=C.done[x.id]?'dn':C.miss[x.id]?'ms':zxAvail(x.id)?'on':'wt';const pct=l!=null&&x.dl?Math.max(0,Math.min(100,l/x.dl*100)):0;
-  return `<li class="${st2}"><div><b>${zxE(T?T.n:x.id)}</b><small>${zxE(x.unit)} · ${zxE(zxRoom(x)||'ทุกจุด')}</small>${st2==='on'&&l!=null?`<i class="zx-bar"><u style="width:${pct}%"></u></i>`:''}</div><em>${st2==='dn'?(C.max[x.id]!=null?C.pts[x.id]+'/'+C.max[x.id]:'เสร็จ'):st2==='ms'?'พลาด':st2==='on'?(l!=null?zxMM(l):'ทำได้เลย'):'รอ'}</em></li>`};
- const vis=ZX_T.filter(x=>x.ph<C.ph||(x.ph===C.ph&&(x.ph!==2||C.app[x.id]!=null)));
- openHP('ซ้อมแผนรับอุบัติภัยหมู่',`<div class="zx-st">
-  <div class="zx-sh"><small>${zxE(sc.n)}</small><b>${zxMM(C.t)}</b><span>เวลาซ้อมสูงสุด ${zxMM(ZX_LIM)}</span></div>
-  <ol class="zx-ph">${ZX_PH.map((p,i)=>`<li class="${i<C.ph?'d':i===C.ph?'c':''}"><i>${i+1}</i><span>${p}</span></li>`).join('')}</ol>
-  <h4>สถานะโรงพยาบาล</h4><div class="zx-k"><div class="r"><b>${F.r}</b><span>แดง</span></div><div class="y"><b>${F.y}</b><span>เหลือง</span></div><div class="g"><b>${F.g}</b><span>เขียว</span></div><div class="b"><b>${F.b}</b><span>เสียชีวิต</span></div></div>
-  <div class="zx-k2"><div><b>${F.fam}</b><span>ญาติลงทะเบียน</span></div><div><b>${F.kids}</b><span>เด็กยังไม่พบผู้ปกครอง</span></div><div><b>${F.unk}</b><span>ยังไม่ระบุตัว</span></div></div>
-  <h4>กระดานงาน</h4><ul class="zx-tb">${vis.map(row).join('')||'<li class="wt"><div><b>ยังไม่มีงาน</b></div></li>'}</ul>
-  <details class="zx-jas"><summary>บัตรหน้าที่ของคุณ</summary><p>${zxE(ZX_JAS)}</p></details>
-  <h4>บันทึกเหตุการณ์</h4><ul class="zx-log">${C.log.slice(-10).reverse().map(l=>`<li><em>${zxMM(l[0])}</em>${zxE(l[1])}</li>`).join('')}</ul>
-  <div class="hp-row"><button class="g-btn" data-h="zdquit">ยุติการซ้อม</button></div></div>`,'camp zx')}
+ const row=x=>{const T=zxTask(x.id),l=zxLeft(x.id),k=C.done[x.id]?'dn':C.miss[x.id]?'ms':zxAvail(x.id)?'on':'wt';const pct=l!=null&&x.dl?Math.max(0,Math.min(100,l/x.dl*100)):0;
+  const mk=k==='dn'?`<em class="zvr-mk ok">เสร็จ<br>${C.max[x.id]!=null?C.pts[x.id]+'/'+C.max[x.id]:''}</em>`:k==='ms'?'<em class="zvr-mk no">พลาด</em>':k==='on'?`<em class="zvr-mk nw">${l!=null?zxMM(l):'ทำได้'}</em>`:'<em class="zvr-mk">รอ</em>';
+  return `<tr class="${k==='on'?'zvr-rnw':k==='ms'?'zvr-rms':''}"><td class="zvr-t">${x.f}</td><td><b>${zxE(T?T.n:x.id)}</b><small>${zxE(x.unit)} · ${zxE(zxRoom(x)||'ทุกจุด')}</small>${k==='on'&&l!=null?`<i class="zvr-bar"><u style="width:${pct}%"></u></i>`:''}</td><td>${mk}</td></tr>`};
+ const vis=ZX_T.filter(x=>x.ph<C.ph||(x.ph===C.ph&&(x.ph!==2||C.app[x.id]!=null)));const nd=ZX_T.filter(x=>C.done[x.id]).length;
+ const body=`${zvrSec(1,'ระยะการปฏิบัติตามแผน','ระยะปัจจุบันเน้นสีแดง')}<ol class="zx-ph">${ZX_PH.map((p,i)=>`<li class="${i<C.ph?'d':i===C.ph?'c':''}"><i>${i+1}</i><span>${p}</span></li>`).join('')}</ol>
+  ${zvrSec(2,'สถานะผู้บาดเจ็บและครอบครัว','ข้อมูลล่าสุดจากศูนย์ติดตามผู้ป่วย')}<table class="zvr-tbl zx-tri"><thead><tr><th>ระดับ</th><th>ความหมาย</th><th>จำนวน</th></tr></thead><tbody>
+   <tr><td><em class="zx-tg zx-r">แดง</em></td><td>ต้องรักษาทันที</td><td><b>${F.r}</b></td></tr><tr><td><em class="zx-tg zx-y">เหลือง</em></td><td>รอได้ระยะหนึ่ง</td><td><b>${F.y}</b></td></tr><tr><td><em class="zx-tg zx-g">เขียว</em></td><td>บาดเจ็บเล็กน้อย</td><td><b>${F.g}</b></td></tr><tr><td><em class="zx-tg zx-b">ดำ</em></td><td>เสียชีวิต</td><td><b>${F.b}</b></td></tr></tbody></table>
+  <dl class="zvr-kv zx-kv3"><div><dt>ญาติลงทะเบียน</dt><dd>${F.fam} ราย</dd></div><div><dt>เด็กยังไม่พบผู้ปกครอง</dt><dd>${F.kids} คน</dd></div><div><dt>ผู้ป่วยยังไม่ระบุตัว</dt><dd>${F.unk} ราย</dd></div><div><dt>งานที่เสร็จแล้ว</dt><dd>${nd} / ${ZX_T.length}</dd></div></dl>
+  ${zvrSec(3,'กระดานงานของหน่วย','งานที่เปิดอยู่ต้องไปทำที่จุดปฏิบัติงานก่อนหมดเวลา')}<table class="zvr-tbl zx-tbd"><thead><tr><th>แบบ</th><th>งาน / จุดปฏิบัติงาน</th><th>สถานะ</th></tr></thead><tbody>${vis.map(row).join('')||'<tr><td colspan="3">ยังไม่มีงาน</td></tr>'}</tbody></table>
+  ${zvrSec(4,'บัตรหน้าที่ (Job Action Sheet)')}<details class="zx-jas"><summary>เปิดอ่านบัตรหน้าที่</summary><p>${zxE(ZX_JAS)}</p></details>
+  ${zvrSec(5,'บันทึกเหตุการณ์','10 รายการล่าสุด')}<table class="zvr-tbl zx-lg"><tbody>${C.log.slice(-10).reverse().map(l=>`<tr><td class="zvr-t">${zxMM(l[0])}</td><td>${zxE(l[1])}</td></tr>`).join('')}</tbody></table>
+  <div class="hp-row zx-qt"><button class="g-btn" data-h="zdquit">ยุติการซ้อม</button></div>`;
+ openHP('ซ้อมแผนรับอุบัติภัยหมู่',`<div class="zx-st">${zvrDoc({code:'HICS-201',title:'กระดานสถานการณ์<br>หน่วยช่วยเหลือผู้ป่วยและครอบครัว',sub:zxE(sc.n),
+  id:`<dl class="zvr-id"><div><dt>เหตุการณ์</dt><dd>${zxE(sc.n)}</dd></div><div><dt>ระยะปัจจุบัน</dt><dd>${C.ph+1} · ${ZX_PH[C.ph]}</dd></div><div><dt>เวลาซ้อม</dt><dd>${zxMM(C.t)} / ${zxMM(ZX_LIM)}</dd></div><div><dt>ตำแหน่ง</dt><dd>หัวหน้าหน่วยช่วยเหลือผู้ป่วยและครอบครัว</dd></div></dl>`,body,sign:'ผู้บัญชาการเหตุการณ์'})}</div>`,'camp pcw zvr-hp zx')}
 function zdCard(){const mk=zcMon(),R=(S.zdr||{})[mk],C=S.zdrCur;const def=ZX_ORDER[(+mk.slice(5))%ZX_ORDER.length];
  return `<h4>วันซ้อมแผนรับอุบัติภัยหมู่ประจำเดือน</h4><div class="zd-card"><b>${C&&C.v?'กำลังซ้อม: '+zxE(ZX_SC[C.sc].n):R?'เดือนนี้ซ้อมแล้ว · ผล '+R.g:'เดือนนี้ยังไม่ได้ซ้อม'}</b><small>ซ้อมเต็มรูปแบบ 4 ระยะ ในบทบาทหัวหน้าหน่วยช่วยเหลือผู้ป่วยและครอบครัว 19 งาน ใช้เวลาประมาณ 30–40 นาที งานจะเข้ามาที่ห้องต่าง ๆ ชั้น 1 ตามเวลาจริง (เหรียญรางวัลเดือนละครั้ง)</small>${C&&C.v?'':`<label class="zx-pick"><span>ฉากซ้อม</span><select id="zx-sel">${ZX_ORDER.map(k=>`<option value="${k}" ${k===def?'selected':''}>${zxE(ZX_SC[k].n)}${k===def?' (ของเดือนนี้)':''}</option>`).join('')}</select></label><button class="g-btn ${R?'':'big'}" data-h="zdrgo">${R?'ซ้อมอีกครั้ง':'เริ่มซ้อมเลย'}</button>${S.zdrLast?'<button class="g-btn" data-h="zxaar">ดูผลการซ้อมครั้งล่าสุด</button>':''}`}</div>`}
 
@@ -21173,13 +21202,16 @@ function zdEnd(timeout){const C=S.zdrCur;if(!C)return;ZX_T.forEach(x=>{if(!C.don
  const fb=C.fb.slice(-12),log=C.log.slice();const mis=ZX_T.filter(x=>C.miss[x.id]).map(x=>{const T=zxTask(x.id);return [T.n,T.miss]});
  S.zdrCur=null;S.zdrLast={sc:C.sc,g,P,M,D,good,fb,mis,log,t:C.t,nd,coin,timeout,onT,ok};save();st.bots=st.bots.filter(b=>!b.zd);const w=root.querySelector('.g-wrap');if(w)w.classList.remove('zx-on');hud();zxAAR()}
 function zxAAR(){const L=S.zdrLast;if(!L)return;const sc=ZX_SC[L.sc];const dn={assess:'การประเมินกลุ่มเปราะบาง',coord:'การประสานงานและการสั่งการ',comm:'การสื่อสารและดูแลจิตใจ',ethic:'จริยธรรมและการคุ้มครอง',self:'การดูแลทีมและตนเอง'};
- openHP('สรุปผลการซ้อม (After Action Review)',`<div class="zx-st zx-aar"><div class="zx-sh"><small>${zxE(sc.n)}</small><b>${L.g}</b><span>${L.timeout?'หมดเวลาซ้อม · ':''}ทำได้ ${L.nd}/${ZX_T.length} งาน · คะแนน ${L.P}/${L.M} · ใช้เวลา ${zxMM(L.t)}${L.coin?' · รับ '+L.coin+' เหรียญ':''}</span></div>
-  <h4>คะแนนรายด้าน</h4><div class="zx-dm">${Object.keys(dn).filter(k=>L.D[k]&&L.D[k][1]).map(k=>{const v=L.D[k][0]/L.D[k][1];return `<div><span>${dn[k]}</span><i><u style="width:${Math.round(v*100)}%"></u></i><b>${Math.round(v*100)}%</b></div>`}).join('')}<div><span>ความทันเวลา</span><i><u style="width:${Math.round(L.ok/Math.max(1,L.onT)*100)}%"></u></i><b>${L.ok}/${L.onT}</b></div></div>
-  ${L.good.length?`<h4>สิ่งที่ทำได้ดี</h4><ul class="zx-ls ok">${L.good.slice(0,6).map(x=>`<li>${zxE(x)}</li>`).join('')}</ul>`:''}
-  ${L.mis.length?`<h4>งานที่พลาดและผลที่เกิดขึ้น</h4><ul class="zx-ls no">${L.mis.map(m=>`<li><b>${zxE(m[0])}</b>${zxE(m[1])}</li>`).join('')}</ul>`:''}
-  ${L.fb.length?`<h4>สิ่งที่ควรปรับ</h4><ul class="zx-ls">${L.fb.map(f=>`<li><b>${zxE(f[0])} · ${zxE(f[1])}</b>${zxE(f[2])}</li>`).join('')}</ul>`:''}
-  <details class="zx-jas"><summary>เส้นเวลาการซ้อมทั้งหมด</summary><ul class="zx-log">${L.log.map(l=>`<li><em>${zxMM(l[0])}</em>${zxE(l[1])}</li>`).join('')}</ul></details>
-  <p class="zx-x"><b>บทบาทนักสังคมสงเคราะห์ในอุบัติภัยหมู่</b> คัดกรองกลุ่มเปราะบาง ตั้งศูนย์ข้อมูลครอบครัว ยืนยันตัวตนก่อนให้ข้อมูลหรือส่งตัวเด็ก แจ้งข่าวร้ายร่วมกับแพทย์ ปฐมพยาบาลทางใจและส่งต่อ ประสานสิทธิ และดูแลทีมหลังเหตุการณ์</p></div>`,'camp zx')}
+ const gc=L.g==='ดีเยี่ยม'||L.g==='ดี'?'ok':L.g==='พอใช้'?'md':'no';let n=0;const sec=(t,s2)=>zvrSec(++n,t,s2);
+ const body=`<div class="zx-res zx-res2"><div><small>ผลการประเมินรวม</small><b>${L.P}<span>/${L.M}</span></b><small>ทำได้ ${L.nd}/${ZX_T.length} งาน · ทันเวลา ${L.ok}/${L.onT}${L.coin?' · รับ '+L.coin+' เหรียญ':''}</small></div><em class="zx-stamp ${gc}">${L.g}</em></div>
+  ${sec('คะแนนรายสมรรถนะ','เทียบกับคะแนนเต็มของแต่ละด้าน')}<div class="zx-dm">${Object.keys(dn).filter(k=>L.D[k]&&L.D[k][1]).map(k=>{const v=L.D[k][0]/L.D[k][1];return `<div><span>${dn[k]}</span><i><u style="width:${Math.round(v*100)}%"></u></i><b>${Math.round(v*100)}%</b></div>`}).join('')}<div><span>ความทันเวลา</span><i><u style="width:${Math.round(L.ok/Math.max(1,L.onT)*100)}%"></u></i><b>${L.ok}/${L.onT}</b></div></div>
+  ${L.good.length?sec('สิ่งที่ทำได้ดี','งานที่ได้คะแนนตั้งแต่ร้อยละ 85')+`<ul class="zx-ls ok">${L.good.slice(0,8).map(x=>`<li>${zxE(x)}</li>`).join('')}</ul>`:''}
+  ${L.mis.length?sec('งานที่พลาดและผลที่เกิดขึ้น','สิ่งที่จะเกิดกับผู้ป่วยและครอบครัวในเหตุการณ์จริง')+`<ul class="zx-ls no">${L.mis.map(m=>`<li><b>${zxE(m[0])}</b>${zxE(m[1])}</li>`).join('')}</ul>`:''}
+  ${L.fb.length?sec('ข้อเสนอแนะเพื่อพัฒนา','จากขั้นตอนที่ยังทำได้ไม่ครบ')+`<ul class="zx-ls">${L.fb.map(f=>`<li><b>${zxE(f[0])} · ${zxE(zxLab(f[1]))}</b>${zxE(f[2])}</li>`).join('')}</ul>`:''}
+  ${sec('เส้นเวลาการซ้อม')}<details class="zx-jas"><summary>เปิดดูเส้นเวลาทั้งหมด (${L.log.length} รายการ)</summary><table class="zvr-tbl zx-lg"><tbody>${L.log.map(l=>`<tr><td class="zvr-t">${zxMM(l[0])}</td><td>${zxE(l[1])}</td></tr>`).join('')}</tbody></table></details>
+  <p class="zx-x"><b>บทบาทนักสังคมสงเคราะห์ในอุบัติภัยหมู่</b>คัดกรองกลุ่มเปราะบาง ตั้งศูนย์ข้อมูลครอบครัว ยืนยันตัวตนก่อนให้ข้อมูลหรือส่งตัวเด็ก แจ้งข่าวร้ายร่วมกับแพทย์ ปฐมพยาบาลทางใจและส่งต่อ ประสานสิทธิ และดูแลทีมหลังเหตุการณ์</p>`;
+ openHP('สรุปผลการซ้อม',`<div class="zx-st">${zvrDoc({code:'AAR-01',title:'รายงานสรุปผลการซ้อมแผน<br>(After Action Review)',sub:zxE(sc.n),
+  id:`<dl class="zvr-id"><div><dt>ฉากซ้อม</dt><dd>${zxE(sc.n)}</dd></div><div><dt>ผลการประเมิน</dt><dd>${L.g}</dd></div><div><dt>คะแนน</dt><dd>${L.P} / ${L.M}</dd></div><div><dt>เวลาที่ใช้</dt><dd>${zxMM(L.t)} นาที${L.timeout?' (หมดเวลา)':''}</dd></div></dl>`,body,sign:'ผู้บัญชาการเหตุการณ์'})}</div>`,'camp pcw zvr-hp zx')}
 function zdNag(){if(zgTn%11||!st.hosp||S.zdrCur||st.dlg)return;const mk=zcMon();if((S.zdr||{})[mk]||S.zdrNag===mk)return;S.zdrNag=mk;save();say('ศูนย์สั่งการโรงพยาบาล','แจ้งเตือนประจำเดือน',NPCA.head,'เดือนนี้โรงพยาบาลยังไม่ได้ซ้อมแผนรับอุบัติภัยหมู่\n\nแตะแถบเวรมุมซ้ายบน เปิดแฟ้มงานของฉัน แล้วกด "เริ่มซ้อมเลย" ในแท็บตารางเวร')}
 function zdQuit(){S.zdrCur=null;save();st.bots=st.bots.filter(b=>!b.zd);const w=root.querySelector('.g-wrap');if(w)w.classList.remove('zx-on');closeHP();hud();toast('ยุติการซ้อมแล้ว')}
 
