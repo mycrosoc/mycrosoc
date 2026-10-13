@@ -20675,7 +20675,7 @@ function zgHevCallEv(){const H=zgHevDay();return H.call?ZG_EV.find(x=>x.id===H.c
 function zgHevPage(){const H=zgHevDay();if(H.call){if(Date.now()-H.call.at>480000){H.call=null;H.last=Date.now();save();toast('เพจเจอร์: มีเจ้าหน้าที่ช่วยดูแลเรื่องนั้นแล้ว')}return}
   if(st.dlg||Date.now()-H.last<120000||H.seen.length>=8||Math.random()>.35)return;const pool=ZG_EV.filter(e=>H.seen.indexOf(e.id)<0);if(!pool.length)return;const e=pool[Math.floor(Math.random()*pool.length)];
   H.call={id:e.id,at:Date.now()};H.last=Date.now();save();toast('เพจเจอร์ · ขอนักสังคมสงเคราะห์ไปที่'+e.r+' ด่วน');try{hud()}catch(x){}}
-function zgHev(rn){if(!st.hosp||st.dlg||st.mode!=='play'||S.cs&&csStep()&&csStep().k==='event')return;const H=zgHevDay();const d=H.d;const e=zgHevCallEv();if(!e||!rn||rn.indexOf(e.r)<0)return;
+function zgHev(rn){if(!st.hosp||S.zdrCur||st.dlg||st.mode!=='play'||S.cs&&csStep()&&csStep().k==='event')return;const H=zgHevDay();const d=H.d;const e=zgHevCallEv();if(!e||!rn||rn.indexOf(e.r)<0)return;
   H.call=null;H.last=Date.now();H.seen.push(e.id);save();if(st.me)st.me.path=[];const ap=NPCA[e.ap]||NPCA.nurse;
   openDlg({who:e.who,role:'ตามผ่านเพจเจอร์ · '+e.role,ap,text:e.t+'\n\nจะทำอย่างไร',choices:shuffle(e.o.slice()).map(o=>({t:o[0],fn:()=>{st.dlg=null;const p=o[1],lose=p===2?2:p===1?4:6;zgSwpAdd(-lose);let c=0;if(p===2)c=earn(3,'hcase','hev:'+e.id+':'+d)||0;
     S.hevN=S.hevN||{n:0,b:0};S.hevN.n++;if(p===2)S.hevN.b++;S.hevAll=S.hevAll||[];if(S.hevAll.indexOf(e.id)<0)S.hevAll.push(e.id);zcAdd(ZG_EVC[e.id]||'ethic',p,2);save();say(myAvatar().name,(p===2?'ตัดสินใจได้ดีมาก':p===1?'พอใช้ได้':'ลองคิดใหม่อีกนิด')+' · พลังใจ −'+lose,myAvatar(),o[2]+(p<2?'\n\nแนวทางที่ดีที่สุด: '+e.o.find(x=>x[1]===2)[0]:'')+(c?'\n\nรับ '+c+' เหรียญ':''))}}))})}
@@ -20712,7 +20712,7 @@ function zsFloorOf(t){return 'ชั้น '+t.f}
 function zsStart(){const d=isoD(new Date());if(!zsGet()&&!zsOpen()){closeHP();const c=zsClock();say('หัวหน้างาน','ตารางเวร',NPCA.sup,'ตอนนี้ '+zsHM(c)+' น. '+(c<ZS_BEGIN?'ยังไม่ถึงเวลาเข้าเวร':'หมดเวลาเวรของวันนี้แล้ว')+'\n\nเวรเปิด '+zsHM(ZS_BEGIN)+'–'+zsHM(ZS_END)+' น. ตามเวลาจริง ระหว่างนี้เดินสำรวจโรงพยาบาลหรือรับเคสได้ตามปกติ');return}
   if(!zsGet()){const c=zsClock(),late={};zsTasks().forEach(t=>{if(c>=t.e)late[t.id]=1});S.zshift={d,t:0,done:{},miss:{},late,on:1,fin:0,coin:0}}else S.zshift.on=1;save();closeHP();zgTickStart();hud();
   const T=zsTasks();say('หัวหน้างาน','เข้าเวร',NPCA.sup,'เข้าเวรแล้ว วันนี้มีงาน '+T.length+' อย่าง ไปให้ทันเวลานะ\n\n'+T.map(t=>zsHM(t.s)+' '+t.n+' · '+t.room+' '+zsFloorOf(t)).join('\n')+'\n\nเวลาในเวรเป็นเวลาจริง ไปถึงห้องในช่วงเวลาของงาน งานจะเริ่มเอง'+(Object.keys(S.zshift.late||{}).length?'\n\nงานที่เลยเวลาไปแล้วก่อนคุณเข้าเวร จะไม่นับว่าพลาด':''))}
-function zsNext(){const z=zsGet();if(!z)return null;const m=zsNow();return zsTasks().find(t=>!z.done[t.id]&&!z.miss[t.id]&&!(z.late||{})[t.id]&&m<t.e)||null}
+function zsNext(){const z=zsGet();if(!z)return null;const m=zsNow();return zsTasks().find(t=>!z.done[t.id]&&!z.miss[t.id]&&!(z.late||{})[t.id]&&!(z.dr||{})[t.id]&&m<t.e)||null}
 function zsChip(){const z=zsGet();if(!z||z.fin)return `<button class="zs-c" data-h="zsch"><b>ตารางเวร</b><span>${z&&z.fin?'จบเวรวันนี้แล้ว · ดูสรุป':(zsOpen()?'แตะเพื่อเข้าเวรวันนี้':'เวรเปิด '+zsHM(ZS_BEGIN)+'–'+zsHM(ZS_END)+' น.')}</span></button>`;
   const m=zsNow(),n=zsNext();const live=n&&m>=n.s;const ce=zgHevCallEv();return `<button class="zs-c ${live||ce?'live':''}" data-h="zsch"><b>อยู่เวร ถึง ${zsHM(ZS_END)} น.</b><span>${ce?'เพจเจอร์: ขอให้ไปที่'+ce.r+' ด่วน':n?(live?'ตอนนี้: ':'ถัดไป '+zsHM(n.s)+' ')+n.n+' · '+zsFloorOf(n):'ไม่มีงานค้าง'}</span></button>`}
 let zgTk=null,zgTn=0,zgMissQ=[];
@@ -20720,8 +20720,8 @@ function zgTickStart(){if(zgTk)return;zgTk=setInterval(zgTick,1000)}
 function zgTick(){if(!root||!document.body.contains(root)){clearInterval(zgTk);zgTk=null;return}if(!st||st.mode!=='play')return;zgTn++;
   if(zgTn%5===0)zbCheck();try{zdTick();zqTick();zdNag()}catch(e){}
   if(zgTn%7===0&&S.zcompShown!==zcMon()){const pm=zcPrev();S.zcompShown=zcMon();save();if(S.zcomp&&S.zcomp[pm]&&!st.dlg&&(st.hosp||st.hv)){zgFile('comp',pm);toast('ใบประเมินสมรรถนะเดือนที่แล้วออกแล้ว')}}
-  const z=zsGet();if(!z||z.fin||!z.on||!(st.hosp||st.hv))return;z.t++;if(zgTn%10===0&&st.hosp)zgHevPage();{const ce=zgHevCallEv();if(ce&&!st.dlg&&st.hosp&&st.room&&st.room.indexOf(ce.r)>=0)zgHev(st.room)}if(zgTn%5===0)save();const m=zsNow();
-  zsTasks().forEach(t=>{if(z.done[t.id]||z.miss[t.id]||(z.late||{})[t.id])return;if(m>=t.e){z.miss[t.id]=1;save();zgMissQ.push(t);return}
+  const z=zsGet();if(!z||z.fin||!z.on||!(st.hosp||st.hv))return;z.t++;if(zgTn%10===0&&st.hosp&&!S.zdrCur)zgHevPage();{const ce=S.zdrCur?null:zgHevCallEv();if(ce&&!st.dlg&&st.hosp&&st.room&&st.room.indexOf(ce.r)>=0)zgHev(st.room)}if(zgTn%5===0)save();const m=zsNow();
+  zsTasks().forEach(t=>{if(z.done[t.id]||z.miss[t.id]||(z.late||{})[t.id]||(z.dr||{})[t.id])return;if(S.zdrCur){if(m>=t.s){z.dr=z.dr||{};z.dr[t.id]=1;save()}return}if(m>=t.e){z.miss[t.id]=1;save();zgMissQ.push(t);return}
     if(m>=t.s&&!st.dlg&&st.hosp&&st.floor===t.f&&st.room&&st.room.indexOf(t.room)>=0)zsRun(t)});
   if(zgMissQ.length&&!st.dlg){const t=zgMissQ.shift();say('หัวหน้างาน','พลาดงานตามตาราง',NPCA.sup,'เมื่อกี้ '+t.n+' ('+zsHM(t.s)+'–'+zsHM(t.e)+' ที่'+t.room+' '+zsFloorOf(t)+') ไม่เห็นคุณมาเลยนะ\n\n'+t.why+'\n\nดูตารางเวรได้จากแถบเวรมุมซ้ายบน')}
   if(m>=ZS_END&&!z.fin&&!st.dlg&&!zgMissQ.length){z.fin=1;S.zsFin=(S.zsFin||0)+1;save();zgFile('sch')}
@@ -20808,7 +20808,7 @@ function zgFile(tab,mon){tab=tab||'sch';const tabs=[['sch','ตารางเ�
   const u=me()||{},nick=esc(u.nick||'ผู้ฝึกปฏิบัติงาน'),hid=zvrId(),D=new Date(),dt=`${D.getDate()}/${D.getMonth()+1}/${D.getFullYear()+543}`;let rk='';try{rk=swRank().n}catch(e){}
   const TT={sch:['ใบบันทึกการปฏิบัติงานประจำวัน','Daily Duty Record'],comp:['แบบประเมินสมรรถนะนักสังคมสงเคราะห์','Competency Evaluation'],badge:['บันทึกการรับรองผลงาน','Certification Stamps']};
   if(tab==='sch'){const z=zsGet(),m=zsNow(),T=zsTasks(),WD=['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'];
-    const res=t=>!z?'<em class="zvr-mk">—</em>':z.done[t.id]>0?`<em class="zvr-mk ok">ทันเวลา${z.done[t.id]===3?'<br>ดีมาก':z.done[t.id]===2?'<br>พอใช้':''}</em>`:z.miss[t.id]?'<em class="zvr-mk no">พลาด</em>':(z.late||{})[t.id]?'<em class="zvr-mk">ก่อนเข้าเวร</em>':m>=t.s&&m<t.e?'<em class="zvr-mk nw">กำลังเกิด</em>':'<em class="zvr-mk">รอ</em>';
+    const res=t=>!z?'<em class="zvr-mk">—</em>':z.done[t.id]>0?`<em class="zvr-mk ok">ทันเวลา${z.done[t.id]===3?'<br>ดีมาก':z.done[t.id]===2?'<br>พอใช้':''}</em>`:z.miss[t.id]?'<em class="zvr-mk no">พลาด</em>':(z.late||{})[t.id]?'<em class="zvr-mk">ก่อนเข้าเวร</em>':(z.dr||{})[t.id]?'<em class="zvr-mk">ติดซ้อมแผน</em>':m>=t.s&&m<t.e?'<em class="zvr-mk nw">กำลังเกิด</em>':'<em class="zvr-mk">รอ</em>';
     const nd=z?T.filter(t=>z.done[t.id]>0).length:0;
     body=`<dl class="zvr-kv"><div><dt>วัน</dt><dd>${WD[D.getDay()]}</dd></div><div><dt>สถานะเวร</dt><dd>${!z?'ยังไม่เข้าเวร':z.fin?'จบเวรแล้ว':'อยู่เวร · '+zsHM(m)+' น.'}</dd></div><div><dt>งานที่ทำทัน</dt><dd>${nd} / ${T.length}</dd></div><div><dt>หน่วยงาน</dt><dd>ห้องสังคมสงเคราะห์ ชั้น 1</dd></div></dl>
      ${!z?'<button class="g-btn big zvr-go" data-h="zshift">ลงชื่อเข้าเวร</button>':''}${z&&!z.fin?`<i class="zvr-bar"><u style="width:${(m-ZS_BEGIN)/(ZS_END-ZS_BEGIN)*100}%"></u></i>`:''}
@@ -21114,7 +21114,7 @@ function zdTick(){const C=S.zdrCur;if(!C)return;if(!C.v){S.zdrCur=null;save();re
  if(C.ph===0&&C.done.cmd1)zxPhase(1);
  else if(C.ph===1){const ok=(C.done.fic0||C.miss.fic0)&&(C.done.kid0||C.miss.kid0);if(!ok&&C.t-C.t1>300&&C.busy!=='fic0'&&C.busy!=='kid0'){['fic0','kid0'].forEach(k=>{if(!C.done[k]&&!C.miss[k])zxMiss(k)})}if((C.done.fic0||C.miss.fic0)&&(C.done.kid0||C.miss.kid0)){C.t2=C.t;zxPhase(2)}}
  if(C.ph===2){const p2=C.t-C.t2;ZX_T.filter(x=>x.ph===2).forEach(x=>{if(C.app[x.id]==null&&p2>=x.at){C.app[x.id]=C.t;const T=zxTask(x.id);zxLog('งานใหม่ · '+T.n);if(x.room)toast('งานใหม่: '+T.n+' · '+zxRoom(x))}
-   else if(C.app[x.id]!=null&&!C.done[x.id]&&!C.miss[x.id]&&C.busy!==x.id&&zxLeft(x.id)<=0)zxMiss(x.id)});
+   else if(C.app[x.id]!=null&&!C.done[x.id]&&!C.miss[x.id]&&C.busy!==x.id&&!(x.room===null&&C.busy)&&zxLeft(x.id)<=0)zxMiss(x.id)});
   if(ZX_T.filter(x=>x.ph===2).every(x=>C.done[x.id]||C.miss[x.id]))zxPhase(3)}
  if(C.ph===3&&C.done.hot&&!st.dlg){zdEnd(0);return}
  if(C.busy){const open=root.querySelector('.g-hp:not([hidden]) .zx-f');if(!st.dlg&&!open){C.snz[C.busy]=C.t+12;C.busy=null}return}
@@ -21213,7 +21213,7 @@ function zxAAR(){const L=S.zdrLast;if(!L)return;const sc=ZX_SC[L.sc];const dn={a
  openHP('สรุปผลการซ้อม',`<div class="zx-st">${zvrDoc({code:'AAR-01',title:'รายงานสรุปผลการซ้อมแผน<br>(After Action Review)',sub:zxE(sc.n),
   id:`<dl class="zvr-id"><div><dt>ฉากซ้อม</dt><dd>${zxE(sc.n)}</dd></div><div><dt>ผลการประเมิน</dt><dd>${L.g}</dd></div><div><dt>คะแนน</dt><dd>${L.P} / ${L.M}</dd></div><div><dt>เวลาที่ใช้</dt><dd>${zxMM(L.t)} นาที${L.timeout?' (หมดเวลา)':''}</dd></div></dl>`,body,sign:'ผู้บัญชาการเหตุการณ์'})}</div>`,'camp pcw zvr-hp zx')}
 function zdNag(){if(zgTn%11||!st.hosp||S.zdrCur||st.dlg)return;const mk=zcMon();if((S.zdr||{})[mk]||S.zdrNag===mk)return;S.zdrNag=mk;save();say('ศูนย์สั่งการโรงพยาบาล','แจ้งเตือนประจำเดือน',NPCA.head,'เดือนนี้โรงพยาบาลยังไม่ได้ซ้อมแผนรับอุบัติภัยหมู่\n\nแตะแถบเวรมุมซ้ายบน เปิดแฟ้มงานของฉัน แล้วกด "เริ่มซ้อมเลย" ในแท็บตารางเวร')}
-function zdQuit(){S.zdrCur=null;save();st.bots=st.bots.filter(b=>!b.zd);const w=root.querySelector('.g-wrap');if(w)w.classList.remove('zx-on');closeHP();hud();toast('ยุติการซ้อมแล้ว')}
+function zdQuit(){const b=root.querySelector('.g-hp [data-h=zdquit]');if(b&&!(S.zdrQ>Date.now())){S.zdrQ=Date.now()+4000;b.textContent='แตะอีกครั้งเพื่อยืนยันยุติการซ้อม';b.classList.add('big');return}S.zdrQ=0;S.zdrCur=null;save();st.bots=st.bots.filter(b=>!b.zd);const w=root.querySelector('.g-wrap');if(w)w.classList.remove('zx-on');closeHP();hud();toast('ยุติการซ้อมแล้ว')}
 
 function seatTalk(){const m=st&&st.me;if(!m||!m.pose||!st.hosp)return null;return targets().find(t=>t.bot&&Math.max(Math.abs(t.x-m.x),Math.abs(t.y-m.y))<=2&&t.bot.alert&&t.bot.alert())||null}
 const ZSW_I={'zsw:room':['ห้องให้คำปรึกษา','ห้องสำหรับพูดคุยและให้คำปรึกษาผู้ป่วยและญาติเป็นการส่วนตัว',['เก้าอี้สูงเท่ากัน วางทำมุมราว 90 องศา ไม่มีโต๊ะทำงานกั้นระหว่างกัน','นักสังคมสงเคราะห์นั่งฝั่งใกล้ประตู ทางออกไม่ถูกขวาง','มีกระดาษทิชชู น้ำดื่ม ไฟโทนอุ่น ต้นไม้ และหน้าต่างรับแสงธรรมชาติ ช่วยให้ผู้รับบริการผ่อนคลาย','มีเก้าอี้ตัวที่สามสำหรับญาติหรือผู้ดูแล']],
@@ -21695,7 +21695,7 @@ function step(dt){const m=st.me;const spd=st.energy<15?260:180;
   if(st.house){st.clock=nowMin()}else if(!st.dlg&&!st.ended){st.clock+=dt/2400;if(st.clock>=720&&!st.lunchTold){st.lunchTold=true;if(MK==='hospital')toast('เที่ยงแล้ว แวะโรงอาหารได้ พลังงานฟื้นเยอะกว่าปกติ')}sideTick();if(st.clock>=st.endAt){if(!st.night&&MK==='hospital'&&!st.otAsked&&!st.ended){st.otAsked=true;const nc=SIDE_CASES.filter(c=>c.night);const cs=nc[(typeof st.day==='number'?st.day:0)%nc.length];openDlg({who:'ห้องฉุกเฉิน',role:'🔴 สายด่วน 16:30',ap:NPCA.nurse,text:'กำลังจะเลิกงาน แต่ ER โทรมาว่ามีเคสด่วน: '+cs.tag+' จะอยู่รับเคสต่อไหม',choices:[{t:'รับเคส อยู่ต่อช่วงค่ำ',fn:()=>{st.dlg=null;drawDlg();st.endAt=1260;st.clock=1110;st.night=true;st.cont=true;spawnSide(cs);MUSIC.play('night')}},{t:'ส่งต่อเวรเย็น แล้วเลิกงาน',fn:()=>{st.dlg=null;endDay()}}]});return}st.clock=st.endAt;if(st.night&&!st.handTold){st.handTold=true;const op=(DAY.side||[]).filter(t=>!t.expired&&!st.done[t.id]).length;openDlg({who:'หัวหน้าเวร',role:'🌙 หมดเวร',ap:NPCA.nurse,text:'ครบเวลาเวรแล้ว ช่วยเคสไปได้ '+st.sideDone+' เคส'+(op?' ส่วนอีก '+op+' เคสที่ยังค้าง เดี๋ยวส่งต่อให้เวรเช้าดูแลต่อนะ':' เก่งมาก')+' ส่งเวรแล้วไปพักกันเถอะ',choices:[{t:'ส่งเวร ดูสรุปผล',fn:()=>{st.dlg=null;drawDlg();endDay()}}]});return}endDay();return}if(st.night&&!st.warnTold&&st.clock>=st.endAt-30){st.warnTold=true;toast('อีก 30 นาทีหมดเวร รีบดูเคสที่ค้างอยู่')}}
   if(m.moving){m.t+=dt;const p=Math.min(1,m.t/spd);m.px=(m.fx+(m.x-m.fx)*p)*T;m.py=(m.fy+(m.y-m.fy)*p)*T;m.fr=1+Math.floor(m.t/(spd/2))%2;
     if(p>=1){m.moving=false;m.px=m.x*T;m.py=m.y*T;st.trail.push([m.x,m.y]);if(st.trail.length>6)st.trail.shift();
-      const rn=roomAt(m.x,m.y);if(rn&&rn!==st.room){const _pr=st.room;if(st.room)toast('📍 '+rn);st.room=rn;if(_pr&&st.hosp)setTimeout(()=>zgHev(rn),350)}
+      const rn=roomAt(m.x,m.y);if(rn&&rn!==st.room){const _pr=st.room;if(st.room)toast(rn);st.room=rn;if(_pr&&st.hosp)setTimeout(()=>zgHev(rn),350)}
       if(!m.path.length&&m.after){const a=m.after;m.after=null;if(Math.abs(a.x-m.x)+Math.abs(a.y-m.y)===1){faceTo(a);interact(a)}}}}
   if(m.pose&&!st.dlg&&(keys.up||keys.down||keys.left||keys.right))standUp();
   if(!m.moving&&!st.dlg){let d=null;if(m.path.length){const [nx,ny]=m.path[0];if(walk(nx,ny)){m.path.shift();d=[nx-m.x,ny-m.y]}else{m.path=[];m.after=null}}
