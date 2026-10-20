@@ -15064,6 +15064,20 @@ div.rb{position:relative;padding-top:20px}
 .gl-pl.sl.sl-soon .sl-bld{color:#D8B3B9}
 .gl-pl.sl.sl-soon .sl-go{background:#F7E9EB;color:#A07A80;box-shadow:none}
 .gl-pl.sl .gl-pill.sl-cn{background:#FFF0F2;color:#C21A1A;box-shadow:inset 0 0 0 1px #F6CFD4}
+
+/* ---- tutor timetable unlock (email login has no decryption key) ---- */
+.tz-unl{padding:14px;border-radius:20px;background:#fff;box-shadow:inset 0 0 0 1px #F4DDE0,0 12px 22px -18px rgba(180,30,30,.6)}
+.tz-unl-b{display:flex;align-items:center;gap:10px}
+.tz-unl-ic{flex:none;width:40px;height:40px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(155deg,#FF7A7A 0%,#F24A4A 50%,#E31414 100%)}
+.tz-unl-ic svg{width:20px;height:20px}
+.tz-unl-b>div{display:flex;flex-direction:column;line-height:1.35;min-width:0}
+.tz-unl-b b{font-size:.9rem;color:#2B1A1F}.tz-unl-b small{font-size:.66rem;color:#8E7A7D}
+.tz-unl-f{display:flex;gap:8px;margin:0}
+.tz-unl-f input{flex:1;min-width:0;font:inherit;font-size:16px;letter-spacing:.06em;padding:9px 12px;border:0;border-radius:12px;background:#FFF5F6;box-shadow:inset 0 0 0 1.5px #F6CFD4;color:#2B1A1F}
+.tz-unl-f input:focus{outline:none;box-shadow:inset 0 0 0 2px #F24A4A}
+.tz-unl-f .tz-btn{margin-left:0}
+.tz-unl-e{margin:0!important;font-size:.66rem;color:#C21A1A;min-height:0}
+.tz-unl-e:empty{display:none}
 </style>
 
 <div class="app">
@@ -17016,7 +17030,9 @@ function qzToggle(h){const bx=h.closest('.qz');if(!bx)return;const open=bx.class
   if(!open){const r=bx.getBoundingClientRect();if(r.top<70)bx.scrollIntoView({block:'start',behavior:'smooth'})}}
 document.addEventListener('click',e=>{const h=e.target.closest&&e.target.closest('.qz-h');if(!h)return;if(e.target.closest('button,a,input')&&!e.target.closest('.qz-chev'))return;qzToggle(h)});
 document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('qz-h')){e.preventDefault();qzToggle(e.target)}});
-function bkxMount(){const u=me();const cv=u&&u.cv;if(!cv)return;
+function bkxUnlockCard(){return `<section class="tz-hc3 tz-unl"><div class="tz-unl-b"><span class="tz-unl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></svg></span><div><b>เปิดตารางสอนเรียนพิเศษ</b><small>ตารางถูกเข้ารหัสไว้ ใส่รหัสเข้าเรียนของพี่ครั้งเดียวต่อเครื่อง</small></div></div><form class="tz-unl-f" data-tzu="f"><input id="tz-unl-in" autocomplete="off" autocapitalize="characters" placeholder="MYC-XXXX-XXXX"><button class="tz-btn" type="submit">เปิดตาราง</button></form><p class="tz-unl-e" id="tz-unl-e"></p></section>`}
+document.addEventListener('submit',async e=>{const f=e.target.closest&&e.target.closest('[data-tzu="f"]');if(!f)return;e.preventDefault();const inp=document.getElementById('tz-unl-in'),er=document.getElementById('tz-unl-e');const r=await codeLogin(inp.value);if(r.err||!r.p||r.p.role!=='tutor'){if(er)er.textContent=r.err||'รหัสนี้ไม่ใช่รหัสของติวเตอร์';return}const id=META.current,u=META.users[id];if(!u)return;u.ck=r.k;u.cv=r.v;saveMeta();BKX_S.cv=null;toast('เปิดตารางสอนแล้ว');render()});
+function bkxMount(){const u=me();const cv=u&&u.cv;if(!cv){if(u&&isStaff()&&V.view==='home'){const m=$('#main');if(m&&m.firstElementChild&&!m.querySelector('.tz-unl'))m.firstElementChild.insertAdjacentHTML('afterbegin',bkxUnlockCard())}return}
   if(BKX_S.cv!==cv){BKX_S.cv=cv;BKX_S.n=BKX_S.t=null;BKX_S.ld=1;Promise.all([bkxDec(BKX.n).catch(()=>null),bkxDec(BKX.t).catch(()=>null),bkxDec(BKX.s).catch(()=>null)]).then(([n,t,my])=>{BKX_S.n=n;BKX_S.t=t;BKX_S.my=my;BKX_S.ld=2;if(n||t||my||V.view==='tsched'||V.view==='cal')render()});return}
   if(BKX_S.ld!==2)return;const m=$('#main');if(!m||!m.firstElementChild)return;
   if(V.view==='home'){let h='';if(BKX_S.t&&isStaff())h+=bkxTutorCard();if(bkxPending())h+=bkxNotice();if(h)m.firstElementChild.insertAdjacentHTML('afterbegin',h)}
