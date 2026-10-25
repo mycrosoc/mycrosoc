@@ -1305,6 +1305,19 @@ path.tgs-na2.tgs-new{animation:tgsIn .7s ease-out both;stroke-dasharray:5 3}
 .explain .xe-v{font-size:.88em;color:#4a4642}
 .explain .xe-t{padding:6px 10px;border-radius:8px;background:#FFF1F0;border:1px dashed #F2A0A0;font-size:.9em}
 .px .pxf{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}.px .pxf::-webkit-scrollbar{display:none}.px .pxf button{flex:1 0 auto;padding:10px 12px}
+</style><style>.hwa{border:1.5px solid #F2C4CA;border-radius:18px;background:#fff;padding:12px;margin:10px 0}
+.hwa-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:8px;margin-bottom:8px}
+.hwa-hd small{display:block;font-size:.7rem;font-weight:800;color:#C2293A}.hwa-hd b{font-size:.95rem}
+.hwa-hd span{font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#FF7A7A,#E31414);border-radius:99px;padding:4px 10px;white-space:nowrap}
+.hwa-l{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.hwa-l li>*{display:grid;grid-template-columns:28px 1fr auto;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;border:1px solid #F6DCDA;border-radius:12px;padding:7px 9px;background:#FFFAF9;color:inherit}
+.hwa-l button{cursor:pointer}
+.hwa-l i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;background:#FCE3E1;color:#C2293A}
+.hwa-l b{display:block;font-size:.8rem;line-height:1.3}.hwa-l small{font-size:.68rem;color:#8d8781}
+.hwa-l em{font-style:normal;font-size:.66rem;font-weight:800;color:#8d8781}
+.hwa-l li.on>*{border-color:#E31414;background:#fff}.hwa-l li.on i{background:linear-gradient(135deg,#FF7A7A,#E31414);color:#fff}.hwa-l li.on em{color:#E31414}
+.hwa-l li.dn i{background:#E31414;color:#fff}.hwa-l li.dn em{color:#C2293A}
+.hwa-l li.lt em{color:#B4232F}.hwa-l li.wt{opacity:.62}
 </style></head><body><style id="boot-css">#boot{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:radial-gradient(120% 70% at 50% 0%,#FFFFFF 0%,#FFF1F0 45%,#FFE0DE 100%);font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#2B1A1F;transition:opacity .45s ease,visibility .45s}
 #boot.out{opacity:0;visibility:hidden}
 #boot .bt-orb{position:relative;width:132px;height:132px;display:grid;place-items:center}
@@ -18960,7 +18973,7 @@ function render(){
   const root=['care','shop','avatar','game','profile','cases','case','interview','issues','badges','board','teacher','privacy'].includes(V.view)?'more':V.view==='lesson'?'learn':V.view==='quiz'||V.view==='result'||V.view==='essay'||V.view==='fin'||V.view==='mock'?'practice':V.view==='case'?'cases':V.view;
   $('#nav').innerHTML=NAV.map(([k,l])=>`<button data-act="nav" data-v="${k}" ${root===k?'aria-current="page"':''}>${IC[k]}<span>${l}</span></button>`).join('');
     const f={care:vCare,book:vBook,tsched:vTSched,pastx:vPast,homework:vHomework,hwtask:vHwTask,tgseq:vTgSeq,hwteach:vHwTeach,ruby:vRuby,pearl:vPearl,gate:vGate,room:vRoom,locket:vLocket,diary:vDiary,shop:vShop,avatar:vAvatar,game:vGame,more:vMore,life:(typeof vLife==='function'?vLife:vHome),interview:vInterview,issues:vIssues,badges:vBadges,wkrep:vWkRep,board:vBoard2,teacher:vTeacher,enroll:vEnroll,career:vCareer,score:vScore,laws:vLaws,privacy:vPrivacy,auth:vAuth,profile:vProfile,cal:vCal,home:vHome,learn:vLearn,lesson:vLesson,practice:vPractice,quiz:vQuiz,result:vResult,cards:vCards,cases:vCases,case:vCase,essay:vEssay,fin:vFin,mock:vMock}[V.view];
-  vipSync();maxOut();
+  vipSync();maxOut();hwAuto();
   $('#main').innerHTML=f();
   lrMig();srEnsure();hwPending();bkxMount();qzMount();lkMount();ps3Mount();jdxMount();idxFit();roseBanner();careLink();plMark();sqMark();document.querySelectorAll('.subjsw,.lib-tabs').forEach(w=>{const b=w.querySelector('[aria-selected=\'true\']');if(b&&b.offsetLeft+b.offsetWidth>w.clientWidth)w.scrollLeft=b.offsetLeft-12});ecxInit();hsyInit();hsy2Init();gzxInit();try{lfMount()}catch(e){}
   if(V.view==='essay'&&V.e==null)document.querySelectorAll('.ew-yrs [aria-selected="true"]').forEach(el=>{el.parentElement.scrollLeft=el.offsetLeft-el.parentElement.offsetLeft-16});
@@ -31937,6 +31950,15 @@ function hwItemDone(it,h){if(__PV)return false;if(it.k==='task')return !!((S.tk|
 function hwItemAct(it){if(it.k==='task')return `data-act="tk-open" data-v="${it.v}"`;if(it.k==='set')return `data-act="start-set" data-v="${it.v}" data-m="exam"`;if(it.k==='lesson')return `data-act="lesson" data-t="${it.v}"`;if(it.k==='topic')return `data-act="start-topic" data-t="${it.v}"`;return `data-act="fin-open" data-v="${it.v}"`}
 function hwImport(code){try{const h=b64d(code);if(!h||!h.id||!Array.isArray(h.items))throw 0;S.hw=S.hw||[];if(S.hw.some(x=>x.id===h.id)){if(h.rm&&h.rm.c)clsJoin(h.rm.c,h.rm.n,true);toast('มีการบ้านนี้อยู่แล้ว');return true}S.hw.unshift({...h,got:isoD(new Date())});if(h.rm&&h.rm.c)clsJoin(h.rm.c,h.rm.n,true);save();toast('รับการบ้านแล้ว: '+h.title);return true}catch(e){toast('รหัสการบ้านไม่ถูกต้อง');return false}}
 function hwPending(){let p=null;try{p=localStorage.getItem('mycro_hw_pending')}catch(e){}if(!p||!META.current)return;try{localStorage.removeItem('mycro_hw_pending')}catch(e){}if(p.startsWith('ROOM:')){if(clsInput('#room='+p.slice(5))&&V.view!=='homework')setTimeout(()=>go('homework'),50);return}if(hwImport(p)&&V.view!=='homework')setTimeout(()=>go('homework'),50)}
+const HW_AUTO=[[1, "2026-10-25", "2026-11-01"], [2, "2026-11-09", "2026-11-15"], [3, "2026-11-23", "2026-11-29"], [4, "2026-12-07", "2026-12-13"], [5, "2026-12-21", "2026-12-27"], [6, "2027-01-04", "2027-01-10"], [7, "2027-01-18", "2027-01-24"], [8, "2027-02-01", "2027-02-07"], [9, "2027-02-15", "2027-02-21"], [10, "2027-03-01", "2027-03-07"]];
+function hwAuto(){if(typeof S==='undefined'||!S||!META.current||!(S.cls||[]).length)return;const td=isoD(new Date()),rm=S.cls[0];S.hw=S.hw||[];const X0=S.hwX||[];let ch=0;
+  HW_AUTO.forEach(([n,o,d])=>{if(o>td)return;const id='auto-w'+n;if(X0.includes(id)||S.hw.some(h=>h.id===id||h.items.some(it=>it.k==='task'&&+it.v===n)))return;const X=HW_TASKS.find(x=>x.n===n);if(!X)return;
+    S.hw.push({id,title:'การบ้านสัปดาห์ที่ '+n+' · '+X.t,due:d,created:o,items:[{k:'task',v:n}],note:'การบ้านรายสัปดาห์ของห้องเรียน ทำได้ภายในสัปดาห์นี้ แล้วพักหนึ่งสัปดาห์ก่อนชิ้นถัดไป',rm:{c:rm.c,n:clsName(rm.c)},auto:1});ch=1});
+  if(ch){S.hw.sort((a,b)=>String(b.created).localeCompare(String(a.created)));save()}}
+function hwaStrip(t){const td=isoD(new Date()),nx=HW_AUTO.find(([n,o])=>o>td);
+  return `<section class="hwa"><div class="hwa-hd"><div><small>การบ้านรายสัปดาห์ · ${HW_AUTO.length} ชิ้น</small><b>เปิดสัปดาห์เว้นสัปดาห์${t?' ให้น้องทุกห้องเรียนอัตโนมัติ':''}</b></div>${nx?`<span>ชิ้นถัดไปเปิด ${thShort(nx[1])}</span>`:'<span>เปิดครบทุกชิ้นแล้ว</span>'}</div>
+   <ol class="hwa-l">${HW_AUTO.map(([n,o,d])=>{const X=HW_TASKS.find(x=>x.n===n)||{t:''},op=o<=td,dn=!t&&!!((S.tk||{})[n]||{}).done,late=op&&d<td;
+     return `<li class="${dn?'dn':op?(late?'lt':'on'):'wt'}">${op&&!t?`<button data-act="tk-open" data-v="${n}">`:'<div>'}<i>${n}</i><span><b>${esc(X.t)}</b><small>${thShort(o)} – ${thShort(d)}</small></span><em>${dn?'ส่งแล้ว':op?(late?'เลยกำหนด':'เปิดอยู่'):'รอเปิด'}</em>${op&&!t?'</button>':'</div>'}</li>`}).join('')}</ol></section>`}
 function hwOpen(){return (S.hw||[]).filter(h=>!h.sent&&!h.items.every(it=>hwItemDone(it,h)))}
 function hwCopy(t){const ok=()=>toast('คัดลอกแล้ว');try{navigator.clipboard.writeText(t).then(ok,()=>{hwSel(t)})}catch(e){hwSel(t)}}
 function hwSel(t){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('คัดลอกแล้ว')}catch(e){toast('กดค้างที่รหัสเพื่อคัดลอก')}ta.remove()}
@@ -32014,6 +32036,7 @@ function vHomework(pv){const L=pv?pv.hw:(S.hw||[]);const u=me()||{};
   return `<div class="home hwp"><section class="hw-hero"><div><small>CLASSROOM · ห้องเรียนและการบ้าน</small><h1>ห้องเรียนของฉัน</h1><p>${C.length?'อยู่ใน '+C.length+' ห้อง · ':''}${HO.length?'การบ้านค้าง '+HO.length+' ชิ้น ทำให้ทันก่อนวันส่งนะ':'ไม่มีงานค้าง เยี่ยมมาก'}</p></div><span class="hw-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${MI.homework}</svg></span></section>
    ${keys.length>1?`<div class="subjsw cls-sw" role="tablist" aria-label="เลือกห้องเรียน">${[['all','ทั้งหมด']].concat(keys.map(k=>[k,k?clsName(k):'ทั่วไป'])).map(([k,l])=>{const n=k==='all'?HO.length:openN(k);return `<button role="tab" aria-selected="${F===k}" data-act="cls-f" data-v="${k}">${esc(l)}<small>${n?'ค้าง '+n:'ไม่มีงานค้าง'}</small></button>`}).join('')}</div>`:''}
    ${pv?'':`<form class="hw-in cls-in ${C.length?'':'first'}" id="f-hw">${C.length?'':`<div class="cls-in-t"><b>เข้าห้องเรียน</b><small>กรอกรหัสห้อง 6 ตัวที่พี่วอลส์ส่งให้ในกลุ่ม</small></div>`}<div class="cls-in-r"><input id="hw-code" placeholder="${C.length?'รหัสห้องใหม่ หรือวางลิงก์การบ้าน':'เช่น K7M2QX หรือวางลิงก์จากพี่วอลส์'}" autocomplete="off" autocapitalize="characters"><button class="btn primary" type="submit">${C.length?'ตกลง':'เข้าห้อง'}</button></div></form>`}
+   ${pv||!(S.cls||[]).length?'':hwaStrip(0)}
    ${keys.length?body:`<div class="hw-empty"><b>ยังไม่มีการบ้าน</b><span>เข้าห้องเรียนด้วยรหัสห้อง หรือแตะลิงก์การบ้านที่พี่วอลส์ส่งในกลุ่ม</span></div>`}</div>`}
 /* teacher */
 const CRX_IC={desk:'<path d="M3 9h18M5 9v11M19 9v11M7 9V5h10v4"/>',book:'<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',bag:'<path d="M8 8V7a4 4 0 0 1 8 0v1"/><rect x="5" y="8" width="14" height="13" rx="4"/><path d="M9 14h6v4H9z"/>',board:'<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20l4-4 4 4M7 8h6M7 11h9"/>'};
@@ -32028,7 +32051,7 @@ function vHwTeach(){if(!(isStaff()||(CLOUD&&CLOUD.admin)))return `<div class="ho
   const subN=T.reduce((a,h)=>a+(h.subs||[]).length,0),HH=[92,100,84,96,88,100,86,94,98,90],dt=new Date(),openN=T.filter(h=>hwDue(h)[1]!=='late').length;
   const hd=(ic,eb,t,sub)=>`<header class="crx-chh"><span class="crx-ic">${crxIc(ic)}</span><div><small>${eb}</small><h2>${t}</h2><p>${sub}</p></div></header>`;
   return `<div class="home hwt crx"><button class="link back" data-act="nav" data-v="teacher" style="align-self:flex-start">‹ แดชบอร์ดผู้สอน</button>
-   <section class="crx-board"><div class="crx-bd">
+   ${hwaStrip(1)}<section class="crx-board"><div class="crx-bd">
      <div class="crx-bd-top"><span class="crx-date">วัน${TH_DL[dt.getDay()]}ที่ ${dt.getDate()} ${TH_M[dt.getMonth()]} ${dt.getFullYear()+543}</span><span class="crx-memo"><i aria-hidden="true"></i><small>ยังไม่หมดเวลาส่ง</small><b>${openN} งาน</b></span></div>
      <small class="crx-eb">กระดานหน้าห้อง · ผู้สอน</small>
      <h1>ห้องเรียนและการบ้าน</h1><svg class="crx-sq" viewBox="0 0 220 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8C30 2 52 11 80 6S130 2 160 7 200 4 218 6" fill="none" stroke="#FF7A7A" stroke-width="3" stroke-linecap="round"/></svg>
@@ -40506,7 +40529,7 @@ case 'app-st':{const id=b.dataset.id,st=b.dataset.v;const a=(V.apps||[]).find(x=
   case 'tk-redo':{if(!confirm('ล้างคำตอบการบ้านนี้แล้วเริ่มทำใหม่?'))break;delete S.tk[b.dataset.v];save();render();window.scrollTo({top:0});break}
   case 'hw-res':V.hwRes=b.dataset.v;render();break;
   case 'hw-sent':{const h=(S.hw||[]).find(x=>x.id===b.dataset.v);if(h){h.sent=Date.now();save()}V.hwRes=null;toast('บันทึกว่าส่งแล้ว');render();break}
-  case 'hw-del':{if(!confirm('ลบการบ้านนี้ออกจากเครื่อง?'))break;S.hw=(S.hw||[]).filter(x=>x.id!==b.dataset.v);save();render();break}
+  case 'hw-del':{if(!confirm('ลบการบ้านนี้ออกจากเครื่อง?'))break;if(String(b.dataset.v).startsWith('auto-')){S.hwX=S.hwX||[];S.hwX.push(b.dataset.v)}S.hw=(S.hw||[]).filter(x=>x.id!==b.dataset.v);save();render();break}
   case 'hwt-pick':{const k=b.dataset.k,v=b.dataset.v;const T=document.getElementById('hwt-t'),D=document.getElementById('hwt-d'),N=document.getElementById('hwt-n');if(T)V.hwTitle=T.value;if(D)V.hwDue=D.value;if(N)V.hwNote=N.value;V.hwSel=V.hwSel||[];const i=V.hwSel.findIndex(x=>x.k===k&&String(x.v)===String(v));if(i>=0)V.hwSel.splice(i,1);else{V.hwSel.push({k,v:k==='fin'?+v:v});if(k==='task'&&(!V.hwTitle||V.hwTitle==='การบ้านสัปดาห์นี้')){const X=HW_TASKS.find(x=>x.n===+v);if(X)V.hwTitle='การบ้านสัปดาห์ที่ '+X.n+' · '+X.t}}const op=[...document.querySelectorAll('.hwt-g')].map(d=>d.open);render();document.querySelectorAll('.hwt-g').forEach((d,j)=>{d.open=!!op[j]});break}
   case 'hwt-del':{if(!confirm('ลบการบ้านนี้? ลิงก์ที่ส่งไปแล้วยังใช้ได้อยู่ในเครื่องน้อง'))break;S.hwT=(S.hwT||[]).filter(x=>x.id!==b.dataset.v);save();render();break}
   case 'px-f':V.pxf=b.dataset.v;render();break;
