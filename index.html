@@ -33513,8 +33513,8 @@ function shfLoad(part,bust){return new Promise((res,rej)=>{window.__BK=window.__
   const sc=document.createElement('script');sc.src=part.f+(bust?'?r='+Date.now():'');sc.async=true;
   sc.onload=()=>{sc.remove();const v=window.__BK[part.k];if(ok(v))res(v);else if(!bust)shfLoad(part,true).then(res,rej);else rej(new Error('bad'))};
   sc.onerror=()=>{sc.remove();if(!bust)shfLoad(part,true).then(res,rej);else rej(new Error('load'))};document.head.appendChild(sc)})}
-async function shfPart(R,pi){if(R.parts[pi])return R.parts[pi];R.parts[pi]=(async()=>{const part=R.b.parts[pi];const s=await shfLoad(part);delete window.__BK[part.k];const ct=shfB64(s);
-  const plain=new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:ct.slice(0,12),additionalData:new TextEncoder().encode(part.k)},R.key,ct.slice(12)));
+async function shfPart(R,pi){if(R.parts[pi])return R.parts[pi];R.parts[pi]=(async()=>{const part=R.b.parts[pi];let s;try{s=await shfLoad(part)}catch(e){e.stage='L'+(e.message==='bad'?'2':'1');throw e}delete window.__BK[part.k];let plain;
+  try{const ct=shfB64(s);plain=new Uint8Array(await crypto.subtle.decrypt({name:'AES-GCM',iv:ct.slice(0,12),additionalData:new TextEncoder().encode(part.k)},R.key,ct.slice(12)))}catch(e){e.stage='D';throw e}
   const dv=new DataView(plain.buffer);const n=dv.getUint32(0,true);let off=4+4*n;const out=[];for(let j=0;j<n;j++){const L=dv.getUint32(4+4*j,true);out.push(plain.subarray(off,off+L));off+=L}return out})();
   R.parts[pi].catch(()=>{R.parts[pi]=null});return R.parts[pi]}
 async function shfBytes(R,i){let a=0;for(let pi=0;pi<R.b.parts.length;pi++){const n=R.b.parts[pi].p;if(i<a+n){const arr=await shfPart(R,pi);if(pi+1<R.b.parts.length&&i-a>n-4)shfPart(R,pi+1).catch(()=>{});return arr[i-a]}a+=n}throw new Error('page')}
@@ -33526,10 +33526,12 @@ function shfWM(x,w,h,i,tag){const fs=Math.round(w*.03);x.save();x.font=`600 ${fs
   x.save();x.font=`500 ${Math.round(w*.016)}px "Chulalongkorn","IBM Plex Sans Thai",sans-serif`;x.fillStyle='rgba(227,20,20,.38)';x.textAlign='right';x.textBaseline='bottom';
   x.fillText('MYCROSOC · '+tag+' · หน้า '+(i+1),w-w*.03,h-w*.015);x.restore()}
 async function shfDraw(R,i){const pg=R.el.querySelector(`.shf-pg[data-i="${i}"]`);if(!pg||pg._st)return;pg._st=1;pg.classList.remove('err');
-  try{const bytes=await shfBytes(R,i);if(R!==SHF.open)return;const bmp=await createImageBitmap(new Blob([bytes],{type:'image/webp'}));
-   const cv=document.createElement('canvas');cv.width=bmp.width;cv.height=bmp.height;const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);x.drawImage(bmp,0,0);if(bmp.close)bmp.close();
+  try{const bytes=await shfBytes(R,i);if(R!==SHF.open)return;const bmp=await shfDecode(bytes);
+   const cv=document.createElement('canvas');cv.width=bmp.width;cv.height=bmp.height;const x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,cv.width,cv.height);x.drawImage(bmp._im||bmp,0,0);if(bmp.close)bmp.close();
    if(!shfNoWM())shfWM(x,cv.width,cv.height,i,R.wm);cv.setAttribute('aria-label','หน้า '+(i+1));cv.draggable=false;pg.querySelectorAll('canvas').forEach(c=>c.remove());pg.appendChild(cv);pg.classList.add('ok');pg.dataset.wm='1';pg._st=2}
-  catch(e){pg._st=0;if(R===SHF.open){pg.classList.add('err');const l=pg.querySelector('.shf-ld');if(l)l.textContent='โหลดหน้านี้ไม่สำเร็จ แตะเพื่อลองใหม่'}}}
+  catch(e){pg._st=0;if(R===SHF.open){pg.classList.add('err');const l=pg.querySelector('.shf-ld');if(l)l.textContent='โหลดหน้านี้ไม่สำเร็จ แตะเพื่อลองใหม่ (รหัส '+((e&&e.stage)||'X')+')'}}}
+async function shfDecode(bytes){const bl=new Blob([bytes],{type:'image/webp'});try{if(window.createImageBitmap)return await createImageBitmap(bl)}catch(_){}
+  try{const u=URL.createObjectURL(bl);try{const im=new Image();im.decoding='async';await new Promise((ok,no)=>{im.onload=ok;im.onerror=no;im.src=u});if(im.decode)await im.decode().catch(()=>{});const o={width:im.naturalWidth,height:im.naturalHeight,_im:im};return o}finally{setTimeout(()=>URL.revokeObjectURL(u),4000)}}catch(e){const z=new Error('img');z.stage='I';throw z}}
 function shfFree(R,cur){R.el.querySelectorAll('.shf-pg.ok').forEach(pg=>{const i=+pg.dataset.i;if(Math.abs(i-cur)>6){pg.querySelectorAll('canvas').forEach(c=>{c.width=0;c.remove()});pg.classList.remove('ok');pg._st=0}})}
 function shfUpsell(b){if(!META.current){go('auth',{tab:'login'});return}const need=b.tiers.filter(t=>t!=='TUTOR'&&t!=='ROSE');go(need[0]==='RUBY'?'ruby':'pearl',{what:'หนังสือ '+b.title})}
 function shfClose(){const R=SHF.open;if(!R)return;SHF.open=null;try{R.io.disconnect()}catch(e){}R.el.querySelectorAll('canvas').forEach(c=>c.width=0);R.el.remove();document.removeEventListener('keydown',R.kd,true);document.body.classList.remove('shf-on');try{save()}catch(e){}if(V.view==='shelf'||V.view==='home'||V.view==='learn')render()}
