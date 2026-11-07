@@ -6068,6 +6068,18 @@ html.fw-en body .flyw .fw-btns .fw-cabb::after{content:"Lights"}html.fw-en body 
 .fa9-t{flex:1;min-width:0;display:flex;flex-direction:column}.fa9-t b{font-size:.62rem}.fa9-t small{font-size:.48rem;color:#9A6A70;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .fa9-r button{font:inherit;flex:none;border:0;cursor:pointer;border-radius:999px;padding:6px 12px;font-size:.52rem;font-weight:800;color:#9A6A70;background:#F6EEF0}
 .fa9-r button[aria-pressed="true"]{color:#fff;background:linear-gradient(180deg,#FF5A5A,#E31414);box-shadow:0 2px 0 #B3122E}
+/* v714 ตู้อุปกรณ์และหน้าจอเปิดดูใกล้: แถบคำสั่งย้ายไปเป็นแถบด้านข้าง ภาพไม่ถูกบัง */
+@media (min-aspect-ratio:4/5){body .g2 .g2-cv{left:0!important;right:calc(min(300px,34vw) + 20px)!important;top:0!important;bottom:0!important;height:100%!important;width:min(calc(100% - min(300px,34vw) - 20px),58vh)!important;margin:0 auto!important}
+ body .g2 .g2-bar,body .g2 .g2-pop,body .g2 .g2-top{left:auto!important;right:10px!important;width:min(300px,34vw)!important}
+ body .g2 .g2-bar{bottom:max(10px,env(safe-area-inset-bottom))!important;top:auto!important}
+ body .g2 .g2-pop{top:auto!important;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 92px)!important;max-height:calc(100vh - 220px)!important}
+ body .g2 .g2-top{top:max(10px,env(safe-area-inset-top))!important;display:flex!important;flex-direction:column!important;gap:6px!important;bottom:auto!important}
+ body .g2 .g2-top>*{position:relative!important;top:auto!important;left:auto!important;right:auto!important;transform:none!important;width:auto!important;margin:0!important}
+ body .g2 .g2-bar,body .g2 .g2-top .g2-bub,body .g2 .g2-pop{background:rgba(255,255,255,.97)!important}}
+@media (max-aspect-ratio:4/5){body .g2 .g2-cv{top:0!important;left:0!important;right:0!important;bottom:auto!important;height:calc(100% - max(10px,env(safe-area-inset-bottom)) - 108px)!important;width:min(100%,calc((100vh - 118px) * .58))!important;margin:0 auto!important}}
+.sv5{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:0;box-shadow:inset 0 0 0 1.5px #F6B3B0,0 10px 22px -16px rgba(227,20,20,.55);background:linear-gradient(180deg,#FFF6F5,#FFFFFF)}
+.sv5-t{display:flex;flex-direction:column;gap:2px;flex:1 1 220px}.sv5-t b{font-size:.74rem;color:#B3122E}.sv5-t span{font-size:.62rem;color:#5A3A40;font-weight:700}.sv5-t small{font-size:.54rem;color:#8A6A70}
+.sv5-b{display:flex;gap:8px}.sv5-no{border:0;border-radius:12px;padding:0 14px;min-height:40px;font:inherit;font-size:.62rem;font-weight:800;background:#FFF1EF;color:#E31414;box-shadow:inset 0 0 0 1px #F6CFCB;cursor:pointer}
 </style></head><body><style id="boot-css">#boot{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:radial-gradient(120% 70% at 50% 0%,#FFFFFF 0%,#FFF1F0 45%,#FFE0DE 100%);font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#2B1A1F;transition:opacity .45s ease,visibility .45s}
 #boot.out{opacity:0;visibility:hidden}
 #boot .bt-orb{position:relative;width:132px;height:132px;display:grid;place-items:center}
@@ -24810,7 +24822,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v710';
+const FW_VER='v714';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -25129,7 +25141,7 @@ function fwL2Deck(r){const X=fwL2X(r);return `<div class="l2-fd"><div class="l2-
 function fwL2Spec(r){const nb=r.ac==='nb',R=fwL2Rnd(r.id+'ssr'+(flyS().flights||0)),S=fwSt();const rows=String(S.rows||'').match(/\d+/g)||['20','29'],r0=+rows[0],r1=+(rows[1]||r0+9);
   const seat=()=>(r0+Math.floor(R()*(r1-r0+1)))+'ACDHJK'[Math.floor(R()*(nb?4:6))%6];
   const ssr=FW_SSR.map(([c,d],i)=>[c,d,i===0?1+Math.floor(R()*(nb?2:4)):i===2?Math.floor(R()*(nb?3:5)):Math.floor(R()*2)+(i===1&&r.id==='bkkhkt'?1:0)]).filter(x=>x[2]>0);
-  const ml=FW_SML.map(([c,d])=>{let n=Math.floor(R()*(nb?3:7));if(c==='MOML'&&(r.id==='bkkdxb'||r.id==='bkklhr'))n+=6;if(c==='HNML'&&r.id!=='bkkdxb'&&r.id!=='bkklhr'&&r.id!=='bkksin')n=Math.min(n,1);if(c==='CHML')n+=ssr.find(x=>x[0]==='UMNR')?1:0;return[c,d,n]}).filter(x=>x[2]>0);
+  const ml=FW_SML.map(([c,d])=>{let n=Math.floor(R()*(nb?3:7));if(c==='MOML'&&(r.id==='bkkdxb'||r.id==='bkklhr'||r.id==='bkkcdg'))n+=6;if(c==='MOML'&&r.id==='bkkcai')n+=14;if(c==='HNML'&&r.id!=='bkkdxb'&&r.id!=='bkklhr'&&r.id!=='bkksin')n=Math.min(n,1);if(c==='CHML')n+=ssr.find(x=>x[0]==='UMNR')?1:0;return[c,d,n]}).filter(x=>x[2]>0);
   return `<div class="l2-sub-h">ผู้โดยสารพิเศษในโซนของคุณ</div><div class="l2-ssr">${ssr.map(([c,d,n])=>`<div><span class="l2-code">${c}</span><span class="l2-sd"><b>${d}</b><small>${Array.from({length:Math.min(n,3)},seat).join('  ')}${n>3?'  และอีก '+(n-3):''}</small></span><em>${n}</em></div>`).join('')}</div>
    <div class="l2-sub-h">อาหารพิเศษที่โหลดขึ้นเครื่อง</div><div class="l2-ml">${ml.map(([c,d,n])=>`<span><b>${c}</b><small>${d}</small><em>${n}</em></span>`).join('')}</div>`}
 function fwL2DutyHTML(r){const D=fwL2Duty(r);
@@ -27066,6 +27078,15 @@ function fwImmStamp(code,dstr,seed){const id='im'+code+Math.floor(Math.random()*
   else if(code==='LHR'){col='#2B3A6B';vb='0 0 128 96';body=`<rect x="3" y="3" width="122" height="90" fill="none" stroke-width="2.4"/>
     ${T(64,17,6.6,'LEAVE TO ENTER FOR',mono+' letter-spacing="1"')}${T(64,28,9.5,'SIX MONTHS',mono+' letter-spacing="2"')}${T(64,38,6,'EMPLOYMENT PROHIBITED',mono)}
     <circle cx="64" cy="61" r="15" fill="none" stroke-width="1.6"/>${T(64,58,7,dd+' '+mo,mono)}${T(64,67,7,Y,mono)}${T(64,87,7,'HEATHROW (4)',mono+' letter-spacing="1"')}`}
+  else if(code==='CAI'){col='#7A3B1E';vb='0 0 124 92';body=`<rect x="3" y="3" width="118" height="86" rx="6" fill="none" stroke-width="2.6"/><rect x="8" y="8" width="108" height="76" rx="4" fill="none" stroke-width=".9"/>
+    ${T(62,22,9.5,'مطار القاهرة الدولي','font-weight="800" direction="rtl"')}${T(62,32,6.2,'CAIRO INTL AIRPORT',mono+' letter-spacing="1"')}<line x1="14" y1="37" x2="110" y2="37" stroke-width="1"/>
+    ${T(62,49,7,'ARRIVAL  وصول',mono+' letter-spacing="1"')}${T(62,62,11,dd+' '+mo+' '+Y,mono)}${T(62,76,6.2,'ENTRY VISA  30 DAYS  2 1 8',mono)}`}
+  else if(code==='CDG'){col='#24408E';vb='0 0 120 92';body=`<rect x="3" y="3" width="114" height="86" rx="12" fill="none" stroke-width="2.6"/>
+    ${T(60,19,9,'ENTRÉE',mono+' letter-spacing="3"')}<path d="M40 30h40M56 25l8 5-8 5" fill="none" stroke-width="1.6"/>${T(60,47,7,'PARIS CDG  2E',mono+' letter-spacing="1"')}
+    ${T(60,62,11,dd+'.'+mm+'.'+Y,mono)}<line x1="14" y1="68" x2="106" y2="68" stroke-width="1" stroke-dasharray="3 2"/>${T(60,80,6,'EES  ENREGISTRÉ  0 4 7',mono)}`}
+  else if(code==='JFK'){col='#1F4E79';vb='0 0 132 92';const[d6,m6,y6]=add(182);body=`<rect x="3" y="3" width="126" height="86" fill="none" stroke-width="2.4"/><line x1="3" y1="28" x2="129" y2="28" stroke-width="1.2"/>
+    ${T(66,20,11,'ADMITTED',mono+' letter-spacing="4"')}${T(66,41,10,dd+' '+mo+' '+Y,mono)}${T(66,54,7,'CLASS  B 2',mono+' letter-spacing="1"')}
+    ${T(66,67,6.4,'UNTIL  '+d6+' '+m6+' '+y6,mono)}${T(66,82,6.4,'NEW YORK  JFK  4 1 2',mono)}`}
   else{col='#B3122E';vb='0 0 110 110';const[d2,m2,y2]=add(0);body=`<path d="M55 4 L102 30 L102 80 L55 106 L8 80 L8 30Z" fill="none" stroke-width="2.6"/><path d="M55 11 L96 34 L96 76 L55 99 L14 76 L14 34Z" fill="none" stroke-width=".9"/>
     ${T(55,33,6,'DOMESTIC ARRIVAL',mono)}${T(55,44,7.4,'ท่าอากาศยานภูเก็ต')}<line x1="20" y1="50" x2="90" y2="50" stroke-width="1"/>${T(55,63,9.5,d2+' '+m2+' '+y2,mono)}${T(55,76,7,'PHUKET  HKT',mono)}`}
   return `<svg class="ims" viewBox="${vb}" aria-hidden="true"><defs>${flt}</defs><g filter="url(#${id})" fill="${col}" stroke="${col}" opacity=".9"><g transform="translate(1.2 1.6)" opacity=".16">${body}</g>${body}</g></svg>`}
@@ -27125,7 +27146,18 @@ function fwBrMap2(cv,dst,prog){const W=320,H=150;cv.width=W;cv.height=H;const c=
    LHR:{sea:[[40,100,170],[60,140,196],[120,200,220]],land:(x,y)=>{let cont=252-x+5*nz(x,y,12);cont=Math.min(cont,128-y+6*nz(x,y,13)+Math.max(0,175-x)*1.2);cont=Math.min(cont,-E(x,y,180,56,9,17));return Math.max(cont,E(x,y,273,110,13,26)+3*nz(x,y,14),Math.min(20,y-0)*0+E(x,y,-60,120,10,10))},
      elev:(x,y,m)=>Math.min(m,12)*.4+GS(x,115,40)*GS(y,66+Math.sin(x*.08)*6,13)*28*(.8+.2*nz(x,y,22)),
      col:(x,y,m,e)=>{const t=x+dt(x,y)*14+nz(x,y,23)*10;let v=mix(G[0],G[2],.3);v=mix(v,[150,166,110],Math.min(1,Math.max(0,(t-60)/30)));v=mix(v,[200,190,140],Math.min(1,Math.max(0,(t-150)/25))*Math.min(1,Math.max(0,(225-t)/20)));if(t>205&&((x>>2)+(y>>2))%2)v=mix(v,[164,196,104],.35);if(e>14)v=mix(v,[150,140,130],Math.min(.6,(e-14)/6));if(e>19)v=mix(v,SNOW,Math.min(1,(e-19)/4));return v},
-     feat:()=>{}}}[dst]||null;
+     feat:()=>{}},
+   CAI:{sea:[[34,96,170],[56,146,196],[110,206,214]],land:(x,y)=>{const asia=E(x,y,-20,96,96,84)+6*nz(x,y,40),ind=Math.max(E(x,y,118,66,30,30),E(x,y,124,92,14,24))+4*nz(x,y,41),ara=E(x,y,206,98,36,30)+4*nz(x,y,42),afr=E(x,y,322,104,86,92)+5*nz(x,y,43),per=E(x,y,186,26,78,26)+4*nz(x,y,49);let L=Math.max(asia,ind,ara,afr,per);if(y>50)L=Math.min(L,Math.abs(x-(250-(y-60)*.42))*1.5-2.6);L=Math.min(L,-E(x,y,286,20,50,14)-1);return L},
+     elev:(x,y,m)=>Math.min(m,12)*.4+GS(x,135,18)*GS(y,34,12)*22,col:(x,y,m,e)=>{if(E(x,y,-20,96,96,84)>-4)return mix(G[0],G[2],Math.min(1,e/24));if(Math.max(E(x,y,118,66,30,30),E(x,y,124,92,14,24))>-4)return mix([170,176,110],[120,150,86],Math.min(1,e/20)+dt(x,y)*.3);const dn=Math.sin(x*.5+y*.9+Math.sin(y*.2)*3)>.6;let v=mix(DES[0],DES[2],dn?.45:.12);const nile=Math.abs(x-(268+Math.sin(y*.12)*3))<2.2&&y<118;if(nile)v=mix(v,[96,150,80],.8);if(e>10)v=mix(v,[176,128,90],Math.min(.6,(e-10)/10));return v},
+     feat:()=>{for(let y=40;y<118;y++){const x=268+Math.sin(y*.12)*3;R(x,y,1,1,'#5AA0D8')}for(let j=0;j<5;j++){R(B[0]-8-j,B[1]+2-j,j*2+1,1,'#E8C48A');R(B[0]-8,B[1]+2-j,j,1,'#C8925A')}}},
+   CDG:{sea:[[40,100,170],[60,140,196],[120,200,220]],land:(x,y)=>{let cont=330-x+5*nz(x,y,44);cont=Math.min(cont,128-y+6*nz(x,y,45)+Math.max(0,175-x)*1.2);cont=Math.min(cont,-E(x,y,180,56,9,17));cont=Math.min(cont,-E(x,y,300,30,66,50)+4*nz(x,y,46));if(x>200)cont=Math.min(cont,(136-y)+4*nz(x,y,47)+Math.max(0,x-292)*2);return Math.max(cont,E(x,y,262,66,10,15)+3*nz(x,y,48),E(x,y,-60,120,10,10))},
+     elev:(x,y,m)=>Math.min(m,12)*.4+GS(x,115,40)*GS(y,66+Math.sin(x*.08)*6,13)*28*(.8+.2*nz(x,y,22))+GS(x,292,10)*GS(y,124,6)*24,
+     col:(x,y,m,e)=>{const t=x+dt(x,y)*14+nz(x,y,23)*10;let v=mix(G[0],G[2],.3);v=mix(v,[150,166,110],Math.min(1,Math.max(0,(t-60)/30)));v=mix(v,[200,190,140],Math.min(1,Math.max(0,(t-150)/25))*Math.min(1,Math.max(0,(225-t)/20))*GS(y,60,34));if(t>225&&((x>>2)+(y>>2))%2)v=mix(v,[176,196,104],.4);if(e>14)v=mix(v,[150,140,130],Math.min(.6,(e-14)/6));if(e>19)v=mix(v,SNOW,Math.min(1,(e-19)/4));return v},
+     feat:()=>{for(let k=0;k<40;k++){const t=k/40,x=B[0]-24+t*40,y=B[1]-4+Math.sin(t*9)*3;R(x,y,1,1,'#5AA0D8')}R(B[0]-1,B[1]-14,1,10,'#8A6E66');R(B[0]-3,B[1]-6,5,1,'#8A6E66')}},
+   JFK:{sea:[[30,80,160],[50,120,186],[110,180,210]],land:(x,y)=>{const asia=E(x,y,-30,92,104,96)+6*nz(x,y,50),am=Math.min(E(x,y,330,92,108,84)+6*nz(x,y,51),-E(x,y,330,142,52,34)+3*nz(x,y,52)),ice=26-y+6*nz(x,y,53);return Math.max(asia,am,ice,E(x,y,236,46,14,9)+3*nz(x,y,54))},
+     elev:(x,y,m)=>Math.min(m,12)*.4+GS(x,30,16)*GS(y,64,16)*20+GS(x,214,8)*GS(y,90,26)*18,
+     col:(x,y,m,e)=>{if(y<30+4*nz(x,y,55))return mix(SNOW,[214,226,240],dt(x,y)+.5);let v=mix(G[0],G[2],Math.min(1,e/20)+.15);if(y<52)v=mix(v,SNOW,Math.min(1,(52-y)/16));if(x>180&&y<80)v=mix(v,[170,186,170],.35);if(e>14)v=mix(v,SNOW,Math.min(1,(e-14)/5));return v},
+     feat:()=>{for(let k=0;k<26;k++){const a=N(k,1,181)*W,b=32+N(k,2,181)*10;if(lm(Math.round(a),Math.round(b))<0)R(a,b,3,1,'rgba(240,248,255,.85)')}R(B[0]-2,B[1]-10,1,9,'#C8D0DC');R(B[0]+1,B[1]-14,1,13,'#D8DCE6');R(B[0]+3,B[1]-8,1,7,'#C8D0DC')}}}[dst]||null;
   if(!cfg)return false;
   const ST=[mix(cfg.sea[2],[255,255,255],.32),cfg.sea[2],cfg.sea[1],mix(cfg.sea[1],cfg.sea[0],.6),mix(cfg.sea[0],[16,34,84],.28)];const sea=cfg.sea,land=cfg.land,LE=new Float32Array(W*H);for(let y=0;y<H;y++)for(let x=0;x<W;x++)LE[y*W+x]=land(x,y);const lm=(x,y)=>LE[Math.max(0,Math.min(H-1,y))*W+Math.max(0,Math.min(W-1,x))];
   const EL=new Float32Array(W*H);for(let y=0;y<H;y++)for(let x=0;x<W;x++){const m=LE[y*W+x];EL[y*W+x]=m>0?cfg.elev(x,y,m):0}const el=(x,y)=>EL[Math.max(0,Math.min(H-1,y))*W+Math.max(0,Math.min(W-1,x))];
@@ -27156,7 +27188,7 @@ function fwBrMap2(cv,dst,prog){const W=320,H=150;cv.width=W;cv.height=H;const c=
   city(A[0]-6,A[1]-18,1);city(B[0]-14,B[1]-12,2);
   const apt=([x,y])=>{R(x-11,y-1,24,6,'rgba(40,40,60,.18)');R(x-12,y-2,24,5,'#A8A4B4');R(x-12,y-2,24,1,'#C8C4D0');for(let i=-10;i<10;i+=4)R(x+i,y,2,1,'#FFFFFF');R(x-4,y+4,9,3,'#F4F0F2');R(x-4,y+6,9,1,'#E31414');for(const r of[7,11]){c.strokeStyle=`rgba(227,20,20,${r===7?.5:.22})`;c.lineWidth=1;c.beginPath();c.arc(x+.5,y+.5,r,0,7);c.stroke()}R(x-1,y-1,3,3,'#E31414');R(x,y-1,1,1,'#FF9A9A')};
   apt(A);apt(B);
-  const Cx=160,Cy=dst==='HKT'?36:24,bz=t=>[(1-t)*(1-t)*A[0]+2*(1-t)*t*Cx+t*t*B[0],(1-t)*(1-t)*A[1]+2*(1-t)*t*Cy+t*t*B[1]];let dist=0,[px,py]=bz(0);
+  const Cx=dst==='JFK'?150:160,Cy=dst==='HKT'?36:dst==='JFK'?-70:dst==='CAI'?40:24,bz=t=>[(1-t)*(1-t)*A[0]+2*(1-t)*t*Cx+t*t*B[0],(1-t)*(1-t)*A[1]+2*(1-t)*t*Cy+t*t*B[1]];let dist=0,[px,py]=bz(0);
   for(let t=0;t<=1;t+=.002){const[x,y]=bz(t);dist+=Math.hypot(x-px,y-py);px=x;py=y;for(let k=-2;k<=2;k++)R(x,y+k,1,1,`rgba(255,120,120,${(.07*(1-Math.abs(k)/3)).toFixed(3)})`);if(t<=prog||Math.floor(dist/4)%2===0){R(x+1,y+2,1,1,'rgba(40,30,60,.12)');R(x,y,1,1,t<=prog?'#E31414':'#FFFFFF')}}
   const[qx,qy]=bz(prog),[rx,ry]=bz(Math.min(1,prog+.01)),ang=Math.atan2(ry-qy,rx-qx),ca=Math.cos(ang),sa=Math.sin(ang);
   const P=[];for(let i=-6;i<=6;i++)P.push([i,0,'#FFFFFF'],[i,1,'#E8E0E4']);for(let j=-6;j<=7;j++)P.push([0,j,'#FFFFFF'],[1,j,'#EDE6EA']);for(let j=-2;j<=3;j++)P.push([-5,j,j===-2||j===3?'#E31414':'#FFFFFF']);P.push([6,0,'#8EC4F0'],[-6,0,'#E31414']);
@@ -27805,6 +27837,490 @@ try{V.fwFz=+(localStorage.getItem('fwFz')||0)||0}catch(e){V.fwFz=0}
 function fwFzApply(){const h=document.documentElement,on=V.view==='fly';h.classList.toggle('fz1',on&&V.fwFz===1);h.classList.toggle('fz2',on&&V.fwFz===2)}
 function fwFzAct(){V.fwFz=((V.fwFz||0)+1)%3;try{localStorage.setItem('fwFz',String(V.fwFz))}catch(e){}fwFzApply();render();const w=fwW();if(w)try{fwMsg(w,'ขนาดตัวอักษร '+['ปกติ','ใหญ่','ใหญ่มาก'][V.fwFz])}catch(e){}}
 {const o=render;render=function(){const r=o.apply(this,arguments);try{fwFzApply()}catch(e){}return r}}
+
+/* ===== v711 เส้นทางใหม่สามเส้นทาง ระดับยากมาก
+   MY961 กรุงเทพ ไคโร: บินข้ามคืน 9 ชั่วโมง ทัวร์ผู้สูงอายุ ผู้โดยสารมุสลิมจำนวนมาก พายุทรายก่อนลงจอด ห้ามนำโดรนเข้าประเทศโดยไม่มีใบอนุญาต
+   MY935 กรุงเทพ ปารีส ชาร์ล เดอ โกล: บินไกลพิเศษข้ามคืน 13 ชั่วโมง บริการแบบฝรั่งเศส ไวน์และชีส ระบบ EES เขตเชงเกน ห้ามนำเนื้อสัตว์และนม
+   MY901 กรุงเทพ นิวยอร์ก เจเอฟเค: บินไกลพิเศษ 17 ชั่วโมงผ่านเขตขั้วโลกเหนือ ลูกเรือเสริม พักสองรอบ สำแดงอาหารทุกชนิดกับศุลกากรสหรัฐ
+   อ้างอิง: U.S. CBP เรื่องการนำอาหารเข้าประเทศ (สำแดงทุกชนิด ปรับสูงสุด 1,000 ดอลลาร์ครั้งแรก), FAA นโยบายผู้โดยสารก่อกวน,
+   คณะกรรมาธิการยุโรปเรื่อง Entry/Exit System (เริ่มใช้เต็มรูปแบบ 10 เม.ย. 2569) และกฎเงินสด 10,000 ยูโร, EU เรื่องห้ามนำเนื้อสัตว์และนมติดตัว,
+   ข้อกำหนดศุลกากรอียิปต์เรื่องโดรน, ICAO Doc 9966 การจัดการความอ่อนล้า, IATA Cabin Operations Safety Best Practices ===== */
+{const mk=o=>{o.seq=[0,1,2,3,4,5,6,7,8,9,10,11];o.incSlot=[];o.ac='wb';o.ulr=1;return o};
+ const CAI=mk({id:'bkkcai',no:'MY961',from:['BKK','กรุงเทพ','Bangkok'],to:['CAI','ไคโร','Cairo'],dep:'01:10',arr:'05:20',dur:'9 ชม. 10 นาที',gate:'E4',board:'00:20',
+  city:'ไคโร',cityEn:'Cairo',prof:'night',unl:6,stamp:'CAI',apt2:'ลานจอด ท่าอากาศยานนานาชาติไคโร',tzN:'ไคโรช้ากว่าไทย 5 ชั่วโมงในฤดูหนาว',greet:'Good morning',
+  hr:{apt:0.4,0:0.6,1:0.9,2:1.05,3:1.15,4:0.9,5:1.5,6:2.1,7:2.7,8:3.3,9:4.1,10:4.8,11:5.35,hotel:9.5},
+  rg:{4:['sea','เหนืออ่าวเบงกอล'],5:['land','เหนืออินเดียตอนกลาง'],6:['storm','เมฆฝนฟ้าคะนองเหนือทะเลอาหรับ'],7:['desert','เหนือคาบสมุทรอาหรับ'],8:['sea','เหนือทะเลแดง'],9:['desert','เหนือคาบสมุทรไซนาย ฟ้าเริ่มสาง'],10:['desert','ลดระดับฝ่าฝุ่นทราย มองเห็นแม่น้ำไนล์']},wx:{10:'dust',11:'dust'},
+  incs:[[9,'conn'],[10,'food']],incR:{slots:[5,6,7,8],pool:['med','drunk','cry','pbank','smoke','vape','meds'],n:3},land:'อีก 30 นาทีถึงไคโร ฝุ่นทรายหนา ทัศนวิสัย 3 กิโลเมตร อุณหภูมิ 17 องศา',
+  ev:fwMkEv({0:{clk:'23:40 น. เวลากรุงเทพ'},1:{clk:'00:25 น. เวลากรุงเทพ'},2:{clk:'00:40 น. เวลากรุงเทพ'},3:{clk:'01:05 น. เวลากรุงเทพ'},4:{ph:'บริการอาหารมื้อดึก อาหารพิเศษฮาลาลจำนวนมาก',clk:'บินแล้ว 1 ชม.'},
+   5:{ph:'เก็บถาด ดูแลทัวร์ผู้สูงอายุ',clk:'บินแล้ว 2 ชม. 30 นาที'},6:{ph:'อากาศแปรปรวน เมฆฝนฟ้าคะนองเหนือทะเลอาหรับ',clk:'บินแล้ว 3 ชม. 40 นาที'},7:{ph:'หรี่ไฟ ผู้โดยสารขอที่ละหมาด',clk:'บินแล้ว 5 ชม.'},
+   8:{ph:'ลูกเรือพักสั้น ส่งต่องานระหว่างกะ',clk:'บินแล้ว 6 ชม. 20 นาที'},9:{ph:'เปิดไฟแสงเช้า บริการอาหารเช้า',clk:'04:10 น. เวลาไคโร'},10:{ph:'บินวนรอ พายุทรายใกล้ไคโร',clk:'อีก 30 นาทีถึงไคโร'},11:{ph:'หลังลงจอด ท่าอากาศยานไคโร',clk:'05:20 น. เวลาไคโร'}})});
+ const CDG=mk({id:'bkkcdg',no:'MY935',from:['BKK','กรุงเทพ','Bangkok'],to:['CDG','ปารีส','Paris'],dep:'23:55',arr:'07:05',dur:'13 ชม. 10 นาที',gate:'E10',board:'23:05',
+  city:'ปารีส',cityEn:'Paris',prof:'night',unl:8,stamp:'CDG',apt2:'ลานจอด ท่าอากาศยานปารีส ชาร์ล เดอ โกล',tzN:'ปารีสช้ากว่าไทย 6 ชั่วโมงในฤดูหนาว',greet:'Good evening',
+  hr:{apt:22.9,0:23.2,1:23.6,2:23.8,3:23.95,4:23.5,5:0.6,6:1.6,7:2.6,8:3.9,9:5.4,10:6.5,11:7.1,hotel:10},
+  rg:{4:['land','เหนือเมียนมาและบังกลาเทศ'],5:['land','เหนืออินเดียตอนเหนือ'],6:['storm','ลมกรดแรงเหนือเทือกเขาฮินดูกูช'],7:['desert','เหนือทะเลทรายในเอเชียกลาง'],8:['sea','เหนือทะเลดำ'],9:['land','เหนือเยอรมนี ฟ้ายังมืด'],10:['land','ลดระดับเหนือปารีส มองเห็นแม่น้ำแซน']},wx:{10:'rain',11:'cold'},
+  incs:[[9,'conn'],[10,'food']],incR:{slots:[5,7,8],pool:['med','drunk','cry','pbank','smoke','vape','meds'],n:3},land:'อีก 35 นาทีถึงปารีส ฝนปรอย หมอกบาง อุณหภูมิ 6 องศา',
+  ev:fwMkEv({0:{clk:'22:25 น. เวลากรุงเทพ'},1:{clk:'23:10 น. เวลากรุงเทพ'},2:{clk:'23:25 น. เวลากรุงเทพ'},3:{clk:'23:50 น. เวลากรุงเทพ'},4:{ph:'บริการอาหารค่ำแบบฝรั่งเศส ไวน์และชีส',clk:'บินแล้ว 1 ชม.'},
+   5:{ph:'เก็บถาด จัดจุดบริการของว่าง',clk:'บินแล้ว 2 ชม. 30 นาที'},6:{ph:'อากาศแปรปรวน เหนือเทือกเขาฮินดูกูช',clk:'บินแล้ว 4 ชม.'},7:{ph:'หรี่ไฟตามเวลาปารีส ลูกเรือพักรอบแรก',clk:'บินแล้ว 5 ชม. 30 นาที'},
+   8:{ph:'ลูกเรือพักรอบสอง ส่งต่องานระหว่างกะ',clk:'บินแล้ว 8 ชม. 30 นาที'},9:{ph:'เปิดไฟแสงเช้า บริการอาหารเช้า',clk:'05:20 น. เวลาปารีส'},10:{ph:'เตรียมลดระดับ ภาคพื้นนัดหยุดงาน',clk:'อีก 35 นาทีถึงปารีส'},11:{ph:'หลังลงจอด ท่าอากาศยานชาร์ล เดอ โกล',clk:'07:05 น. เวลาปารีส'}})});
+ const JFK=mk({id:'bkkjfk',no:'MY901',from:['BKK','กรุงเทพ','Bangkok'],to:['JFK','นิวยอร์ก','New York'],dep:'10:30',arr:'15:45',dur:'17 ชม. 15 นาที',gate:'E2',board:'09:40',
+  city:'นิวยอร์ก',cityEn:'New York',prof:'long',unl:10,stamp:'JFK',apt2:'ลานจอด ท่าอากาศยานจอห์น เอฟ เคนเนดี',tzN:'นิวยอร์กช้ากว่าไทย 12 ชั่วโมงในฤดูหนาว',greet:'Good morning',
+  hr:{apt:9.8,0:10,1:10.3,2:10.45,3:10.6,4:12.6,5:15.8,6:18.6,7:21.5,8:2.5,9:11.8,10:14.9,11:15.75,hotel:19.5},
+  rg:{4:['land','เหนือจีนตอนใต้'],5:['land','เหนือจีนตอนเหนือและมองโกเลีย'],6:['snow','เหนือไซบีเรียตะวันออก หนาวลบ 60 องศา'],7:['snow','ทะเลน้ำแข็งอาร์กติก คืนขั้วโลก'],8:['snow','เหนือเกาะทางเหนือของแคนาดา'],9:['snow','เหนืออ่าวฮัดสัน'],10:['coast','ลดระดับเหนือนิวยอร์ก มองเห็นแม่น้ำฮัดสัน']},wx:{8:'cold',10:'cold',11:'cold'},
+  incs:[[9,'conn'],[10,'food']],incR:{slots:[4,5,7,8],pool:['med','drunk','cry','pbank','smoke','vape','meds'],n:3},land:'อีก 40 นาทีถึงนิวยอร์ก ลมแรง ท้องฟ้าโปร่ง อุณหภูมิ 4 องศา',
+  ev:fwMkEv({0:{clk:'09:00 น. เวลากรุงเทพ'},1:{clk:'09:45 น. เวลากรุงเทพ'},2:{clk:'10:00 น. เวลากรุงเทพ'},3:{clk:'10:25 น. เวลากรุงเทพ'},4:{ph:'บริการอาหารกลางวันมื้อแรก',clk:'บินแล้ว 1 ชม. 30 นาที'},
+   5:{ph:'เก็บถาด จัดจุดบริการของว่าง ลูกเรือเสริมเข้าพัก',clk:'บินแล้ว 3 ชม.'},6:{ph:'อากาศแปรปรวน ลมกรดเหนือไซบีเรีย',clk:'บินแล้ว 6 ชม.'},7:{ph:'ผ่านเขตขั้วโลก ลูกเรือพักรอบแรก',clk:'บินแล้ว 8 ชม.'},
+   8:{ph:'ลูกเรือพักรอบสอง ส่งต่องานระหว่างกะ',clk:'บินแล้ว 11 ชม.'},9:{ph:'บริการมื้อที่สองตามเวลานิวยอร์ก',clk:'12:30 น. เวลานิวยอร์ก'},10:{ph:'เตรียมลดระดับ ลมกรรโชกแรง',clk:'อีก 40 นาทีถึงนิวยอร์ก'},11:{ph:'หลังลงจอด ท่าอากาศยานเจเอฟเค',clk:'15:45 น. เวลานิวยอร์ก'}})});
+ for(const R of [CAI,CDG,JFK])if(!FLY_ROUTES.some(r=>r.id===R.id))FLY_ROUTES.push(R)}
+Object.assign(FW_RTX,{
+ bkkcai:{km:7250,tz:-5,fl:'FL370',wx:['dust','ฝุ่นทราย 17 องศา'],tb:'เมฆฝนฟ้าคะนองเหนือทะเลอาหรับ และพายุทรายก่อนลงจอดไคโร อาจต้องบินวนรอ',cap:'กัปตันฮาซัน',fo:'นักบินผู้ช่วยกมลชนก',diff:5},
+ bkkcdg:{km:9450,tz:-6,fl:'FL360',wx:['rain','ฝนปรอย 6 องศา'],tb:'ลมกรดแรงเหนือเทือกเขาฮินดูกูชช่วงดึก และหมอกก่อนลงปารีส',cap:'กัปตันโลรองต์',fo:'นักบินผู้ช่วยธนภัทร',diff:5},
+ bkkjfk:{km:13900,tz:-12,fl:'FL340',wx:['cold','ลมแรง 4 องศา'],tb:'ลมกรดเหนือไซบีเรีย อากาศเย็นจัดในเขตขั้วโลก และลมกรรโชกก่อนลงนิวยอร์ก',cap:'กัปตันแดเนียล',fo:'นักบินผู้ช่วยศุภวิชญ์ และนักบินเสริมอีกสองคน',diff:5}});
+Object.assign(FW_TZ,{bkkcai:-5,bkkcdg:-6,bkkjfk:-12});
+FW_RTC.bkkcai='#B5651D';FW_RTC.bkkcdg='#2E4A9E';FW_RTC.bkkjfk='#3A7D7B';
+FW_EVIC.bkkcai=['tray','kit','blanket'];FW_EVIC.bkkcdg=['tray','blanket','kit'];FW_EVIC.bkkjfk=['blanket','kit','tray'];
+FW_HTL.bkkcai={id:'hcai',n:'พักฟื้นที่ไคโรหลังบินข้ามคืน',d:'ถึงไคโรตอนเช้ามืดหลังทำงานข้ามคืน 9 ชั่วโมง ร่างกายยังอยู่ในเวลาไทยซึ่งเร็วกว่า 5 ชั่วโมง ดื่มน้ำให้มาก อากาศแห้งและมีฝุ่น นอนพักช่วงเช้าไม่เกินที่จำเป็น แล้วออกไปรับแสงช่วงบ่ายเพื่อปรับเวลา',x:20.5,y:8.5,ic:'wait',
+  lines:['ตั้งนาฬิกาตามเวลาไคโร ช้ากว่าไทย 5 ชั่วโมง','เช็ดฝุ่นทรายออกจากเครื่องแบบ แขวนให้เรียบร้อย','ดื่มน้ำ ทาลิปบาล์ม อากาศแห้งมาก แล้วนอนพักสั้นๆ']};
+FW_HTL.bkkcdg={id:'hpar',n:'ปรับตัวตามเวลาปารีสในวันแรก',d:'บินข้ามคืน 13 ชั่วโมงมาถึงตอนเช้า ร่างกายยังอยู่ในเวลาไทยซึ่งเร็วกว่า 6 ชั่วโมง ออกไปรับแสงกลางวัน กินอาหารตามเวลาท้องถิ่น งีบไม่เกินที่จำเป็น และเข้านอนตามเวลาปารีส',x:20.5,y:8.5,ic:'wait',
+  lines:['ตั้งนาฬิกาตามเวลาปารีส ช้ากว่าไทย 6 ชั่วโมง','แขวนโค้ทให้แห้ง ข้างนอกฝนปรอยและหนาว','เปิดม่านรับแสงเช้า ดื่มกาแฟร้อน แล้วงีบสั้นๆ']};
+FW_HTL.bkkjfk={id:'hnyc',n:'ปรับตัวตามเวลานิวยอร์กหลังบิน 17 ชั่วโมง',d:'ถึงนิวยอร์กตอนบ่าย แต่ร่างกายยังอยู่ตีสามเวลาไทย อย่าเพิ่งนอนยาว รับแสงแดดช่วงบ่าย กินอาหารเย็นตามเวลาท้องถิ่น แล้วเข้านอนตามเวลานิวยอร์ก เพื่อให้พร้อมสำหรับเที่ยวบินขากลับ',x:20.5,y:8.5,ic:'wait',
+  lines:['ตั้งนาฬิกาตามเวลานิวยอร์ก ช้ากว่าไทย 12 ชั่วโมง','แขวนเครื่องแบบ ใส่เสื้อกันลมก่อนออกไปข้างนอก','ออกไปเดินรับแดดบ่าย ยังไม่นอนจนถึงหัวค่ำ']};
+FW_RTB.bkkcai={t:'MY961 ไปไคโร',brief:'บินข้ามคืน 9 ชั่วโมง อาหารฮาลาลจำนวนมาก ทัวร์ผู้สูงอายุและวีลแชร์ ผู้โดยสารขอละหมาด พายุทรายก่อนลงจอด และห้ามนำโดรนเข้าประเทศโดยไม่มีใบอนุญาต'};
+FW_RTB.bkkcdg={t:'MY935 ไปปารีส',brief:'บินไกลพิเศษ 13 ชั่วโมง บริการแบบฝรั่งเศส ไวน์และชีส พักสองรอบ ส่งต่องานทุกครั้ง ระบบ EES และห้ามนำเนื้อสัตว์และนมเข้าเขตสหภาพยุโรป'};
+FW_RTB.bkkjfk={t:'MY901 ไปนิวยอร์ก',brief:'บินไกลพิเศษ 17 ชั่วโมงผ่านเขตขั้วโลกเหนือ ลูกเรือเสริม พักสองรอบ สองมื้อหลัก เฝ้าระวังลิ่มเลือดที่ขา และสำแดงอาหารทุกชนิดกับศุลกากรสหรัฐ'};
+{const o=fwLbEvents;fwLbEvents=function(r){const T={bkkcai:['ทัวร์ผู้สูงอายุ','ละหมาดบนเครื่อง','พายุทราย','ห้ามนำโดรน'],bkkcdg:['บริการแบบฝรั่งเศส','พักสองรอบ','ระบบ EES','ห้ามนำเนื้อสัตว์และนม'],bkkjfk:['ผ่านขั้วโลกเหนือ','ลูกเรือเสริม','ลิ่มเลือดที่ขา','สำแดงอาหาร']};return r&&T[r.id]?T[r.id]:o(r)}}
+{const o=fwPxCity;fwPxCity=function(c,R,id){
+  if(id==='bkkcai'){R('#FBE8D8',0,0,28,18);R('#F6D9C2',0,0,28,4);R('#E9C79A',0,14,28,4);R('#8EC4E8',0,16,28,2);
+    for(let j=0;j<10;j++){R('#E8B880',9-j,4+j,1+j,1);R('#C8925A',10,4+j,j,1)}for(let j=0;j<7;j++){R('#E8B880',19-j,7+j,1+j,1);R('#C8925A',20,7+j,j,1)}for(let j=0;j<4;j++){R('#E8B880',25-j,10+j,1+j,1);R('#C8925A',26,10+j,Math.min(j,1),1)}R('#FFFFFF',22,2,3,3);R('#FFE6D2',23,1,1,5);return}
+  if(id==='bkkcdg'){R('#EEF0F8',0,0,28,18);R('#E2E6F2',0,0,28,3);R('#B8CDE6',0,15,28,3);R('#D4DEEE',0,15,28,1);
+    for(let y=1;y<15;y++){const w=Math.max(1,Math.round(((y-1)/14)**2*6));R('#8A6E66',14-w,y,1,1);R('#8A6E66',14+w,y,1,1);if(y%3===0)R('#A88C82',14-w,y,w*2+1,1)}R('#8A6E66',14,0,1,2);R('#A88C82',9,8,11,1);R('#A88C82',8,12,13,1);
+    R('#D8D0DC',0,10,6,5);R('#9AA4BC',0,9,6,1);R('#D8D0DC',22,10,6,5);R('#9AA4BC',22,9,6,1);return}
+  if(id==='bkkjfk'){R('#E8F2F4',0,0,28,18);R('#DAE8EE',0,0,28,3);R('#9CC6D8',0,14,28,4);R('#B8D8E4',0,14,28,1);
+    for(const[x,h] of[[10,6],[13,9],[15,12],[18,8],[20,10],[23,7],[25,5]]){R('#B8BCCC',x,14-h,2,h);R('#D8DCE6',x,14-h,1,h)}R('#B8BCCC',16,0,1,2);
+    R('#5FA08E',4,6,2,6);R('#5FA08E',5,3,1,3);R('#E31414',5,2,1,1);R('#C8B8A8',3,12,4,2);return}
+  return o(c,R,id)}}
+/* ภาพนอกหน้าต่างโรงแรม */
+{const o=fwSceneBg;fwSceneBg=function(c,R,CW,CH,cx,cy,w,now,kind){o(c,R,CW,CH,cx,cy,w,now,kind);let id='';try{id=flyRt().id}catch(e){}if(kind!=='hotel'||!['bkkcai','bkkcdg','bkkjfk'].includes(id))return;const T=FW.T,X0=25*T-cx,Y0=-cy;
+  if(id==='bkkcai'){R('#F2DCC0',X0-10,Y0+150,CW,220);R('#E8C8A0',X0-10,Y0+150,CW,3);const py=Y0+150;for(const[px,h] of[[X0+20,70],[X0+70,52],[X0+104,30]])for(let j=0;j<h;j+=2){R('#E2B27A',px-j,py-h+j,j,2);R('#C08A58',px,py-h+j,j,2)}
+    for(let k=0;k<30;k++){const rr=srR(srH('ca'+k)),x=X0+rr()*120,y=Y0+((now/14+rr()*400)%360);R('rgba(226,190,140,.45)',x,y,3,1)}}
+  else if(id==='bkkcdg'){R('#B8CDE6',X0-10,Y0+220,CW,150);R('#D4DEEE',X0-10,Y0+220,CW,3);const tx=X0+56,ty=Y0+30;for(let y=0;y<190;y+=2){const ww=Math.max(1,Math.round((y/190)**2*40));R('#8A6E66',tx-ww,ty+y,2,2);R('#8A6E66',tx+ww,ty+y,2,2);if(y%12===0)R('#A88C82',tx-ww,ty+y,ww*2+2,1)}R('#A88C82',tx-16,ty+90,34,3);R('#A88C82',tx-26,ty+140,54,3);
+    R('#D8D0DC',X0-10,Y0+170,40,50);R('#9AA4BC',X0-10,Y0+164,40,6);R('#D8D0DC',X0+90,Y0+170,40,50);R('#9AA4BC',X0+90,Y0+164,40,6);for(let k=0;k<24;k++){const rr=srR(srH('pr'+k)),x=X0+rr()*120,y=Y0+((now/9+rr()*400)%360);R('rgba(255,255,255,.5)',x,y,1,6)}}
+  else{R('#9CC6D8',X0-10,Y0+210,CW,160);R('#B8D8E4',X0-10,Y0+210,CW,3);for(const[x,h] of[[0,90],[16,130],[34,170],[52,110],[70,150],[88,120],[106,96]]){R('#B8BCCC',X0+x,Y0+210-h,16,h);R('#D8DCE6',X0+x,Y0+210-h,5,h);for(let y=Y0+216-h;y<Y0+206;y+=8)for(let xx=X0+x+7;xx<X0+x+15;xx+=4)R('#EEF2F8',xx,y,2,3)}}}}
+/* ประกาศเฉพาะเส้นทาง */
+{const o=fwRouteSetup;fwRouteSetup=function(r){o(r);
+  if(r.id==='bkkcai'){FW_PA[7]=['หัวหน้าลูกเรือ','หรี่ไฟห้องโดยสาร ผู้โดยสารที่ต้องการละหมาด ทำที่นั่งของตัวเองหรือจุดที่ลูกเรือจัดให้ ห้ามขวางทางเดินและทางออก'];FW_PA[8]=['หัวหน้าลูกเรือ','ลูกเรือพักสั้นทีละกลุ่ม ส่งต่องานก่อนออกจากโซน เดินตรวจห้องโดยสารทุก 20 นาที ดูแลทัวร์ผู้สูงอายุเป็นพิเศษ'];FW_PA[9]=['หัวหน้าลูกเรือ','Good morning ladies and gentlemen. เปิดไฟแสงเช้าทีละขั้นตามเวลาไคโร เริ่มบริการอาหารเช้า อาหารฮาลาลเสิร์ฟก่อนตามรายชื่อ']}
+  if(r.id==='bkkcdg'){FW_PA[7]=['หัวหน้าลูกเรือ','หรี่ไฟห้องโดยสารเป็นโหมดกลางคืนตามเวลาปารีส ลูกเรือกลุ่มแรกเข้าพัก ส่งต่องานให้เพื่อนก่อนออกจากโซน'];FW_PA[8]=['หัวหน้าลูกเรือ','สลับกะพัก กลุ่มแรกกลับมารับส่งต่องาน กลุ่มสองเข้าพัก เดินตรวจห้องโดยสารทุก 20 ถึง 30 นาที'];FW_PA[9]=['หัวหน้าลูกเรือ','Mesdames et messieurs, bonjour. เปิดไฟแสงเช้าทีละขั้นตามเวลาปารีส เริ่มบริการอาหารเช้า ครัวซองต์อุ่นและกาแฟ']}
+  if(r.id==='bkkjfk'){FW_PA[7]=['หัวหน้าลูกเรือ','เครื่องผ่านเขตขั้วโลก หรี่ไฟห้องโดยสาร ลูกเรือกลุ่มแรกเข้าห้องพักลูกเรือ ส่งต่องานก่อนออกจากโซน ผ้าห่มเพิ่มอยู่ที่ช่องเก็บของแกลลีย์'];FW_PA[8]=['หัวหน้าลูกเรือ','สลับกะพัก กลุ่มแรกกลับมารับส่งต่องาน กลุ่มสองเข้าพัก แนะนำผู้โดยสารที่ตื่นให้ลุกยืดเส้นและดื่มน้ำ'];FW_PA[9]=['หัวหน้าลูกเรือ','Good afternoon ladies and gentlemen. เปิดไฟทีละขั้นตามเวลานิวยอร์ก เริ่มบริการมื้อที่สอง แจ้งเรื่องสำแดงอาหารทุกชนิด']}}}
+/* เหตุการณ์ปรับข้อความให้ตรงกับประเทศปลายทาง */
+{const FO={
+  bkkcai:[['ทักผู้โดยสารที่ถามเรื่องนำโดรนเข้าอียิปต์','ผู้โดยสารเปิดกล่องโดรนเพื่อเตรียมถ่ายรูปปิรามิด อียิปต์ห้ามนำโดรนเข้าประเทศหากไม่มีใบอนุญาตล่วงหน้า ศุลกากรจะยึดเก็บไว้ที่สนามบิน อธิบายอย่างสุภาพและไม่ตัดสินแทนเจ้าหน้าที่',
+      ['ผู้โดยสารถาม "Can I fly my drone at the pyramids?"','"Drones need a permit in Egypt. Without it, customs will hold it at the airport."','แนะนำให้สำแดงที่ศุลกากรตามจริง ห้ามซ่อนในกระเป๋า']],
+     ['หยิบเอกสารข้อมูลศุลกากรที่แกลลีย์','เปิดแฟ้มข้อมูลประเทศปลายทางในแกลลีย์ ตรวจข้อกำหนดเรื่องโดรน เงินตรา และสิ่งของต้องสำแดงก่อนตอบผู้โดยสาร'],
+     ['แนะนำเรื่องสำแดงและช่องตรวจ','ให้ข้อมูลตามที่สายการบินแจ้ง ของที่ต้องสำแดงให้ไปช่องสีแดง ถ้าไม่แน่ใจให้ถามเจ้าหน้าที่ศุลกากรโดยตรง ลูกเรือไม่รับฝากหรือเก็บของแทนผู้โดยสาร',
+      ['ผู้โดยสารเก็บโดรนกลับเข้ากล่อง','"Please declare it at the red channel. The officers will advise you."','ผู้โดยสารขอบคุณที่บอกก่อนลงเครื่อง']]],
+  bkkcdg:[['ทักผู้โดยสารที่ถามเรื่องนำไส้กรอกและชีสเข้าฝรั่งเศส','ผู้โดยสารนำไส้กรอกไทยและชีสจากร้านปลอดภาษีมาฝากญาติ สหภาพยุโรปห้ามนำเนื้อสัตว์ ผลิตภัณฑ์จากเนื้อสัตว์ นม และผลิตภัณฑ์จากนมจากนอกสหภาพยุโรปติดตัวเข้า เพื่อป้องกันโรคในสัตว์',
+      ['ผู้โดยสารถาม "Can I bring this sausage and cheese to my family in Paris?"','"I\'m sorry, meat and dairy from outside the EU are not allowed into France."','อธิบายว่ากฎนี้ป้องกันโรคในสัตว์ เช่น โรคปากและเท้าเปื่อย']],
+     ['หยิบถุงเก็บขยะที่แกลลีย์','ของที่ห้ามนำเข้าทิ้งในถุงขยะของเที่ยวบินได้ ขยะจากเที่ยวบินระหว่างประเทศจะถูกจัดการแยกตามข้อกำหนด'],
+     ['เก็บของและแนะนำเรื่องสำแดง','รับของที่ผู้โดยสารยินดีทิ้งใส่ถุงขยะ ถ้าไม่แน่ใจว่าของชิ้นไหนนำเข้าได้ ให้ไปช่องสำแดงสีแดง เงินสดตั้งแต่ 10,000 ยูโรขึ้นไปต้องสำแดงเสมอ',
+      ['ผู้โดยสารยอมทิ้งไส้กรอกและชีส','"If you\'re not sure about anything else, please use the red channel."','ผู้โดยสารขอบคุณที่บอกก่อนลงเครื่อง']]],
+  bkkjfk:[['ทักผู้โดยสารที่เก็บแอปเปิลจากมื้ออาหารไว้','ผู้โดยสารเก็บแอปเปิลและแซนด์วิชแฮมจากมื้อบนเครื่องใส่กระเป๋า สหรัฐกำหนดให้สำแดงผลไม้ พืช เนื้อสัตว์ และอาหารทุกชนิด แม้เป็นอาหารจากสายการบิน ไม่สำแดงอาจถูกปรับสูงสุด 1,000 ดอลลาร์ในครั้งแรก',
+      ['ผู้โดยสารถาม "It\'s just an apple from the meal. Is that okay?"','"Even airline food must be declared in the US. You can leave it with us now."','อธิบายว่าสุนัขดมกลิ่นของศุลกากรหาผลไม้และเนื้อสัตว์ได้']],
+     ['หยิบถุงเก็บขยะที่แกลลีย์','อาหารที่ผู้โดยสารไม่ต้องการนำเข้าทิ้งในถุงขยะของเที่ยวบินได้ ขยะจากเที่ยวบินระหว่างประเทศถูกจัดการแยกตามข้อกำหนดของกระทรวงเกษตรสหรัฐ'],
+     ['เก็บของและแนะนำเรื่องสำแดง','รับอาหารที่ผู้โดยสารยินดีทิ้ง ถ้ามีอาหารอื่นที่จะนำเข้าต้องสำแดงทุกชิ้น ผู้โดยสารต่อเครื่องต้องรับกระเป๋า ผ่านศุลกากร แล้วฝากกระเป๋าและตรวจค้นใหม่',
+      ['ผู้โดยสารยอมทิ้งแอปเปิลและแซนด์วิช','"Please declare any other food. It is always safer to declare."','ผู้โดยสารขอบคุณที่บอกก่อนลงเครื่อง']]]};
+ const CT={bkkcai:['อียิปต์','ไคโร'],bkkcdg:['ฝรั่งเศส','ปารีส'],bkkjfk:['สหรัฐอเมริกา','นิวยอร์ก']};
+ const o=fwIncStart;fwIncStart=function(w,type,now){o(w,type,now);try{const id=flyRt().id;if(!FO[id]||!w.du)return;const rp=s=>typeof s==='string'?s.split('ดูไบ').join(CT[id][1]).split('ออสเตรเลีย').join(CT[id][0]):s;
+  const set=(k,n,d,lines)=>{const D=w.du.find(x=>x.id===k);if(!D)return;if(n)D.n=n;if(d)D.d=d;if(lines&&D.pts&&D.pts[0])D.pts[0].lines=lines};
+  if(type==='food'){const F=FO[id];set('fo1',...F[0]);set('fo2',...F[1]);set('fo3',...F[2])}
+  else w.du.forEach(D=>{D.n=rp(D.n);D.d=rp(D.d);if(D.pts)D.pts.forEach(p=>{p.lab=rp(p.lab);if(p.lines)p.lines=p.lines.map(rp)})})}catch(e){}}}
+/* ---------- ลูกเรือ: พักสองรอบ ส่งต่องาน งานเฉพาะเส้นทาง ---------- */
+{const TX={
+  bkkcai:{pre:'ตรวจอาหารพิเศษฮาลาลให้ครบตามรายชื่อ แยกถาดติดป้ายที่นั่ง เพราะมีผู้โดยสารมุสลิมจำนวนมาก',i4:'แจ้งทัวร์ผู้สูงอายุว่าลุกเดินได้ตอนไฟรัดเข็มขัดดับ และให้กดเรียกเมื่อต้องการช่วยเหลือ',i5:'จัดจุดน้ำดื่มและของว่าง ผู้สูงอายุต้องดื่มน้ำบ่อยในอากาศแห้งบนเครื่อง',lt5:'ตั้งไฟห้องโดยสารโหมดกลางคืน',
+    cr1:'ผู้โดยสารขอละหมาด จัดให้ทำที่นั่งของตัวเอง ไม่ขวางทางเดินและทางออก',cr2:'เดินดูผู้สูงอายุที่นอนหลับ ตรวจว่าไม่มีใครหน้ามืดหรือหายใจผิดปกติ',lt9:'ปรับไฟเป็นโทนแสงเช้าทีละขั้น ตามเวลาไคโร',
+    pa:'ประกาศเวลาไคโร พายุทราย และห้ามนำโดรนเข้าประเทศหากไม่มีใบอนุญาต',d1:'เตือนว่าโดรนต้องมีใบอนุญาต และเงินสดเกินเกณฑ์ต้องสำแดง',d2:'แจ้งผู้ใช้วีลแชร์ว่าจะลงหลังผู้โดยสารคนอื่น รถเข็นรอที่ประตู',arr:'แนะนำผู้โดยสารให้เตรียมวีซ่าและเอกสารตามสัญชาติก่อนถึงด่าน',rest:'พักสั้นในห้องพักลูกเรือ ราว 1 ชั่วโมงครึ่ง'},
+  bkkcdg:{pre:'ตรวจอาหารสองมื้อ ไวน์แดงเก็บอุณหภูมิห้องเย็น ไวน์ขาวและแชมเปญแช่เย็น ชีสแยกช่องให้ถูก',i4:'เสิร์ฟชีสหลังจานหลักก่อนของหวาน รินไวน์ไม่เกินหนึ่งในสามของแก้ว',i5:'จัดจุดบริการของว่างให้ผู้โดยสารหยิบเอง น้ำ น้ำผลไม้ แซนด์วิช ผลไม้ และขนม',lt5:'ตั้งไฟห้องโดยสารโหมดกลางคืนตามเวลาปารีส',
+    cr1:'เสนอน้ำให้ผู้ที่ตื่น อากาศในเครื่องแห้งในเที่ยวบินยาว',cr2:'แนะนำผู้ที่ตื่นให้ลุกยืดเส้นและขยับขา ลดความเสี่ยงเลือดอุดตันในเที่ยวบินยาว',lt9:'ปรับไฟเป็นโทนแสงเช้าทีละขั้น ตามเวลาปารีส',
+    pa:'ประกาศสองภาษา เวลาปารีส การนัดหยุดงานภาคพื้น และกฎห้ามนำเนื้อสัตว์และนมเข้าเขตสหภาพยุโรป',d1:'เตือนว่าห้ามนำเนื้อสัตว์และผลิตภัณฑ์นมเข้าเขตสหภาพยุโรป ทิ้งในถุงขยะบนเครื่องได้',d2:'แจ้งว่าด่านตรวจคนเข้าเมืองจะเก็บลายนิ้วมือและถ่ายภาพใบหน้าในระบบ EES',arr:'รวบรวมรายชื่อผู้ต่อเครื่องที่เวลาน้อย ส่งให้เจ้าหน้าที่ภาคพื้นช่วยดูแล',rest:'พักในห้องพักลูกเรือ ราว 3 ชั่วโมง'},
+  bkkjfk:{pre:'ตรวจอาหารสองมื้อหลักและของว่างให้ครบ จำนวนมากที่สุดในทุกเส้นทาง แยกช่องแช่เย็นให้ถูก ตรวจชุดกันหนาวสำหรับเส้นทางขั้วโลก',i4:'แจ้งผู้โดยสารว่าบิน 17 ชั่วโมง ควรลุกยืดเส้นทุก 2 ถึง 3 ชั่วโมงและดื่มน้ำบ่อย',i5:'จัดจุดบริการของว่างให้ผู้โดยสารหยิบเอง บะหมี่ถ้วย แซนด์วิช ผลไม้ และน้ำ',lt5:'ตั้งไฟห้องโดยสารโหมดพักผ่อน ลูกเรือเสริมเข้าพัก',
+    cr1:'แจกผ้าห่มเพิ่ม เครื่องผ่านเขตขั้วโลก ห้องโดยสารเย็นลง',cr2:'ตรวจผู้โดยสารสูงอายุว่าขาบวมหรือปวดน่องหรือไม่ เฝ้าระวังลิ่มเลือด',lt9:'ปรับไฟทีละขั้น ตามเวลานิวยอร์ก',
+    pa:'ประกาศเวลานิวยอร์ก ลมแรง และการสำแดงอาหาร ผลไม้ และเนื้อสัตว์ทุกชนิดกับศุลกากรสหรัฐ',d1:'เตือนว่าอาหารทุกชนิดต้องสำแดง แม้เป็นอาหารจากเที่ยวบิน',d2:'แนะนำให้เตรียมพาสปอร์ตและวีซ่าหรือเอกสารเดินทางตามสัญชาติ',arr:'แนะนำผู้ต่อเครื่องว่าต้องรับกระเป๋า ผ่านศุลกากร แล้วฝากกระเป๋าใหม่',rest:'พักในห้องพักลูกเรือ ราว 4 ชั่วโมง'}};
+ const o=fwCrGen;fwCrGen=function(w,n,again){let r=null;try{r=fwRtSel()}catch(e){}const id=r?r.id:'',T=TX[id];if(!T)return o(w,n,again);
+  const fixCard=out=>{if(Array.isArray(out))out.forEach(s=>{if(s&&s.note&&s.note.indexOf('แจกและอธิบายบัตรขาเข้า')===0)s.note=s.note.replace('แจกและอธิบายบัตรขาเข้า เก็บหูฟัง','เก็บหูฟังและผ้าห่มก่อนลงจอด')});return out};
+  const i=V.fly.i,ph=FW_PHI[i],D=w.decks[n.d],G=(x,y,o2)=>Object.assign({t:'go',x,y},o2||{}),Wt=(ms,ic,note,o2)=>Object.assign({t:'wait',ms,ic,note},o2||{}),gal=()=>G(...n.gl),galC=n.id==='amir'||n.bar,door=['nalin','hana','phum','praewa'].includes(n.id);
+  const rows=n.ax.length?D.rows.filter(q=>q.y>=n.z[0]&&q.y<=n.z[1]):[],row=(A,k,ic,note,ms)=>{if(!rows.length)return;rows.slice().sort(()=>Math.random()-.5).slice(0,k).sort((a,b)=>a.y-b.y).forEach(q=>{const x=n.ax[Math.floor(Math.random()*n.ax.length)];A.push(G(x,q.y),Wt(ms,ic,note+' แถว '+q.n,{dir:Math.random()<.5?'left':'right'}))})};
+  if(ph==='cruise'&&(i===7||i===8)&&n.rest){const mine=(n.rest===1&&i===7)||(n.rest===2&&i===8),R0=n.rest;
+    if(mine){const rest=n.d?G(6,84):G(12,106),note=T.rest+' รอบ'+(i===7?'แรก':'สอง')+' เพื่อลดความอ่อนล้า';
+      return again?[rest,{t:'hide',note}]:[gal(),Wt(2600,'talk','ส่งต่องานให้เพื่อนกะถัดไป ผู้โดยสารที่ต้องดูแล ไฟเรียกที่ค้าง และอาหารที่ยังไม่ได้เสิร์ฟ'),rest,{t:'hide',note}]}
+    n.rest=0;let out;try{out=o(w,n,again)}finally{n.rest=R0}
+    if(n.rest===1&&i===8&&!again&&Array.isArray(out))out.unshift(gal(),Wt(2400,'talk','กลับจากพัก รับส่งต่องานจากเพื่อน อ่านบันทึกในแกลลีย์ก่อนออกเดินตรวจ'));return fixCard(out)}
+  const out=fixCard(o(w,n,again));try{if(!Array.isArray(out))return out;const F=[],X=[];
+    if(ph==='pre'&&galC)X.push(gal(),Wt(2200,'chk',T.pre));
+    if(ph==='svc'&&i===4&&!galC&&!n.lead&&!door)row(X,1,'menu',T.i4,1500);
+    if(i===5){if(galC&&!again)X.push(gal(),Wt(3600,'cup',T.i5));if(n.lead&&!again)X.push(gal(),Wt(1800,'temp',T.lt5))}
+    if(ph==='cruise'&&(i===7||i===8)){if(galC)X.push(gal(),Wt(2400,'cup','เติมของที่จุดบริการของว่าง เช็ดโต๊ะให้สะอาด'));else if(Math.random()<.65)row(X,1,'cup',T.cr1,1400);if(!galC&&Math.random()<.6)row(X,1,'chk',T.cr2,1500)}
+    if(ph==='svc'&&i===9){if(n.lead)F.push(gal(),Wt(1800,'temp',T.lt9));else if(!n.bar&&!galC)F.push(gal(),Wt(1600,'towel','เสิร์ฟผ้าเย็นอุ่นและเครื่องดื่มก่อนอาหาร'))}
+    if(ph==='desc'){if(n.lead)X.push(G(6,2),Wt(1800,'pa',T.pa,{dir:'up'}));else if(!door&&!n.bar){row(X,1,'food',T.d1,1400);row(X,1,'chk',T.d2,1300)}}
+    if(ph==='arr'&&!door&&!n.bar)row(X,1,'chk',T.arr,1300);
+    if(F.length)out.splice(0,0,...F);if(X.length){let at=out.findIndex(s=>s.t==='sit'||s.t==='hide'||(s.t==='wait'&&s.ms===Infinity));if(at<0)at=out.length;out.splice(at,0,...X)}}catch(e){}return out}}
+/* คู่มือในเกม */
+try{const C=FW_BOOK.find(c=>c.t==='ขั้นตอนเฉพาะเส้นทางของ MYCROSOC Air');if(C){const add=[
+  ['ไคโร บินข้ามคืนไปแอฟริกาเหนือ','บินราว 9 ชั่วโมง ผู้โดยสารมุสลิมจำนวนมาก อาหารฮาลาลต้องตรงตามรายชื่อและเสิร์ฟก่อน ผู้โดยสารที่ขอละหมาดทำที่นั่งของตัวเองหรือจุดที่ลูกเรือจัดให้ ห้ามขวางทางเดิน ทางออก และแกลลีย์ และต้องกลับไปนั่งทันทีเมื่อสัญญาณรัดเข็มขัดติด ทัวร์ผู้สูงอายุต้องดูแลเรื่องดื่มน้ำ หน้ามืด และจำนวนวีลแชร์ที่ต้องแจ้งภาคพื้นล่วงหน้า ผู้ใช้วีลแชร์ลงหลังผู้โดยสารคนอื่น พายุทรายทำให้ต้องบินวนรอ ห้องโดยสารต้องพร้อมลงจอดได้ทุกเมื่อ อียิปต์ห้ามนำโดรนเข้าประเทศหากไม่มีใบอนุญาต และเงินตราเกินเกณฑ์ต้องสำแดง เงื่อนไขวีซ่าขึ้นกับสัญชาติ ลูกเรือไม่ให้ข้อมูลที่ไม่แน่ใจ'],
+  ['ปารีส บินไกลพิเศษข้ามคืน','บินราว 13 ชั่วโมง สองบริการเต็มแบบฝรั่งเศส ไวน์แดงเสิร์ฟราว 16 ถึง 18 องศา ไวน์ขาวและแชมเปญแช่เย็น รินไม่เกินหนึ่งในสามของแก้ว ชีสเสิร์ฟหลังจานหลักก่อนของหวาน ประกาศสองภาษาเริ่มด้วย Mesdames et messieurs ลูกเรือพักสองรอบ ส่งต่องานทุกครั้ง เขตเชงเกนใช้ระบบ EES เก็บลายนิ้วมือและภาพใบหน้าแทนการประทับตรา ห้ามนำเนื้อสัตว์และนมจากนอกสหภาพยุโรป เงินสดตั้งแต่ 10,000 ยูโรต้องสำแดง ถ้ามีการนัดหยุดงานภาคพื้น ให้แจ้งเฉพาะข้อมูลจากกัปตันและดูแลผู้ต่อเครื่อง'],
+  ['นิวยอร์ก บินไกลพิเศษผ่านขั้วโลกเหนือ','บินราว 17 ชั่วโมง ใช้นักบินและลูกเรือเสริมผลัดกันพักตามกฎจำกัดเวลาปฏิบัติงาน เส้นทางผ่านเขตขั้วโลกต้องมีชุดกันหนาวสำหรับกรณีลงจอดฉุกเฉิน สองมื้อหลักและจุดบริการของว่าง เฝ้าระวังลิ่มเลือดที่ขา ถ้าผู้โดยสารปวดน่องข้างเดียวและบวมแดง ห้ามนวด ให้รายงานหัวหน้าลูกเรือทันที สหรัฐกำหนดให้สำแดงอาหารทุกชนิด แม้เป็นอาหารจากเที่ยวบิน ผู้โดยสารก่อกวนอาจถูกปรับสูงและดำเนินคดีอาญา ผู้ต่อเครื่องต้องรับกระเป๋า ผ่านศุลกากร แล้วฝากกระเป๋าและตรวจค้นใหม่']];
+  add.forEach((s,k)=>{if(!C.steps.some(x=>x[0]===s[0]))C.steps.splice(Math.min(C.steps.length,6+k),0,s)})}}catch(e){}
+/* ===== บรีฟเฉพาะเส้นทาง: หัวหน้าลูกเรือถามสถานการณ์จริงของเส้นทาง 5 ข้อจาก 8 ข้อ ต้องตอบถูกทุกข้อก่อนลงชื่อ ===== */
+const FW_RTE={"bkkcai": [["ผู้โดยสารถามว่านำโดรนถ่ายรูปปิรามิดเข้าอียิปต์ได้ไหม ควรตอบอย่างไร", ["ต้องมีใบอนุญาต มิฉะนั้นศุลกากรจะยึด", "นำเข้าได้ทุกขนาดถ้าเก็บไว้ในกระเป๋าถือ", "นำเข้าได้ถ้าถอดแบตเตอรี่ออกก่อนลงเครื่อง", "นำเข้าได้ถ้าใช้บินเฉพาะในโรงแรมที่พัก"], "อียิปต์ห้ามนำโดรนเข้าประเทศหากไม่มีใบอนุญาตล่วงหน้า ศุลกากรจะยึดเก็บไว้ที่สนามบิน และมีโทษหนักถ้าไม่สำแดง"], ["ผู้โดยสารพกเงินสดจำนวนมาก ถามเรื่องการนำเข้าอียิปต์ ควรแนะนำอย่างไร", ["เกินเกณฑ์ที่กำหนดต้องสำแดงต่อศุลกากร", "ซ่อนไว้ในกระเป๋าโหลดเพื่อความปลอดภัย", "แบ่งให้ผู้โดยสารคนอื่นถือแทนชั่วคราว", "แลกเป็นเงินท้องถิ่นบนเครื่องให้หมด"], "เงินตราต่างประเทศเกินเกณฑ์ต้องสำแดง และห้ามฝากเงินให้ผู้อื่นถือ เพราะผิดกฎศุลกากรและเสี่ยงต่อการฟอกเงิน"], ["ผู้โดยสารมุสลิมขอละหมาดบนเครื่องช่วงบินปกติ ควรทำอย่างไร", ["ละหมาดที่นั่งหรือจุดที่ไม่ขวางทางออก", "ให้ใช้พื้นหน้าประตูฉุกเฉินเพราะกว้างที่สุด", "ปฏิเสธทุกกรณีเพราะเป็นพื้นที่สาธารณะ", "ให้รอจนกว่าเครื่องจะลงจอดเรียบร้อยแล้ว"], "เคารพศาสนาของผู้โดยสาร แต่ห้ามขวางทางเดิน ทางออก และแกลลีย์ และต้องกลับไปนั่งทันทีเมื่อสัญญาณรัดเข็มขัดติด"], ["ทัวร์ผู้สูงอายุ 40 คน มีวีลแชร์ 9 คน ก่อนลงจอดไคโรต้องทำอะไร", ["แจ้งหัวหน้าลูกเรือให้ภาคพื้นเตรียมรถเข็น", "ให้ทุกคนลงเครื่องพร้อมกันเพื่อความรวดเร็ว", "ให้ผู้ใช้วีลแชร์ลงก่อนผู้โดยสารทุกคน", "ให้ไกด์ทัวร์ช่วยพยุงลงบันไดเครื่องเอง"], "ผู้ใช้วีลแชร์ลงหลังผู้โดยสารทั่วไป และต้องยืนยันจำนวนรถเข็นกับภาคพื้นล่วงหน้า เพื่อไม่ให้รอนานที่ประตูเครื่อง"], ["พายุทรายทำให้ทัศนวิสัยต่ำ กัปตันประกาศบินวนรอ ลูกเรือควรทำอะไร", ["เตรียมห้องโดยสารให้พร้อม แจ้งเวลาตามจริง", "เริ่มบริการเครื่องดื่มรอบใหม่ให้ทั่วทั้งลำ", "เปิดประตูห้องนักบินเพื่อถามข้อมูลเพิ่ม", "ให้ผู้โดยสารเปิดโทรศัพท์โทรแจ้งญาติก่อน"], "ช่วงบินวนรออาจลงจอดได้ทุกเมื่อ ห้องโดยสารต้องพร้อม และแจ้งข้อมูลจากกัปตันโดยไม่คาดเดา"], ["ลานจอดไคโรร้อนจัด ลูกเรือยืนที่ประตูช่วงผู้โดยสารลง ควรระวังเรื่องใด", ["ดื่มน้ำ เฝ้าดูผู้สูงอายุที่อาจหน้ามืด", "ปิดแอร์ในห้องโดยสารเพื่อประหยัดพลังงาน", "ให้ผู้โดยสารรีบเดินลงบันไดให้เร็วที่สุด", "ถอดเครื่องแบบชั้นนอกออกเพื่อคลายร้อน"], "ความร้อนบนลานจอดทำให้ผู้สูงอายุหน้ามืดได้ง่าย ลูกเรือต้องเฝ้าระวังและดูแลตัวเองให้ดื่มน้ำเพียงพอ"], ["ผู้โดยสารไทยถามเรื่องวีซ่าอียิปต์ตอนใกล้ลงจอด ควรตอบอย่างไร", ["แนะนำให้ตรวจเงื่อนไขวีซ่าตามสัญชาติของตน", "บอกว่าคนไทยไม่ต้องใช้วีซ่าทุกกรณีแน่นอน", "บอกว่าซื้อวีซ่าบนเครื่องได้จากลูกเรือเลย", "บอกว่าวีซ่าไม่สำคัญเพราะมาเที่ยวระยะสั้น"], "เงื่อนไขวีซ่าขึ้นกับสัญชาติและเปลี่ยนได้ ลูกเรือไม่ควรให้ข้อมูลที่ไม่แน่ใจ ให้แนะนำตรวจกับเจ้าหน้าที่หรือแหล่งทางการ"], ["ผู้โดยสารขอเครื่องดื่มแอลกอฮอล์ ขณะที่คนข้างๆ ไม่พอใจเพราะเหตุผลทางศาสนา ควรทำอย่างไร", ["เสิร์ฟตามนโยบาย เสนอย้ายที่นั่งให้", "ปฏิเสธการเสิร์ฟแอลกอฮอล์ทั้งลำทันที", "ให้ทั้งสองคนตกลงกันเองโดยไม่ต้องยุ่ง", "ตำหนิผู้โดยสารที่สั่งแอลกอฮอล์ต่อหน้า"], "ลูกเรือบริการตามนโยบายสายการบินอย่างเป็นกลาง ให้เกียรติทั้งสองฝ่าย และหาทางออก เช่น ย้ายที่นั่งถ้ามีที่ว่าง"]], "bkkcdg": [["ผู้โดยสารถามว่าทำไมเจ้าหน้าที่ไม่ประทับตราพาสปอร์ตที่ปารีส ควรตอบอย่างไร", ["เชงเกนใช้ระบบ EES บันทึกแบบดิจิทัล", "เพราะเจ้าหน้าที่ลืมประทับให้ในวันนั้น", "เพราะคนไทยไม่ต้องผ่านตรวจคนเข้าเมือง", "เพราะต้องไปขอประทับที่สถานทูตภายหลัง"], "ตั้งแต่เมษายน 2569 เขตเชงเกนบันทึกการเข้าออกของคนต่างชาติด้วยลายนิ้วมือและใบหน้าในระบบ EES แทนการประทับตรา"], ["ผู้โดยสารพกไส้กรอกและชีสจากไทยไปฝากญาติที่ปารีส ควรแนะนำอย่างไร", ["สหภาพยุโรปห้ามนำเนื้อและนมจากนอกอียูเข้า", "นำเข้าได้ถ้าห่อพลาสติกให้มิดชิดแน่นหนา", "นำเข้าได้ถ้าเก็บไว้ในกระเป๋าโหลดเท่านั้น", "นำเข้าได้ถ้าเป็นของฝากที่ไม่ได้นำมาขาย"], "อียูห้ามนำเนื้อสัตว์และผลิตภัณฑ์นมจากนอกอียูติดตัวเข้า เพื่อป้องกันโรคในสัตว์ ทิ้งในถุงขยะบนเครื่องได้"], ["ผู้โดยสารพกเงินสด 12,000 ยูโร ควรทำอย่างไรที่ด่านปารีส", ["ต้องสำแดง เพราะถึงเกณฑ์ 10,000 ยูโร", "ไม่ต้องทำอะไรเพราะเป็นเงินของตัวเอง", "แบ่งให้เพื่อนร่วมทางถือคนละครึ่ง", "แลกเป็นเงินบาทก่อนลงจากเครื่องบิน"], "เงินสดตั้งแต่ 10,000 ยูโรขึ้นไปต้องสำแดงเมื่อเข้าหรือออกจากสหภาพยุโรป และห้ามแบ่งให้ผู้อื่นถือเพื่อเลี่ยง"], ["การเสิร์ฟไวน์แดงชั้นธุรกิจตามหลักบริการแบบฝรั่งเศส ข้อใดถูก", ["เสิร์ฟเย็นเล็กน้อย ไม่แช่น้ำแข็ง", "แช่ในถังน้ำแข็งจนเย็นจัดก่อนเสิร์ฟ", "รินจนเต็มแก้วเพื่อไม่ต้องเติมบ่อย", "อุ่นในเตาอบเล็กน้อยก่อนเปิดขวด"], "ไวน์แดงเสิร์ฟราว 16 ถึง 18 องศา ไวน์ขาวเย็นกว่า และรินไม่เกินหนึ่งในสามของแก้วเพื่อให้กลิ่นออก"], ["ตามธรรมเนียมอาหารฝรั่งเศส ควรเสิร์ฟชีสเมื่อใดในคอร์สอาหาร", ["หลังอาหารจานหลัก ก่อนของหวาน", "ก่อนอาหารเรียกน้ำย่อยทุกครั้ง", "พร้อมกับซุปเพื่อให้กินคู่กัน", "หลังกาแฟเป็นรายการสุดท้าย"], "บริการแบบฝรั่งเศสเสิร์ฟชีสหลังจานหลักและก่อนของหวาน มักเสิร์ฟคู่ขนมปังและไวน์แดง"], ["ใกล้ลงจอดปารีส กัปตันแจ้งว่ามีการนัดหยุดงานของเจ้าหน้าที่ภาคพื้น ทำให้ล่าช้า ควรทำอย่างไร", ["แจ้งตามที่กัปตันบอก ดูแลผู้ต่อเครื่อง", "บอกผู้โดยสารว่าจะล่าช้าทั้งวันแน่นอน", "ให้ผู้โดยสารลุกเตรียมตัวรอที่ประตูเลย", "ไม่ต้องแจ้งเพราะเป็นเรื่องของภาคพื้น"], "ลูกเรือสื่อสารเฉพาะข้อมูลที่ได้รับ ไม่คาดเดา และรวบรวมรายชื่อผู้ต่อเครื่องให้ภาคพื้นช่วยดูแล"], ["ประกาศต้อนรับภาษาฝรั่งเศสที่ถูกต้องเริ่มอย่างไร", ["Mesdames et messieurs, bienvenue à bord", "Bonjour tout le monde, au revoir à bord", "Monsieur et madame, bon appétit à bord", "Mesdemoiselles et messieurs, bonne nuit"], "ประกาศมาตรฐานภาษาฝรั่งเศสเริ่มด้วย Mesdames et messieurs ตามด้วยการต้อนรับขึ้นเครื่อง"], ["เที่ยวบินกลางคืน 13 ชั่วโมง ลูกเรือแบ่งพักสองรอบ ก่อนเข้าพักต้องทำอะไร", ["ส่งต่องานค้างให้เพื่อนร่วมกะก่อน", "ปิดไฟเรียกทุกดวงในโซนของตัวเองก่อน", "ล็อกแกลลีย์ไม่ให้ใครเข้าระหว่างพัก", "แจ้งผู้โดยสารว่าห้ามกดเรียกช่วงนี้"], "การส่งต่องานระหว่างกะทำให้ไม่มีงานตกหล่น เช่น ผู้โดยสารป่วย อาหารพิเศษค้าง หรือไฟเรียกที่ยังไม่ได้ตอบ"]], "bkkjfk": [["เที่ยวบิน 17 ชั่วโมงไปนิวยอร์ก ทำไมต้องมีนักบินและลูกเรือเพิ่ม", ["เพื่อผลัดพักตามกฎจำกัดเวลาปฏิบัติงาน", "เพื่อให้บริการผู้โดยสารได้รวดเร็วขึ้น", "เพราะเครื่องบินลำใหญ่กว่าปกติทุกครั้ง", "เพื่อฝึกงานลูกเรือใหม่บนเที่ยวบินยาว"], "เที่ยวบินยาวพิเศษใช้ลูกเรือเสริม ผลัดกันพักในห้องพักลูกเรือ เพื่อให้อยู่ในเกณฑ์เวลาปฏิบัติงานและลดความเหนื่อยล้า"], ["เส้นทางผ่านขั้วโลกเหนือ ต้องมีอุปกรณ์ใดเพิ่มบนเครื่อง", ["ชุดกันหนาวไว้ใช้ถ้าลงจอดในเขตหนาวจัด", "แพชูชีพเพิ่มอีกหนึ่งชุดในทุกประตูทางออก", "ร่มชูชีพสำหรับผู้โดยสารทุกคนบนเครื่อง", "ถังออกซิเจนสำรองเฉพาะห้องนักบิน"], "การบินเส้นทางขั้วโลกต้องเตรียมชุดกันหนาวพิเศษไว้บนเครื่อง เพราะสนามบินสำรองในเขตอาร์กติกหนาวจัด"], ["ผู้โดยสารถามว่าแอปเปิลที่เหลือจากมื้ออาหารนำเข้าสหรัฐได้ไหม ควรตอบอย่างไร", ["ต้องสำแดง หรือทิ้งในถุงขยะบนเครื่อง", "นำเข้าได้เพราะเป็นอาหารจากสายการบิน", "นำเข้าได้ถ้ากินให้หมดในด่านตรวจเข้าเมือง", "นำเข้าได้ถ้าเก็บไว้ในกระเป๋าเสื้อตลอด"], "สหรัฐกำหนดให้สำแดงผลไม้ เนื้อ และพืชทุกชนิด แม้เป็นอาหารจากเที่ยวบิน ไม่สำแดงอาจถูกปรับสูงสุด 1,000 ดอลลาร์ในครั้งแรก"], ["บินมา 12 ชั่วโมง ผู้โดยสารสูงอายุบ่นปวดน่องข้างเดียว บวมแดง ควรทำอย่างไร", ["แจ้งหัวหน้าลูกเรือ ห้ามนวด ปรึกษาแพทย์", "นวดน่องแรงๆ ให้เลือดไหลเวียนดีขึ้นทันที", "ให้กินยาแก้ปวดแล้วนอนพักไปจนถึงปลายทาง", "ให้ลุกเดินเร็วๆ ไปมาในทางเดินหลายรอบ"], "อาการเข้าได้กับลิ่มเลือดที่ขาจากการนั่งนาน ห้ามนวด ต้องรายงาน ประสานแพทย์ภาคพื้นผ่านกัปตัน และเฝ้าระวังอาการหายใจ"], ["ในเที่ยวบินยาวพิเศษ บริการอาหารกี่มื้อจึงเหมาะกับเวลาบิน 17 ชั่วโมง", ["สองมื้อหลัก มีของว่างระหว่างทาง", "มื้อเดียวตอนบินขึ้นแล้วงดอาหาร", "อาหารทุกสามชั่วโมงตลอดเที่ยวบิน", "ให้ผู้โดยสารซื้ออาหารเองทั้งหมด"], "เที่ยวบินยาวพิเศษจัดสองมื้อหลักตามเวลาปลายทาง และมีจุดบริการของว่างให้หยิบเองช่วงที่ไฟห้องโดยสารหรี่"], ["ผู้โดยสารเมาและทำร้ายลูกเรือกลางทาง ตามกฎสหรัฐผลที่ตามมาคืออะไร", ["อาจถูกปรับหลายหมื่นดอลลาร์และดำเนินคดีอาญา", "ถูกตักเตือนด้วยวาจาเพียงครั้งเดียวเท่านั้น", "ต้องย้ายไปนั่งชั้นประหยัดจนถึงปลายทาง", "ไม่มีผลเพราะเกิดเหนือน่านฟ้าสากลทั้งหมด"], "FAA มีนโยบายไม่ยอมให้มีพฤติกรรมก่อกวน ปรับได้สูงต่อการละเมิดแต่ละครั้ง และส่งเรื่องให้ดำเนินคดีอาญาได้"], ["ห้องพักลูกเรือบนเครื่อง ระหว่างพักลูกเรือควรทำอะไร", ["พักผ่อนให้เต็มที่ ตั้งปลุกก่อนกลับกะ", "ใช้เวลาดูหนังเพื่อไม่ให้หลับลึกเกินไป", "เปิดม่านไว้เพื่อให้ผู้โดยสารเรียกได้", "ตรวจรายชื่อผู้โดยสารเตรียมกะถัดไป"], "ช่วงพักมีไว้เพื่อลดความเหนื่อยล้าจริง การนอนให้ได้เป็นส่วนหนึ่งของความปลอดภัยของเที่ยวบิน"], ["ถึงนิวยอร์กบ่าย ร่างกายยังอยู่ตีสามเวลาไทย ลูกเรือควรปรับตัวอย่างไร", ["รับแดด กินตามเวลาท้องถิ่น งีบแต่น้อย", "นอนยาวทันทีจนถึงเช้าวันถัดไปเลย", "ดื่มกาแฟหลายแก้วเพื่อไม่ให้ง่วงทั้งคืน", "กินยานอนหลับแรงๆ ตั้งแต่บ่ายวันแรก"], "การรับแสงกลางวันและกินตามเวลาท้องถิ่นช่วยปรับนาฬิการ่างกาย ลดเจ็ตแล็กก่อนเที่ยวบินขากลับ"]]};
+function fwRteQ(){const r=fwRtSel(),B=FW_RTE[r.id];if(!B)return[];const R=fwL2Rnd(r.id+'rte'+(flyS().flights||0));return B.map((q,i)=>[R(),i]).sort((a,b)=>a[0]-b[0]).slice(0,5).map(z=>B[z[1]])}
+function fwRteCard(){const r=fwRtSel(),L=fwRteQ();if(!L.length)return'';const st=fwPreState();st.pr=st.pr||{};const A=st.pr,ok=L.filter((q,i)=>A[i]&&A[i].ok).length,all=ok===L.length;
+  const qs=L.map(([q,ch,ex],i)=>{const a=A[i]||{bad:[]},R=fwL2Rnd('or'+i+r.id+(flyS().flights||0)),ord=ch.map((c,j)=>[R(),j]).sort((x,y)=>x[0]-y[0]).map(x=>x[1]);
+    return `<div class="pq ${a.ok?'ok':''}"><p><em>${i+1}</em>${esc(q)}</p><div class="pq-ch">${ord.map((j,k)=>{const bad=(a.bad||[]).includes(j),good=a.ok&&j===0;return `<button data-rte="${i}:${j}" ${a.ok||bad?'disabled':''} class="${good?'right':''}${bad?' wrong':''}"><i>${'กขคง'[k]}</i><span>${esc(ch[j])}</span></button>`}).join('')}</div>${a.ok?`<div class="pq-ex ok"><b>ถูกต้อง</b><span>${esc(ex)}</span></div>`:(a.bad||[]).length?`<div class="pq-ex no"><b>ยังไม่ถูก ลองอีกครั้ง</b><span>ทวนบทขั้นตอนเฉพาะเส้นทางในคู่มือ</span></div>`:''}</div>`}).join('');
+  return `<section class="l2-box pre5" id="fx-rte"><div class="l2-bh"><span class="l2-bi">${fwL2Img('crew','l2-bic')}</span><div class="l2-bt"><b>บรีฟเฉพาะเส้นทาง ${esc(r.no)} ${esc(r.city)}</b><small>ROUTE SPECIFIC BRIEFING</small></div><span class="l2-tag">${ok}/${L.length}</span></div>
+    <p class="pre5-in">เส้นทางนี้ระดับยากมาก หัวหน้าลูกเรือจะถามสถานการณ์ที่เจอจริงในเส้นทาง ต้องตอบถูกทุกข้อก่อนขึ้นเครื่อง ตอบผิดได้แต่ต้องแก้จนถูก</p>${qs}${all?`<p class="pre5-ok">${fwLbIc('ok')}ผ่านบรีฟเฉพาะเส้นทางแล้ว</p>`:''}</section>`}
+function fwRteNeed(){try{const L=fwRteQ();if(!L.length)return false;const st=fwPreState();st.pr=st.pr||{};return L.some((q,i)=>!(st.pr[i]&&st.pr[i].ok))}catch(e){return false}}
+{const o=fwL2Tabs;fwL2Tabs=function(){let h=o.apply(this,arguments);try{const tab=V.lbTab||'flt',sub=V.lbSub||{};if(tab==='brief'&&(sub.brief||'ov')==='ov'){const c=fwRteCard();if(c){const k=h.indexOf('id="fx-door"');if(k>=0){const e=h.indexOf('</section>',k);if(e>=0)h=h.slice(0,e+10)+c+h.slice(e+10)}else h=h.replace(/(<div class="l2-bin">)/,'$1'+c)}}}catch(e){console.log('rte',e)}return h}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-rte]');if(!b||b.disabled)return;e.preventDefault();e.stopImmediatePropagation();const st=fwPreState();st.pr=st.pr||{};const[i,j]=b.dataset.rte.split(':').map(Number);const A=st.pr;A[i]=A[i]||{bad:[]};
+  if(j===0){A[i].ok=1;try{snd('done')}catch(x){}}else{A[i].bad=(A[i].bad||[]).concat(j);try{snd('err')}catch(x){}}fwL2Swap('fx-rte',fwRteCard())},true);
+{const o=flyAct;flyAct=function(k,b){if(k==='fly-go'&&!(V.fly&&V.fly.ph==='play')){let n=null;try{n=fwPreNeed()}catch(e){}
+  if(n&&!n.bag&&!n.fit&&!n.door&&fwRteNeed()){V.lbTab='brief';V.lbSub=Object.assign({},V.lbSub||{},{brief:'ov'});try{toast('ตอบบรีฟเฉพาะเส้นทางให้ถูกทุกข้อก่อน')}catch(e){}try{fwL2Go()}catch(e){render()}setTimeout(()=>{const t=document.getElementById('fx-rte');if(t)t.scrollIntoView({behavior:'smooth',block:'center'})},80);return}}
+  return o.apply(this,arguments)}}
+{const o=fwL2Ready;fwL2Ready=function(){let h=o.apply(this,arguments);try{const n=fwPreNeed();if(!n.bag&&!n.fit&&!n.door&&fwRteNeed())h=h.replace(/<i class="qz-need">[\s\S]*?<\/i>/,'').replace(/<\/span>$/,'<i class="qz-need">ขั้นต่อไป ตอบบรีฟเฉพาะเส้นทาง</i></span>')}catch(e){}return h}}
+
+/* ===== v711 ภาพเมืองแบบพิกเซลของเส้นทางใหม่ แสงตามเวลาท้องถิ่น
+   ไคโร: ปิรามิดสามองค์ที่กิซา ด้านรับแสงและด้านเงา แนวหินเป็นชั้น ยอดหินปิดผิวบนองค์กลาง ต้นอินทผลัม เรือใบบนแม่น้ำไนล์ ฝุ่นทรายในอากาศ
+   ปารีส: หอโครงเหล็กกลางเมือง ขาโค้งสี่ขา ชั้นชมวิวสองชั้น อาคารหลังคาสังกะสีสีเทาฟ้าสองฝั่ง ต้นไม้ริมแม่น้ำแซน เงาสะท้อนบนน้ำ
+   นิวยอร์ก: เทพีเสรีภาพสีทองแดงเขียวบนฐานหิน เส้นขอบฟ้าแมนฮัตตันด้านหลัง เรือข้ามฟาก ผิวน้ำอ่าวสะท้อนไฟเมือง ===== */
+function fwR3Base(W,H,hr){const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d'),S=fwHSky(hr),night=S.L<.55,dusk=S.L<.9&&!night,img=c.createImageData(W,H),D=img.data;
+  const cl=v=>v<0?0:v>255?255:v,mix=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t];
+  const P=(x,y,col,a)=>{x=Math.round(x);y=Math.round(y);if(x<0||y<0||x>=W||y>=H)return;const i=(y*W+x)*4;a=a==null?1:a;D[i]=cl(D[i]+(col[0]-D[i])*a);D[i+1]=cl(D[i+1]+(col[1]-D[i+1])*a);D[i+2]=cl(D[i+2]+(col[2]-D[i+2])*a);D[i+3]=255};
+  const Gt=(x,y)=>{x=Math.max(0,Math.min(W-1,x|0));y=Math.max(0,Math.min(H-1,y|0));const i=(y*W+x)*4;return[D[i],D[i+1],D[i+2]]};
+  const glow=(cx,cy,r,col,a)=>{for(let y=Math.floor(cy-r);y<=cy+r;y++)for(let x=Math.floor(cx-r);x<=cx+r;x++){const d=Math.hypot(x-cx,y-cy)/r;if(d<1)P(x,y,col,a*(1-d)*(1-d))}};
+  const BY=[[0,8,2,10],[12,4,14,6],[3,11,1,9],[15,7,13,5]],dz=(x,y)=>BY[y&3][x&3]/16-.47,N=(x,y,s)=>fwHk(x,y,s);
+  const sky=(y0,y1,warm)=>{const T=S.topA,B=S.botA;for(let y=y0;y<y1;y++){const t=(y-y0)/Math.max(1,y1-y0);let col=mix(T,B,Math.pow(t,1.3));if(warm)col=mix(col,warm,t*t*.35);for(let x=0;x<W;x++)P(x,y,col.map(v=>Math.round((v+dz(x,y)*7)/4)*4))}
+    if(night){for(let k=0;k<40;k++){const x=Math.floor(N(k,1,301)*W),y=Math.floor(N(k,2,301)*(y1-y0)*.7)+y0;P(x,y,[255,255,255],.35+N(k,3,301)*.5)}glow(70,18,6,[230,230,255],.5);P(70,18,[250,250,255]);P(71,18,[250,250,255]);P(70,19,[250,250,255]);P(71,19,[240,240,250])}
+    else{const sx=dusk?14:72,sy=dusk?y1-14:16;glow(sx,sy,dusk?16:12,dusk?[255,190,150]:[255,255,240],dusk?.55:.4)}};
+  const cloud=(cx,cy,w,a)=>{for(let k=0;k<6;k++){const r=w*(.25+N(k,cx,302)*.2),x=cx+(k-2.5)*w*.18,y=cy-Math.sin(k/5*Math.PI)*w*.12;for(let yy=-r;yy<=r*.5;yy++)for(let xx=-r;xx<=r;xx++)if(xx*xx+yy*yy<r*r)P(x+xx,y+yy,night?[70,76,120]:dusk?[255,214,200]:[255,255,255],a*(yy<-r*.3?1:.85))}};
+  const water=(y0,y1,base,refl)=>{for(let y=y0;y<y1;y++){const t=(y-y0)/(y1-y0);for(let x=0;x<W;x++){const ry=y0-(y-y0)-1+Math.round(Math.sin(y*.9+x*.15)*1.2);let col=mix(base[0],base[1],t);if(refl&&ry>0){const rc=Gt(x+Math.round(Math.sin(y*.7)*1.5),ry);col=mix(col,rc,.42*(1-t*.7))}if(Math.sin(x*.55+y*1.7)+Math.sin(x*.13-y*.9)>1.5)col=mix(col,[255,255,255],.18);P(x,y,col.map(v=>Math.round((v+dz(x,y)*6)/4)*4))}}};
+  return{cv,c,S,night,dusk,P,Gt,glow,dz,N,mix,sky,cloud,water,done:()=>{c.putImageData(img,0,0);return cv}}}
+/* ===== ภาพไคโร v712: มุมสูงเหนือที่ราบสูงกิซา ตามภาพอ้างอิง
+   ปิรามิดใหญ่ด้านหน้าเห็นสองด้าน ด้านซ้ายอยู่ในเงา ด้านขวารับแสง หินเรียงเป็นชั้นและเป็นก้อน ร่องปูนระหว่างชั้น ขอบสันสว่าง เศษหินที่ฐาน
+   ปิรามิดกลางด้านซ้าย และปิรามิดด้านหลังที่ยอดยังมีหินปิดผิวเรียบสีอ่อน เงาของปิรามิดทอดลงบนผืนทราย
+   เมืองไคโรแผ่กว้างถึงขอบฟ้า จางลงตามระยะในหมอกแดด เมฆคิวมูลัสก้อนใหญ่มีด้านรับแสงและท้องเมฆสีเทาฟ้า
+   ถนนโค้งรอบที่ราบสูง ผู้คนตัวเล็ก เนินทรายเป็นลอน แนวกำแพงแหล่งขุดค้น แสงตามเวลาท้องถิ่น กลางคืนเปิดไฟส่องปิรามิด ===== */
+function fwCaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=B,S=B.S;
+  const SS=4,cv=document.createElement('canvas');/* วาดละเอียดสี่เท่าแล้วย่อ เพื่อให้ลายหินและขอบนุ่มแบบพิกเซลอาร์ตละเอียด */
+  const w=W*SS,h=H*SS,buf=new Float32Array(w*h*3),MK=new Uint8Array(w*h);
+  const put=(x,y,c)=>{if(x<0||y<0||x>=w||y>=h)return;const i=(y*w+x)*3;buf[i]=c[0];buf[i+1]=c[1];buf[i+2]=c[2]};
+  const get=(x,y)=>{x=Math.max(0,Math.min(w-1,x));y=Math.max(0,Math.min(h-1,y));const i=(y*w+x)*3;return[buf[i],buf[i+1],buf[i+2]]};
+  const blend=(x,y,c,a)=>{if(x<0||y<0||x>=w||y>=h||a<=0)return;const i=(y*w+x)*3;a=Math.min(1,a);buf[i]+=(c[0]-buf[i])*a;buf[i+1]+=(c[1]-buf[i+1])*a;buf[i+2]+=(c[2]-buf[i+2])*a};
+  const H2=(x,y,s)=>fwHk(x|0,y|0,s),sm=t=>t*t*(3-2*t);
+  const vn=(x,y,s)=>{const xi=Math.floor(x),yi=Math.floor(y),fx=sm(x-xi),fy=sm(y-yi),a=H2(xi,yi,s),b=H2(xi+1,yi,s),c=H2(xi,yi+1,s),d=H2(xi+1,yi+1,s);return a+(b-a)*fx+(c-a)*fy+(a-b-c+d)*fx*fy};
+  const fbm=(x,y,s)=>vn(x,y,s)*.5+vn(x*2.1,y*2.1,s+7)*.25+vn(x*4.3,y*4.3,s+13)*.125+vn(x*8.7,y*8.7,s+19)*.0625;
+  const HZ=62*SS;/* เส้นขอบฟ้า */
+  /* ---------- ท้องฟ้า: ฟ้าเข้มด้านบน ไล่เป็นฟ้าจางขาวหมอกที่ขอบฟ้า ---------- */
+  const skT=[52,112,182],skM=[120,170,214],skB=[214,224,228];
+  for(let y=0;y<HZ;y++){const t=y/HZ;const c=t<.55?mix(skT,skM,t/.55):mix(skM,skB,(t-.55)/.45);for(let x=0;x<w;x++){put(x,y,c);MK[y*w+x]=1}}
+  /* ---------- เมฆคิวมูลัส: สนามความหนาแน่นจากก้อนกลมซ้อน + fbm ตัดขอบ แสงจากขวาบน ---------- */
+  const CL=[];
+  const den=(x,y)=>{let d=0;for(const[cx,cy,r] of CL){const dx=(x/SS-cx)/r,dy=(y/SS-cy)/(r*.82);const q=1-(dx*dx+dy*dy);if(q>0)d=Math.max(d,q)}if(d<=0)return 0;const n=fbm(x/SS*.22,y/SS*.22,41);return Math.max(0,d*1.25+(n-.5)*.9-.08)};
+  const DN=new Float32Array(w*HZ);for(let y=0;y<HZ;y++)for(let x=0;x<w;x++)DN[y*w+x]=den(x,y);
+  const dAt=(x,y)=>x<0||y<0||x>=w||y>=HZ?0:DN[y*w+x];
+  for(let y=0;y<HZ;y++)for(let x=0;x<w;x++){const d=DN[y*w+x];if(d<=0)continue;
+    let occ=0;for(let k=1;k<=6;k++)occ+=dAt(x+k*3,y-k*3);occ/=6;/* ความหนาของเมฆทางด้านดวงอาทิตย์ = เงาในตัวเมฆ */
+    const lit=Math.max(0,1-occ*1.15),under=Math.max(0,Math.min(1,(dAt(x,y-10)-d)*1.6)),rim=d<.12?1:0;
+    let c=mix([168,180,202],[255,255,255],.35+lit*.65);c=mix(c,[138,152,180],under*.55);if(lit>.85&&d<.3)c=mix(c,[255,255,255],.6);if(rim&&lit>.5)c=[255,255,255];
+    const hz=y/HZ;c=mix(c,[226,230,232],hz*hz*.55);/* เมฆไกลจางในหมอก */
+    blend(x,y,c,Math.min(1,d*3))}
+  /* ---------- เมืองไคโร: แผ่ไปถึงขอบฟ้า บล็อกอาคารไล่ขนาดตามระยะ จางในหมอก ---------- */
+  const CTY0=HZ-3*SS,CTY1=96*SS;
+  for(let y=CTY0;y<CTY1;y++){const t=(y-CTY0)/(CTY1-CTY0),haze=1-t,sc=1+t*3;for(let x=0;x<w;x++){
+    const bx=Math.floor(x/(2.2*sc*SS)),by=Math.floor(y/(1.4*sc*SS)),hb=H2(bx,by,51),edge=(x%Math.round(2.2*sc*SS))<Math.max(1,sc*.7);
+    let c=hb<.33?[196,176,150]:hb<.66?[176,160,140]:[214,198,176];if(hb>.9)c=[228,220,206];if(edge)c=mix(c,[110,96,86],.45);
+    if((y%Math.round(1.4*sc*SS))<Math.max(1,sc*.5))c=mix(c,[150,132,116],.5);
+    if(H2(x>>1,y>>1,53)>.86)c=mix(c,[90,80,76],.35);
+    c=mix(c,[206,214,218],haze*haze*.85);put(x,y,c)}}
+  /* หอสูงกลางเมืองไกลๆ */
+  for(const[tx,th] of[[70,4],[84,3],[10,3]])for(let y=CTY0-th*SS;y<CTY0+2*SS;y++)for(let x=tx*SS;x<tx*SS+SS*1.4;x++)put(x,y,mix([170,160,150],[208,214,218],.6));
+  /* ---------- ที่ราบทราย: ใกล้กล้องอุ่นเข้ม ไกลจาง เนินทรายเป็นลอน ---------- */
+  const sandY=(x)=>(90+Math.sin(x/SS*.08)*3)*SS;
+  for(let x=0;x<w;x++){const y0=Math.min(...[x].map(sandY));for(let y=Math.round(y0-6*SS*(x<40*SS?1:0)*0);y<h;y++){if(y<CTY0)continue;const t=(y-y0)/(h-y0);if(y<y0&&!(x<38*SS&&y>82*SS))continue;
+    const n=fbm(x/SS*.12,y/SS*.18,61),r=fbm(x/SS*.5,y/SS*.9,63);let c=mix([226,196,150],[200,160,110],Math.max(0,t)*.8+n*.3);
+    const dune=Math.sin(x/SS*.11+y/SS*.35+n*4);if(dune>.82)c=mix(c,[246,222,180],.35);if(dune<-.86)c=mix(c,[170,130,90],.35);c=mix(c,[0,0,0],(r-.5)*.08);
+    if(y<y0+8*SS)c=mix(c,[214,206,196],(1-(y-y0+8*SS)/(16*SS))*.4);put(x,y,c)}}
+  /* ทุ่งด้านซ้ายไกลเป็นทรายราบ */
+  for(let y=82*SS;y<96*SS;y++)for(let x=0;x<36*SS;x++){const t=(y-82*SS)/(14*SS);put(x,y,mix([214,200,176],[222,194,150],t))}
+  /* พื้นที่โล่งขวากลาง ลานจอดและแปลงทรายเรียบ */
+  for(let y=88*SS;y<96*SS;y++)for(let x=74*SS;x<w;x++)put(x,y,mix(get(x,y),[232,222,206],.5));
+  /* ---------- ถนน: โค้งจากซ้ายล่างไปขวา และถนนรอบฐานปิรามิด ---------- */
+  const road=(f,y0,y1,wd,col)=>{for(let y=y0*SS;y<y1*SS;y++){const x=f(y/SS)*SS;for(let k=-wd*SS/2;k<=wd*SS/2;k++){const xx=Math.round(x+k);put(xx,y,Math.abs(k)>wd*SS/2-1?mix(col,[90,80,76],.3):col)}}};
+  road(y=>-4+(y-112)*1.1+Math.pow(Math.max(0,y-128),1.6)*.18,112,150,2.2,[150,140,132]);
+  road(y=>88-(y-98)*.9,98,112,1.4,[176,170,166]);
+  road(y=>96-(y-132)*1.9,132,150,2,[150,140,132]);
+  for(let x=72*SS;x<w;x++){const y=Math.round((99-(x/SS-72)*.25)*SS);for(let k=0;k<SS*1.2;k++)put(x,y+k,[184,180,178])}
+  /* ---------- ปิรามิด: สองด้านต่อองค์ ชั้นหิน ก้อนหิน ร่องปูน สันสว่าง ---------- */
+  const tri=(A,Bv,C,fn)=>{const x0=Math.max(0,Math.floor(Math.min(A[0],Bv[0],C[0])*SS)),x1=Math.min(w-1,Math.ceil(Math.max(A[0],Bv[0],C[0])*SS)),y0=Math.max(0,Math.floor(Math.min(A[1],Bv[1],C[1])*SS)),y1=Math.min(h-1,Math.ceil(Math.max(A[1],Bv[1],C[1])*SS));
+    const ax=A[0]*SS,ay=A[1]*SS,bx=Bv[0]*SS,by=Bv[1]*SS,cx=C[0]*SS,cy=C[1]*SS,dd=(by-cy)*(ax-cx)+(cx-bx)*(ay-cy);
+    for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++){const px=x+.5,py=y+.5,wa=((by-cy)*(px-cx)+(cx-bx)*(py-cy))/dd,wb=((cy-ay)*(px-cx)+(ax-cx)*(py-cy))/dd,wc=1-wa-wb;if(wa<-.002||wb<-.002||wc<-.002)continue;fn(x,y,wa,wb,wc)}};
+  const shadeCast=(pts,dx,dy,a)=>{/* เงาทอดบนพื้น: โพลิกอนเลื่อนจากฐาน */const P2=pts.map(p=>[p[0]+dx,p[1]+dy]);tri(pts[0],P2[0],P2[1],(x,y)=>put(x,y,mix(get(x,y),[96,72,60],a)));tri(pts[0],pts[1],P2[1],(x,y)=>put(x,y,mix(get(x,y),[96,72,60],a)))};
+  /* ปิรามิดแบบสมจริง: ชั้นหินสูงไม่เท่ากัน แต่ละชั้นมีพื้นขั้นด้านบนรับแสง ร่องลึกมืด หน้าตั้งของก้อนหินไล่เงาลงล่าง
+     ก้อนหินกว้างไม่เท่ากัน สีต่างกันทั้งเหลือง เทา และอมแดง บางก้อนหลุดเป็นโพรง ขอบนอกเป็นขั้นบันไดหยักตามจริง
+     สันมุมสึกกร่อน ทรายพัดเกาะตามพื้นขั้น ด้านเงาได้แสงฟ้าสะท้อนอมฟ้า ฐานมีทรายทับและกองเศษหิน */
+  const pyramid=(Ap,L,F,R,o)=>{const sd=o.seed,nC=o.courses;
+    const tb=[0];for(let k=0;k<nC;k++)tb.push(tb[k]+.7+H2(k,sd,201)*.6+(k>nC*.85?.25:0));const tot=tb[nC];for(let k=0;k<=nC;k++)tb[k]/=tot;
+    const rowOf=t=>{let lo=0,hi=nC;while(hi-lo>1){const m=(lo+hi)>>1;if(tb[m]<=t)lo=m;else hi=m}return lo};
+    const face=(Cl,Cr,lit,sideK)=>{const ew=Math.hypot(Cr[0]-Cl[0],Cr[1]-Cl[1])*SS;
+      tri(Ap,Cl,Cr,(x,y,wa,wb,wc)=>{const t=1-wa;if(t<=.004)return;const u=wc/(wb+wc+1e-6),rowW=t*ew;
+      const row=rowOf(t),fr=(t-tb[row])/(tb[row+1]-tb[row]),cpx=(tb[row+1]-tb[row])*(F[1]-Ap[1])*SS;
+      /* ขอบนอกและสันเป็นขั้นบันได: ชั้นล่างของแต่ละชั้นยื่นออก ชั้นบนหดเข้า */
+      const outerD=(lit?(1-u):u)*rowW,ridgeD=(lit?u:(1-u))*rowW,stepIn=(fr<.34?(1-fr/.34):0)*cpx*.9+H2(row,sd+sideK,203)*cpx*.6;
+      if(outerD<stepIn)return;
+      /* ก้อนหิน */
+      const bw=(1.6+H2(row,sd,205)*1.2)*SS*o.bs,off=H2(row,sd,207)*bw,bx=(u*rowW+off)/bw,bi=Math.floor(bx),bf=bx-bi,bwj=Math.min(bf,1-bf)*bw;
+      const hv=H2(bi,row*7+sd,209),hv2=H2(bi,row*7+sd,211),hv3=H2(bi,row*7+sd,213);
+      let stone=hv<.5?mix(o.lit,[226,196,150],hv*.6):hv<.8?mix(o.lit,[196,182,160],.45):mix(o.lit,[206,156,112],.45);/* เหลืองทราย เทาหินปูน อมแดง */
+      stone=mix(stone,[0,0,0],(hv2-.5)*.18);
+      const missing=hv3>(.988-(outerD<3*cpx||ridgeD<2*cpx?.1:0)-(t>.8?.02:0));
+      let c;
+      if(fr<.07)c=[70,48,34];/* ร่องลึกระหว่างชั้น */
+      else if(fr<.34){/* พื้นขั้นด้านบน รับแสงจากฟ้า มีทรายเกาะ */c=mix(stone,[250,232,196],.42);const sandy=fbm(x*.03,y*.06,215);if(sandy>.55)c=mix(c,[240,214,168],(sandy-.55)*1.6);if(fr<.12)c=mix(c,[110,80,56],.5)}
+      else{/* หน้าตั้งของก้อน: บนสว่างกว่าล่าง */const g=(fr-.34)/.66;c=mix(stone,[0,0,0],g*(lit?.14:.22));if(g>.8)c=mix(c,[60,42,30],(g-.8)*1.8);
+        if(bwj<SS*.5&&t>.03)c=mix(c,[80,56,40],.55);/* รอยต่อก้อน */
+        if(H2(x>>1,y>>1,217)>.9)c=mix(c,[255,240,214],.18);if(H2(x>>1,y>>1,219)>.92)c=mix(c,[60,40,30],.2)}
+      if(missing&&fr>.07)c=mix(c,[64,44,32],fr<.34?.5:.75);/* ก้อนหลุดเป็นโพรง */
+      /* ด้านเงา: แสงฟ้าสะท้อนอมฟ้า */
+      if(!lit)c=mix(c.map(v=>v*.6),[96,104,132],.16);else c=mix(c.map(v=>Math.min(255,v*1.14)),[255,214,150],.1);
+      /* สันมุม: ด้านแสงขอบสว่าง ด้านเงาขอบรับแสงอ่อน */
+      if(ridgeD<cpx*1.2&&fr>.07)c=lit?mix(c,[255,238,206],.28):mix(c,[176,150,120],.25);
+      /* ผิวหินผุเป็นแถบยาวตามแรงลมและฝน */
+      const st=fbm(x*.015,y*.004+u*3,221);c=mix(c,[0,0,0],(st-.5)*.18);
+      const pat=fbm(x*.02,y*.02,223);if(pat>.62)c=mix(c,lit?[236,214,176]:[150,128,104],(pat-.62)*1.2);
+      /* หินปิดผิวที่ยอด */
+      if(o.cap){const edge=o.cap+(vn(u*9,sd,225)-.5)*.05;if(t<edge){c=lit?[234,222,200]:[150,146,150];c=mix(c,[0,0,0],(vn(x*.1,y*.1,227)-.5)*.14+(H2(x>>2,y>>2,229)>.93?.12:0));if(t>edge-.02)c=mix(c,[120,96,76],.45)}}
+      /* ทรายทับฐาน */
+      if(t>.955){const sn=fbm(x*.06,0,231);if(t>.96+sn*.05&&sn>.42)c=mix(c,lit?[212,178,130]:[150,118,86],Math.min(1,(t-.96-sn*.05)*40)*.6)}
+      c=mix(c,[214,218,220],o.haze);put(x,y,c);MK[y*w+x]=lit?2:3})};
+    face(L,F,false,0);face(F,R,true,1);
+    /* กองเศษหินและก้อนที่หล่นที่ฐาน มีเงาด้านซ้าย */
+    for(let k=0;k<o.rub;k++){const t=H2(k,sd,81),bx=F[0]+(t<.5?(L[0]-F[0])*t*2:(R[0]-F[0])*(t-.5)*2),by=F[1]+(t<.5?(L[1]-F[1])*t*2:(R[1]-F[1])*(t-.5)*2)+H2(k,sd,83)*3,sz=.8+H2(k,sd,87)*1.4;
+      for(let j=0;j<SS*sz;j++)for(let i=0;i<SS*sz*1.4;i++){const top=j<SS*sz*.3,lf=i<SS*sz*.4;put(Math.round(bx*SS+i),Math.round(by*SS+j),mix(top?[214,182,138]:lf?[110,82,58]:[172,138,98],[214,218,220],o.haze))}
+      for(let i=0;i<SS*sz*1.6;i++)put(Math.round(bx*SS-i*.6-2),Math.round(by*SS+SS*sz),mix(get(Math.round(bx*SS-i*.6-2),Math.round(by*SS+SS*sz)),[110,80,60],.35))}};
+  /* ปิรามิดหลัง ยอดหินปิดผิว (ไกลที่สุด จางที่สุด) */
+  shadeCast([[30,77],[52,79]],-10,4,.18);
+  pyramid([51.5,40],[30,77],[52,79],[74,72],{courses:22,bs:.7,lit:[222,200,166],cap:.25,seed:3,rub:6,haze:.2});
+  /* ปิรามิดกลางด้านซ้าย */
+  shadeCast([[6,90],[32,94]],-10,5,.25);
+  pyramid([32.5,47],[6,90],[33,94],[56,86],{courses:26,bs:.85,lit:[214,178,130],cap:0,seed:9,rub:12,haze:.07});
+  /* ปิรามิดใหญ่ด้านหน้า */
+  shadeCast([[12,124],[50,146]],-14,6,.32);
+  pyramid([61,63],[14,124],[50,147],[100,120],{courses:34,bs:1,lit:[220,182,134],cap:0,seed:17,rub:40,haze:0});
+  /* ฐานหินและแนวขั้นที่มุมหน้า */
+
+  /* ---------- รายละเอียดพื้น: กำแพงแหล่งขุดค้น เนิน อาคารเล็ก ผู้คน ---------- */
+  const rect=(x,y,ww,hh,c)=>{for(let j=0;j<hh*SS;j++)for(let i=0;i<ww*SS;i++){const edge=i<2||j<2||i>=ww*SS-2||j>=hh*SS-2;put(Math.round(x*SS+i),Math.round(y*SS+j),edge?mix(c,[255,240,210],.35):c)}};
+  rect(10,138,14,9,[198,166,124]);rect(12,140,10,5,[214,188,148]);
+  for(const[mx,my,r] of[[70,147,6],[82,145,5],[4,104,4],[10,96,3],[78,110,3],[86,104,3]])for(let j=-r*SS;j<=0;j++)for(let i=-r*SS*1.6;i<=r*SS*1.6;i++){const q=(i/(r*SS*1.6))**2+(j/(r*SS))**2;if(q<1)put(Math.round(mx*SS+i),Math.round(my*SS+j),mix([214,178,128],j<-r*SS*.5&&i>0?[240,214,170]:[182,144,100],q))}
+  rect(80,96,8,3,[200,186,160]);rect(82,93,4,3,[184,170,150]);
+  for(let k=0;k<18;k++){const t=H2(k,1,91),y=114+t*34,x=-4+(y-112)*1.1+Math.pow(Math.max(0,y-128),1.6)*.18+(H2(k,2,91)-.5)*3;put(Math.round(x*SS),Math.round(y*SS),[60,52,52]);put(Math.round(x*SS),Math.round(y*SS)+1,[60,52,52]);put(Math.round(x*SS)+1,Math.round(y*SS)+1,[90,80,80])}
+  /* ---------- ย่อเป็นพิกเซลเกม ---------- */
+  const LM=new Uint8Array(W*H);for(let y=0;y<H;y++)for(let x=0;x<W;x++){let r=0,g=0,b=0,ms=0,mp=0,ml=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=(y*SS+j)*w+x*SS+i,k=q*3;r+=buf[k];g+=buf[k+1];b+=buf[k+2];const m=MK[q];if(m===1)ms++;else if(m>1){mp++;if(m===2)ml++}}const n=SS*SS;let c=[r/n,g/n,b/n];const fs=ms/n,fp=mp/n,fl=ml/n;LM[y*W+x]=fp>.3?2:fs>.5?1:0;
+    const skyC=mix(S.topA,S.botA,Math.min(1,y/62));
+    if(night){let g2=mix(c.map(v=>v*.26),[26,32,70],.45);/* ไฟส่องปิรามิดจากฐาน สว่างที่ล่าง จางไปทางยอด */
+      if(fp>0){const lift=Math.max(.25,Math.min(1,(y-40)/90));const fl2=mix(c.map(v=>v*.62),[255,170,110],.18);g2=mix(g2,fl2.map(v=>v*(fl>0?1:.62)),fp*lift)}
+      if(fs>0)g2=mix(g2,mix(skyC,c.map(v=>v*.3),.25),fs);if(y>=54&&y<72&&fp<.3){const k=1-Math.abs(y-62)/10;g2=mix(g2,[110,86,96],k*.45)}c=g2}
+    else if(dusk){let g2=[c[0]*1.04+18,c[1]*.84+4,c[2]*.72+6];if(fp>0&&fl>0)g2=mix(g2,[c[0]*1.1+30,c[1]*.86+10,c[2]*.6],fl/n*0+fl);if(fs>0)g2=mix(g2,mix(skyC,[255,200,190],(c[0]+c[1]+c[2])/765>.85?.5:.15),fs*.55);c=g2}
+    P(x,y,c.map(v=>Math.round((v+dz(x,y)*5)/2)*2))}
+  /* ---------- เมฆคิวมูลัสแบบเกมพิกเซล: ยอดเป็นก้อนกะหล่ำซ้อน ฐานเรียบแบน แสงจากขวาบน ไล่ห้าโทนพร้อมดิทเธอร์
+     ขอบบนสว่างจัด ท้องเมฆเงาอมฟ้า เมฆไกลเล็กและจางในหมอกแดด ไม่ทับปิรามิด ---------- */
+  {const CLD=[
+     /* ซ้าย: คิวมูลัสก่อตัวสูงเป็นหอ ยอดพองซ้อนขึ้นไป */
+     {yb:46,b:[[6,40,6],[14,36,8],[22,38,7],[30,41,5],[12,28,7],[19,22,7],[15,15,6],[22,13,4],[25,28,6],[8,33,5]],f:0,sx:1},
+     /* ขวาบน: แผงเมฆสเตรโตคิวมูลัสกว้างแบน เป็นลอนเรียงยาว */
+     {yb:20,b:[[50,17,4],[57,15,5],[64,14,5],[71,15,6],[78,13,5],[85,15,5],[91,17,4],[68,10,4],[80,9,3]],f:.05,sx:1.5},
+     /* ขวากลาง: ก้อนกลางเอียง ด้านซ้ายพองสูง ด้านขวาลาดลง */
+     {yb:50,b:[[62,45,6],[68,39,6],[74,42,5],[80,46,4],[86,48,3],[71,47,5]],f:.2,sx:1.1},
+     /* ปุยเล็กกระจายกลางฟ้า */
+     {yb:31,b:[[40,29,2.6],[43,28,3]],f:.12,sx:1},{yb:26,b:[[33,25,2],[35,24,2.4]],f:.18,sx:1},{yb:38,b:[[48,36,2.4],[51,36,2]],f:.2,sx:1},
+     /* เมฆเส้นบางสูงลิบ ลากยาวตามลม */
+     {yb:6,b:[[18,5,2],[28,4,2.2],[38,5,2],[46,4,1.8]],f:.3,sx:3.2,thin:.45},
+     /* ใกล้ขอบฟ้า: เมฆแบนไกลจางในหมอก */
+     {yb:57,b:[[4,55,3],[11,54,3.6],[18,56,2.6]],f:.5,sx:1.8}];
+   const BYR=[[0,8,2,10],[12,4,14,6],[3,11,1,9],[15,7,13,5]];
+   const TN=night?[[150,156,196],[118,124,170],[92,98,146],[72,78,124],[58,62,104]]:dusk?[[255,236,226],[252,206,196],[220,170,180],[176,140,168],[140,116,150]]:[[255,255,255],[246,249,255],[222,232,246],[190,206,230],[160,178,210]];
+   const haze=night?[60,62,100]:dusk?[236,190,186]:[214,226,236];
+   /* เมฆฟุ้ง: ความหนาแน่นแบบนุ่ม ขอบจางเป็นปุยด้วย noise หลายชั้น ฐานเลือนสองถึงสามพิกเซล แสงไล่ต่อเนื่องเจ็ดโทน มีหมอกบางรอบก้อน */
+   const T7=night?[[160,166,206],[140,146,190],[120,126,172],[102,108,156],[86,92,140],[72,78,124],[60,64,108]]:dusk?[[255,240,232],[255,224,214],[246,204,198],[228,184,190],[204,164,180],[178,146,170],[154,130,160]]:[[255,255,255],[250,252,255],[238,244,252],[222,232,246],[204,218,238],[186,202,228],[166,184,216]];
+   for(const C of CLD){let top=1e9,x0=1e9,x1=-1e9;for(const[cx,cy,r] of C.b){top=Math.min(top,cy-r);x0=Math.min(x0,cx-r*(C.sx||1)*1.2);x1=Math.max(x1,cx+r*(C.sx||1)*1.2)}const hh=C.yb-top;
+    const dens=(x,y)=>{let d=-1;for(const[cx,cy,r] of C.b){const dx=(x-cx)/(r*1.12*(C.sx||1)),dy=(y-cy)/(r*1.02),q=1-(dx*dx+dy*dy);if(q>d)d=q}
+      d+=(fbm(x*.18,y*.22,511)-.5)*.55+(fbm(x*.5,y*.6,513)-.5)*.22;/* ขอบเป็นปุยหลายระดับ */
+      const bf=(C.yb+1.5-y)/3;if(bf<=0)return -1;if(bf<1)d=d>0?d*bf:d-(1-bf)*.4;/* ฐานเลือน */return d};
+    for(let y=Math.max(0,Math.floor(top-4));y<=C.yb+3;y++)for(let x=Math.max(0,Math.floor(x0-5));x<=Math.min(W-1,x1+5);x++){if(LM[y*W+x]===2)continue;const d=dens(x,y);
+      if(d<=-.08){continue}
+      const a=Math.max(0,Math.min(1,(d+.08)/.42));if(a<=0)continue;
+      /* แสง: ความหนาทางด้านดวงอาทิตย์บังแสง + ใกล้ฐานมืด */
+      let occ=0;for(let k=1;k<=4;k++)occ+=Math.max(0,dens(x+k*1.2,y-k*1.5));occ/=4;
+      let L=1.08-occ*.75-Math.pow(Math.max(0,(y-top)/hh),1.6)*.5+(d<.2?.2:0);
+      L=Math.max(0,Math.min(1,L));const q=(1-L)*6+(BYR[y&3][x&3]/16-.5)*.9;const k=Math.max(0,Math.min(6,Math.round(q)));
+      let col=mix(T7[k],haze,C.f+(y/62)*(y/62)*.3);if(night)col=mix(col,mix(S.topA,S.botA,y/62),.3);
+      P(x,y,col,a*(.55+.45*Math.min(1,d*2.4))*(C.thin||1));if(a>.5)LM[y*W+x]=4}
+    /* หมอกนวลรอบก้อนเมฆ */
+    for(let y=Math.max(0,Math.floor(top-6));y<=C.yb+5;y++)for(let x=Math.max(0,Math.floor(x0-7));x<=Math.min(W-1,x1+7);x++){if(LM[y*W+x]!==1)continue;const d=dens(x,y);if(d>-.3&&d<=-.08)P(x,y,T7[1],(d+.3)/.22*.18)}}
+}
+  /* ---------- แสงและมิติเพิ่ม: เงาเมฆบนพื้น เงาสัมผัสที่ฐาน ไล่อุ่นในที่แจ้งและเย็นในที่ร่ม หมอกแดดใกล้ขอบฟ้า แสงสะท้อนจากพื้นทราย ---------- */
+  {const sunC=night?[150,170,255]:dusk?[255,170,110]:[255,236,190];
+   for(let y=60;y<H;y++)for(let x=0;x<W;x++){const m=LM[y*W+x],c=Gt(x,y);if(m===4||m===1)continue;let o=c;
+     if(m===0&&!night){const cs=fbm(x*.045+3,y*.07,601);if(cs>.56)o=mix(o,[o[0]*.78,o[1]*.8,o[2]*.92],Math.min(1,(cs-.56)*6)*.85)}/* เงาเมฆเคลื่อนบนพื้นทรายและเมือง */
+     if(m===0){let near=0;for(let k=1;k<=3;k++)if(y-k>=0&&LM[(y-k)*W+x]===2)near=Math.max(near,1-(k-1)/3);if(near)o=mix(o,[90,64,48],near*(night?.2:.38))}/* เงาสัมผัสใต้ฐานปิรามิด */
+     if(m===2){const L=(c[0]+c[1]+c[2])/765;if(L>.55&&!night)o=mix(o,sunC,(L-.55)*.5);else if(L<.4)o=mix(o,night?[30,34,80]:[88,96,130],(.4-L)*.35);
+       if(y>110&&!night)o=mix(o,[236,196,140],(y-110)/40*.12)}/* แสงทรายสะท้อนขึ้นที่ชั้นล่าง */
+     if(y<78&&m===0&&!night)o=mix(o,dusk?[240,190,170]:[226,232,236],(78-y)/18*.18);
+     if(o!==c)P(x,y,o)}
+   if(!night){B.glow(84,2,26,dusk?[255,190,140]:[255,248,224],dusk?.22:.14);for(let y=60;y<H;y++)for(let x=0;x<W;x++)if(LM[y*W+x]===2){const c=Gt(x,y);if((c[0]+c[1]+c[2])/765>.78)P(x,y,[255,246,226],.2)}}
+   else for(let y=40;y<H;y++)for(let x=1;x<W;x++)if(LM[y*W+x]===2&&LM[y*W+x+1]!==2&&x<W-1)P(x,y,[170,180,230],.35)}/* แสงจันทร์เป็นขอบสันด้านขวา */
+  if(night){/* ไฟส่องปิรามิดสีอุ่น ดาว ไฟเมือง */
+    for(let k=0;k<50;k++){const x=Math.floor(N(k,1,401)*W),y=Math.floor(N(k,2,401)*40);if(LM[y*W+x]===1)P(x,y,[255,255,255],.3+N(k,3,401)*.5)}
+    B.glow(66,100,34,[255,176,120],.22);B.glow(36,74,22,[255,176,120],.16);B.glow(52,60,16,[255,190,140],.12);
+    for(let k=0;k<220;k++){const y=Math.round(60+Math.pow(N(k,4,402),.8)*36),x=Math.round(N(k,5,402)*(W-1));if(N(k,6,402)>.25&&LM[y*W+x]===0)P(x,y,[255,206,140],.35+N(k,7,402)*.5*(y-58)/36)}
+    for(let y=60;y<150;y++)for(let x=0;x<W;x++){const c=Gt(x,y);if(c[0]>c[2]+20&&y>66)P(x,y,[255,190,130],.08)}}
+  return B.done()}
+
+/* ===== ภาพปารีส v713: หอโครงเหล็กมองตรงจากสนามหญ้ากว้างตามภาพอ้างอิง
+   เสาอากาศและห้องชมวิวบนยอด ลำตัวช่วงบนเรียวโค้งพร้อมโครงไขว้ X ทุกช่อง ชั้นชมวิวที่สองพร้อมราวกันตก
+   ช่วงกลางขาแยกเป็นช่องเปิดสี่เหลี่ยมมีคานป้ายด้านบน ชั้นแรกกว้างมีแถวเสาราวและแถบลายฉลุใต้พื้น
+   ช่วงล่างเป็นซุ้มโค้งใหญ่ลายวงกลมประดับ ขาโค้งกางออกสี่ขา โครงเหล็กถี่สีน้ำตาลบรอนซ์ ด้านซ้ายรับแสง ด้านขวาเงา
+   ลอดซุ้มเห็นอาคารสีครีมสองหอฝั่งตรงข้ามแม่น้ำ แถวต้นไม้ตัดทรงสองข้าง สนามหญ้า ทางเดิน ผู้คนตัวเล็ก
+   แสงตามเวลาท้องถิ่น กลางคืนเปิดไฟส่องโครงเหล็กสีอำพันพร้อมไฟระยิบ ===== */
+function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=B,S=B.S;
+  const SS=4,w=W*SS,h=H*SS,buf=new Float32Array(w*h*3),MK=new Uint8Array(w*h);
+  const put=(x,y,c,m)=>{x|=0;y|=0;if(x<0||y<0||x>=w||y>=h)return;const i=(y*w+x)*3;buf[i]=c[0];buf[i+1]=c[1];buf[i+2]=c[2];if(m!=null)MK[y*w+x]=m};
+  const get=(x,y)=>{x=Math.max(0,Math.min(w-1,x|0));y=Math.max(0,Math.min(h-1,y|0));const i=(y*w+x)*3;return[buf[i],buf[i+1],buf[i+2]]};
+  const H2=(x,y,s)=>fwHk(x|0,y|0,s),sm=t=>t*t*(3-2*t);
+  const vn=(x,y,s)=>{const xi=Math.floor(x),yi=Math.floor(y),fx=sm(x-xi),fy=sm(y-yi),a=H2(xi,yi,s),b=H2(xi+1,yi,s),c=H2(xi,yi+1,s),d=H2(xi+1,yi+1,s);return a+(b-a)*fx+(c-a)*fy+(a-b-c+d)*fx*fy};
+  const fbm=(x,y,s)=>vn(x,y,s)*.5+vn(x*2.1,y*2.1,s+7)*.25+vn(x*4.3,y*4.3,s+13)*.125;
+  /* ---------- ท้องฟ้าโปร่ง ฟ้าเข้มด้านบน ไล่จางลงขอบฟ้า ---------- */
+  const HZ=128;
+  for(let y=0;y<h;y++){const t=Math.min(1,y/(HZ*SS));const c=mix(mix([54,104,186],[96,146,214],Math.min(1,t/.6)),[176,204,232],Math.max(0,(t-.6)/.4));for(let x=0;x<w;x++){const v=(vn(x*.01,y*.01,701)-.5)*6;put(x,y,[c[0]+v,c[1]+v,c[2]+v],1)}}
+  /* ---------- ฉากหลังลอดซุ้ม: อาคารสีครีมสองหอ ---------- */
+  const cream=[226,216,196],creamD=[186,176,160];
+  const box=(x0,y0,x1,y1,c,m)=>{for(let y=Math.round(y0*SS);y<Math.round(y1*SS);y++)for(let x=Math.round(x0*SS);x<Math.round(x1*SS);x++)put(x,y,c,m)};
+  for(const[a,b] of[[33.5,39.5],[50.5,56.5]]){box(a,129.5,b,139,cream,3);box(b-1.4,129.5,b,139,creamD,3);for(let x=a+.9;x<b-1.8;x+=1.5)box(x,131,x+.7,138,[196,188,174],3);box(a-.5,128.8,b+.5,129.8,[244,236,220],3);box(a+1.5,127.6,b-1.5,128.8,[214,204,186],3)}
+  box(39.5,133,50.5,139,[216,208,190],3);for(let x=40;x<50;x+=1.25)box(x,134.3,x+.6,138.4,[164,158,148],3);box(38.8,132.2,51.2,133.2,[240,232,216],3);
+  for(let yy=137*SS;yy<141*SS;yy++)for(let xx=24*SS;xx<66*SS;xx++){const x=xx/SS,y=yy/SS,top=137.4+Math.sin(x*1.1)*.5;if(y<top)continue;put(xx,yy,y<top+.6?[120,160,96]:mix([70,112,64],[46,80,46],(y-top)/3),3)}
+  /* ---------- หอคอย ---------- */
+  const cx=45.3,iron=[104,86,78],ironL=[156,134,118],ironD=[54,44,44],ironM=[82,68,64];
+  const Y={tip:7.5,ant:18,cab0:18,cab1:27,sh1:88,p2a:88,p2b:92.5,m1:112.5,p1a:112.5,p1b:122,base:135.5};
+  const hwOuter=y=>{if(y<Y.cab0)return .45;if(y<Y.cab1)return 2.6;if(y<Y.sh1){const t=(y-Y.cab1)/(Y.sh1-Y.cab1);return 1.9+Math.pow(t,1.8)*6.3}
+    if(y<Y.p2b)return 9.6;if(y<Y.m1){const t=(y-Y.p2b)/(Y.m1-Y.p2b);return 8.3+Math.pow(t,1.2)*6.9}if(y<Y.p1b)return 17.8;const t=(y-Y.p1b)/(Y.base-Y.p1b);return 15.8+Math.pow(t,1.35)*8.2};
+  const lightAt=(u)=>u<0?1:u<.15?.8:.55;/* ซ้ายรับแสง ขวาเงา */
+  const shade=(base,u,occ)=>{let c=mix(ironD,base,lightAt(u));if(u<-.85)c=mix(c,ironL,.55);if(u>.88)c=mix(c,[40,34,36],.4);return mix(c,ironD,occ||0)};
+  /* โครงถักในช่อง: chord ขอบ, คานนอน, เส้นทแยงไขว้ */
+  const lattice=(v,fy,th)=>{if(v<th*1.4||v>1-th*1.4)return 3;if(fy<th*1.6)return 2;if(Math.abs(v-fy)<th||Math.abs(v-(1-fy))<th)return 1;
+    const sv=(v*4)%1,sf=(fy*4)%1;if((Math.abs(sv-sf)<th*.9||Math.abs(sv-(1-sf))<th*.9))return .5;return 0};
+  for(let yy=Math.round(Y.tip*SS);yy<Math.round(Y.base*SS);yy++){const y=yy/SS,hw=hwOuter(y);
+    for(let xx=Math.round((cx-hw-1)*SS);xx<=Math.round((cx+hw+1)*SS);xx++){const x=xx/SS,u=(x-cx)/hw;if(Math.abs(u)>1)continue;let c=null,a=1;
+      if(y<Y.ant){/* เสาอากาศ เสาส่ง และแท่นเล็ก */if(Math.abs(x-cx)<.42+(y>13?.25:0))c=mix(y<11?[200,200,206]:ironL,ironD,u>0?.4:0);if(y>13.5&&y<14.3&&Math.abs(x-cx)<1.4)c=ironM}
+      else if(y<Y.cab1){/* ห้องชมวิวบนยอด: หลังคา แถบกระจก ระเบียง */const fy=(y-Y.cab0)/(Y.cab1-Y.cab0);
+        if(fy<.18)c=shade(iron,u,.2);else if(fy<.45)c=mix([60,62,78],[120,130,150],u<0?.6:.25);else if(fy<.62)c=shade(ironL,u);else{const k=(x*SS|0)%4<2;c=k?shade(iron,u):null;a=.8}
+        if(Math.abs(u)>.92)c=shade(iron,u)}
+      else if(y<Y.sh1){/* ลำตัวช่วงบน: สองหน้าเห็นเป็นสองแถบ มีเสากลาง โครงไขว้ X */const ph=1.4+((y-Y.cab1)/(Y.sh1-Y.cab1))*3.4,fy=((y-Y.cab1)/ph)%1;
+        const half=u<0?(u+1):(u),v=half,L=lattice(v,fy,.09);if(L>=1)c=shade(L===3?ironL:iron,u,L===1?.15:0);else if(L===.5){c=shade(iron,u,.3);a=.55}else{c=shade(ironM,u,.5);a=.22}}
+      else if(y<Y.p2b){/* ชั้นชมวิวที่สอง */const fy=(y-Y.p2a)/(Y.p2b-Y.p2a);if(fy<.22)c=shade(ironL,u);else if(fy<.62){c=(xx%5<2)?shade(iron,u):mix([64,60,66],[110,112,124],.4)}else c=shade(iron,u,.25)}
+      else if(y<Y.m1){/* ช่วงกลาง: สองขา ช่องเปิดตรงกลาง คานป้ายด้านบน */const t=(y-Y.p2b)/(Y.m1-Y.p2b),uin=.5-t*.08,au=Math.abs(u);
+        if(au<uin){if(y<Y.p2b+2.6){c=y<Y.p2b+1.2?shade(iron,u,.2):mix([52,48,56],[90,90,104],.3);if(y>Y.p2b+1.4&&y<Y.p2b+2.4&&(xx%3===0))c=[206,200,190]}else continue}
+        else{const v=(au-uin)/(1-uin),vv=u<0?1-v:v,ph=3.2,fy=((y-Y.p2b)/ph)%1,L=lattice(vv,fy,.085);if(L>=1)c=shade(L===3?ironL:iron,u,L===1?.12:0);else if(L===.5){c=shade(iron,u,.3);a=.6}else{c=shade(ironM,u,.45);a=.32}}}
+      else if(y<Y.p1b){/* ชั้นแรก: พื้น ราว แถวเสา แถบลายฉลุ */const fy=(y-Y.p1a)/(Y.p1b-Y.p1a);
+        if(fy<.1)c=mix(shade(ironL,u),[220,206,190],.35);else if(fy<.42){const col=(xx%6)<2;c=col?shade(ironL,u):mix([52,56,72],[100,110,132],.25+(u<0?.2:0))}else if(fy<.5)c=shade(ironD,u);else if(fy<.56)c=shade(ironL,u);
+        else{const k=((xx>>1)+(yy>>1))%4===0||((xx>>1)-(yy>>1))%4===0;c=k?shade(ironL,u,.1):shade(ironM,u,.35);a=k?1:.8}}
+      else{/* ช่วงล่าง: ขาโค้งสี่ขาและซุ้มโค้ง */const t=(y-Y.p1b)/(Y.base-Y.p1b),au=Math.abs(u);
+        /* ขอบในของขา (ซุ้ม) */const archTop=Y.p1b+1.4,archR=(Y.base-archTop),dxA=(x-cx)/(hw*.62),archY=archTop+archR*(1-Math.sqrt(Math.max(0,1-dxA*dxA)));
+        const legIn=.62-t*.0;
+        if(au<legIn&&y>archY+1.4){continue}
+        if(au<legIn&&y>archY-.2){/* แถบซุ้มโค้งพร้อมวงกลมประดับ */const ang=Math.atan2(y-archY,x-cx);c=shade(ironL,u,.05);if(((xx+yy)>>1)%3===0)c=shade(ironD,u)}
+        else if(au<legIn){/* ส่วนเหนือซุ้ม: ลายวงกลมเรียงและโครงถักถี่ */const ring=Math.hypot(((x*2.2)%2)-1,((y*2.2)%2)-1);c=ring>.55&&ring<.85?shade(ironL,u,.1):shade(ironM,u,.4);a=ring>.55&&ring<.85?1:.7}
+        else{const v=(au-legIn)/(1-legIn),vv=u<0?1-v:v,ph=3.6,fy=((y-Y.p1b)/ph)%1,L=lattice(vv,fy,.07);if(L>=1)c=shade(L===3?ironL:iron,u,L===1?.12:0);else if(L===.5){c=shade(iron,u,.32);a=.65}else{c=shade(ironM,u,.5);a=.4}}}
+      if(!c)continue;
+      /* หมอกแดดช่วงบนจางกว่า และสะท้อนแสงฟ้า */const hz=Math.max(0,(80-y)/80)*.16;c=mix(c,[170,196,226],hz);
+      const o=get(xx,yy);put(xx,yy,mix(o,c,a),a>.5?2:MK[yy*w+xx])}}
+  /* ---------- แถวต้นไม้ตัดทรงสองข้าง ---------- */
+  const tree=(x0,x1,yTop,yBot,s)=>{for(let yy=Math.round(yTop*SS);yy<Math.round(yBot*SS);yy++)for(let xx=Math.round(x0*SS);xx<Math.round(x1*SS);xx++){const x=xx/SS,y=yy/SS;
+      const crown=yTop+3*Math.abs(Math.sin((x+s)*.42))*.7+(fbm(x*.4,0,s)-.5)*3;if(y<crown)continue;const n=fbm(x*.6,y*.6,s+3),lit=n+(yBot-y)/(yBot-yTop)*.3-(x>45?.15:0);
+      let c=lit>.75?[120,170,96]:lit>.55?[86,140,74]:lit>.38?[60,108,58]:[40,78,44];if(y>yBot-3)c=mix(c,[30,54,34],.5);if(H2(xx>>1,yy>>1,s+7)>.93)c=mix(c,[160,200,120],.4);put(xx,yy,c,5)}};
+  tree(-1,27,128,142,11);tree(63,91,127.5,142,23);
+  /* ---------- สนามหญ้า ทางเดิน ผู้คน ---------- */
+  for(let yy=142*SS;yy<h;yy++)for(let xx=0;xx<w;xx++){const x=xx/SS,y=yy/SS,t=(y-142)/8;let c=mix([110,160,82],[92,146,70],t);const st=Math.sin(x*1.3+y*.4)>.6;if(st)c=mix(c,[130,178,96],.35);c=mix(c,[0,0,0],(fbm(x*.3,y*.6,709)-.5)*.2);put(xx,yy,c,6)}
+  box(0,141.2,91,142.2,[196,190,176],6);for(let x=0;x<90;x+=1)if(H2(x,0,711)>.55)box(x,141.4,x+.6,142,[150,150,160],6);
+  for(let k=0;k<26;k++){const x=4+H2(k,1,713)*82,y=141+H2(k,2,713)*2.5,cl=[[60,60,80],[200,80,80],[230,230,230],[80,100,160],[40,40,40]][Math.floor(H2(k,3,713)*5)];box(x,y,x+.6,y+1.6,cl,6);box(x,y-.5,x+.6,y,[220,190,170],6)}
+  box(44,144.5,44.8,147,[60,70,110],6);box(44,143.8,44.8,144.5,[220,190,170],6);box(45.4,144.6,46.2,147,[210,110,120],6);box(45.4,143.9,46.2,144.6,[220,190,170],6);
+  /* เงาหอบนพื้น */for(let yy=142*SS;yy<147*SS;yy++)for(let xx=Math.round(30*SS);xx<Math.round(64*SS);xx++){const x=xx/SS,y=yy/SS;if(Math.abs(x-48-(y-142)*1.5)<4-(y-142)*.5)put(xx,yy,mix(get(xx,yy),[40,70,40],.3),6)}
+  /* ---------- ย่อและไล่แสงตามเวลา ---------- */
+  const LM=new Uint8Array(W*H);
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){let r=0,g=0,b=0,mt=0,ms=0,mb=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=(y*SS+j)*w+x*SS+i,k=q*3;r+=buf[k];g+=buf[k+1];b+=buf[k+2];const m=MK[q];if(m===2)mt++;if(m===1)ms++;if(m===3)mb++}
+    const n=SS*SS;let c=[r/n,g/n,b/n];const ft=mt/n,fs=ms/n;LM[y*W+x]=ft>.3?2:fs>.9?1:mb/n>.6?3:0;const skyC=mix(S.topA,S.botA,Math.min(1,y/HZ));
+    if(night){let g2=mix(c.map(v=>v*.22),[22,28,64],.5);if(fs>0)g2=mix(g2,skyC,fs*.85);
+      if(ft>0){/* ไฟส่องโครงเหล็กสีอำพัน */const lum=(c[0]+c[1]+c[2])/765,warm=[255,178,104];g2=mix(g2,mix(warm.map(v=>v*(.35+lum*1.1)),[255,214,160],lum>.45?.4:0),ft*.92)}c=g2}
+    else if(dusk){let g2=[c[0]*1.02+16,c[1]*.84+4,c[2]*.76+10];if(fs>0)g2=mix(g2,skyC,fs*.6);if(ft>0)g2=mix(g2,[c[0]*1.15+24,c[1]*.84+6,c[2]*.62],ft*.5);c=g2}
+    P(x,y,c.map(v=>Math.round((v+dz(x,y)*4)/2)*2))}
+  if(night){for(let k=0;k<60;k++){const x=Math.floor(N(k,1,721)*W),y=Math.floor(N(k,2,721)*100);if(LM[y*W+x]===1)P(x,y,[255,255,255],.3+N(k,3,721)*.5)}
+    for(let k=0;k<70;k++){const y=10+N(k,4,722)*120,hw=hwOuter(y),x=cx+(N(k,5,722)*2-1)*hw*.95;if(LM[Math.round(y)*W+Math.round(x)]===2)P(x,y,[255,250,236],.85)}/* ไฟระยิบ */
+    B.glow(cx,9,6,[255,240,220],.5);B.glow(cx,108,26,[255,170,100],.12);for(let y=126;y<140;y++)for(let x=30;x<60;x++)if(LM[y*W+x]===3){P(x,y,[255,214,160],.35);if(N(x,y,723)>.8)P(x,y,[255,236,200],.6)}}
+  else{/* ขอบสันซ้ายรับแสงสว่างขึ้นเล็กน้อย */
+    for(let y=8;y<136;y++)for(let x=1;x<W;x++)if(LM[y*W+x]===2&&LM[y*W+x-1]!==2)P(x,y,dusk?[255,200,150]:[214,196,176],.35)}
+  return B.done()}
+
+function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,mix,night,dusk}=B,HZ=100;
+  B.sky(0,HZ,dusk?[255,170,140]:null);B.cloud(66,26,26,night?.3:.65);
+  /* เส้นขอบฟ้าแมนฮัตตัน */
+  const sk=[[30,44,8],[39,38,7],[47,58,6],[54,40,9],[64,50,6],[71,34,8],[80,46,7],[87,30,6],[24,30,6],[18,26,6]];
+  for(const[x0,h,w] of sk){for(let y=HZ-h;y<HZ;y++)for(let x=x0;x<x0+w;x++){let col=night?[60,66,100]:dusk?[150,130,150]:[176,188,208];if(x===x0)col=night?[80,90,130]:[214,222,236];if((x-x0)%2===1&&(y-HZ+h)%3===1)col=night?(N(x,y,331)>.45?[255,214,150]:[70,76,110]):mix(col,[230,238,248],.4);P(x,y,col)}}
+  for(let y=HZ-70;y<HZ-58;y++)P(50,y,night?[200,200,220]:[170,176,196]);for(let y=HZ-64;y<HZ-58;y++){P(49,y,night?[120,126,160]:[190,196,214]);P(51,y,night?[120,126,160]:[190,196,214])}P(50,HZ-71,[255,90,90]);
+  for(let x=0;x<W;x++)P(x,HZ,night?[50,54,80]:[150,160,176]);
+  B.water(HZ+1,H,night?[[30,40,76],[16,22,46]]:dusk?[[150,130,170],[90,100,150]]:[[110,160,200],[70,116,170]],1);
+  /* เกาะและฐานรูปปั้น */
+  const sx=18,gy=132;for(let y=gy;y<gy+5;y++)for(let x=-16;x<=16;x++)if(Math.abs(x)<16-(y-gy)*.5)P(sx+x,y,night?[60,70,60]:[110,150,96]);
+  for(let y=gy-22;y<gy;y++){const w=y<gy-16?4:y<gy-8?5:7;for(let x=-w;x<=w;x++)P(sx+x,y,x<0?(night?[150,136,130]:[214,200,180]):(night?[110,100,100]:[176,160,140]))}
+  for(let y=gy-26;y<gy-22;y++)for(let x=-3;x<=3;x++)P(sx+x,y,night?[140,126,124]:[200,186,170]);
+  /* รูปปั้นสีทองแดงเขียว */
+  const cu=night?[90,160,140]:[110,180,156],cuD=night?[56,110,100]:[70,130,116];
+  for(let y=gy-50;y<gy-26;y++){const t=(y-gy+50)/24,w=Math.round(1.5+t*2.5);for(let x=-w;x<=w;x++)P(sx+x,y,x>0?cuD:cu)}
+  for(let y=gy-55;y<gy-50;y++)for(let x=-1;x<=1;x++)P(sx+x,y,cu);for(const[a,b] of[[-2,-57],[0,-58],[2,-57],[-3,-55],[3,-55]])P(sx+a,gy+b,cu);
+  for(let j=0;j<12;j++)P(sx+2+Math.round(j*.2),gy-52-j,cu);P(sx+3,gy-65,[255,180,120]);P(sx+4,gy-65,[255,200,140]);P(sx+3,gy-66,[255,140,100]);B.glow(sx+3,gy-65,4,[255,200,140],night?.6:.3);
+  for(let y=gy-46;y<gy-40;y++)P(sx-3,y,cuD);
+  if(night)B.glow(sx,gy-40,18,[200,255,230],.08);
+  /* เรือข้ามฟาก */
+  const fx=60,fy=128;for(let x=-11;x<=11;x++){P(fx+x,fy,[255,255,255]);P(fx+x,fy+1,night?[60,60,80]:[110,110,130])}for(let x=-8;x<=8;x++){P(fx+x,fy-1,night?[255,170,120]:[255,150,110]);P(fx+x,fy-2,night?[255,170,120]:[255,150,110])}for(let x=-6;x<=6;x+=2)P(fx+x,fy-2,night?[255,230,180]:[220,236,250]);
+  return B.done()}
+Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:54});
+
+/* ===== v714 บันทึกความคืบหน้าเที่ยวบินอัตโนมัติ: ถ้าเผลอกดออก ปิดแท็บ หรือสลับแอป กลับมาเล่นต่อจากจุดเดิมได้
+   บันทึกทุก 4 วินาทีระหว่างเล่น และทุกครั้งที่ซ่อนหน้าหรือกดออก เก็บในเครื่องของผู้ใช้แยกตามบัญชี
+   เวลาในเกมเลื่อนตามช่วงที่หยุดไป ตัวจับเวลาไม่หมดระหว่างที่ออกไป จบเที่ยวบินแล้วล้างข้อมูลที่บันทึกไว้ ===== */
+const FW_SVK='fwSave1:';
+function fwSvKey(){let u='g';try{u=(META&&META.current)||'g'}catch(e){}return FW_SVK+u}
+function fwSvGet(){try{const s=localStorage.getItem(fwSvKey());return s?JSON.parse(s,(k,v)=>v&&typeof v==='object'&&v.__set?new Set(v.__set):v&&typeof v==='object'&&v.__map?new Map(v.__map):v):null}catch(e){return null}}
+function fwSvClear(){try{localStorage.removeItem(fwSvKey())}catch(e){}}
+function fwSvSnap(){try{if(!V||!V.fly||V.fly.ph!=='play'||!V.fly.w)return;const seen=new WeakSet();
+  const js=JSON.stringify({v:1,t:Date.now(),pn:(typeof performance!=='undefined'?performance.now():0),fly:V.fly,flyRoute:V.flyRoute,flySt:V.flySt,lb2:V.lb2,fwTC:V.fwTC},function(k,v){
+    if(typeof v==='function')return undefined;if(v&&typeof v==='object'){if(typeof Node!=='undefined'&&v instanceof Node)return undefined;if(typeof CanvasRenderingContext2D!=='undefined'&&v instanceof CanvasRenderingContext2D)return undefined;if(typeof ImageData!=='undefined'&&v instanceof ImageData)return undefined;if(typeof HTMLCanvasElement!=='undefined'&&v instanceof HTMLCanvasElement)return undefined;
+      if(v instanceof Set)return{__set:[...v]};if(v instanceof Map)return{__map:[...v]};if(seen.has(v)&&!Array.isArray(v)&&Object.keys(v).length>6)return undefined;seen.add(v)}return v});
+  localStorage.setItem(fwSvKey(),js)}catch(e){}}
+/* เลื่อนเวลาที่เก็บไว้ทั้งหมดไปข้างหน้าเท่ากับช่วงที่ออกไป */
+function fwSvShift(o,dEp,dPn,depth){if(!o||typeof o!=='object'||depth>12)return;for(const k of Object.keys(o)){const v=o[k];if(typeof v==='number'){if(v>1e12&&v<4e12)o[k]=v+dEp;else if(dPn&&/^(t|t0|t1|at|since|until|start|end|last|next|due|ts|tp|exp|st|en)[A-Z0-9_]*$|(At|T0|Time|Ts)$/.test(k)&&v>1000&&Math.abs(v-dPn)<6e6)o[k]=v+dPn}else if(v&&typeof v==='object')fwSvShift(v,dEp,dPn,depth+1)}}
+function fwSvResume(){const s=fwSvGet();if(!s||!s.fly){toast('ไม่พบเที่ยวบินที่บันทึกไว้');return}
+  const now=Date.now(),dEp=now-s.t,pn=(typeof performance!=='undefined'?performance.now():0),dPn=pn-(s.pn+(now-s.t));
+  try{fwSvShift(s.fly,dEp,0,0)}catch(e){}
+  V.flyRoute=s.flyRoute;V.flySt=s.flySt;if(s.lb2)V.lb2=s.lb2;V.fwTC=!!s.fwTC;V.fly=s.fly;V.flyBk=0;V.view='fly';
+  try{const r=FLY_ROUTES.find(x=>x.id===s.flyRoute);if(r)fwRouteSetup(r)}catch(e){}
+  document.documentElement.classList.add('fw-lock');render();window.scrollTo(0,0);setTimeout(()=>{try{const w=fwW();if(w)fwMsg(w,'กลับมาเล่นต่อจากที่บันทึกไว้')}catch(e){}},300)}
+function fwSvCard(){const s=fwSvGet();if(!s||!s.fly||s.fly.ph!=='play')return'';const r=FLY_ROUTES.find(x=>x.id===s.flyRoute)||{no:'',city:''};let ph='';try{ph=(r.ev&&r.ev[s.fly.i]&&r.ev[s.fly.i].ph)||''}catch(e){}
+  const ago=Math.max(1,Math.round((Date.now()-s.t)/60000)),ag=ago<60?ago+' นาทีที่แล้ว':Math.round(ago/60)+' ชั่วโมงที่แล้ว';
+  return `<section class="l2-box sv5" id="fx-sv"><div class="sv5-t"><b>มีเที่ยวบินที่ยังเล่นค้างไว้</b><span>${esc(r.no)} ไป${esc(r.city)} ช่วงที่ ${(s.fly.i||0)+1} จาก 12${ph?' '+esc(ph):''}</span><small>บันทึกล่าสุด ${ag}</small></div><div class="sv5-b"><button class="l2-next" data-svr="go">เล่นต่อ</button><button class="sv5-no" data-svr="drop">เริ่มใหม่</button></div></section>`}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-svr]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(b.dataset.svr==='go')fwSvResume();else{fwSvClear();const el=document.getElementById('fx-sv');if(el)el.remove();toast('ล้างเที่ยวบินที่บันทึกไว้แล้ว')}},true);
+{const o=fwL2Tabs;fwL2Tabs=function(){let h=o.apply(this,arguments);try{const c=fwSvCard();if(c)h=c+h}catch(e){}return h}}
+{const o=flyAct;flyAct=function(k,b){
+  if(k==='fly-quit'&&V.fly&&V.fly.ph==='play'){fwSvSnap();V.fly=null;V.flyBk=null;document.documentElement.classList.remove('fw-lock');toast('บันทึกความคืบหน้าไว้แล้ว กดเล่นต่อได้ที่หน้าเตรียมบิน');render();return}
+  const r=o.apply(this,arguments);try{if(k==='fly-go'&&V.fly&&V.fly.ph==='play'&&V.fly.i===0)fwSvClear()}catch(e){}return r}}
+setInterval(()=>{try{if(V&&V.fly){if(V.fly.ph==='play')fwSvSnap();else if(fwSvGet())fwSvClear()}}catch(e){}},4000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')fwSvSnap()});
+window.addEventListener('pagehide',fwSvSnap);
+/* แก้ป้ายชื่อชั้นบนแผนที่ย่อ: ป้ายภารกิจส่งค่าชั้นมาโดยไม่มีข้อมูลห้องโดยสาร ใช้ข้อมูลจากเที่ยวบินปัจจุบันแทน */
+fwDeckName=function(w){const W2=(w&&w.decks)?w:(typeof fwW==='function'?fwW():null);const d=w&&w.deck;if(d===0&&W2&&W2.decks&&W2.decks[0]&&W2.decks[0].nb)return'ห้องโดยสาร';return['ชั้นล่าง','ชั้นบน','สนามบิน','โรงแรม'][d]||''};
 
 /* ===== โหมดสำรวจเครื่องบิน: ไม่มีภารกิจ เดินดูทั้งลำ และเปิดทุกฉากได้จากเมนู ===== */
 const FW_FREE=[

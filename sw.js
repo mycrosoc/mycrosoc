@@ -1,5 +1,5 @@
 /* MYCROSOC service worker: เปิดเร็วและใช้งานออฟไลน์ได้ */
-const VERSION='mycrosoc-v710';
+const VERSION='mycrosoc-v714';
 const CORE=['./','./index.html','./app.css','./game.js','./tgz.js','./tg1.js','./thfc.js','./lsim.js','./fonts/chula-1.woff','./fonts/chula-2.woff'];
 // เก็บทีละไฟล์ ไฟล์ไหนโหลดไม่ขึ้นไม่ทำให้แคชทั้งชุดว่าง
 self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>Promise.all(CORE.map(u=>fetch(u,{cache:'no-cache'}).then(r=>{if(r&&r.ok)return c.put(u,r)}).catch(()=>{})))).then(()=>self.skipWaiting()))});
