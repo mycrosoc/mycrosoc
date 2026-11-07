@@ -19447,7 +19447,7 @@ function fwMini(cv,w,now){const D=w.decks[w.deck],s=2;if(cv.width!==D.W*s+4||cv.
   const T0=fwEvTarget();if(T0&&!T0.auto&&T0.d===w.deck&&(now/400|0)%2)R('#E31414',1+T0.x*s,1+T0.y*s,4,4);w.bells.forEach(b=>{if(b.d===w.deck)R('#FF7A7A',1+b.x*s,1+b.y*s,4,4)});fwLifeMini(R,w,s,now);R('#2B1A1F',1+Math.floor(w.x)*s,1+Math.floor(w.y)*s,4,4);R('#FFFFFF',2+Math.floor(w.x)*s,2+Math.floor(w.y)*s,2,2)}
 
 /* ---------- วนวาด ---------- */
-function fwLoop(){const w=fwW(),cv=document.querySelector('canvas.fw-cv');if(!w||!cv||V.view!=='fly'||V.fly.ph!=='play'){FW.raf=0;document.documentElement.classList.remove('fw-lock');return}const now=Date.now(),dt=Math.min(.05,(now-(w.last||now))/1000);w.last=now;if(!fwBusy())fwTick(w,dt);
+function fwLoop(){{const w0=fwW();if(w0&&w0.act&&!w0.act.pt)w0.act=null}const w=fwW(),cv=document.querySelector('canvas.fw-cv');if(!w||!cv||V.view!=='fly'||V.fly.ph!=='play'){FW.raf=0;document.documentElement.classList.remove('fw-lock');return}const now=Date.now(),dt=Math.min(.05,(now-(w.last||now))/1000);w.last=now;if(!fwBusy())fwTick(w,dt);
   const box=cv.parentElement,cw=box.clientWidth,ch=box.clientHeight;if(!cw||!ch){FW.raf=requestAnimationFrame(fwLoop);return}
   const S=cw>=900?3:2,CW=Math.ceil(cw/S),CH=Math.ceil(ch/S);if(cv.width!==CW||cv.height!==CH){cv.width=CW;cv.height=CH}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.setTransform(1,0,0,1,0,0);fwDrawTop(c,(col,x,y,ww,hh)=>{c.fillStyle=col;c.fillRect(x,y,ww,hh)},CW,CH,w,now);
   const mm=document.querySelector('canvas.fw-mm');if(mm)fwMini(mm,w,now);
@@ -20032,9 +20032,9 @@ function fwLifeTop(c,R,w,cx,cy,now){const T=FW.T,bob=(now/320|0)%2,D=w.decks[w.d
     if(pt.auto){const X=Math.round(pt.x*T-cx),Y=Math.round(pt.y*T-cy),k=(now/180|0)%4;R('rgba(255,122,122,.55)',X-6,Y+4,12,2);R('rgba(227,20,20,.75)',X-4+k,Y+4,3,2);return}
     if(pt.seat){const sc=fwSeatC(pt.seat),X=Math.round(sc[0]*T-cx),Y=Math.round(pt.seat.y*T-cy);c.drawImage(fwLi(pt.ic),X-6,Y-30-bob);return}
     const X=Math.round(pt.x*T-cx),Y=Math.round(pt.y*T-cy);c.drawImage(fwLi(pt.ic||'duty'),X-6,Y-46-bob)})});
-  (w.crew||[]).forEach(n=>{if(n.d!==w.deck||n.hide||n.sit||!n.ic||fwCrEv(n)||n.mv)return;const k=n.ic==='demo'?'m'+(w.act&&w.act.pt.demo?Math.max(0,w.act.li):Math.floor((now-((w.go&&w.go.demo)||0))/1800)%5):n.ic;c.drawImage(fwLi(k),Math.round(n.x*T-cx)-6,Math.round(n.y*T-cy)-46-bob)});
+  (w.crew||[]).forEach(n=>{if(n.d!==w.deck||n.hide||n.sit||!n.ic||fwCrEv(n)||n.mv)return;const k=n.ic==='demo'?'m'+(w.act&&(w.act.pt&&w.act.pt.demo)?Math.max(0,w.act.li):Math.floor((now-((w.go&&w.go.demo)||0))/1800)%5):n.ic;c.drawImage(fwLi(k),Math.round(n.x*T-cx)-6,Math.round(n.y*T-cy)-46-bob)});
   if(w.act){const k=Math.min(1,(now-w.act.t0)/w.act.dur),X=Math.round(w.x*T-cx),Y=Math.round(w.y*T-cy);R('#FFFFFF',X-12,Y-37,24,5);R('#FFD6D6',X-11,Y-36,22,3);R('#E31414',X-11,Y-36,Math.round(22*k),3);
-    if(w.act.pt.demo)c.drawImage(fwLi('m'+Math.max(0,Math.min(4,w.act.li))),X-6,Y-54);else if(w.act.pt.ic)c.drawImage(fwLi(w.act.pt.ic),X-6,Y-54)}}
+    if((w.act.pt&&w.act.pt.demo))c.drawImage(fwLi('m'+Math.max(0,Math.min(4,w.act.li))),X-6,Y-54);else if((w.act.pt&&w.act.pt.ic))c.drawImage(fwLi((w.act.pt&&w.act.pt.ic)),X-6,Y-54)}}
 function fwLifeMini(R,w,s,now){if(!((now/450|0)%2))return;(w.du||[]).forEach(du=>{if(!fwDutyReady(w,du)||!du.pts)return;du.pts.forEach(pt=>{if(pt.done||pt.d!==w.deck||pt.hide)return;R('#FF7A7A',1+Math.floor(pt.x)*s,1+Math.floor(pt.y)*s,4,4);R('#FFFFFF',2+Math.floor(pt.x)*s,2+Math.floor(pt.y)*s,2,2)})})}
 
 /* ---------- แผ่นหน้าที่และการทบทวนเงียบ ---------- */
@@ -24822,7 +24822,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v714';
+const FW_VER='v718';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -25876,7 +25876,7 @@ function fwSgJet(c,W,H,t,night){const R=(col,x,y,w,h)=>{c.fillStyle=col;c.fillRe
     for(let j=0;j<Math.round(spread);j++){const ph=fwHk(i,j,70+((t/120)|0)%6);if(ph<.45){c.globalAlpha=(1-k)*.7+.15;R('#FFFFFF',x+(ph-.2)*spread*2,y+(fwHk(j,i,71)-.5)*spread*2)}}}
   c.globalAlpha=1;for(let j=0;j<14;j++){const ph=fwHk(j,(t/150|0),72);c.globalAlpha=.5;R('#FFFFFF',ph*16-4,94+fwHk(j,1,73)*10);c.globalAlpha=1}}
 const FW_PXT={bkkhkt:'fwHkStatic',bkksin:'fwSgStatic'};
-fwL2PaintHkt=function(){document.querySelectorAll('canvas[data-pxt]').forEach(cv=>{const id=cv.dataset.pxt;if(!FW_PXT[id])return;try{const W=90,H=150;if(cv.width!==W){cv.width=W;cv.height=H}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;const r=fwRtById(id),X=fwL2X(r),n=fwL2Now(X.tz),hr=n.getHours()+n.getMinutes()/60,key=id+Math.floor(hr*4);FW.pxtS=FW.pxtS||{};
+fwL2PaintHkt=function(){document.querySelectorAll('canvas[data-pxt]').forEach(cv=>{const id=cv.dataset.pxt;if(!FW_PXT[id])return;try{const pk=(window.FW_PXHI&&FW_PXHI[id])||1,W=90*pk,H=150*pk;if(cv.width!==W){cv.width=W;cv.height=H}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;const r=fwRtById(id),X=fwL2X(r),n=fwL2Now(X.tz),hr=n.getHours()+n.getMinutes()/60,key=id+Math.floor(hr*4);FW.pxtS=FW.pxtS||{};
    if(!FW.pxtS[key]){FW.pxtS[key]=window[FW_PXT[id]](W,H,hr)}c.drawImage(FW.pxtS[key],0,0);const t=Date.now(),night=fwHSky(hr).L<.55;
    if(id==='bkkhkt'){const HZ=92,R=(col,x,y,w,h)=>{c.fillStyle=col;c.fillRect(Math.round(x),Math.round(y),w||1,h||1)};for(let i=0;i<22;i++){const x=Math.floor(fwHk(i,0,50)*W),y=HZ+3+Math.floor(fwHk(i,1,50)*26);if(((t/220+i*3)|0)%7<2){c.globalAlpha=night?.5:.95;R(night?'#E6E2FF':'#FFFFFF',x,y,2,1);c.globalAlpha=1}}const ph=(t/1600)%(Math.PI*2);for(let x=0;x<W;x++){const st=HZ+35+Math.round(Math.sin(x*.09)*1.5+fwHkN(x*.2,0,6)*2),w=Math.round(Math.sin(ph+x*.05)*1.5)-1;c.globalAlpha=night?.45:.85;R('#FFFFFF',x,st+w);c.globalAlpha=night?.25:.45;R('#E6FBF5',x,st+w+1);c.globalAlpha=1}}
    else if(id==='bkksin'){fwSgJet(c,W,H,t,night);for(let i=0;i<14;i++){if(((t/260+i*5)|0)%6<2){c.globalAlpha=.6;c.fillStyle='#FFFFFF';c.fillRect(Math.floor(fwHk(i,0,74)*60),106+Math.floor(fwHk(i,1,74)*30),2,1);c.globalAlpha=1}}}}catch(e){console.log('pxt',e)}})};
@@ -26224,8 +26224,8 @@ FW_PXT.bkklhr='fwLdStatic';
   for(let i=0;i<10;i++){if(((t/300+i*5)|0)%6<2){c.globalAlpha=.25;c.fillStyle=ng?'#FFD7A0':'#E8DCC8';c.fillRect(Math.floor(fwHk(i,0,95)*84),133+Math.floor(fwHk(i,1,95)*16),3+((fwHk(i,2,95)*4)|0),1)}}c.globalAlpha=1}catch(e){}})}}
 /* ภาพย่อในรายการเที่ยวบิน: ตัดจากภาพเมืองละเอียดชุดเดียวกัน แสงตามเวลาท้องถิ่น */
 const FW_PXCROP={bkkhkt:30,bkksin:28,bkkdxb:22,bkkhnd:30,bkksyd:44,bkklhr:20};
-function fwPxtGet(id){const r=fwRtById(id),X=fwL2X(r),n=fwL2Now(X.tz),hr=n.getHours()+n.getMinutes()/60,key=id+Math.floor(hr*4);FW.pxtS=FW.pxtS||{};if(!FW.pxtS[key])FW.pxtS[key]=window[FW_PXT[id]](90,150,hr);return{cv:FW.pxtS[key],n}}
-{const o=fwCrPaint;fwCrPaint=function(){o.apply(this,arguments);document.querySelectorAll('canvas[data-pxc]').forEach(cv=>{const id=cv.dataset.pxc;if(!FW_PXT[id]||!window[FW_PXT[id]])return;try{const g=fwPxtGet(id),y0=FW_PXCROP[id]||30;if(cv.width!==90){cv.width=90;cv.height=58}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.clearRect(0,0,90,58);c.drawImage(g.cv,0,y0,90,58,0,0,90,58);if(id==='bkklhr'&&window.fwLdHands){c.save();c.translate(0,-y0);fwLdHands(c,g.n,fwHSky(g.n.getHours()).L<.55);c.restore()}if(cv.dataset.lk){c.fillStyle='rgba(255,246,244,.6)';c.fillRect(0,0,90,58)}}catch(e){}})}}
+function fwPxtGet(id){const r=fwRtById(id),X=fwL2X(r),n=fwL2Now(X.tz),hr=n.getHours()+n.getMinutes()/60,key=id+Math.floor(hr*4);FW.pxtS=FW.pxtS||{};if(!FW.pxtS[key])FW.pxtS[key]=window[FW_PXT[id]](90*((window.FW_PXHI&&FW_PXHI[id])||1),150*((window.FW_PXHI&&FW_PXHI[id])||1),hr);return{cv:FW.pxtS[key],n}}
+{const o=fwCrPaint;fwCrPaint=function(){o.apply(this,arguments);document.querySelectorAll('canvas[data-pxc]').forEach(cv=>{const id=cv.dataset.pxc;if(!FW_PXT[id]||!window[FW_PXT[id]])return;try{const g=fwPxtGet(id),y0=FW_PXCROP[id]||30;const pk=(window.FW_PXHI&&FW_PXHI[id])||1;if(cv.width!==90*pk){cv.width=90*pk;cv.height=58*pk}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.clearRect(0,0,cv.width,cv.height);c.drawImage(g.cv,0,y0*pk,90*pk,58*pk,0,0,90*pk,58*pk);if(id==='bkklhr'&&window.fwLdHands){c.save();c.translate(0,-y0);fwLdHands(c,g.n,fwHSky(g.n.getHours()).L<.55);c.restore()}if(cv.dataset.lk){c.fillStyle='rgba(255,246,244,.6)';c.fillRect(0,0,cv.width,cv.height)}}catch(e){}})}}
 
 /* ===== บรีฟลูกเรือ v649: หัวกระดานบรีฟพร้อมคลิปโลหะ เส้นทางบินจุดต่อจุด สถิติแบบแถบ การ์ดห้องนักบินพร้อมอินทรธนู
    มาตรวัดระดับบิน สภาพอากาศปลายทาง มาตรวัดความแปรปรวน และซองเอกสารลับแขกวีไอพี ===== */
@@ -28188,7 +28188,7 @@ function fwCaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=
    ลอดซุ้มเห็นอาคารสีครีมสองหอฝั่งตรงข้ามแม่น้ำ แถวต้นไม้ตัดทรงสองข้าง สนามหญ้า ทางเดิน ผู้คนตัวเล็ก
    แสงตามเวลาท้องถิ่น กลางคืนเปิดไฟส่องโครงเหล็กสีอำพันพร้อมไฟระยิบ ===== */
 function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=B,S=B.S;
-  const SS=4,w=W*SS,h=H*SS,buf=new Float32Array(w*h*3),MK=new Uint8Array(w*h);
+  const K=W/90,SB=4,SS=SB*K,w=W*SB,h=H*SB,buf=new Float32Array(w*h*3),MK=new Uint8Array(w*h);
   const put=(x,y,c,m)=>{x|=0;y|=0;if(x<0||y<0||x>=w||y>=h)return;const i=(y*w+x)*3;buf[i]=c[0];buf[i+1]=c[1];buf[i+2]=c[2];if(m!=null)MK[y*w+x]=m};
   const get=(x,y)=>{x=Math.max(0,Math.min(w-1,x|0));y=Math.max(0,Math.min(h-1,y|0));const i=(y*w+x)*3;return[buf[i],buf[i+1],buf[i+2]]};
   const H2=(x,y,s)=>fwHk(x|0,y|0,s),sm=t=>t*t*(3-2*t);
@@ -28196,7 +28196,12 @@ function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=
   const fbm=(x,y,s)=>vn(x,y,s)*.5+vn(x*2.1,y*2.1,s+7)*.25+vn(x*4.3,y*4.3,s+13)*.125;
   /* ---------- ท้องฟ้าโปร่ง ฟ้าเข้มด้านบน ไล่จางลงขอบฟ้า ---------- */
   const HZ=128;
-  for(let y=0;y<h;y++){const t=Math.min(1,y/(HZ*SS));const c=mix(mix([54,104,186],[96,146,214],Math.min(1,t/.6)),[176,204,232],Math.max(0,(t-.6)/.4));for(let x=0;x<w;x++){const v=(vn(x*.01,y*.01,701)-.5)*6;put(x,y,[c[0]+v,c[1]+v,c[2]+v],1)}}
+  /* ท้องฟ้าโปร่งตามภาพ: ฟ้าใสสีครามสดด้านบน ไล่เป็นฟ้าอ่อนนวลและหมอกขาวบางที่ขอบฟ้า ฝั่งซ้ายบนสว่างกว่าเพราะทิศดวงอาทิตย์ ด้านขวาเข้มกว่าเล็กน้อย
+     มีเกรนละเอียดแบบภาพถ่ายและความไม่สม่ำเสมอของบรรยากาศเป็นผืนกว้าง ใกล้ตัวหอฟ้าสว่างขึ้นจากแสงกระจาย */
+  for(let y=0;y<h;y++){const t=Math.min(1,y/(HZ*SS));for(let x=0;x<w;x++){const ux=x/w;
+    let c=t<.55?mix([82,126,200],[112,154,218],t/.55):mix([112,154,218],[198,216,236],Math.pow((t-.55)/.45,1.4));
+    c=mix(c,[150,186,232],(1-ux)*(1-t)*.22);c=mix(c,[64,104,182],ux*(1-t)*.12);
+    const big=(vn(x*.004,y*.003,701)-.5)*7,gr=(H2(x,y,702)-.5)*5;c=[c[0]+big+gr,c[1]+big+gr,c[2]+big*1.2+gr];put(x,y,c,1)}}
   /* ---------- ฉากหลังลอดซุ้ม: อาคารสีครีมสองหอ ---------- */
   const cream=[226,216,196],creamD=[186,176,160];
   const box=(x0,y0,x1,y1,c,m)=>{for(let y=Math.round(y0*SS);y<Math.round(y1*SS);y++)for(let x=Math.round(x0*SS);x<Math.round(x1*SS);x++)put(x,y,c,m)};
@@ -28214,54 +28219,99 @@ function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=
   const lattice=(v,fy,th)=>{if(v<th*1.4||v>1-th*1.4)return 3;if(fy<th*1.6)return 2;if(Math.abs(v-fy)<th||Math.abs(v-(1-fy))<th)return 1;
     const sv=(v*4)%1,sf=(fy*4)%1;if((Math.abs(sv-sf)<th*.9||Math.abs(sv-(1-sf))<th*.9))return .5;return 0};
   for(let yy=Math.round(Y.tip*SS);yy<Math.round(Y.base*SS);yy++){const y=yy/SS,hw=hwOuter(y);
-    for(let xx=Math.round((cx-hw-1)*SS);xx<=Math.round((cx+hw+1)*SS);xx++){const x=xx/SS,u=(x-cx)/hw;if(Math.abs(u)>1)continue;let c=null,a=1;
-      if(y<Y.ant){/* เสาอากาศ เสาส่ง และแท่นเล็ก */if(Math.abs(x-cx)<.42+(y>13?.25:0))c=mix(y<11?[200,200,206]:ironL,ironD,u>0?.4:0);if(y>13.5&&y<14.3&&Math.abs(x-cx)<1.4)c=ironM}
-      else if(y<Y.cab1){/* ห้องชมวิวบนยอด: หลังคา แถบกระจก ระเบียง */const fy=(y-Y.cab0)/(Y.cab1-Y.cab0);
-        if(fy<.18)c=shade(iron,u,.2);else if(fy<.45)c=mix([60,62,78],[120,130,150],u<0?.6:.25);else if(fy<.62)c=shade(ironL,u);else{const k=(x*SS|0)%4<2;c=k?shade(iron,u):null;a=.8}
-        if(Math.abs(u)>.92)c=shade(iron,u)}
-      else if(y<Y.sh1){/* ลำตัวช่วงบน: สองหน้าเห็นเป็นสองแถบ มีเสากลาง โครงไขว้ X */const ph=1.4+((y-Y.cab1)/(Y.sh1-Y.cab1))*3.4,fy=((y-Y.cab1)/ph)%1;
-        const half=u<0?(u+1):(u),v=half,L=lattice(v,fy,.09);if(L>=1)c=shade(L===3?ironL:iron,u,L===1?.15:0);else if(L===.5){c=shade(iron,u,.3);a=.55}else{c=shade(ironM,u,.5);a=.22}}
-      else if(y<Y.p2b){/* ชั้นชมวิวที่สอง */const fy=(y-Y.p2a)/(Y.p2b-Y.p2a);if(fy<.22)c=shade(ironL,u);else if(fy<.62){c=(xx%5<2)?shade(iron,u):mix([64,60,66],[110,112,124],.4)}else c=shade(iron,u,.25)}
+    for(let xx=Math.round((cx-hw-1)*SS);xx<=Math.round((cx+hw+1)*SS);xx++){const x=xx/SS,u=(x-cx)/hw,XX=Math.floor(x*4),YY=Math.floor(y*4);if(Math.abs(u)>1)continue;let c=null,a=1;
+      if(y<Y.ant){/* เสาอากาศตามภาพ: ส่วนบนสีขาวเรียว ส่วนล่างโครงเหล็กหนาขึ้น มีแท่นจานเล็กสองชั้น */const ax=Math.abs(x-cx),wa=y<11?.32:y<14?.45:.62;
+        if(ax<wa)c=y<11?mix([236,236,240],[176,176,186],u>0?.6:0):shade(ironL,u,.05);if(y>12.6&&y<13.2&&ax<.9)c=shade(iron,u);if(y>15.4&&y<16.2&&ax<1.3)c=shade(ironM,u);if(y>16.6&&ax<1.7&&((XX+YY)%3===0))c=shade(iron,u)}
+      else if(y<Y.cab1){/* ยอดหอตามภาพ: ยอดแหลมเล็กเป็นซี่ หลังคาโดม แถบห้องกระจกมืด ระเบียงยื่นสองชั้น ราวกันตก */const fy=(y-Y.cab0)/(Y.cab1-Y.cab0),au=Math.abs(u);
+        if(fy<.14){if(au<.55||(XX%3===0&&au<.9))c=shade(iron,u,.15)}else if(fy<.24)c=shade(ironL,u,.05);else if(fy<.5){c=mix([40,42,56],[96,104,128],u<0?.55:.2);if(XX%4===0)c=shade(iron,u,.2)}
+        else if(fy<.58)c=mix(shade(ironL,u),[220,206,190],.3);else if(fy<.74){c=XX%3===0?shade(ironL,u):shade(ironD,u,.2);a=.85}else if(fy<.82)c=shade(ironL,u);else{c=(XX%2===0)?shade(iron,u,.15):null;a=.8}}
+      else if(y<Y.sh1){/* ลำตัวช่วงบนตามภาพ: สองเสาคู่ขอบนอกหนา เสากลางแบ่งหน้าเป็นสองแถว โครงไขว้ X ช่องเล็กถี่ช่วงบนแล้วสูงขึ้นทางล่าง
+          จุดไฟประดับสีขาวที่ข้อต่อ ช่วงล่างเห็นโครงด้านหลังจางลึกเข้าไปเป็นมิติ */const tt=(y-Y.cab1)/(Y.sh1-Y.cab1),ph=1.05+tt*2.6,fy=((y-Y.cab1)/ph)%1,half=u<0?(u+1):u,Lt=lattice(half,fy,.1);
+        const node=(fy<.16||fy>.92)&&(half<.12||half>.88||Math.abs(half-.5)<.1);
+        if(Lt===3)c=mix(shade(ironL,u),u<0?[200,184,168]:[80,66,62],.2);else if(Lt>=1)c=shade(iron,u,Lt===1?.12:0);else if(Lt===.5){c=shade(iron,u,.28);a=.6}
+        else{/* ช่องว่าง: ช่วงล่างเห็นโครงด้านหลัง */const back=tt>.35?(((XX+YY*1.3)%7<1.2)||((XX-YY*1.3+700)%7<1.2)):false;if(back){c=mix(shade(ironM,u,.4),[150,176,214],.35);a=.55}else{c=shade(ironM,u,.5);a=.16}}
+        if(node&&H2(XX,YY,731)>.55){c=[236,234,226];a=.9}}
+      else if(y<Y.p2b){/* ชั้นสองตามภาพ: บัวบนสว่าง แถบหน้าต่างเรียงมีเสาคั่น คานหนาด้านล่าง ระเบียงยื่นออกเล็กน้อย */const fy=(y-Y.p2a)/(Y.p2b-Y.p2a);
+        if(fy<.16)c=mix(shade(ironL,u),[222,208,192],.35);else if(fy<.56){c=(XX%5<2)?shade(ironL,u,.05):mix([46,48,60],[110,118,140],u<0?.45:.2)}else if(fy<.7)c=shade(ironD,u);else if(fy<.8)c=shade(ironL,u);else{c=(XX%3===0)?shade(iron,u):shade(ironD,u,.3);a=.85}}
       else if(y<Y.m1){/* ช่วงกลาง: สองขา ช่องเปิดตรงกลาง คานป้ายด้านบน */const t=(y-Y.p2b)/(Y.m1-Y.p2b),uin=.5-t*.08,au=Math.abs(u);
-        if(au<uin){if(y<Y.p2b+2.6){c=y<Y.p2b+1.2?shade(iron,u,.2):mix([52,48,56],[90,90,104],.3);if(y>Y.p2b+1.4&&y<Y.p2b+2.4&&(xx%3===0))c=[206,200,190]}else continue}
+        if(au<uin){if(y<Y.p2b+2.6){c=y<Y.p2b+1.2?shade(iron,u,.2):mix([52,48,56],[90,90,104],.3);if(y>Y.p2b+1.4&&y<Y.p2b+2.4&&(XX%3===0))c=[206,200,190]}else continue}
         else{const v=(au-uin)/(1-uin),vv=u<0?1-v:v,ph=3.2,fy=((y-Y.p2b)/ph)%1,L=lattice(vv,fy,.085);if(L>=1)c=shade(L===3?ironL:iron,u,L===1?.12:0);else if(L===.5){c=shade(iron,u,.3);a=.6}else{c=shade(ironM,u,.45);a=.32}}}
-      else if(y<Y.p1b){/* ชั้นแรก: พื้น ราว แถวเสา แถบลายฉลุ */const fy=(y-Y.p1a)/(Y.p1b-Y.p1a);
-        if(fy<.1)c=mix(shade(ironL,u),[220,206,190],.35);else if(fy<.42){const col=(xx%6)<2;c=col?shade(ironL,u):mix([52,56,72],[100,110,132],.25+(u<0?.2:0))}else if(fy<.5)c=shade(ironD,u);else if(fy<.56)c=shade(ironL,u);
-        else{const k=((xx>>1)+(yy>>1))%4===0||((xx>>1)-(yy>>1))%4===0;c=k?shade(ironL,u,.1):shade(ironM,u,.35);a=k?1:.8}}
-      else{/* ช่วงล่าง: ขาโค้งสี่ขาและซุ้มโค้ง */const t=(y-Y.p1b)/(Y.base-Y.p1b),au=Math.abs(u);
-        /* ขอบในของขา (ซุ้ม) */const archTop=Y.p1b+1.4,archR=(Y.base-archTop),dxA=(x-cx)/(hw*.62),archY=archTop+archR*(1-Math.sqrt(Math.max(0,1-dxA*dxA)));
-        const legIn=.62-t*.0;
-        if(au<legIn&&y>archY+1.4){continue}
-        if(au<legIn&&y>archY-.2){/* แถบซุ้มโค้งพร้อมวงกลมประดับ */const ang=Math.atan2(y-archY,x-cx);c=shade(ironL,u,.05);if(((xx+yy)>>1)%3===0)c=shade(ironD,u)}
-        else if(au<legIn){/* ส่วนเหนือซุ้ม: ลายวงกลมเรียงและโครงถักถี่ */const ring=Math.hypot(((x*2.2)%2)-1,((y*2.2)%2)-1);c=ring>.55&&ring<.85?shade(ironL,u,.1):shade(ironM,u,.4);a=ring>.55&&ring<.85?1:.7}
-        else{const v=(au-legIn)/(1-legIn),vv=u<0?1-v:v,ph=3.6,fy=((y-Y.p1b)/ph)%1,L=lattice(vv,fy,.07);if(L>=1)c=shade(L===3?ironL:iron,u,L===1?.12:0);else if(L===.5){c=shade(iron,u,.32);a=.65}else{c=shade(ironM,u,.5);a=.4}}}
+      else if(y<Y.p1b){/* ชั้นแรก ตามภาพ: หลังคาบาง ระเบียงกระจกมีเสาเรียง บัวคานสว่าง แถบคานเข้มมีหมุด เส้นสว่าง แถบลายฉลุข้าวหลามตัด */const fy=(y-Y.p1a)/(Y.p1b-Y.p1a);
+        if(fy<.07)c=mix(shade(ironL,u),[226,214,200],.45);
+        else if(fy<.3){const post=(XX%6)<1||(XX%24)<2;if(post)c=shade(ironL,u,.05);else{const g=(fy-.07)/.23;c=mix([150,170,198],[86,96,120],g);if(u<0)c=mix(c,[200,214,232],.18);if(((XX>>2)+(YY>>1))%9===0)c=mix(c,[230,236,244],.4)}}
+        else if(fy<.36)c=mix(shade(ironL,u),[214,198,180],.3);
+        else if(fy<.47){c=shade(ironD,u,.1);if(XX%4===0&&fy>.4&&fy<.44)c=shade(ironL,u)}
+        else if(fy<.51)c=shade(ironL,u);
+        else{const lx=(x-cx)*1.15,ly=(y-Y.p1a)*1.15,d1=Math.abs(((lx+ly)%1+1)%1-.5),d2=Math.abs(((lx-ly)%1+1)%1-.5);
+          const on=d1>.38||d2>.38,node=d1>.42&&d2>.42;c=node?mix(shade(ironL,u),[220,204,186],.4):on?shade(ironL,u,.12):shade(ironD,u,.25);a=on?1:.62;if(fy>.94)c=shade(ironL,u)}}
+      else{/* ช่วงล่างตามภาพ: คานซุ้มโค้งหนาขอบสว่างด้านนอก เงาเข้มด้านใน ลายช่องโค้งเล็กเรียงตามแนวซุ้ม โครงถักไขว้ในช่องหูช้าง ขาโค้งโครง X ใหญ่ */const t=(y-Y.p1b)/(Y.base-Y.p1b),au=Math.abs(u);
+        const archTop=Y.p1b+2.4,archR=(Y.base-archTop),hwA=hw*.6,dxA=(x-cx)/hwA,archY=archTop+archR*(1-Math.sqrt(Math.max(0,1-dxA*dxA)));
+        const legIn=.6;
+        if(au<legIn&&y>archY+1.7)continue;
+        if(au<legIn&&y>archY-.5){const d=y-archY;if(d<0)c=mix(shade(ironL,u),[226,210,192],.35);else if(d<.55)c=shade(ironL,u,.05);else if(d<1.15){c=shade(iron,u,.15);if(XX%3===0)c=shade(ironL,u,.1)}else c=mix(shade(ironD,u),[30,26,30],.3)}
+        else if(au<legIn){const dist=archY-.5-y;/* ช่องโค้งเล็กเรียงเหนือคานซุ้ม */
+          if(dist<2.1){const per=2.3,sx=((((x-cx)/per)%1)+1)%1,rx=(sx-.5)*per,rr=Math.hypot(rx,(dist-.15)*1.1);
+            if(rr<.85&&dist>.15){c=[44,38,42];a=.92;if(rr>.62)c=shade(ironL,u,.1)}else c=shade(ironL,u,.12)}
+          else{/* โครงถักในช่องหูช้าง: ตารางไขว้ถี่ */const lx=(x-cx)*1.4,ly=y*1.4,d1=Math.abs(((lx+ly)%1+1)%1-.5),d2=Math.abs(((lx-ly)%1+1)%1-.5),hz=(((y-Y.p1b)*1.2)%1)<.16;
+            const on=d1>.4||d2>.4||hz;c=on?shade(ironL,u,.15):shade(ironD,u,.35);a=on?1:.55}}
+        else{const v=(au-legIn)/(1-legIn),vv=u<0?1-v:v,ph=3.1,fy=((y-Y.p1b)/ph)%1,Lt=lattice(vv,fy,.085);
+          if(Lt===3)c=shade(ironL,u);else if(Lt>=1)c=shade(iron,u,Lt===1?.08:0);else if(Lt===.5){c=shade(iron,u,.3);a=.7}else{c=shade(ironM,u,.5);a=.42}
+          if(vv>.9&&u<0)c=mix(c,[220,204,186],.25)}}
       if(!c)continue;
       /* หมอกแดดช่วงบนจางกว่า และสะท้อนแสงฟ้า */const hz=Math.max(0,(80-y)/80)*.16;c=mix(c,[170,196,226],hz);
       const o=get(xx,yy);put(xx,yy,mix(o,c,a),a>.5?2:MK[yy*w+xx])}}
-  /* ---------- แถวต้นไม้ตัดทรงสองข้าง ---------- */
-  const tree=(x0,x1,yTop,yBot,s)=>{for(let yy=Math.round(yTop*SS);yy<Math.round(yBot*SS);yy++)for(let xx=Math.round(x0*SS);xx<Math.round(x1*SS);xx++){const x=xx/SS,y=yy/SS;
-      const crown=yTop+3*Math.abs(Math.sin((x+s)*.42))*.7+(fbm(x*.4,0,s)-.5)*3;if(y<crown)continue;const n=fbm(x*.6,y*.6,s+3),lit=n+(yBot-y)/(yBot-yTop)*.3-(x>45?.15:0);
-      let c=lit>.75?[120,170,96]:lit>.55?[86,140,74]:lit>.38?[60,108,58]:[40,78,44];if(y>yBot-3)c=mix(c,[30,54,34],.5);if(H2(xx>>1,yy>>1,s+7)>.93)c=mix(c,[160,200,120],.4);put(xx,yy,c,5)}};
-  tree(-1,27,128,142,11);tree(63,91,127.5,142,23);
+  /* ---------- แถวต้นไม้ตัดทรงกล่องสองข้างทางเดิน ตามภาพ: เรียงลึกเข้าหาซุ้มตามมุมมองไกลใกล้ ทรงพุ่มเหลี่ยมมุมมน
+     ยอดพุ่มรับแสงสว่าง ด้านซ้ายรับแดด ด้านขวาและท้องพุ่มเงาเข้ม เป็นกลุ่มใบซ้อนมีจุดสะท้อนแสง ลำต้นเทาน้ำตาลใต้พุ่ม เงาตกบนพื้น
+     ต้นใหญ่ทรงกลมที่ขอบซ้าย เสาไฟริมทาง ร่มสีแดงและซุ้มขายของด้านซ้าย ---------- */
+  const G0=[[176,206,110],[132,180,90],[96,150,72],[66,116,56],[44,84,44],[30,58,34]];
+  const gpick=L=>{L=Math.max(0,Math.min(1,L));const i=Math.min(4.999,(1-L)*5),k=Math.floor(i),f2=i-k;return mix(G0[k],G0[k+1],f2)};
+  const canopy=(cx0,top,wd,ht,sd,round,far)=>{const x0=cx0-wd/2,x1=cx0+wd/2,bot=top+ht;
+    for(let yy=Math.floor((top-1.5)*SS);yy<Math.ceil((bot+.5)*SS);yy++)for(let xx=Math.floor((x0-1.5)*SS);xx<Math.ceil((x1+1.5)*SS);xx++){const x=xx/SS,y=yy/SS;
+      const nx=(x-cx0)/(wd/2),ny=(y-(top+ht/2))/(ht/2),rr=round?Math.hypot(nx,ny):Math.pow(Math.pow(Math.abs(nx),5)+Math.pow(Math.abs(ny),5),.2);
+      const edge=(fbm(x*1.3,y*1.3,sd)-.5)*.32+(fbm(x*3.1,y*3.1,sd+5)-.5)*.14;if(rr>1+edge)continue;
+      const clump=fbm(x*.9,y*.9,sd+9),fine=fbm(x*2.6,y*2.6,sd+11);
+      let L=.62-nx*.22-Math.max(0,ny)*.42+Math.max(0,-ny-.45)*.55+(clump-.5)*.55+(fine-.5)*.3;if(rr>.86+edge)L+=nx<0?.12:-.18;
+      let c=gpick(L);if(fine>.72&&L>.5)c=mix(c,[214,226,140],.35);if(fine<.24)c=mix(c,G0[5],.35);
+      c=mix(c,[178,196,206],far*.45);put(xx,yy,c,5)}};
+  const trunk=(x,yT,yB,wdt,far)=>{for(let yy=Math.floor(yT*SS);yy<Math.ceil(yB*SS);yy++)for(let xx=Math.floor((x-wdt/2)*SS);xx<Math.ceil((x+wdt/2)*SS);xx++){const u2=(xx/SS-(x-wdt/2))/wdt;put(xx,yy,mix(mix([150,140,128],[86,78,72],u2),[180,190,200],far*.4),5)}};
+  const shadowG=(x,y,wd,a)=>{for(let yy=Math.floor(y*SS);yy<Math.ceil((y+1.2)*SS);yy++)for(let xx=Math.floor((x-wd*.2)*SS);xx<Math.ceil((x+wd*.7)*SS);xx++)put(xx,yy,mix(get(xx,yy),[40,62,40],a),MK[yy*w+xx])};
+  /* แถวขวา: ใกล้ใหญ่ ไกลเล็ก วาดจากไกลมาใกล้ */
+  const RW=[];{let x=89,s=1.05;for(let i=0;i<11;i++){RW.push([x,s]);x-=6.4*s;s*=.84}}
+  const LW=[];{let x=9,s=1;for(let i=0;i<11;i++){LW.push([x,s]);x+=6.2*s;s*=.84}}
+  /* แผงใบไม้ด้านหลังแถวต้นไม้ ให้แถวทึบเต็มเหมือนเดิม ไม่มีช่องฟ้า */
+  const wall=(L2,yOff)=>{for(let k=0;k<L2.length-1;k++){const[xa,sa]=L2[k],[xb,sb]=L2[k+1];const x0=Math.min(xa,xb),x1=Math.max(xa,xb);for(let xx=Math.floor(x0*SS);xx<Math.ceil(x1*SS);xx++){const x=xx/SS,t=(x-xa)/(xb-xa),sc=sa+(sb-sa)*t,top=141.6-(yOff-1.5)*sc+(fbm(x*1.2,0,951)-.5)*1.4*sc;for(let yy=Math.floor(top*SS);yy<Math.ceil(139.8*SS);yy++){const y=yy/SS,n=fbm(x*1.4,y*1.4,953);put(xx,yy,mix(mix([52,96,52],[34,66,38],(y-top)/(140-top)),[150,176,190],(1-sc)*.35+(n-.5)*.1),5)}}}};
+  wall(RW,21);wall(LW,19);
+  RW.slice().reverse().forEach(([x,s],i)=>{const far=(1-s)*.7,g=141.6,top=g-21*s,wd=14*s,ht=17*s;trunk(x-wd*.22,top+ht*.9,g,Math.max(.5,1*s),far);trunk(x+wd*.2,top+ht*.9,g,Math.max(.5,.9*s),far);canopy(x,top,wd,ht,800+i*7,0,far)});
+    LW.slice().reverse().forEach(([x,s],i)=>{const far=(1-s)*.7,g=141.6,top=g-19*s,wd=13.5*s,ht=16*s;trunk(x-wd*.22,top+ht*.9,g,Math.max(.5,.95*s),far);trunk(x+wd*.22,top+ht*.9,g,Math.max(.5,.85*s),far);canopy(x,top,wd,ht,860+i*7,0,far)});
+  /* ต้นใหญ่ทรงกลมขอบซ้าย */trunk(2.5,130,141.6,1.3,0);canopy(2,121,11,15,901,1,0);
+  /* เสาไฟริมทาง */for(const[lx,lt] of[[23,132],[67,131],[78,128.5]]){for(let yy=Math.floor(lt*SS);yy<Math.ceil(141.6*SS);yy++)for(let xx=Math.floor(lx*SS);xx<Math.ceil((lx+.35)*SS);xx++)put(xx,yy,[70,70,78],5);box(lx-.3,lt-.8,lx+.65,lt,[60,62,70],5)}
+  /* ร่มสีแดงและซุ้มขายของด้านซ้าย */for(const[ux,uy] of[[4,139],[8.5,139.5]]){for(let j=0;j<2*SS;j++)for(let i=-SS*1.6;i<SS*1.6;i++){const yy=Math.round(uy*SS-j),xx=Math.round(ux*SS+i);if(Math.abs(i)<SS*1.6*(1-j/(2*SS)*.7))put(xx,yy,j<SS*.6?[176,40,44]:[214,64,60],5)}box(ux-.1,uy,ux+.2,141.6,[90,80,80],5)}
+  box(11,139,15,141.6,[226,222,214],5);box(11,138.5,15,139,[200,60,60],5);
+  /* เงาต้นไม้บนสนาม */
   /* ---------- สนามหญ้า ทางเดิน ผู้คน ---------- */
-  for(let yy=142*SS;yy<h;yy++)for(let xx=0;xx<w;xx++){const x=xx/SS,y=yy/SS,t=(y-142)/8;let c=mix([110,160,82],[92,146,70],t);const st=Math.sin(x*1.3+y*.4)>.6;if(st)c=mix(c,[130,178,96],.35);c=mix(c,[0,0,0],(fbm(x*.3,y*.6,709)-.5)*.2);put(xx,yy,c,6)}
+  /* สนามหญ้ากว้างเต็มพื้น: แนวตัดหญ้าเป็นแถบสลับอ่อนเข้มลู่เข้าหาหอตามมุมมอง ใกล้ตัวสีเข้มอิ่ม ไกลจางในหมอก ใบหญ้าเป็นเส้นสั้นมีแสงที่ปลาย ร่องรอยเดินเป็นหย่อมซีด */
+  for(let yy=Math.floor(141.4*SS);yy<h;yy++)for(let xx=0;xx<w;xx++){const x=xx/SS,y=yy/SS,t=Math.min(1,(y-141.4)/8.6),dep=y-139.6;
+    const sx=(x-45.5)/dep,band=Math.floor(sx*.55+50)%2;let c=mix([150,190,104],[84,140,62],t*.85);c=band?mix(c,[176,206,120],.22):mix(c,[60,110,50],.12);
+    const bl=fbm(x*2.2,y*5,711),sp=H2(xx,yy,713);if(bl>.62)c=mix(c,[190,214,130],(bl-.62)*1.4);if(bl<.3)c=mix(c,[46,88,44],(.3-bl)*1.2);if(sp>.965)c=mix(c,[220,232,160],.5);if(sp<.03)c=mix(c,[38,70,38],.5);
+    const wear=fbm(x*.25,y*.9,715);if(wear>.68)c=mix(c,[176,170,120],(wear-.68)*1.5);c=mix(c,[190,206,214],(1-t)*.18);put(xx,yy,c,6)}
   box(0,141.2,91,142.2,[196,190,176],6);for(let x=0;x<90;x+=1)if(H2(x,0,711)>.55)box(x,141.4,x+.6,142,[150,150,160],6);
   for(let k=0;k<26;k++){const x=4+H2(k,1,713)*82,y=141+H2(k,2,713)*2.5,cl=[[60,60,80],[200,80,80],[230,230,230],[80,100,160],[40,40,40]][Math.floor(H2(k,3,713)*5)];box(x,y,x+.6,y+1.6,cl,6);box(x,y-.5,x+.6,y,[220,190,170],6)}
   box(44,144.5,44.8,147,[60,70,110],6);box(44,143.8,44.8,144.5,[220,190,170],6);box(45.4,144.6,46.2,147,[210,110,120],6);box(45.4,143.9,46.2,144.6,[220,190,170],6);
+  RW.forEach(([x,s])=>shadowG(x-7*s,141.9,15*s,.26));LW.forEach(([x,s])=>shadowG(x-7*s,141.9,14*s,.26));
   /* เงาหอบนพื้น */for(let yy=142*SS;yy<147*SS;yy++)for(let xx=Math.round(30*SS);xx<Math.round(64*SS);xx++){const x=xx/SS,y=yy/SS;if(Math.abs(x-48-(y-142)*1.5)<4-(y-142)*.5)put(xx,yy,mix(get(xx,yy),[40,70,40],.3),6)}
   /* ---------- ย่อและไล่แสงตามเวลา ---------- */
   const LM=new Uint8Array(W*H);
-  for(let y=0;y<H;y++)for(let x=0;x<W;x++){let r=0,g=0,b=0,mt=0,ms=0,mb=0;for(let j=0;j<SS;j++)for(let i=0;i<SS;i++){const q=(y*SS+j)*w+x*SS+i,k=q*3;r+=buf[k];g+=buf[k+1];b+=buf[k+2];const m=MK[q];if(m===2)mt++;if(m===1)ms++;if(m===3)mb++}
-    const n=SS*SS;let c=[r/n,g/n,b/n];const ft=mt/n,fs=ms/n;LM[y*W+x]=ft>.3?2:fs>.9?1:mb/n>.6?3:0;const skyC=mix(S.topA,S.botA,Math.min(1,y/HZ));
+  for(let y=0;y<H;y++)for(let x=0;x<W;x++){let r=0,g=0,b=0,mt=0,ms=0,mb=0;for(let j=0;j<SB;j++)for(let i=0;i<SB;i++){const q=(y*SB+j)*w+x*SB+i,k=q*3;r+=buf[k];g+=buf[k+1];b+=buf[k+2];const m=MK[q];if(m===2)mt++;if(m===1)ms++;if(m===3)mb++}
+    const n=SB*SB;let c=[r/n,g/n,b/n];const ft=mt/n,fs=ms/n;LM[y*W+x]=ft>.3?2:fs>.9?1:mb/n>.6?3:0;const skyC=mix(S.topA,S.botA,Math.min(1,y/K/HZ));
     if(night){let g2=mix(c.map(v=>v*.22),[22,28,64],.5);if(fs>0)g2=mix(g2,skyC,fs*.85);
       if(ft>0){/* ไฟส่องโครงเหล็กสีอำพัน */const lum=(c[0]+c[1]+c[2])/765,warm=[255,178,104];g2=mix(g2,mix(warm.map(v=>v*(.35+lum*1.1)),[255,214,160],lum>.45?.4:0),ft*.92)}c=g2}
     else if(dusk){let g2=[c[0]*1.02+16,c[1]*.84+4,c[2]*.76+10];if(fs>0)g2=mix(g2,skyC,fs*.6);if(ft>0)g2=mix(g2,[c[0]*1.15+24,c[1]*.84+6,c[2]*.62],ft*.5);c=g2}
     P(x,y,c.map(v=>Math.round((v+dz(x,y)*4)/2)*2))}
-  if(night){for(let k=0;k<60;k++){const x=Math.floor(N(k,1,721)*W),y=Math.floor(N(k,2,721)*100);if(LM[y*W+x]===1)P(x,y,[255,255,255],.3+N(k,3,721)*.5)}
-    for(let k=0;k<70;k++){const y=10+N(k,4,722)*120,hw=hwOuter(y),x=cx+(N(k,5,722)*2-1)*hw*.95;if(LM[Math.round(y)*W+Math.round(x)]===2)P(x,y,[255,250,236],.85)}/* ไฟระยิบ */
-    B.glow(cx,9,6,[255,240,220],.5);B.glow(cx,108,26,[255,170,100],.12);for(let y=126;y<140;y++)for(let x=30;x<60;x++)if(LM[y*W+x]===3){P(x,y,[255,214,160],.35);if(N(x,y,723)>.8)P(x,y,[255,236,200],.6)}}
+  if(night){for(let k=0;k<60;k++){const x=Math.floor(N(k,1,721)*W),y=Math.floor(N(k,2,721)*100*K);if(LM[y*W+x]===1)P(x,y,[255,255,255],.3+N(k,3,721)*.5)}
+    for(let k=0;k<70;k++){const y=10+N(k,4,722)*120,hw=hwOuter(y),x=cx+(N(k,5,722)*2-1)*hw*.95;if(LM[Math.round(y*K)*W+Math.round(x*K)]===2){P(x*K,y*K,[255,250,236],.85);if(K>1)P(x*K+1,y*K,[255,240,210],.5)}}/* ไฟระยิบ */
+    B.glow(cx*K,9*K,6*K,[255,240,220],.5);B.glow(cx*K,108*K,26*K,[255,170,100],.12);for(let y=126*K;y<140*K;y++)for(let x=30*K;x<60*K;x++)if(LM[y*W+x]===3){P(x,y,[255,214,160],.35);if(N(x,y,723)>.8)P(x,y,[255,236,200],.6)}}
   else{/* ขอบสันซ้ายรับแสงสว่างขึ้นเล็กน้อย */
-    for(let y=8;y<136;y++)for(let x=1;x<W;x++)if(LM[y*W+x]===2&&LM[y*W+x-1]!==2)P(x,y,dusk?[255,200,150]:[214,196,176],.35)}
+    for(let y=8*K;y<136*K;y++)for(let x=1;x<W;x++)if(LM[y*W+x]===2&&LM[y*W+x-1]!==2)P(x,y,dusk?[255,200,150]:[214,196,176],.35)}
   return B.done()}
 
 function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,mix,night,dusk}=B,HZ=100;
@@ -28286,41 +28336,16 @@ function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,mix,night,dusk}=B,HZ=1
   /* เรือข้ามฟาก */
   const fx=60,fy=128;for(let x=-11;x<=11;x++){P(fx+x,fy,[255,255,255]);P(fx+x,fy+1,night?[60,60,80]:[110,110,130])}for(let x=-8;x<=8;x++){P(fx+x,fy-1,night?[255,170,120]:[255,150,110]);P(fx+x,fy-2,night?[255,170,120]:[255,150,110])}for(let x=-6;x<=6;x+=2)P(fx+x,fy-2,night?[255,230,180]:[220,236,250]);
   return B.done()}
+window.FW_PXHI={bkkcdg:2};
 Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:54});
 
-/* ===== v714 บันทึกความคืบหน้าเที่ยวบินอัตโนมัติ: ถ้าเผลอกดออก ปิดแท็บ หรือสลับแอป กลับมาเล่นต่อจากจุดเดิมได้
-   บันทึกทุก 4 วินาทีระหว่างเล่น และทุกครั้งที่ซ่อนหน้าหรือกดออก เก็บในเครื่องของผู้ใช้แยกตามบัญชี
-   เวลาในเกมเลื่อนตามช่วงที่หยุดไป ตัวจับเวลาไม่หมดระหว่างที่ออกไป จบเที่ยวบินแล้วล้างข้อมูลที่บันทึกไว้ ===== */
-const FW_SVK='fwSave1:';
-function fwSvKey(){let u='g';try{u=(META&&META.current)||'g'}catch(e){}return FW_SVK+u}
-function fwSvGet(){try{const s=localStorage.getItem(fwSvKey());return s?JSON.parse(s,(k,v)=>v&&typeof v==='object'&&v.__set?new Set(v.__set):v&&typeof v==='object'&&v.__map?new Map(v.__map):v):null}catch(e){return null}}
-function fwSvClear(){try{localStorage.removeItem(fwSvKey())}catch(e){}}
-function fwSvSnap(){try{if(!V||!V.fly||V.fly.ph!=='play'||!V.fly.w)return;const seen=new WeakSet();
-  const js=JSON.stringify({v:1,t:Date.now(),pn:(typeof performance!=='undefined'?performance.now():0),fly:V.fly,flyRoute:V.flyRoute,flySt:V.flySt,lb2:V.lb2,fwTC:V.fwTC},function(k,v){
-    if(typeof v==='function')return undefined;if(v&&typeof v==='object'){if(typeof Node!=='undefined'&&v instanceof Node)return undefined;if(typeof CanvasRenderingContext2D!=='undefined'&&v instanceof CanvasRenderingContext2D)return undefined;if(typeof ImageData!=='undefined'&&v instanceof ImageData)return undefined;if(typeof HTMLCanvasElement!=='undefined'&&v instanceof HTMLCanvasElement)return undefined;
-      if(v instanceof Set)return{__set:[...v]};if(v instanceof Map)return{__map:[...v]};if(seen.has(v)&&!Array.isArray(v)&&Object.keys(v).length>6)return undefined;seen.add(v)}return v});
-  localStorage.setItem(fwSvKey(),js)}catch(e){}}
-/* เลื่อนเวลาที่เก็บไว้ทั้งหมดไปข้างหน้าเท่ากับช่วงที่ออกไป */
-function fwSvShift(o,dEp,dPn,depth){if(!o||typeof o!=='object'||depth>12)return;for(const k of Object.keys(o)){const v=o[k];if(typeof v==='number'){if(v>1e12&&v<4e12)o[k]=v+dEp;else if(dPn&&/^(t|t0|t1|at|since|until|start|end|last|next|due|ts|tp|exp|st|en)[A-Z0-9_]*$|(At|T0|Time|Ts)$/.test(k)&&v>1000&&Math.abs(v-dPn)<6e6)o[k]=v+dPn}else if(v&&typeof v==='object')fwSvShift(v,dEp,dPn,depth+1)}}
-function fwSvResume(){const s=fwSvGet();if(!s||!s.fly){toast('ไม่พบเที่ยวบินที่บันทึกไว้');return}
-  const now=Date.now(),dEp=now-s.t,pn=(typeof performance!=='undefined'?performance.now():0),dPn=pn-(s.pn+(now-s.t));
-  try{fwSvShift(s.fly,dEp,0,0)}catch(e){}
-  V.flyRoute=s.flyRoute;V.flySt=s.flySt;if(s.lb2)V.lb2=s.lb2;V.fwTC=!!s.fwTC;V.fly=s.fly;V.flyBk=0;V.view='fly';
-  try{const r=FLY_ROUTES.find(x=>x.id===s.flyRoute);if(r)fwRouteSetup(r)}catch(e){}
-  document.documentElement.classList.add('fw-lock');render();window.scrollTo(0,0);setTimeout(()=>{try{const w=fwW();if(w)fwMsg(w,'กลับมาเล่นต่อจากที่บันทึกไว้')}catch(e){}},300)}
-function fwSvCard(){const s=fwSvGet();if(!s||!s.fly||s.fly.ph!=='play')return'';const r=FLY_ROUTES.find(x=>x.id===s.flyRoute)||{no:'',city:''};let ph='';try{ph=(r.ev&&r.ev[s.fly.i]&&r.ev[s.fly.i].ph)||''}catch(e){}
-  const ago=Math.max(1,Math.round((Date.now()-s.t)/60000)),ag=ago<60?ago+' นาทีที่แล้ว':Math.round(ago/60)+' ชั่วโมงที่แล้ว';
-  return `<section class="l2-box sv5" id="fx-sv"><div class="sv5-t"><b>มีเที่ยวบินที่ยังเล่นค้างไว้</b><span>${esc(r.no)} ไป${esc(r.city)} ช่วงที่ ${(s.fly.i||0)+1} จาก 12${ph?' '+esc(ph):''}</span><small>บันทึกล่าสุด ${ag}</small></div><div class="sv5-b"><button class="l2-next" data-svr="go">เล่นต่อ</button><button class="sv5-no" data-svr="drop">เริ่มใหม่</button></div></section>`}
-document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-svr]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(b.dataset.svr==='go')fwSvResume();else{fwSvClear();const el=document.getElementById('fx-sv');if(el)el.remove();toast('ล้างเที่ยวบินที่บันทึกไว้แล้ว')}},true);
-{const o=fwL2Tabs;fwL2Tabs=function(){let h=o.apply(this,arguments);try{const c=fwSvCard();if(c)h=c+h}catch(e){}return h}}
-{const o=flyAct;flyAct=function(k,b){
-  if(k==='fly-quit'&&V.fly&&V.fly.ph==='play'){fwSvSnap();V.fly=null;V.flyBk=null;document.documentElement.classList.remove('fw-lock');toast('บันทึกความคืบหน้าไว้แล้ว กดเล่นต่อได้ที่หน้าเตรียมบิน');render();return}
-  const r=o.apply(this,arguments);try{if(k==='fly-go'&&V.fly&&V.fly.ph==='play'&&V.fly.i===0)fwSvClear()}catch(e){}return r}}
-setInterval(()=>{try{if(V&&V.fly){if(V.fly.ph==='play')fwSvSnap();else if(fwSvGet())fwSvClear()}}catch(e){}},4000);
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')fwSvSnap()});
-window.addEventListener('pagehide',fwSvSnap);
+/* v717 เอาระบบบันทึกความคืบหน้ากลางเที่ยวบินออก แต่ละเที่ยวต้องเล่นให้จบในรอบเดียว
+   ล้างข้อมูลที่เคยบันทึกค้างไว้ในเครื่องจากเวอร์ชันก่อน */
+try{for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf('fwSave1:')===0)localStorage.removeItem(k)}}catch(e){}
 /* แก้ป้ายชื่อชั้นบนแผนที่ย่อ: ป้ายภารกิจส่งค่าชั้นมาโดยไม่มีข้อมูลห้องโดยสาร ใช้ข้อมูลจากเที่ยวบินปัจจุบันแทน */
 fwDeckName=function(w){const W2=(w&&w.decks)?w:(typeof fwW==='function'?fwW():null);const d=w&&w.deck;if(d===0&&W2&&W2.decks&&W2.decks[0]&&W2.decks[0].nb)return'ห้องโดยสาร';return['ชั้นล่าง','ชั้นบน','สนามบิน','โรงแรม'][d]||''};
+/* กันเกมค้างหน้าว่าง: ถ้าการกระทำค้างไม่มีจุดงานแนบอยู่ ให้ล้างทิ้งแทนการหยุดทั้งเกม */
+{const o=fwLoop;fwLoop=function(){try{const w=fwW();if(w&&w.act&&!w.act.pt)w.act=null}catch(e){}return o.apply(this,arguments)}}
 
 /* ===== โหมดสำรวจเครื่องบิน: ไม่มีภารกิจ เดินดูทั้งลำ และเปิดทุกฉากได้จากเมนู ===== */
 const FW_FREE=[
