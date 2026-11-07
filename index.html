@@ -6080,6 +6080,14 @@ html.fw-en body .flyw .fw-btns .fw-cabb::after{content:"Lights"}html.fw-en body 
 .sv5{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:0;box-shadow:inset 0 0 0 1.5px #F6B3B0,0 10px 22px -16px rgba(227,20,20,.55);background:linear-gradient(180deg,#FFF6F5,#FFFFFF)}
 .sv5-t{display:flex;flex-direction:column;gap:2px;flex:1 1 220px}.sv5-t b{font-size:.74rem;color:#B3122E}.sv5-t span{font-size:.62rem;color:#5A3A40;font-weight:700}.sv5-t small{font-size:.54rem;color:#8A6A70}
 .sv5-b{display:flex;gap:8px}.sv5-no{border:0;border-radius:12px;padding:0 14px;min-height:40px;font:inherit;font-size:.62rem;font-weight:800;background:#FFF1EF;color:#E31414;box-shadow:inset 0 0 0 1px #F6CFCB;cursor:pointer}
+/* v719 แถบความพร้อมด้านล่างขึ้นบรรทัดใหม่ไม่ทับป้าย และปุ่มแตะทำงานไว */
+.l2-rd{flex-wrap:wrap!important;row-gap:3px}
+[data-fx],[data-rte],.ss5-ack,.pq-ch button,.qz-skip{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.qsk5{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.qsk5-t{display:flex;flex-direction:column;gap:3px;flex:1 1 220px}.qsk5-t b{font-size:.7rem;color:#B3122E}.qsk5-t span{font-size:.56rem;color:#6B4A50;line-height:1.5}
+.qz-skip{display:flex;align-items:center;gap:8px;border:0;background:#FFF1EF;border-radius:999px;padding:6px 12px 6px 6px;font:inherit;font-size:.6rem;font-weight:800;color:#B3122E;cursor:pointer;box-shadow:inset 0 0 0 1px #F6CFCB}
+.qz-skip i{width:38px;height:22px;border-radius:999px;background:#E8D8D5;position:relative;transition:background .2s}.qz-skip i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(120,40,50,.35);transition:left .2s}
+.qz-skip.on i{background:#E31414}.qz-skip.on i::after{left:19px}.qz-skip em{font-style:normal}
+.qsk5-dim{opacity:.45;pointer-events:none}
 </style></head><body><style id="boot-css">#boot{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:radial-gradient(120% 70% at 50% 0%,#FFFFFF 0%,#FFF1F0 45%,#FFE0DE 100%);font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#2B1A1F;transition:opacity .45s ease,visibility .45s}
 #boot.out{opacity:0;visibility:hidden}
 #boot .bt-orb{position:relative;width:132px;height:132px;display:grid;place-items:center}
@@ -24822,7 +24830,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v718';
+const FW_VER='v721';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -28314,30 +28322,73 @@ function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=
     for(let y=8*K;y<136*K;y++)for(let x=1;x<W;x++)if(LM[y*W+x]===2&&LM[y*W+x-1]!==2)P(x,y,dusk?[255,200,150]:[214,196,176],.35)}
   return B.done()}
 
-function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,mix,night,dusk}=B,HZ=100;
-  B.sky(0,HZ,dusk?[255,170,140]:null);B.cloud(66,26,26,night?.3:.65);
-  /* เส้นขอบฟ้าแมนฮัตตัน */
-  const sk=[[30,44,8],[39,38,7],[47,58,6],[54,40,9],[64,50,6],[71,34,8],[80,46,7],[87,30,6],[24,30,6],[18,26,6]];
-  for(const[x0,h,w] of sk){for(let y=HZ-h;y<HZ;y++)for(let x=x0;x<x0+w;x++){let col=night?[60,66,100]:dusk?[150,130,150]:[176,188,208];if(x===x0)col=night?[80,90,130]:[214,222,236];if((x-x0)%2===1&&(y-HZ+h)%3===1)col=night?(N(x,y,331)>.45?[255,214,150]:[70,76,110]):mix(col,[230,238,248],.4);P(x,y,col)}}
-  for(let y=HZ-70;y<HZ-58;y++)P(50,y,night?[200,200,220]:[170,176,196]);for(let y=HZ-64;y<HZ-58;y++){P(49,y,night?[120,126,160]:[190,196,214]);P(51,y,night?[120,126,160]:[190,196,214])}P(50,HZ-71,[255,90,90]);
-  for(let x=0;x<W;x++)P(x,HZ,night?[50,54,80]:[150,160,176]);
-  B.water(HZ+1,H,night?[[30,40,76],[16,22,46]]:dusk?[[150,130,170],[90,100,150]]:[[110,160,200],[70,116,170]],1);
-  /* เกาะและฐานรูปปั้น */
-  const sx=18,gy=132;for(let y=gy;y<gy+5;y++)for(let x=-16;x<=16;x++)if(Math.abs(x)<16-(y-gy)*.5)P(sx+x,y,night?[60,70,60]:[110,150,96]);
-  for(let y=gy-22;y<gy;y++){const w=y<gy-16?4:y<gy-8?5:7;for(let x=-w;x<=w;x++)P(sx+x,y,x<0?(night?[150,136,130]:[214,200,180]):(night?[110,100,100]:[176,160,140]))}
-  for(let y=gy-26;y<gy-22;y++)for(let x=-3;x<=3;x++)P(sx+x,y,night?[140,126,124]:[200,186,170]);
-  /* รูปปั้นสีทองแดงเขียว */
-  const cu=night?[90,160,140]:[110,180,156],cuD=night?[56,110,100]:[70,130,116];
-  for(let y=gy-50;y<gy-26;y++){const t=(y-gy+50)/24,w=Math.round(1.5+t*2.5);for(let x=-w;x<=w;x++)P(sx+x,y,x>0?cuD:cu)}
-  for(let y=gy-55;y<gy-50;y++)for(let x=-1;x<=1;x++)P(sx+x,y,cu);for(const[a,b] of[[-2,-57],[0,-58],[2,-57],[-3,-55],[3,-55]])P(sx+a,gy+b,cu);
-  for(let j=0;j<12;j++)P(sx+2+Math.round(j*.2),gy-52-j,cu);P(sx+3,gy-65,[255,180,120]);P(sx+4,gy-65,[255,200,140]);P(sx+3,gy-66,[255,140,100]);B.glow(sx+3,gy-65,4,[255,200,140],night?.6:.3);
-  for(let y=gy-46;y<gy-40;y++)P(sx-3,y,cuD);
-  if(night)B.glow(sx,gy-40,18,[200,255,230],.08);
-  /* เรือข้ามฟาก */
-  const fx=60,fy=128;for(let x=-11;x<=11;x++){P(fx+x,fy,[255,255,255]);P(fx+x,fy+1,night?[60,60,80]:[110,110,130])}for(let x=-8;x<=8;x++){P(fx+x,fy-1,night?[255,170,120]:[255,150,110]);P(fx+x,fy-2,night?[255,170,120]:[255,150,110])}for(let x=-6;x<=6;x+=2)P(fx+x,fy-2,night?[255,230,180]:[220,236,250]);
+/* ===== ภาพนิวยอร์ก v720: เทพีเสรีภาพมุมเงยจากฐานตามภาพอ้างอิง (ประติมากรรมสาธารณะปี 1886)
+   คบเพลิงชูสูงมีเปลวสีทองอำพัน ถ้วยคบเพลิงมีระเบียงราวรอบ มือกำด้าม แขนขวายกสูงแขนเสื้อพับย่นที่ข้อศอก
+   มงกุฎเจ็ดแฉก แถบหน้าต่างบนมงกุฎ ใบหน้าด้านข้าง ผมรวบ ผ้าคลุมพาดเฉียงจากไหล่ซ้ายลงสะโพก จีบผ้ายาวถึงเท้า
+   แผ่นจารึกถือในแขนซ้ายมีความหนา ชายผ้าห้อยใต้แผ่นจารึก ผิวทองแดงเขียวมีคราบแนวต่อแผ่นและรอยไหลจาง
+   ฐานรูปปั้นสีเขียว แท่นหินแกรนิตเป็นชั้น บัวยื่น ช่องหน้าต่าง ก้อนหินมีรอยต่อ ท้องฟ้าครามมีเมฆเส้นบาง
+   แสงจากขวาบน ด้านซ้ายเงาอมฟ้า ขอบขวาสว่าง กลางคืนไฟส่องจากฐานและคบเพลิงเรืองแสง ===== */
+/* ===== ภาพนิวยอร์ก v721: เทพีเสรีภาพแบบพิกเซลสไตล์เดียวกับตัวละครในเกม
+   พิกเซลก้อนใหญ่ สีเรียบไม่ไล่เฉด แรเงาเป็นขั้น 4 โทน มีเส้นขอบเข้มรอบรูป แสงจากขวา
+   คบเพลิง มงกุฎเจ็ดแฉก ผ้าคลุมพาดเฉียง จีบผ้าเป็นเส้น แผ่นจารึก แท่นหินเป็นก้อน เมฆก้อนพิกเซล ===== */
+function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,night,dusk}=B,CW=Math.max(1,Math.round(W/90)),GW=Math.ceil(W/CW),GH=Math.ceil(H/CW);
+  const inPoly=(x,y,pts)=>{let c=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const[xi,yi]=pts[i],[xj,yj]=pts[j];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))c=!c}return c};
+  const ell=(x,y,cx,cy,rx,ry)=>((x-cx)/rx)**2+((y-cy)/ry)**2;
+  const robe=[[31,64],[29,70],[28.4,80],[29.2,92],[30.6,104],[31.6,118],[32.6,133],[62,133],[62.6,121],[63,108],[64,98],[65.4,86],[63.6,74],[58.6,66],[52,63.4],[40,63.4]];
+  const sleeve=[[28.6,64],[27.6,57],[29.4,50.5],[33.6,48.2],[38,51.4],[40.6,58],[37.6,66.4]],fore=[[26.4,31.5],[30.6,31.5],[33.8,48.6],[29.2,49.6]];
+  const tablet=[[60.2,80.4],[71.2,76.2],[74.4,101.4],[63.2,104.6]],tabE=[[71.2,76.2],[73.4,76.6],[76.4,101],[74.4,101.4]],drape=[[61.6,99],[69.6,103],[69,117],[65.6,121],[62.4,113]];
+  const rays=[[-170,9.4],[-147,10.6],[-121,10.2],[-95,10.6],[-68,11],[-42,10.6],[-15,9.6]].map(([ang,len])=>{const a=ang*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),bx=46+dx*4.4,by=54.6+dy*2.8,nx=-dy,ny=dx;return{tri:[[bx+nx*1.1,by+ny*1.1],[bx-nx*1.1,by-ny*1.1],[bx+dx*len,by+dy*len]],nx,ny,bx,by}});
+  const mT=x=>66+(x-30)*.62,mB=x=>90+(x-30)*.42;
+  /* ชุดสี: กลางวัน พลบค่ำ กลางคืน */
+  const PAL=night?{sky:[[22,30,70],[30,40,88],[44,52,104]],cl:[[64,72,120],[48,56,100]],cu:[[120,196,176],[84,160,146],[56,118,114],[36,82,86]],ol:[18,34,44],fl:[[255,240,170],[255,196,90]],gr:[[118,112,104],[92,88,84],[66,64,64]],gol:[30,30,36],win:[255,214,140]}
+   :dusk?{sky:[[86,92,160],[150,120,170],[232,156,160]],cl:[[255,214,206],[214,168,186]],cu:[[214,226,196],[164,196,172],[112,156,144],[72,110,110]],ol:[40,52,64],fl:[[255,236,160],[246,170,70]],gr:[[232,196,176],[192,160,146],[146,122,116]],gol:[86,70,72],win:[60,52,62]}
+   :{sky:[[56,104,176],[78,128,196],[112,160,216]],cl:[[246,250,255],[206,222,240]],cu:[[184,232,212],[128,198,174],[82,150,138],[50,104,104]],ol:[28,62,68],fl:[[255,226,120],[236,158,40]],gr:[[220,212,196],[180,172,156],[136,128,118]],gol:[86,80,76],win:[44,44,52]};
+  const G=new Array(GW*GH),T=new Uint8Array(GW*GH);/* T: 0 ฟ้า 1 เมฆ 2 รูปปั้น 3 แท่น 4 เปลวไฟ */
+  const cuT=k=>PAL.cu[Math.max(0,Math.min(3,k))];
+  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const x=(gx+.5)*CW*90/W,y=(gy+.5)*CW*150/H,i=gy*GW+gx;let c=null,t=0;
+    /* แท่นหิน */
+    if(y>=133&&y<137.4&&x>19+(137.4-y)*.4&&x<64-(137.4-y)*.2){c=cuT(y<134.6?0:x>52?1:2);t=2}
+    else if(y>=137.4&&y<142.6&&x>16.5&&x<66){const rowY=Math.floor((y-137.4)/1.8),seam=((x+rowY*3)%8)<CW*90/W;c=PAL.gr[x>58?0:1];if(y<139)c=PAL.gr[0];if(seam&&y>=139)c=PAL.gr[2];if(x>40&&x<44&&y>139.4&&y<141.4)c=PAL.win;t=3}
+    else if(y>=142.6&&x>3&&x<84){c=PAL.gr[x>70?0:1];if(y<144.4)c=PAL.gr[0];const rowY=Math.floor((y-144.4)/2.2);if(y>=144.4&&((x+rowY*4)%10)<CW*90/W)c=PAL.gr[2];
+      for(const px of[6,18,33,51,68,80])if(Math.abs(x-px)<1.6&&y>=144.4)c=PAL.gr[0];if((x>24&&x<28.5||x>56&&x<60.5)&&y>146.4)c=PAL.win;t=3}
+    /* เปลวไฟคบเพลิง */
+    else if(ell(x,y,29.4,16.2,3.8,2.6)<1||ell(x,y,30.4,13,1.8,2.8)<1){c=PAL.fl[x>29.6||y<14?0:1];t=4}
+    /* ถ้วยคบเพลิง */
+    else if(y>=18&&y<23.6&&Math.abs(x-28.7)<6.2-(y-18)/5.6*3.6){c=y<19.6?cuT(1):cuT(x>30?2:3);if(y>=19.6&&y<20.6&&((gx)%2===0))c=cuT(1);t=2}
+    else if(y>=23.6&&y<28&&Math.abs(x-28.4)<1.7){c=cuT(x>28.6?1:2);t=2}
+    else if(ell(x,y,28.5,30,2.8,3)<1){c=cuT(x>29.4?0:x>27.4?1:2);if(gy%2===0&&x<28.6)c=cuT(2);t=2}
+    else if(inPoly(x,y,fore)){const tt=(y-31.5)/17,xl=26.4+tt*2.8,xr=30.6+tt*3.2,u=(x-xl)/(xr-xl);c=cuT(u>.62?0:u>.3?1:2);t=2}
+    else if(rays.some(r=>inPoly(x,y,r.tri))){const r=rays.find(r=>inPoly(x,y,r.tri)),side=(x-r.bx)*r.nx+(y-r.by)*r.ny;c=cuT(side>0?1:2);t=2}
+    else if(ell(x,y,46.2,58.8,4.9,5.8)<1){/* ศีรษะ */const u=(x-41.3)/9.8;if(y<56.6){c=cuT(u>.6?1:2);if(y>53.8&&y<55.6&&gx%2===0)c=PAL.ol}else{const face=ell(x,y,47,60.6,3,3.7)<1;c=face?cuT(u>.62?0:u>.38?1:2):cuT(u>.6?2:3);if(face&&y>61.6&&y<62.6&&x>46&&x<48.6)c=cuT(2)}t=2}
+    else if(y>=62.6&&y<65&&x>43.4&&x<49.6){c=cuT(x>47?1:2);t=2}
+    else if(inPoly(x,y,tabE)){c=cuT(0);t=2}
+    else if(inPoly(x,y,tablet)){c=cuT(1);const ln=y-(80.4-(x-60.2)*.38);if(ln>5&&ln<13&&Math.floor(ln/2.4)%2===0&&x>62&&x<70)c=cuT(2);t=2}
+    else if(ell(x,y,67.8,89.8,3,3.3)<1){c=cuT(x>67.4?0:1);t=2}
+    else if(inPoly(x,y,drape)){c=cuT(((x*.9+y*.15)|0)%3===0?2:1);t=2}
+    else if(inPoly(x,y,sleeve)){const u=(x-28)/12;c=cuT(u>.62?0:u>.32?1:2);if((((x*.8-y*.5)|0)%3)===0)c=cuT(u>.5?1:3);t=2}
+    else if(inPoly(x,y,robe)){/* แรเงาตามตำแหน่ง + จีบผ้า */let a=1e9,b=-1e9;for(let ii=0,jj=robe.length-1;ii<robe.length;jj=ii++){const[xi,yi]=robe[ii],[xj,yj]=robe[jj];if((yi>y)!==(yj>y)){const xc=xi+(xj-xi)*(y-yi)/(yj-yi);a=Math.min(a,xc);b=Math.max(b,xc)}}const u=(x-a)/(b-a);
+      let k=u>.72?0:u>.42?1:u>.16?2:3;const inM=y>mT(x)&&y<mB(x);
+      if(inM){const d=x-y*.62;if(((d+60)%5.2)<1.3)k=Math.min(3,k+1);if(Math.abs(y-mB(x))<1.4)k=3;if(Math.abs(y-mT(x))<1.1)k=Math.max(0,k-1)}
+      else{const wob=Math.sin(y*.11+x*.05)*1.2;if(((x+wob+40)%4.6)<1.25)k=Math.min(3,k+1);if(y>mB(x)&&y<mB(x)+2.2)k=Math.min(3,k+1)}
+      c=cuT(k);t=2}
+    else if(y>=131.4&&y<133.6&&ell(x,y,40,132.6,3.6,1.3)<1){c=cuT(1);t=2}
+    G[i]=c;T[i]=c?t:0}
+  /* เส้นขอบเข้มรอบรูปปั้นและแท่น (ไม่ทับเปลวไฟ) */
+  const O=new Uint8Array(GW*GH);for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i=gy*GW+gx;if(!G[i]||T[i]===4)continue;const nb=[[1,0],[-1,0],[0,1],[0,-1]].some(([dx,dy])=>{const xx=gx+dx,yy=gy+dy;return xx<0||yy<0||xx>=GW||yy>=GH||!G[yy*GW+xx]});if(nb)O[i]=1}
+  for(let i=0;i<O.length;i++)if(O[i])G[i]=T[i]===3?PAL.gol:PAL.ol;
+  /* ท้องฟ้าเป็นแถบสามโทน รอยต่อแถบเป็นขั้นบันได เมฆก้อนพิกเซล */
+  const clouds=[[10,40,7],[16,37,6],[22,41,5],[70,104,7],[78,100,6],[84,106,5],[64,108,4],[6,92,4],[12,90,5]];
+  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i=gy*GW+gx;if(G[i])continue;const x=(gx+.5)*CW*90/W,y=(gy+.5)*CW*150/H;
+    const by0=Math.floor(52/(CW*150/H)),by1=Math.floor(104/(CW*150/H));let band=gy<by0?0:gy<by1?1:2;if((gy===by0||gy===by1)&&((gx+gy)%2===0))band--;let c=PAL.sky[band];
+    for(const[cx,cy,r] of clouds){const e=ell(x,y,cx,cy,r*1.5,r*.8);if(e<1&&y<cy+r*.45){c=y>cy+r*.05?PAL.cl[1]:PAL.cl[0];break}}
+    G[i]=c}
+  if(night)for(let k=0;k<46;k++){const gx=Math.floor(N(k,1,811)*GW),gy=Math.floor(N(k,2,811)*GH*.8),i=gy*GW+gx;if(!T[i]&&(G[i]===PAL.sky[0]||G[i]===PAL.sky[1]))G[i]=[236,236,255]}
+  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const c=G[gy*GW+gx];for(let j=0;j<CW;j++)for(let ii=0;ii<CW;ii++)P(gx*CW+ii,gy*CW+j,c)}
+  if(night){/* เปลวไฟเรืองแสง: ช่องฟ้ารอบเปลวไฟเป็นสีอุ่นหนึ่งช่อง */for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i2=gy*GW+gx;if(T[i2])continue;let near=false;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const xx=gx+dx,yy=gy+dy;if(xx>=0&&yy>=0&&xx<GW&&yy<GH&&T[yy*GW+xx]===4)near=true}if(near)for(let jj=0;jj<CW;jj++)for(let ii=0;ii<CW;ii++)P(gx*CW+ii,gy*CW+jj,[150,110,80])}}
   return B.done()}
+
 window.FW_PXHI={bkkcdg:2};
-Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:54});
+Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:14});
 
 /* v717 เอาระบบบันทึกความคืบหน้ากลางเที่ยวบินออก แต่ละเที่ยวต้องเล่นให้จบในรอบเดียว
    ล้างข้อมูลที่เคยบันทึกค้างไว้ในเครื่องจากเวอร์ชันก่อน */
@@ -28346,6 +28397,39 @@ try{for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&
 fwDeckName=function(w){const W2=(w&&w.decks)?w:(typeof fwW==='function'?fwW():null);const d=w&&w.deck;if(d===0&&W2&&W2.decks&&W2.decks[0]&&W2.decks[0].nb)return'ห้องโดยสาร';return['ชั้นล่าง','ชั้นบน','สนามบิน','โรงแรม'][d]||''};
 /* กันเกมค้างหน้าว่าง: ถ้าการกระทำค้างไม่มีจุดงานแนบอยู่ ให้ล้างทิ้งแทนการหยุดทั้งเกม */
 {const o=fwLoop;fwLoop=function(){try{const w=fwW();if(w&&w.act&&!w.act.pt)w.act=null}catch(e){}return o.apply(this,arguments)}}
+/* ===== v719 แตะบนไอโฟนและไอแพด: ปุ่มในบรีฟ (รับทราบ PIL ตอบคำถาม ลงชื่อ) ทำงานทันทีที่ยกนิ้ว
+   กันการแตะซ้อนเร็วที่ Safari ตีความเป็นการซูมแล้วไม่ส่งคลิก และกันคลิกซ้ำที่ตามมาหลังจากนั้น ===== */
+{let sx=0,sy=0,st=0;const SEL='[data-fx],[data-rte],.qz-skip,[data-ck]';window.__fxTapAt=0;
+ document.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;sx=e.clientX;sy=e.clientY;st=Date.now()},true);
+ document.addEventListener('pointerup',e=>{if(e.pointerType!=='touch')return;const b=e.target.closest&&e.target.closest(SEL);if(!b||b.disabled)return;if(Math.hypot(e.clientX-sx,e.clientY-sy)>10||Date.now()-st>700)return;
+   e.preventDefault();window.__fxSyn=1;try{b.click()}finally{window.__fxSyn=0}window.__fxTapAt=Date.now()},true);
+ window.addEventListener('click',e=>{if(window.__fxSyn)return;const b=e.target.closest&&e.target.closest(SEL);if(b&&Date.now()-window.__fxTapAt<800){e.stopImmediatePropagation();e.preventDefault()}},true)}
+/* ===== v719 ข้ามคำถามก่อนบิน 20 ข้อ: เลือกได้เมื่อถึงระดับ 8 ผู้จัดการบนเที่ยวบิน เปิดหรือปิดเองได้ จำค่าไว้ในเครื่อง ===== */
+function fwQSkipOk(){try{let lv=0;try{lv=Math.max(fwR8Rank(),typeof fwR8Pos==='function'?fwR8Pos():0)}catch(e){}return lv>=7}catch(e){return false}}
+function fwQSkipOn(){try{return fwQSkipOk()&&localStorage.getItem('fwQSkip')==='1'}catch(e){return false}}
+{const o=fwPreNeed;fwPreNeed=function(){const n=o.apply(this,arguments);if(fwQSkipOn()){n.qLeft=0;n.fail=false}return n}}
+function fwQSkipCard(){if(!fwQSkipOk())return'';const on=fwQSkipOn();
+  return `<section class="l2-box qsk5" id="fx-qsk"><div class="qsk5-t"><b>ข้ามคำถามก่อนบิน 20 ข้อ</b><span>สิทธิ์ของระดับ 8 ผู้จัดการบนเที่ยวบิน เลือกได้ว่าจะตอบหรือข้าม ถ้าข้ามจะไม่ได้คะแนนโบนัสจากคำถาม</span></div><button class="qz-skip${on?' on':''}" role="switch" aria-checked="${on}"><i></i><em>${on?'ข้ามอยู่':'ตอบตามปกติ'}</em></button></section>`}
+{const o=fwL2Quiz;fwL2Quiz=function(){const h=o.apply(this,arguments);return fwQSkipCard()+(fwQSkipOn()?h.replace(/^(<[^>]*class="[^"]*)/,'$1 qsk5-dim'):h)}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('.qz-skip');if(!b)return;e.preventDefault();e.stopImmediatePropagation();try{localStorage.setItem('fwQSkip',fwQSkipOn()?'0':'1')}catch(x){}try{toast(fwQSkipOn()?'ข้ามคำถามก่อนบินแล้ว':'กลับมาตอบคำถามตามปกติ')}catch(x){}try{fwL2Go()}catch(x){render()}},true);
+{const o=fwL2Ready;fwL2Ready=function(){let h=o.apply(this,arguments);if(!fwQSkipOn())return h;try{const t=document.createElement('template');t.innerHTML=h;const N=fwL2QIdx(fwRtSel()).length;t.content.querySelectorAll('.l2-rd>i').forEach(i=>{const tn=[...i.childNodes].reverse().find(x=>x.nodeType===3);if(tn&&new RegExp('^\\d+/'+N+'$').test(tn.textContent.trim())){tn.textContent='ข้าม';i.classList.add('on')}});return t.innerHTML}catch(e){return h}}}
+/* ===== v721 แก้ผู้โดยสารขึ้นเครื่องไม่ครบ
+   สาเหตุ: ผู้โดยสารที่ถูกดึงจากคิวไปผูกกับฉากตรวจบัตรขึ้นเครื่อง ถ้าออกจากฉากก่อนตรวจครบ จะค้างสถานะรอคิวโดยไม่มีคิวให้เดิน
+   ตัวเฝ้าระวัง: ผู้โดยสารที่ค้างนอกคิวให้เดินเข้าที่นั่ง คิวที่ถูกพักไว้ไม่ปลดให้เดินต่อ คนที่เดินติดเกิน 15 วินาทีให้เข้าที่นั่งทันที ===== */
+setInterval(()=>{try{const w=typeof fwW==='function'&&fwW();if(!w||!w.px||!V.fly||V.fly.ph!=='play')return;const scene=(w.vw&&w.vw.k==='brd')||(w.vwHold&&w.vwHold.k==='brd');const now=Date.now();
+  if(w.bStart&&!scene){const inQ=new Set();(w.bq||[]).forEach(q=>{q.l.forEach(p=>inQ.add(p));if(q.next>now+60000)q.next=now});
+    w.px.forEach(p=>{if((p.st==='q'&&!inQ.has(p))||(p.st==='out'&&(p.brd||V.fly.i<=2&&!inQ.has(p)))){try{fwBdWalk(w,p)}catch(e){p.st='seat'}}})}
+  w.px.forEach(p=>{if(p.st==='walk'||p.st==='stow'||p.st==='slide'){const k=Math.round(p.x*4)+'_'+Math.round(p.y*4);if(p._sk!==k){p._sk=k;p._st=now}else if(now-p._st>15000&&p.goal==='seat'){try{p.stowed=1;fwPxSnap(w,p)}catch(e){p.st='seat'}}}else{p._sk=null}})}catch(e){}},1000);
+/* ===== v721 เริ่มต่อจากผู้โดยสารขึ้นครบ: ข้ามช่วงต้อนรับขึ้นเครื่อง ทุกคนนั่งประจำที่ สัมภาระเก็บเข้าช่องแล้ว เริ่มที่ช่วงตรวจห้องโดยสารก่อนบินขึ้น ===== */
+function fwCkCard(){let r=null;try{r=fwRtSel()}catch(e){}if(!r)return'';
+  return `<section class="l2-box sv5" id="fx-ck"><div class="sv5-t"><b>เริ่มต่อจากผู้โดยสารขึ้นครบ</b><span>${esc(r.no)} ไป${esc(r.city)} ผู้โดยสารนั่งประจำที่ครบ สัมภาระเก็บเข้าช่องแล้ว เริ่มที่ช่วงตรวจห้องโดยสารก่อนบินขึ้น</span><small>ยังต้องผ่านขั้นตอนก่อนบินให้ครบเหมือนเดิม</small></div><div class="sv5-b"><button class="l2-next" data-ck="go">เริ่มจากจุดนี้</button></div></section>`}
+{const o=fwL2Tabs;fwL2Tabs=function(){let h=o.apply(this,arguments);try{if((V.lbTab||'flt')==='flt'){const c=fwCkCard();if(c)h=c+h}}catch(e){}return h}}
+function fwCkSnap(w){if(!w||!w.px)return false;w.px.forEach(p=>{p.stowed=1;p.brd=0;if(p.st!=='seat'&&p.st!=='gone'){try{fwPxSnap(w,p)}catch(e){p.st='seat'}}});w.bq=null;w.__ckSnap=0;return true}
+setInterval(()=>{try{const w=typeof fwW==='function'&&fwW();if(w&&w.__ckSnap)fwCkSnap(w)}catch(e){}},300);
+function fwCkJump(){const F=V.fly,w=fwW();if(!F||!w||F.ph!=='play')return;try{fwEnterPlane(w)}catch(e){}F.i=3;w.go=w.go||{};w.go.greet=w.go.greet||Date.now();w.bStart=1;w.bq=null;w.bdq=0;
+  w.__ckSnap=1;fwCkSnap(w);w.keys={};w.path=null;try{if(typeof FW_CH!=='undefined'&&FW_CH[3]!=null)V.flyBk=FW_CH[3]+1}catch(e){}try{fwRouteSetup(flyRt())}catch(e){}render();setTimeout(()=>{try{fwMsg(fwW(),'ผู้โดยสารขึ้นครบและเก็บสัมภาระแล้ว เริ่มตรวจห้องโดยสารก่อนบินขึ้น')}catch(e){}},400)}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-ck]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();V.__ck=1;try{flyAct('fly-go',b)}catch(x){}
+  setTimeout(()=>{if(V.__ck&&V.fly&&V.fly.ph==='play'){V.__ck=0;fwCkJump()}else V.__ck=0},60)},true);
 
 /* ===== โหมดสำรวจเครื่องบิน: ไม่มีภารกิจ เดินดูทั้งลำ และเปิดทุกฉากได้จากเมนู ===== */
 const FW_FREE=[
