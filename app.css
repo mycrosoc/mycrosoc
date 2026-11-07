@@ -8333,35 +8333,6 @@ section.ct{padding:16px 16px 18px!important;background:#fff!important}section.ct
 .mnx-tb button.on i{background:#fff;color:#E31414}
 .kbx>button{margin-top:9px;border:0;padding:8px 18px;border-radius:999px;font-family:inherit;font-size:.66rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#FF7A7A,#F24A4A 55%,#E31414);box-shadow:0 6px 12px -6px rgba(227,20,20,.7);cursor:pointer}
 
-.mnx-gt{width:max-content;margin:6px auto 2px;display:flex;align-items:center;gap:3px;padding:3px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1px rgba(201,100,90,.45);opacity:.35;transition:opacity .3s}
-.mnx-gt span{font-size:.5rem;font-weight:700;color:#9A6A60;padding:0 4px}
-.mnx-gt button{border:0;padding:3px 10px;border-radius:999px;font-family:inherit;font-size:.56rem;font-weight:800;color:#B5141C;background:transparent;cursor:pointer}
-.mnx-gt button.on{color:#fff;background:linear-gradient(135deg,#FF7A7A,#E31414)}
-.mnx-dt{position:relative;display:grid;grid-template-columns:repeat(var(--n),1fr);margin-top:12px}
-.mnx-dt::before{content:"";position:absolute;left:calc(50% / var(--n));right:calc(50% / var(--n));top:12px;height:2px;background:repeating-linear-gradient(90deg,#E8A598 0 4px,transparent 4px 7px)}
-.mnx-dt button{position:relative;border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit;cursor:pointer}
-.mnx-dt i{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.68rem;font-weight:800;color:#E8605A;background:#fff;box-shadow:inset 0 0 0 1.6px #E8A598,0 0 0 3px #FFF9F3;transition:all .25s}
-.mnx-dt span{font-size:.54rem;font-weight:700;line-height:1.25;color:#9A6A60;text-align:center}
-.mnx-dt button.dn i{color:#fff;background:#F4A9A0;box-shadow:0 0 0 3px #FFF9F3}
-.mnx-dt button.on i{color:#fff;background:linear-gradient(135deg,#FF7A7A,#E31414);box-shadow:0 0 0 3px #FFE1DA,0 5px 10px -4px rgba(227,20,20,.7);transform:scale(1.1)}
-.mnx-dt button.on span{color:#B5141C;font-weight:800}
-.mnx-cds{margin-top:10px}
-.mnx-cd{display:none;padding:11px 12px 12px;border-radius:14px 4px 14px 4px;background:repeating-linear-gradient(180deg,transparent 0 6px,rgba(201,100,90,.06) 6px 7px),linear-gradient(180deg,#FFFBF6,#FCEAE1);box-shadow:inset 0 0 0 1px rgba(201,100,90,.4);animation:pryIn .3s ease}
-.mnx-cd.on{display:block}
-.mnx-ch{display:flex;align-items:center;gap:8px}
-.mnx-ch i{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.7rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#FF7A7A,#E31414)}
-.mnx-ch b{flex:1;font-size:.84rem;color:#B5141C}
-.mnx-ch u{text-decoration:none;flex:none;font-size:.54rem;font-weight:800;color:#fff;background:#E31414;padding:2px 10px;clip-path:polygon(0 0,100% 0,92% 50%,100% 100%,0 100%,8% 50%)}
-.mnx-cd p{margin:7px 0 0;padding-left:32px;font-size:.7rem;line-height:1.65;color:#3A2420;font-weight:600}
-.mnx-kr{margin-top:10px;text-align:center}
-.mnx-krs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.mnx-krs span{display:flex;align-items:center;justify-content:center;gap:5px;padding:6px 2px;border-radius:4px;background:#FFF9F3;box-shadow:inset 0 0 0 1px rgba(201,100,90,.4);transition:all .3s}
-.mnx-krs i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:.52rem;font-weight:800;color:#E8605A;background:#fff;box-shadow:inset 0 0 0 1.3px #E8A598}
-.mnx-krs b{font-size:.6rem;color:#9A6A60}
-.mnx-krs span.dn i{color:#fff;background:#F4A9A0;box-shadow:none}
-.mnx-krs span.on{background:#FFE9E4;box-shadow:inset 0 0 0 1.5px #E31414}.mnx-krs span.on i{color:#fff;background:#E31414;box-shadow:none}.mnx-krs span.on b{color:#B5141C}
-.mnx-kr small{display:block;margin-top:5px;font-size:.54rem;color:#9A6A60}
-
 .mnx-p{display:none;animation:pryIn .35s ease}.mnx-p.on{display:block}
 .mnx-h{text-align:center;margin-bottom:8px}.mnx-h b{display:block;font-size:.98rem;color:#B5141C}.mnx-h small{font-size:.58rem;font-weight:700;color:#9A6A60}
 .mnx-fg{position:relative;border-radius:4px;padding:6px 6px 4px;background:linear-gradient(180deg,#FFFBF6,#FFF3EC);box-shadow:inset 0 0 0 1px rgba(201,100,90,.45),inset 0 0 0 4px #FFF9F3,inset 0 0 0 5px rgba(201,100,90,.22)}
