@@ -6069,14 +6069,14 @@ html.fw-en body .flyw .fw-btns .fw-cabb::after{content:"Lights"}html.fw-en body 
 .fa9-r button{font:inherit;flex:none;border:0;cursor:pointer;border-radius:999px;padding:6px 12px;font-size:.52rem;font-weight:800;color:#9A6A70;background:#F6EEF0}
 .fa9-r button[aria-pressed="true"]{color:#fff;background:linear-gradient(180deg,#FF5A5A,#E31414);box-shadow:0 2px 0 #B3122E}
 /* v714 ตู้อุปกรณ์และหน้าจอเปิดดูใกล้: แถบคำสั่งย้ายไปเป็นแถบด้านข้าง ภาพไม่ถูกบัง */
-@media (min-aspect-ratio:4/5){body .g2 .g2-cv{left:0!important;right:calc(min(300px,34vw) + 20px)!important;top:0!important;bottom:0!important;height:100%!important;width:min(calc(100% - min(300px,34vw) - 20px),58vh)!important;margin:0 auto!important}
+@media (min-aspect-ratio:4/5){body .g2 .g2-cv{left:0!important;right:calc(min(300px,34vw) + 20px)!important;top:0!important;bottom:0!important;height:100%!important;width:min(calc(100% - min(300px,34vw) - 20px),51vh)!important;margin:0 auto!important}
  body .g2 .g2-bar,body .g2 .g2-pop,body .g2 .g2-top{left:auto!important;right:10px!important;width:min(300px,34vw)!important}
  body .g2 .g2-bar{bottom:max(10px,env(safe-area-inset-bottom))!important;top:auto!important}
  body .g2 .g2-pop{top:auto!important;bottom:calc(max(10px,env(safe-area-inset-bottom)) + 92px)!important;max-height:calc(100vh - 220px)!important}
  body .g2 .g2-top{top:max(10px,env(safe-area-inset-top))!important;display:flex!important;flex-direction:column!important;gap:6px!important;bottom:auto!important}
  body .g2 .g2-top>*{position:relative!important;top:auto!important;left:auto!important;right:auto!important;transform:none!important;width:auto!important;margin:0!important}
  body .g2 .g2-bar,body .g2 .g2-top .g2-bub,body .g2 .g2-pop{background:rgba(255,255,255,.97)!important}}
-@media (max-aspect-ratio:4/5){body .g2 .g2-cv{top:0!important;left:0!important;right:0!important;bottom:auto!important;height:calc(100% - max(10px,env(safe-area-inset-bottom)) - 108px)!important;width:min(100%,calc((100vh - 118px) * .58))!important;margin:0 auto!important}}
+@media (max-aspect-ratio:4/5) and (min-width:600px){body .g2 .g2-cv{top:0!important;left:0!important;right:0!important;bottom:auto!important;height:calc(100% - max(10px,env(safe-area-inset-bottom)) - 108px)!important;width:min(100%,calc((100vh - 118px) * .51))!important;margin:0 auto!important}}
 .sv5{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:0;box-shadow:inset 0 0 0 1.5px #F6B3B0,0 10px 22px -16px rgba(227,20,20,.55);background:linear-gradient(180deg,#FFF6F5,#FFFFFF)}
 .sv5-t{display:flex;flex-direction:column;gap:2px;flex:1 1 220px}.sv5-t b{font-size:.74rem;color:#B3122E}.sv5-t span{font-size:.62rem;color:#5A3A40;font-weight:700}.sv5-t small{font-size:.54rem;color:#8A6A70}
 .sv5-b{display:flex;gap:8px}.sv5-no{border:0;border-radius:12px;padding:0 14px;min-height:40px;font:inherit;font-size:.62rem;font-weight:800;background:#FFF1EF;color:#E31414;box-shadow:inset 0 0 0 1px #F6CFCB;cursor:pointer}
@@ -6088,6 +6088,10 @@ html.fw-en body .flyw .fw-btns .fw-cabb::after{content:"Lights"}html.fw-en body 
 .qz-skip i{width:38px;height:22px;border-radius:999px;background:#E8D8D5;position:relative;transition:background .2s}.qz-skip i::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(120,40,50,.35);transition:left .2s}
 .qz-skip.on i{background:#E31414}.qz-skip.on i::after{left:19px}.qz-skip em{font-style:normal}
 .qsk5-dim{opacity:.45;pointer-events:none}
+/* v722 ป้ายในมือตอนเสิร์ฟ */
+.ty-hand{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;color:#5A3A40}.ty-hand b{color:#B3122E}.ty-hand i,.ty-hold2 i{display:inline-block;width:14px;height:14px;border-radius:4px;box-shadow:inset 0 0 0 1.5px rgba(90,40,50,.35);flex:0 0 auto}
+.ty-hold2{display:flex!important;align-items:center;gap:6px;font-size:.6rem!important;font-weight:800!important;color:#B3122E!important;background:#FFF1EF;border-radius:10px;padding:4px 8px;margin-top:4px!important;box-shadow:inset 0 0 0 1px #F6CFCB}
+body .g2 .g2-top .ty-pan.ty-in{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:auto!important;max-height:30vh!important;pointer-events:auto;margin:0!important}
 </style></head><body><style id="boot-css">#boot{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:radial-gradient(120% 70% at 50% 0%,#FFFFFF 0%,#FFF1F0 45%,#FFE0DE 100%);font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#2B1A1F;transition:opacity .45s ease,visibility .45s}
 #boot.out{opacity:0;visibility:hidden}
 #boot .bt-orb{position:relative;width:132px;height:132px;display:grid;place-items:center}
@@ -24830,7 +24834,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v721';
+const FW_VER='v728';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -28196,7 +28200,7 @@ function fwCaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=
    ลอดซุ้มเห็นอาคารสีครีมสองหอฝั่งตรงข้ามแม่น้ำ แถวต้นไม้ตัดทรงสองข้าง สนามหญ้า ทางเดิน ผู้คนตัวเล็ก
    แสงตามเวลาท้องถิ่น กลางคืนเปิดไฟส่องโครงเหล็กสีอำพันพร้อมไฟระยิบ ===== */
 function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=B,S=B.S;
-  const K=W/90,SB=4,SS=SB*K,w=W*SB,h=H*SB,buf=new Float32Array(w*h*3),MK=new Uint8Array(w*h);
+  const K=W/90,SB=3,SS=SB*K,w=W*SB,h=H*SB,buf=new Float32Array(w*h*3),MK=new Uint8Array(w*h);
   const put=(x,y,c,m)=>{x|=0;y|=0;if(x<0||y<0||x>=w||y>=h)return;const i=(y*w+x)*3;buf[i]=c[0];buf[i+1]=c[1];buf[i+2]=c[2];if(m!=null)MK[y*w+x]=m};
   const get=(x,y)=>{x=Math.max(0,Math.min(w-1,x|0));y=Math.max(0,Math.min(h-1,y|0));const i=(y*w+x)*3;return[buf[i],buf[i+1],buf[i+2]]};
   const H2=(x,y,s)=>fwHk(x|0,y|0,s),sm=t=>t*t*(3-2*t);
@@ -28390,6 +28394,21 @@ function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,night,dusk}=B,CW=Math.
 window.FW_PXHI={bkkcdg:2};
 Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:14});
 
+/* ===== v723 ภาพเมืองที่วาดละเอียดไม่ทำให้หน้าค้าง
+   วาดเบื้องหลังทีละภาพ ระหว่างนั้นแสดงท้องฟ้าตามเวลาไปก่อน วาดเสร็จแล้วเก็บไว้ในเครื่อง เปิดครั้งต่อไปขึ้นทันที
+   แบ่งรอบแสงเป็นช่วง ไม่วาดใหม่ทุก 15 นาที ===== */
+{const MEM={},Q=[],busy={v:0},VER='pxa3:';
+ const ph=(W,H,hr)=>{const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d'),S=fwHSky(hr),g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,S.top);g.addColorStop(1,S.bot);c.fillStyle=g;c.fillRect(0,0,W,H);return cv};
+ const refresh=id=>{try{Object.keys(FW.pxtS||{}).forEach(k=>{if(k.indexOf(id)===0)delete FW.pxtS[k]})}catch(e){}try{fwCrPaint()}catch(e){}};
+ const run=()=>{if(busy.v||!Q.length)return;busy.v=1;const job=Q.shift();setTimeout(()=>{try{const cv=job.real(job.W,job.H,job.hr);MEM[job.key]=cv;try{localStorage.setItem(VER+job.key,cv.toDataURL('image/png'))}catch(e){}refresh(job.id)}catch(e){}busy.v=0;setTimeout(run,40)},30)};
+ const wrap=(name,id)=>{const real=window[name];if(typeof real!=='function')return;window[name]=function(W,H,hr){const L=fwHSky(hr).L,key=name+'_'+W+'_'+Math.round(L*8)+(L<.55?'n':L<.9?'d':'y');
+   if(MEM[key])return MEM[key];
+   let saved=null;try{saved=localStorage.getItem(VER+key)}catch(e){}
+   if(saved){const cv=ph(W,H,hr),im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=W;c.height=H;c.getContext('2d').drawImage(im,0,0);MEM[key]=c;refresh(id)};im.src=saved;MEM[key+'_p']=cv;return cv}
+   if(!Q.some(j=>j.key===key))Q.push({key,real,W,H,hr,id});run();return MEM[key+'_p']||(MEM[key+'_p']=ph(W,H,hr))}};
+ try{for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&/^pxa\d:/.test(k)&&k.indexOf(VER)!==0)localStorage.removeItem(k)}}catch(e){}
+ wrap('fwCaStatic','bkkcai');wrap('fwPaStatic','bkkcdg');}
+
 /* v717 เอาระบบบันทึกความคืบหน้ากลางเที่ยวบินออก แต่ละเที่ยวต้องเล่นให้จบในรอบเดียว
    ล้างข้อมูลที่เคยบันทึกค้างไว้ในเครื่องจากเวอร์ชันก่อน */
 try{for(let i=localStorage.length-1;i>=0;i--){const k=localStorage.key(i);if(k&&k.indexOf('fwSave1:')===0)localStorage.removeItem(k)}}catch(e){}
@@ -28399,11 +28418,12 @@ fwDeckName=function(w){const W2=(w&&w.decks)?w:(typeof fwW==='function'?fwW():nu
 {const o=fwLoop;fwLoop=function(){try{const w=fwW();if(w&&w.act&&!w.act.pt)w.act=null}catch(e){}return o.apply(this,arguments)}}
 /* ===== v719 แตะบนไอโฟนและไอแพด: ปุ่มในบรีฟ (รับทราบ PIL ตอบคำถาม ลงชื่อ) ทำงานทันทีที่ยกนิ้ว
    กันการแตะซ้อนเร็วที่ Safari ตีความเป็นการซูมแล้วไม่ส่งคลิก และกันคลิกซ้ำที่ตามมาหลังจากนั้น ===== */
-{let sx=0,sy=0,st=0;const SEL='[data-fx],[data-rte],.qz-skip,[data-ck]';window.__fxTapAt=0;
+{/* แตะบนจอสัมผัส: ปุ่มทำงานทันทีที่ยกนิ้ว แตะติดกันเร็วๆ ได้ทุกครั้ง กันเฉพาะคลิกเงาที่ Safari ส่งตามมาจากการแตะเดียวกัน */
+ const SEL='[data-fx],[data-rte],.qz-skip,[data-ck],.g2 button[data-act],.fw-hold button[data-act]';let sx=0,sy=0,st=0;window.__ghost=null;
  document.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;sx=e.clientX;sy=e.clientY;st=Date.now()},true);
- document.addEventListener('pointerup',e=>{if(e.pointerType!=='touch')return;const b=e.target.closest&&e.target.closest(SEL);if(!b||b.disabled)return;if(Math.hypot(e.clientX-sx,e.clientY-sy)>10||Date.now()-st>700)return;
-   e.preventDefault();window.__fxSyn=1;try{b.click()}finally{window.__fxSyn=0}window.__fxTapAt=Date.now()},true);
- window.addEventListener('click',e=>{if(window.__fxSyn)return;const b=e.target.closest&&e.target.closest(SEL);if(b&&Date.now()-window.__fxTapAt<800){e.stopImmediatePropagation();e.preventDefault()}},true)}
+ document.addEventListener('pointerup',e=>{if(e.pointerType!=='touch')return;const b=e.target.closest&&e.target.closest(SEL);if(!b||b.disabled)return;if(Math.hypot(e.clientX-sx,e.clientY-sy)>12||Date.now()-st>800)return;
+   window.__ghost={x:e.clientX,y:e.clientY,t:Date.now()};window.__fxSyn=1;try{b.click()}finally{window.__fxSyn=0}},true);
+ window.addEventListener('click',e=>{if(window.__fxSyn)return;const g=window.__ghost;if(g&&Date.now()-g.t<700&&Math.hypot(e.clientX-g.x,e.clientY-g.y)<24){window.__ghost=null;e.stopImmediatePropagation();e.preventDefault()}},true)}
 /* ===== v719 ข้ามคำถามก่อนบิน 20 ข้อ: เลือกได้เมื่อถึงระดับ 8 ผู้จัดการบนเที่ยวบิน เปิดหรือปิดเองได้ จำค่าไว้ในเครื่อง ===== */
 function fwQSkipOk(){try{let lv=0;try{lv=Math.max(fwR8Rank(),typeof fwR8Pos==='function'?fwR8Pos():0)}catch(e){}return lv>=7}catch(e){return false}}
 function fwQSkipOn(){try{return fwQSkipOk()&&localStorage.getItem('fwQSkip')==='1'}catch(e){return false}}
@@ -28421,15 +28441,67 @@ setInterval(()=>{try{const w=typeof fwW==='function'&&fwW();if(!w||!w.px||!V.fly
     w.px.forEach(p=>{if((p.st==='q'&&!inQ.has(p))||(p.st==='out'&&(p.brd||V.fly.i<=2&&!inQ.has(p)))){try{fwBdWalk(w,p)}catch(e){p.st='seat'}}})}
   w.px.forEach(p=>{if(p.st==='walk'||p.st==='stow'||p.st==='slide'){const k=Math.round(p.x*4)+'_'+Math.round(p.y*4);if(p._sk!==k){p._sk=k;p._st=now}else if(now-p._st>15000&&p.goal==='seat'){try{p.stowed=1;fwPxSnap(w,p)}catch(e){p.st='seat'}}}else{p._sk=null}})}catch(e){}},1000);
 /* ===== v721 เริ่มต่อจากผู้โดยสารขึ้นครบ: ข้ามช่วงต้อนรับขึ้นเครื่อง ทุกคนนั่งประจำที่ สัมภาระเก็บเข้าช่องแล้ว เริ่มที่ช่วงตรวจห้องโดยสารก่อนบินขึ้น ===== */
-function fwCkCard(){let r=null;try{r=fwRtSel()}catch(e){}if(!r)return'';
-  return `<section class="l2-box sv5" id="fx-ck"><div class="sv5-t"><b>เริ่มต่อจากผู้โดยสารขึ้นครบ</b><span>${esc(r.no)} ไป${esc(r.city)} ผู้โดยสารนั่งประจำที่ครบ สัมภาระเก็บเข้าช่องแล้ว เริ่มที่ช่วงตรวจห้องโดยสารก่อนบินขึ้น</span><small>ยังต้องผ่านขั้นตอนก่อนบินให้ครบเหมือนเดิม</small></div><div class="sv5-b"><button class="l2-next" data-ck="go">เริ่มจากจุดนี้</button></div></section>`}
-{const o=fwL2Tabs;fwL2Tabs=function(){let h=o.apply(this,arguments);try{if((V.lbTab||'flt')==='flt'){const c=fwCkCard();if(c)h=c+h}}catch(e){}return h}}
+function fwCkGrant(){try{const u=me();if(!u||!u.cv)return false;try{if(isStaff())return false}catch(e){}if(FW.codeFly[u.cv]==null){fwCodeFlyCheck();return false}return !!FW.codeFly[u.cv]}catch(e){return false}}
+function fwCkCard(){let r=null;try{r=fwRtSel()}catch(e){}if(!r||r.id!=='bkkhkt'||!fwCkGrant())return'';
+  return `<section class="l2-box sv5" id="fx-ck"><div class="sv5-t"><b>เริ่มต่อจากผู้โดยสารขึ้นครบ</b><span>${esc(r.no)} ไป${esc(r.city)} เล่นต่อจากครึ่งเที่ยวบิน ผู้โดยสารนั่งประจำที่ครบ สัมภาระเก็บเข้าช่องแล้ว เริ่มที่ช่วงตรวจห้องโดยสารก่อนบินขึ้น</span><small>ไม่ต้องทำขั้นตอนก่อนบินซ้ำ</small></div><div class="sv5-b"><button class="l2-next" data-ck="go">เริ่มจากจุดนี้</button></div></section>`}
+{const o=fwL2Tabs;fwL2Tabs=function(){let h=o.apply(this,arguments);try{if((V.lbTab||'flt')==='flt'){const c=fwCkCard();const k=h.indexOf('</nav>',h.indexOf('l2-tabs'));if(c&&k>=0)h=h.slice(0,k+6)+c+h.slice(k+6)}}catch(e){}return h}}
 function fwCkSnap(w){if(!w||!w.px)return false;w.px.forEach(p=>{p.stowed=1;p.brd=0;if(p.st!=='seat'&&p.st!=='gone'){try{fwPxSnap(w,p)}catch(e){p.st='seat'}}});w.bq=null;w.__ckSnap=0;return true}
 setInterval(()=>{try{const w=typeof fwW==='function'&&fwW();if(w&&w.__ckSnap)fwCkSnap(w)}catch(e){}},300);
 function fwCkJump(){const F=V.fly,w=fwW();if(!F||!w||F.ph!=='play')return;try{fwEnterPlane(w)}catch(e){}F.i=3;w.go=w.go||{};w.go.greet=w.go.greet||Date.now();w.bStart=1;w.bq=null;w.bdq=0;
   w.__ckSnap=1;fwCkSnap(w);w.keys={};w.path=null;try{if(typeof FW_CH!=='undefined'&&FW_CH[3]!=null)V.flyBk=FW_CH[3]+1}catch(e){}try{fwRouteSetup(flyRt())}catch(e){}render();setTimeout(()=>{try{fwMsg(fwW(),'ผู้โดยสารขึ้นครบและเก็บสัมภาระแล้ว เริ่มตรวจห้องโดยสารก่อนบินขึ้น')}catch(e){}},400)}
-document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-ck]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();V.__ck=1;try{flyAct('fly-go',b)}catch(x){}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-ck]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(!fwCkGrant())return;V.__ck=1;window.__ckBypass=1;try{flyAct('fly-go',b)}catch(x){}window.__ckBypass=0;
   setTimeout(()=>{if(V.__ck&&V.fly&&V.fly.ph==='play'){V.__ck=0;fwCkJump()}else V.__ck=0},60)},true);
+/* ===== v722 แก้การเสิร์ฟอาหารและเครื่องดื่ม
+   1) แตะปุ่มในรถเข็นบนไอโฟนและไอแพดติดทุกครั้ง
+   2) ทุกการกดขึ้นข้อความว่าทำอะไรไป และมีป้าย "ในมือ" ชัดเจนทั้งในรถเข็นและบนแผนที่ บอกที่นั่งที่ต้องยื่นให้
+   3) ยื่นให้ผู้โดยสารได้จริงทุกที่นั่ง รวมที่นั่งริมหน้าต่าง: ยืนในทางเดินข้างแถวที่ขอแล้วกดยื่นของ
+   4) กดยื่นตอนยังไม่ถึงแถว บอกว่าที่นั่งไหนรออยู่ แทนการเปิดรถเข็นซ้ำ ===== */
+function fwTyTargets(w){const T=w&&w.ty;if(!T||!T.hand||T.hand.k==='cup')return[];return T.reqs.filter(o=>!o.done&&fwTyMatch(T.hand,o))}
+function fwTyReach(w,o){if(o.d!==w.deck)return false;const s=o.s,cy=s.y+s.h/2,ax=(s.ax!=null?s.ax:s.at?s.at[0]:s.x)+.5;return Math.abs(w.y-cy)<1.25&&Math.abs(w.x-ax)<1.6}
+{const o=fwA;fwA=function(){const w=fwW();try{if(w&&!fwBusy()&&!w.act&&!w.sit&&(w.hold==='meal'||w.hold==='drink')&&!window.FW_AUTO_GV){const T=w.ty;
+  if(T&&T.k===w.hold&&T.hand&&T.hand.k!=='cup'){const L=T.reqs.filter(r=>!r.done&&fwTyReach(w,r)&&fwTyMatch(T.hand,r));
+    if(L[0]){fwTyServe(w,L[0]);return}
+    const tg=fwTyTargets(w);if(tg.length&&!(fwNear(w)&&fwNear(w).k==='serve')){fwMsg(w,'ถือ'+FW_VW.trolley.handN(T.hand)+' ไปยืนในทางเดินข้างที่นั่ง '+tg.map(r=>r.lab).slice(0,3).join(' ')+' แล้วกดยื่นของ');return}
+    fwMsg(w,'ไม่มีที่นั่งไหนขอ'+FW_VW.trolley.handN(T.hand)+' เปิดรถเข็นแล้วกดวางคืน');try{fwTyOpen(w,[])}catch(e){}return}}}catch(e){}return o()}}
+/* ป้ายในมือบนแผนที่: บอกของที่ถือและที่นั่งที่ต้องยื่น */
+{const o=fwHoldHTML;fwHoldHTML=function(w){let s=o(w);try{const T=w&&w.ty;if(T&&w.hold===T.k&&T.hand&&T.hand.k!=='cup'){const tg=fwTyTargets(w),n=FW_VW.trolley.handN(T.hand);
+  s=s.replace(/<small class="ty-hold">[\s\S]*?<\/small>/,'').replace('</div>',`<small class="ty-hold ty-hold2"><i style="background:${FW_TYC[T.hand.k]||'#fff'}"></i>ในมือ ${esc(n)}${tg.length?' ยื่นให้ที่นั่ง '+esc(tg.map(r=>r.lab).slice(0,3).join(' ')):' ไม่มีที่นั่งขอ วางคืนที่รถเข็น'}</small></div>`)}}catch(e){}return s}}
+/* ในรถเข็น: ข้อความทุกการกด + ป้ายในมือ */
+{const D=FW_VW.trolley,oa=D.act;D.act=function(w,S,a,x){const before=JSON.stringify(S.hand||null),say0=S.say;S.say='';const r=oa.apply(this,arguments);
+  if(!S.say){const h=S.hand,n=this.handN(h);if(a==='take'&&x==='cup'&&h&&h.k==='cup')S.say='หยิบแก้วแล้ว เลือกเครื่องดื่มที่จะเทต่อ';else if(a==='take'&&x==='ice'&&h&&h.ice)S.say='ใส่น้ำแข็งแล้ว เลือกเครื่องดื่มที่จะเทต่อ';
+    else if(a==='brk')S.say=S.brk?'เหยียบเบรกแล้ว รถเข็นไม่ไหล':'ปลดเบรกแล้ว';else if(a==='door')S.say=S.door?'เปิดประตูรถเข็นแล้ว':'ปิดประตูรถเข็นแล้ว';
+    else if(JSON.stringify(h||null)!==before)S.say=h?'ในมือตอนนี้ '+n:'มือว่างแล้ว'}
+  if(S.hand&&S.hand.k!=='cup'){const tg=S.reqs.filter(o=>!o.done&&fwTyMatch(S.hand,o));if(tg.length&&!/ที่นั่ง/.test(S.say))S.say+=' ยื่นให้ที่นั่ง '+tg.map(o=>o.lab).join(' ');if(!tg.length&&S.reqs.some(o=>!o.done))S.say+=' ไม่ตรงกับคำขอในแถวนี้ ตรวจรายการอีกครั้ง'}
+  return r};
+ const ob=D.bar;D.bar=function(w,S){const h=S.hand;return h?`<span class="ty-hand"><i style="background:${FW_TYC[h.k]||'#fff'}"></i>ในมือ <b>${esc(this.handN(h))}</b></span>`:ob.apply(this,arguments)}}
+/* รายการคำขอในรถเข็นต่อท้ายกล่องภารกิจด้านบน ไม่ลอยทับปุ่มยืนยัน */
+{const o=fwVwHTML;fwVwHTML=function(){const h=o.apply(this,arguments);try{if(h.indexOf('ty-pan')<0)return h;const t=document.createElement('template');t.innerHTML=h;const pan=t.content.querySelector('.ty-pan'),top=t.content.querySelector('.g2-top');if(pan&&top){pan.classList.add('ty-in');pan.classList.remove('up');top.appendChild(pan)}return t.innerHTML}catch(e){return h}}}
+/* ===== v723 หน้าเตรียมบินลื่นขึ้น: รายการผู้โดยสารพิเศษคำนวณครั้งเดียวต่อเส้นทางและรอบบิน
+   เดิมทุกครั้งที่วาดแถบความพร้อม เกมสร้างหน้าผู้โดยสารพิเศษทั้งหน้าซ้ำหลายรอบ ทำให้ไอแพดค้างนาน ===== */
+{const o=fwSsrCodes,C={};fwSsrCodes=function(r){try{const k=(r&&r.id)+'_'+(flyS().flights||0)+'_'+(fwSt().rows||'');if(C[k])return C[k].slice();const v=o.apply(this,arguments);C[k]=v;return v.slice()}catch(e){return o.apply(this,arguments)}}}
+/* ===== v724 กรอบเลือกในฉากเปิดดูใกล้ตรงกับภาพเสมอ: ถ้าภาพถูกย่อแนวตั้งต่างจากแนวนอน ให้กรอบย่อตามด้วย ===== */
+{const o=fwVwHi;fwVwHi=function(c,L,keys,now){try{const cv=c.canvas,m=c.getTransform(),K=m.a||1,HB=Math.max(230,Math.round(120*cv.height/cv.width)),sy=(cv.height/HB)/K;if(Math.abs(sy-1)>.01){c.save();c.scale(1,sy);o.apply(this,arguments);c.restore();return}}catch(e){}return o.apply(this,arguments)}}
+/* ===== v725 กล่องคำแนะนำในฉากเปิดดูใกล้ไม่ทับแถบปุ่มด้านล่าง: วางเหนือแถบเสมอตามความสูงจริงของแถบ ทั้งมือถือแนวตั้งและจอแนวนอน ===== */
+setInterval(()=>{try{const g=document.querySelector('.g2');if(!g)return;const bar=g.querySelector(':scope > .g2-bar');if(!bar)return;const bt=bar.getBoundingClientRect().top,gr=g.getBoundingClientRect();
+  g.querySelectorAll(':scope > .g2-pop').forEach(p=>{const want=Math.round(gr.bottom-bt+8);if(p.style.getPropertyValue('bottom')!==want+'px'){p.style.setProperty('bottom',want+'px','important');p.style.setProperty('top','auto','important')}
+    const top=g.querySelector(':scope > .g2-top'),tb=top?top.getBoundingClientRect().bottom:gr.top;const maxH=Math.max(80,Math.round(bt-tb-16));p.style.setProperty('max-height',maxH+'px','important');p.style.setProperty('overflow','auto','important')})}catch(e){}},120);
+
+/* ===== v727 แกลลีย์และรถเข็น
+   1) กดคืนอุปกรณ์จากแถบในมือขณะเข็นรถเข็น รถเข็นกลับเข้าช่องในแกลลีย์ ไม่หายไป หยิบออกมาใช้ใหม่ได้
+   2) รถเข็นที่ถูกปล่อยค้างนอกช่องโดยไม่มีใครเข็นอยู่ กลับเข้าช่องให้อัตโนมัติ
+   3) กดหยิบรถเข็นจากตู้ด้านบนบอกให้ดึงจากช่องรถเข็นด้านล่าง แทนการเงียบไป
+   4) ถือของจากรถเข็นแต่ยังไม่ถึงแถว: ถ้ายืนข้างแถวที่มีผู้โดยสาร เปิดรถเข็นได้ตามปกติ ===== */
+function fwTrBack(w,k){try{const g=w.gl;if(!g||!g.tr)return;g.tr.forEach(t=>{if(t.out&&(!k||t.k===k)){t.out=0;t.lat=0;t.brk=0}})}catch(e){}}
+{const o=fwSvcAct;fwSvcAct=function(k,b){const w=fwW();let h=null;try{h=w&&w.hold}catch(e){}const r=o.apply(this,arguments);try{if(k==='fw-ret'&&h&&FW_IT[h]&&FW_IT[h].cart&&w.hold!==h){fwTrBack(w,h);if(w.ty&&w.ty.k===h)w.ty=null}}catch(e){}return r}}
+{const o=fwGalAct;fwGalAct=function(b){const w=fwW();try{const[k,a]=String(b.dataset.v).split(':');if(k==='take'&&FW_IT[a]&&FW_IT[a].cart){fwMsg(w,'รถเข็นอยู่ในช่องด้านล่างของแกลลีย์ ปลดสลัก ปลดเบรก แล้วกดดึงรถเข็นออก');w.msgT=Date.now()+4500;return}
+  if(k==='tin'&&w.hold===a){const r=o.apply(this,arguments);if(w.ty&&w.ty.k===a)w.ty=null;return r}}catch(e){}return o.apply(this,arguments)}}
+setInterval(()=>{try{const w=typeof fwW==='function'&&fwW();if(!w||!w.gl||!w.gl.tr)return;w.gl.tr.forEach(t=>{if(t.out&&w.hold!==t.k){t.out=0;t.lat=0;t.brk=0}})}catch(e){}},1500);
+
+/* ===== v728 สิทธิ์เล่นต่อครึ่งเที่ยวบินสำหรับบัญชีที่ผู้สอนเปิดสิทธิ์ผ่านรหัสเข้าเรียน
+   การ์ดเล่นต่อขึ้นเฉพาะบัญชีนั้นในเส้นทางภูเก็ต ไม่ขึ้นในบัญชีผู้สอนและบัญชีอื่น
+   บัญชีที่มีสิทธิ์ไม่ต้องทำขั้นตอนก่อนบินซ้ำ (ทำครั้งเดียวพอ) ===== */
+{const o=fwPreNeed;fwPreNeed=function(){const n=o.apply(this,arguments);try{if(window.__ckBypass||fwCkGrant()){n.eq=0;n.bag=0;n.qLeft=0;n.fail=false;n.fit=false;n.door=false;n.pil=false}}catch(e){}return n}}
+{const o=fwRteNeed;fwRteNeed=function(){try{if(window.__ckBypass||fwCkGrant())return false}catch(e){}return o.apply(this,arguments)}}
 
 /* ===== โหมดสำรวจเครื่องบิน: ไม่มีภารกิจ เดินดูทั้งลำ และเปิดทุกฉากได้จากเมนู ===== */
 const FW_FREE=[
