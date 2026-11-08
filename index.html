@@ -6092,6 +6092,26 @@ html.fw-en body .flyw .fw-btns .fw-cabb::after{content:"Lights"}html.fw-en body 
 .ty-hand{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;color:#5A3A40}.ty-hand b{color:#B3122E}.ty-hand i,.ty-hold2 i{display:inline-block;width:14px;height:14px;border-radius:4px;box-shadow:inset 0 0 0 1.5px rgba(90,40,50,.35);flex:0 0 auto}
 .ty-hold2{display:flex!important;align-items:center;gap:6px;font-size:.6rem!important;font-weight:800!important;color:#B3122E!important;background:#FFF1EF;border-radius:10px;padding:4px 8px;margin-top:4px!important;box-shadow:inset 0 0 0 1px #F6CFCB}
 body .g2 .g2-top .ty-pan.ty-in{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:auto!important;max-height:30vh!important;pointer-events:auto;margin:0!important}
+/* v730 ผังที่นั่งอาหารพิเศษ */
+.spm-map{pointer-events:auto;background:rgba(255,255,255,.97);border-radius:16px;padding:8px 10px;box-shadow:0 0 0 1px #E8D8D5,0 10px 20px -14px rgba(120,40,50,.6)}
+.spm-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}.spm-h span{font-size:.6rem;font-weight:800;color:#B3122E}.spm-h small{font-size:.52rem;color:#6B4A50;font-weight:700;text-align:right}
+.spm-g{display:grid;grid-template-columns:22px repeat(3,1fr) 10px repeat(3,1fr);gap:3px;align-items:center}
+.spm-g em{font-style:normal;font-size:.5rem;font-weight:800;color:#9A7A80;text-align:center}.spm-g .rn{text-align:right;padding-right:2px}
+.spc{border:0;border-radius:7px;min-height:26px;padding:1px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;font:inherit;cursor:pointer;touch-action:manipulation;line-height:1.05}
+.spc b{font-size:.5rem;font-weight:800}.spc i{font-style:normal;font-size:.42rem;font-weight:800}
+.spc.emp{background:#F4EEF0;color:#C9B9BF}.spc.occ{background:#FBE3E6;color:#8E5A64;box-shadow:inset 0 0 0 1px #F2C6CC}
+.spc.sp{background:#E31414;color:#FFFFFF;box-shadow:none}.spc.sp.srv{background:#FFFFFF;color:#2E9A5A;box-shadow:inset 0 0 0 1.5px #9ED8B4}
+.spc.al{box-shadow:inset 0 0 0 2px #E8A23A}.spc.al i{color:#B86A10}.spc.call{background:#FFE7A8}.spc.call.bl{background:#FFFFFF}
+.spc.tg{outline:2px solid #E31414;outline-offset:1px;animation:spcp .7s ease-in-out infinite alternate}@keyframes spcp{to{outline-color:#FF9A9A}}
+/* v730 แถบปุ่มล่างในฉากเปิดดูใกล้: บรรทัดเดียว กะทัดรัด ไม่ดันขึ้นไปทับ */
+body .g2 .g2-bar{flex-wrap:nowrap!important;padding:6px 6px 6px 12px!important;gap:6px!important;align-items:center!important}
+body .g2 .g2-bar>span{flex:1 1 auto!important;order:0!important;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0!important}
+body .g2 .g2-bar button{min-height:36px!important;padding:0 12px!important}body .g2 .g2-bar button[data-v="guide"]{margin-left:0!important}
+.spm-map{padding:5px 8px!important}.spm-h{margin-bottom:3px!important}.spm-h span{font-size:.52rem!important}.spm-h small{font-size:.48rem!important}
+.spm-g{gap:2px!important;grid-auto-rows:18px}.spm-g em{font-size:.44rem!important;line-height:1}.spc{min-height:18px!important;border-radius:5px!important;flex-direction:row!important;gap:2px}.spc b{font-size:.44rem!important}.spc i{font-size:.38rem!important}
+body .g2 .spm-map .spc{min-height:0!important;height:19px!important;padding:0 2px!important;margin:0!important;box-shadow:none;border-radius:5px!important;font-size:inherit!important;width:auto!important;line-height:1!important}
+body .g2 .spm-map .spc.occ{box-shadow:inset 0 0 0 1px #F2C6CC!important}body .g2 .spm-map .spc.al{box-shadow:inset 0 0 0 2px #E8A23A!important}body .g2 .spm-map .spc.sp.srv{box-shadow:inset 0 0 0 1.5px #9ED8B4!important}
+body .g2 .spm-map .spm-g{grid-auto-rows:19px!important;gap:2px 3px!important}body .g2 .spm-map .spm-g em{height:12px}
 </style></head><body><style id="boot-css">#boot{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:radial-gradient(120% 70% at 50% 0%,#FFFFFF 0%,#FFF1F0 45%,#FFE0DE 100%);font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#2B1A1F;transition:opacity .45s ease,visibility .45s}
 #boot.out{opacity:0;visibility:hidden}
 #boot .bt-orb{position:relative;width:132px;height:132px;display:grid;place-items:center}
@@ -19886,7 +19906,7 @@ function fwCrGen(w,n,again){const i=V.fly.i,ph=FW_PHI[i],D=w.decks[n.d],js=fwJs(
   if(ph==='desc'){if(again){out.push(Wt(1500,'chk','รอ'));return out}if(!n.bar&&!n.lead&&rows.length){out.push(G(...n.gl),{t:'hold',k:'trash'});pass('trash',1200,'เก็บขยะรอบสุดท้าย');out.push(G(...n.gl),{t:'hold',k:null})}
     rowPts(3,'belt','ตรวจความพร้อมก่อนลงจอด เข็มขัด พนักพิง โต๊ะ ม่าน',1300);out.push(G(...n.gl),Wt(1800,'lock',n.bar?'เก็บแก้วและล็อกบาร์':'ล็อกรถเข็น เตาอบ และแกลลีย์'),G(...js),{t:'sit',note:'นั่งประจำ jumpseat '+n.st+' ทบทวนเงียบก่อนลงจอด'});return out}
   if(ph==='arr'){if(!again)out.push(G(...js),Wt(1500,'arm','ปลดอาร์มประตู '+n.st+' แล้ว cross check',{dir:sd}));
-    if(['nalin','hana','phum','praewa'].includes(n.id)){out.push(G(...n.dr),Wt(Infinity,'wave','ส่งผู้โดยสาร Thank you for flying with us',{dir:n.id==='phum'||n.id==='praewa'?'down':'right'}));return out}
+    if(['nalin','hana','phum','praewa'].includes(n.id)){if(n.id==='phum'||n.id==='praewa'){n.hide=1;return[Wt(Infinity,null,'ช่วยเจ้าหน้าที่ภาคพื้นที่ปลายงวงช้าง')]}out.push(G(...n.gl),Wt(Infinity,null,'รอผู้โดยสารลงจากเครื่องให้หมด',{dir:'down'}));return out}
     rowPts(4,'chk','ตรวจหาของตกค้างและกระเป๋าหลังเบาะ',1500);if(!rows.length)out.push(G(...n.gl),Wt(4000,'lock','เก็บบาร์และนับสต็อก'));return out}
   return out}
 function fwCrBegin(w,n,t,now){if(t.t==='go'){n.sit=null;n.hide=0;n.ic=null;if(t.note)n.note=t.note;n.path=fwGridBFS(w.decks[n.d],Math.floor(n.x),Math.floor(n.y),Math.floor(t.x),Math.floor(t.y));if(!n.path)n.cur=null;return}
@@ -20092,7 +20112,7 @@ function fwCrPlan0(w,n,id,again){const i=V.fly.i,D=w.decks[n.d],js=fwJs(n),sd=n.
   case 'dfree':return cart('duty','หยิบรถเข็นสินค้าปลอดภาษีแล้วเริ่มพร้อมกัน','เสนอสินค้าปลอดภาษี');
   case 'lav':if(i!==5)return null;if(again){idle();return out}{const L=w.lavs[n.d].filter(l=>l.y>=n.z[0]-8&&l.y<=n.z[1]+8);out.push(G(...n.gl),SY('เริ่มตรวจห้องน้ำพร้อมกัน'));if(L.length){const l=L[0];out.push(G(l.x,l.y),Wt(2600,'chk','ตรวจห้องน้ำ เครื่องตรวจจับควัน และความสะอาด'))}idle();return out}
   case 'gsec':if(again){idle();return out}out.push(G(...n.gl),SY('ล็อกแกลลีย์พร้อมกัน'),Wt(0,'lock',n.bar?'เก็บแก้วและล็อกบาร์':'ล็อกรถเข็น เตาอบ และแกลลีย์',{endOn:id}));idle();return out;
-  case 'bye':if(again){idle();return out}if(door){out.push(G(...n.dr),SY('ไปประตู L2 แล้วเปิดให้ผู้โดยสารลงพร้อมกัน','down'),Wt(Infinity,'wave','ส่งผู้โดยสาร Thank you for flying with us',{dir:'down'}));return out}{const r=rows[Math.floor(rows.length/2)];if(r)out.push(G(n.ax[0],r.y));idle('รอผู้โดยสารลงจากเครื่องให้หมด');return out}
+  case 'bye':if(again){idle();return out}if(door){if(n.id==='phum'||n.id==='praewa'){n.hide=1;return[Wt(Infinity,null,'ช่วยเจ้าหน้าที่ภาคพื้นที่ปลายงวงช้าง')]}out.push(G(...n.gl),Wt(Infinity,null,'รอผู้โดยสารลงจากเครื่องให้หมด',{dir:'down'}));return out}{const r=rows[Math.floor(rows.length/2)];if(r)out.push(G(n.ax[0],r.y));idle('รอผู้โดยสารลงจากเครื่องให้หมด');return out}
   case 'lost':if(again){idle('ตรวจเสร็จแล้ว');return out}out.push(zs(),SY('เริ่มค้นของตกค้างพร้อมกัน'));rowPts(4,'chk','ตรวจหาของตกค้างและกระเป๋าหลังเบาะ',1400);idle('ตรวจเสร็จแล้ว');return out;
   case 'stow':return again?null:fwCrGen(w,n,false);
   case 'walk':case 'fd':case 'walk2':return again?null:(id==='walk'||id==='walk2'||id==='fd'?fwCrGen(w,n,false):null);
@@ -21210,31 +21230,179 @@ function fwWinCloud(i,sz,night,storm){const k='wcl'+i+'_'+sz+(night?'n':'')+(sto
   c.fillStyle=shade;bl.forEach(([x,y,rr])=>fwDisc(c,x+2,y+2,rr));c.fillStyle=base;bl.forEach(([x,y,rr])=>fwDisc(c,x+2,y+1,rr*.85));c.fillStyle=shade;c.fillRect(2,H,W,2);c.fillStyle=hi;bl.forEach(([x,y,rr])=>{if(rr>2.5)fwDisc(c,x+1,y-1,rr*.4)});
   fwOutline(cv,storm?[170,136,154]:night?[132,112,160]:[222,196,206]);return FW.spr[k]=cv}
 function fwMixC(a,b,t){const p=x=>[parseInt(x.slice(1,3),16),parseInt(x.slice(3,5),16),parseInt(x.slice(5,7),16)],A=p(a),B=p(b);return 'rgb('+A.map((v,k)=>Math.round(v+(B[k]-v)*t)).join(',')+')'}
+/* ===== วิวนอกหน้าต่างระหว่างบิน v737: ความละเอียดสูงขึ้นสามเท่า ท้องฟ้าไล่สีนุ่ม แสงฟุ้ง เมฆคิวมูลัสมีมิติทั้งแนวขอบฟ้าและทะเลเมฆใต้เครื่อง
+   เงาเมฆตกบนพื้น พื้นดินและทะเลสีธรรมชาติ หมอกตามระยะ ปีกเครื่องบินแรเงาจริง ใช้หลักแสงเดียวกับภาพเมืองนอกเครื่อง ===== */
+function fwWnH(i,j,s){let h=(i*374761393+j*668265263+s*982451653)|0;h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296}
+function fwWnV(x,y,s,P,Q){const i=Math.floor(x),j=Math.floor(y),fx=x-i,fy=y-j,u=fx*fx*(3-2*fx),v=fy*fy*(3-2*fy),wx=k=>P?((k%P)+P)%P:k,wy=k=>Q?((k%Q)+Q)%Q:k;
+  const a=fwWnH(wx(i),wy(j),s),b=fwWnH(wx(i+1),wy(j),s),c=fwWnH(wx(i),wy(j+1),s),d=fwWnH(wx(i+1),wy(j+1),s);return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v}
+function fwWnF(x,y,s,P,Q,o){o=o||5;let t=0,a=.5,f=1,n=0;for(let k=0;k<o;k++){t+=a*fwWnV(x*f,y*f,s+k*31,P?P*f:0,Q?Q*f:0);n+=a;f*=2;a*=.5}return t/n}
+function fwWnS(e0,e1,v){const t=Math.max(0,Math.min(1,(v-e0)/(e1-e0)));return t*t*(3-2*t)}
+function fwWnHx(h){if(h[0]!=='#')return h.match(/\d+/g).slice(0,3).map(Number);return[1,3,5].map(i=>parseInt(h.slice(i,i+2),16))}
+function fwWnMix(a,b,t){return[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]}
+/* ชุดแสงตามเวลา */
+function fwWnBk(h){h=h==null?(FW._wnH==null?12:FW._wnH):h;return(h<4.8||h>=19.6)?'n':h<6.4?'dawn':h<8?'morn':h<14.5?'day':h<16.8?'aft':h<18.4?'eve':'dusk'}
+function fwWnSun(BW,BH,h){const e=Math.max(0,Math.sin(Math.max(0,Math.min(1,(h-5.6)/13.4))*Math.PI)),x=.18+Math.max(0,Math.min(1,(h-5.6)/13.4))*.64;return{sunX:x,sunH:Math.round(BH*(.03+.6*e)),sunL:x<.5?1:-1}}
+function fwWnLight(S,storm){const b=S.night?'n':fwWnBk();
+  const T={n:{lit:[196,190,226],sh:[70,66,108],rim:[226,222,250]},dawn:{lit:[255,214,218],sh:[122,104,152],rim:[255,222,232]},morn:{lit:[255,238,210],sh:[150,152,184],rim:[255,242,214]},day:{lit:[255,255,255],sh:[156,172,204],rim:[255,255,255]},
+    aft:{lit:[255,248,232],sh:[150,164,196],rim:[255,250,236]},eve:{lit:[255,214,168],sh:[150,112,140],rim:[255,222,180]},dusk:{lit:[240,172,176],sh:[98,80,122],rim:[255,192,184]}},L=Object.assign({},T[b]);
+  if(storm){L.lit=fwWnMix(L.lit,[176,170,190],.5);L.sh=fwWnMix(L.sh,[90,84,104],.5)}return L}
+/* ท้องฟ้า: ขอบฟ้าอยู่แถว HS ของภาพ */
+function fwWnSky(BW,BH,S,storm,sunX,sunH){const k='wn_sky'+BW+S.t+S.m+S.b+(storm?1:0)+sunX+'_'+sunH;if(FW[k])return FW[k];const SW=Math.round(BW*1.6),SH=BH*2,HS=Math.round(BH*1.2),[cv,c]=fwCv(SW,SH),im=c.createImageData(SW,SH),D=im.data;
+  const T=fwWnHx(S.t),M=fwWnHx(S.m),Bo=fwWnHx(S.b),sun=S.sun?fwWnHx(S.sun):[255,255,255],sx=SW*sunX,sy=HS-sunH;
+  for(let y=0;y<SH;y++)for(let x=0;x<SW;x++){const v=(HS-y)/HS;let col=v<=0?Bo:v<.3?fwWnMix(Bo,M,fwWnS(0,.3,v)):fwWnMix(M,T,fwWnS(.3,1,v));
+    if(S.sun){const d=Math.hypot(x-sx,(y-sy)*1.15)/(BW*.9);col=fwWnMix(col,sun,Math.max(0,1-d)**2.4*(S.low?.32:.4))}
+    if(v>.25){const w=fwWnF(x*.012+y*.03,y*.09,410,0,0,4),band=fwWnS(.5,.78,w)*fwWnS(.25,.6,v);col=fwWnMix(col,S.night?[150,140,190]:[255,255,255],band*(S.night?.12:.32))}/* เมฆริ้วชั้นสูง */
+    col=fwWnMix(col,M,(fwWnF(x*.02,y*.05,420,0,0,3)-.5)*.1);
+    if(S.star&&v>.08&&fwWnH(x,y,430)>.9975){col=fwWnMix(col,[255,250,255],.5+fwWnH(x,y,431)*.5)}
+    if(storm)col=fwWnMix(col,[120,108,134],.35);
+    const i=(y*SW+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}
+  c.putImageData(im,0,0);return FW[k]={cv,SW,SH,HS}}
+/* แนวเมฆคิวมูลัสไกลตามขอบฟ้า ต่อกันได้ไม่รู้จบตามแนวนอน: ยอดพองเป็นลอน ฐานแบน ด้านรับแสงสว่าง ท้องเมฆเทาอมฟ้า */
+function fwWnFar(BW,S,storm,sunL,layer){const k='wn_far2'+BW+S.t+S.m+(storm?1:0)+sunL+layer+fwWnBk();if(FW[k])return FW[k];const FW2=BW*4,FH=Math.round(BW*(layer?.22:.4)),[cv,c]=fwCv(FW2,FH),im=c.createImageData(FW2,FH),D=im.data,L=fwWnLight(S,storm),base=FH-2,sd=layer?520:500,P=layer?28:16;
+  const q=new Float32Array(FW2*FH);
+  for(let y=0;y<FH;y++)for(let x=0;x<FW2;x++){const u=x/FW2*P,vy=(base-y)/(base);const tall=Math.pow(fwWnF(u*.5,.3,sd+3,P*.5,0,3),1.4)*1.5;
+    let d=fwWnF(u,y/FH*P*FH/FW2*4,sd,P,0,5)-.42+ (tall-vy)*1.1;q[y*FW2+x]=fwWnS(0,.25,d)}
+  const Q=(x,y)=>q[Math.max(0,Math.min(FH-1,y))*FW2+((x%FW2)+FW2)%FW2];
+  for(let y=0;y<FH;y++)for(let x=0;x<FW2;x++){const d=Q(x,y);if(d<=.01)continue;const dl=Q(x-2*sunL,y-2),vy=y/FH;
+    let lit=.6+(d-dl)*1.6+(1-vy)*.35-.15;lit=Math.max(0,Math.min(1,lit));let col=fwWnMix(L.sh,L.lit,lit);if(d<.5&&lit>.6)col=fwWnMix(col,L.rim,.4);
+    col=fwWnMix(col,fwWnHx(S.b),(layer?.5:.2)+Math.max(0,vy-.6)*.6);const i=(y*FW2+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=Math.min(1,d*1.3)*255}
+  c.putImageData(im,0,0);return FW[k]={cv,W:FW2,H:FH}}
+/* ทะเลเมฆมองจากด้านบน พร้อมเงาเมฆบนพื้น ต่อกันได้ทั้งสองทิศ */
+function fwWnField(S,storm,sunL,cov){const k='wn_fld'+S.t+S.m+(storm?1:0)+sunL+cov+fwWnBk();if(FW[k])return FW[k];const N=256,P=8,[cv,c]=fwCv(N,N),im=c.createImageData(N,N),D=im.data,L=fwWnLight(S,storm);
+  const q=new Float32Array(N*N);for(let y=0;y<N;y++)for(let x=0;x<N;x++){const v=fwWnF(x/32,y/32,600,P,P,5);q[y*N+x]=fwWnS(cov,cov+.16,v)*(.6+v*.6)}
+  const Q=(x,y)=>q[((y%N+N)%N)*N+((x%N+N)%N)];
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const d=Q(x,y),i=(y*N+x)*4;
+    if(d>.02){const dl=Q(x-3*sunL,y+2),dl2=Q(x-7*sunL,y+4);let lit=.62+(d-dl)*2.2+(d-dl2)*.9+(d-.5)*.5;lit=Math.max(0,Math.min(1,lit));let col=fwWnMix(L.sh,L.lit,Math.pow(lit,.8));
+      if(d<.35&&lit>.55)col=fwWnMix(col,L.rim,.35);D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=Math.min(255,fwWnS(0,.3,d)*255)}
+    else{const sh=Q(x+9*sunL,y-6);if(sh>.05){D[i]=20;D[i+1]=24;D[i+2]=48;D[i+3]=Math.min(1,sh*1.4)*70}}}
+  c.putImageData(im,0,0);return FW[k]=cv}
+/* ปีกเครื่องบินแรเงา */
+function fwWnWing(BW,BH,S){const k='wn_wing'+BW+BH+(S.night?'n':fwWnBk());if(FW[k])return FW[k];const[cv,c]=fwCv(BW,BH);c.imageSmoothingEnabled=true;const n=!!S.night,lo=!!S.low;
+  const P=(a,b)=>[BW*a,BH*b],le=[P(.46,.97),P(1.06,.70)],te=[P(1.06,.80),P(.74,1.02)];
+  let g=c.createLinearGradient(...P(.6,.72),...P(.75,1));g.addColorStop(0,n?'#8C88A8':lo?'#F6E2DA':'#F7F7FA');g.addColorStop(.55,n?'#6E6A8C':lo?'#D9C2C2':'#DCDFE8');g.addColorStop(1,n?'#55516E':lo?'#B8A2AA':'#B9BECC');
+  c.fillStyle=g;c.beginPath();c.moveTo(...le[0]);c.lineTo(...le[1]);c.lineTo(...te[0]);c.lineTo(...te[1]);c.closePath();c.fill();
+  c.strokeStyle=n?'rgba(255,255,255,.18)':'rgba(255,255,255,.85)';c.lineWidth=Math.max(1,BW/120);c.beginPath();c.moveTo(...le[0]);c.lineTo(...le[1]);c.stroke();/* ขอบปีกหน้ารับแสง */
+  c.strokeStyle='rgba(90,96,120,.35)';c.lineWidth=Math.max(.6,BW/260);for(const t of[.35,.62]){c.beginPath();c.moveTo(...P(.46+(.74-.46)*t+.0,.97+(1.02-.97)*t));c.lineTo(...P(1.06,.70+(.80-.70)*t));c.stroke()}/* รอยต่อแผ่นปีก */
+  c.strokeStyle='rgba(70,76,100,.45)';c.beginPath();c.moveTo(...P(.8,.985));c.lineTo(...P(1.06,.785));c.stroke();/* แนวแฟลป */
+  for(let j=0;j<3;j++){const t=.25+j*.22,[x,y]=P(.6+t*.42,.93-t*.2);c.fillStyle='rgba(120,126,150,.55)';c.fillRect(x,y,BW*.06,Math.max(1,BH*.006))}/* ฝาครอบรางแฟลป */
+  /* วิงเล็ตปลายปีก */const wl=[P(.96,.735),P(1.02,.60),P(1.06,.58),P(1.06,.74)];g=c.createLinearGradient(...P(.96,.6),...P(1.06,.7));g.addColorStop(0,n?'#7A2A44':'#F24A4A');g.addColorStop(1,n?'#5A1E34':'#B3122E');c.fillStyle=g;c.beginPath();wl.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.closePath();c.fill();
+  c.strokeStyle='rgba(255,255,255,.55)';c.beginPath();c.moveTo(...wl[0]);c.lineTo(...wl[1]);c.stroke();
+  c.fillStyle='rgba(30,20,40,.18)';c.beginPath();c.moveTo(...te[1]);c.lineTo(...te[0]);c.lineTo(...P(1.06,.83));c.lineTo(...P(.72,1.05));c.closePath();c.fill();/* เงาใต้ขอบท้ายปีก */
+  {const bk=S.night?'n':fwWnBk();if(bk!=='day'&&bk!=='n'){const L=fwWnLight(S,0);c.globalCompositeOperation='source-atop';c.fillStyle=`rgba(${L.lit.map(v=>v|0)},${bk==='aft'||bk==='morn'?.18:.32})`;c.fillRect(0,0,BW,BH);c.globalCompositeOperation='source-over'}}
+  return FW[k]=cv}
+function fwWinAir(c,BW,BH,w,now,S,st,rg,storm,sy,tilt,hy0){FW._wnH=fwHour(w);const night=!!S.night,low=!!S.low,SP=fwWnSun(BW,BH,FW._wnH),sunL=SP.sunL,sunX=SP.sunX,sunH=SP.sunH;
+  c.save();c.translate(BW/2,hy0+sy);c.rotate(tilt);c.translate(-BW/2,-(hy0+sy));c.imageSmoothingEnabled=true;
+  const sky=fwWnSky(BW,BH,S,storm,sunX,sunH),ox=-(sky.SW-BW)/2;c.drawImage(sky.cv,ox,hy0+sy-sky.HS);
+  let sunP=null,moonP=null;if(S.sun&&!storm)sunP=[Math.round(ox+sky.SW*sunX),Math.round(hy0-sunH)];if(S.star)moonP=[Math.round(BW*.8),Math.round(BH*.08)];
+  if(S.star){for(let k=0;k<10;k++){const a=srR(srH('st'+k)),x=a()*BW,y=a()*hy0*.8;if(Math.sin(now/500+k*1.7)>.3){c.fillStyle='rgba(255,255,255,.9)';c.fillRect(Math.round(x),Math.round(y),1,1)}}const[mx,my]=moonP;c.fillStyle='#FFF6F0';c.beginPath();c.arc(mx,my,BW*.035,0,7);c.fill();c.fillStyle='rgba(220,210,230,.6)';c.beginPath();c.arc(mx-BW*.01,my+BW*.006,BW*.01,0,7);c.fill()}
+  else if(sunP){const[px,py]=sunP;const g=c.createRadialGradient(px,py,0,px,py,BW*.12);g.addColorStop(0,'#FFFFFF');g.addColorStop(.25,low?'rgba(255,236,220,.95)':'rgba(255,255,250,.9)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.fillRect(px-BW*.12,py-BW*.12,BW*.24,BW*.24)}
+  const ex=-BW*.3,EW=BW*1.6;
+  /* พื้นผิวโลกตามระยะมองไกลใกล้ */
+  const key=rg[0]==='ground'||rg[0]==='ground2'?'sea':rg[0],tex=fwWnTerr(key,S),TN=256,zoom=.35+(1-st.alt)*.8;
+  {const pat=c.createPattern(tex,'repeat');c.fillStyle=pat;for(let y=hy0;y<BH*1.3;y++){const p=(y-hy0)/(BH-hy0+1),d=1/(p+.05),tw=d*40/zoom,sx=EW/tw,ty=d*45/zoom;pat.setTransform(new DOMMatrix([sx,0,0,1,ex+EW/2-(128+w.winX*.9)*sx,y+sy-ty]));c.fillRect(ex,y+sy,EW,2)}}
+  /* แสงสะท้อนดวงอาทิตย์บนทะเล */
+  if(sunP&&(key==='sea'||key==='isle')){c.save();c.globalCompositeOperation='screen';const gx=sunP[0];for(let y=hy0+1;y<BH;y++){const sp=(y-hy0)*.5+2;const a=Math.max(0,.55-(y-hy0)/(BH-hy0)*.45);for(let q=0;q<3;q++){if(Math.sin(now/170+y*1.9+q*2.2)>.35){c.fillStyle=`rgba(255,250,236,${a.toFixed(2)})`;c.fillRect(gx+Math.sin(now/200+y*1.3+q*4)*sp,y+sy,2+q,1)}}}c.restore()}
+  if(night){for(let k=0;k<40;k++){const a=srR(srH('cl'+k+key)),x=((a()*BW*4-w.winX*1.2)%(BW*1.4)+BW*1.4)%(BW*1.4)-BW*.2,y=hy0+3+Math.pow(a(),1.6)*(BH-hy0);c.fillStyle=k%4?'rgba(255,214,190,.85)':'rgba(255,160,150,.85)';c.fillRect(Math.round(x),Math.round(y+sy),1,1)}}
+  /* หมอกบางเหนือพื้นดิน */{const hz=c.createLinearGradient(0,hy0+sy,0,hy0+sy+(BH-hy0)*.55);const hb=fwWnHx(S.b);hz.addColorStop(0,`rgba(${hb},.92)`);hz.addColorStop(.35,`rgba(${hb},.35)`);hz.addColorStop(1,`rgba(${hb},0)`);c.fillStyle=hz;c.fillRect(ex,hy0+sy-1,EW,BH)}
+  /* ทะเลเมฆใต้เครื่อง: เคลื่อนเร็วกว่าพื้น เพราะอยู่ใกล้กว่า */
+  if(st.alt>.25){const cov=storm?.38:key==='desert'||key==='red'?.62:key==='snow'?.58:key==='land'||key==='coast'?.5:.53,fld=fwWnField(S,storm,sunL,cov),z2=zoom*.55;c.globalAlpha=Math.max(0,Math.min(1,(st.alt-.45)*3));
+    {const pat=c.createPattern(fld,'repeat');c.fillStyle=pat;for(let y=hy0+1;y<BH*1.3;y++){const p=(y-hy0)/(BH-hy0+1),d=1/(p+.07),tw=d*30/z2,sx=EW/tw,ty=d*36/z2;pat.setTransform(new DOMMatrix([sx,0,0,1,ex+EW/2-(128+w.winX*2.2)*sx,y+sy-ty]));c.fillRect(ex,y+sy,EW,2)}}c.globalAlpha=1;
+    const hz2=c.createLinearGradient(0,hy0+sy,0,hy0+sy+(BH-hy0)*.3),hb=fwWnHx(S.b);hz2.addColorStop(0,`rgba(${hb},.75)`);hz2.addColorStop(1,`rgba(${hb},0)`);c.fillStyle=hz2;c.fillRect(ex,hy0+sy-1,EW,BH)}
+  /* เทือกเขาไกล */if(key==='snow'||key==='land'||key==='red'){const rd=fwWnRidge(BW,S,key),xs=((-w.winX*.08)%rd.W+rd.W)%rd.W;for(let x=-xs-rd.W;x<BW*1.4;x+=rd.W)c.drawImage(rd.cv,x+ex*.3,hy0+sy-rd.H+1)}
+  /* หอเมฆพายุ */if(storm){const cb=fwWnFar(BW,S,storm,sunL,0),xs=((-w.winX*.2)%cb.W+cb.W)%cb.W,hh=cb.H*2.6;for(let x=-xs-cb.W;x<BW*1.4;x+=cb.W)c.drawImage(cb.cv,x+ex*.3,hy0+sy-hh+4,cb.W,hh);if(Math.sin(now/260)>.97){const lx=BW*(.2+((now/2600|0)%5)*.15);c.save();c.globalCompositeOperation='screen';const g=c.createRadialGradient(lx,hy0-BH*.2,0,lx,hy0-BH*.2,BW*.4);g.addColorStop(0,'rgba(240,236,255,.9)');g.addColorStop(1,'rgba(240,236,255,0)');c.fillStyle=g;c.fillRect(lx-BW*.4,hy0-BH*.6,BW*.8,BH*.8);c.restore()}}
+  /* แนวเมฆไกลตามขอบฟ้า สองชั้น */
+  for(const[ly,sp,yo,al] of[[1,.12,1,.9],[0,.3,3,1]]){const fr=fwWnFar(BW,S,storm,sunL,ly),xs=((-w.winX*sp)%fr.W+fr.W)%fr.W;c.globalAlpha=al*(st.alt<.5?.6+st.alt*.8:1);for(let x=-xs-fr.W;x<BW*1.4;x+=fr.W)c.drawImage(fr.cv,x+ex*.3,hy0+sy-fr.H+yo)}c.globalAlpha=1;
+  /* แสงกระเจิงตามขอบฟ้า */{const g=c.createLinearGradient(0,hy0+sy-BH*.12,0,hy0+sy+BH*.05),hc=night?'200,170,220':low?'255,200,180':'255,255,255';g.addColorStop(0,`rgba(${hc},0)`);g.addColorStop(.7,`rgba(${hc},${night?.25:.45})`);g.addColorStop(1,`rgba(${hc},0)`);c.fillStyle=g;c.fillRect(ex,hy0+sy-BH*.12,EW,BH*.17)}
+  c.restore();
+  /* ปีก */if(st.alt>.05&&V.fly.i!==3){const wg=fwWnWing(BW,BH,S),bob=Math.sin(now/900)*BH*.004+sy;c.save();c.imageSmoothingEnabled=true;c.drawImage(wg,0,bob);c.restore();if(night&&Math.floor(now/500)%2){c.fillStyle='#FF4D4D';c.fillRect(Math.round(BW*1.02)-3,Math.round(BH*.6+bob),3,2)}}
+  if(storm){c.fillStyle='rgba(110,96,124,.28)';c.fillRect(0,0,BW,BH);if(Math.sin(now/300)>.985){c.fillStyle='rgba(255,255,255,.55)';c.fillRect(0,0,BW,BH)}}
+  return{sunP,moonP}}
+/* ===== v738 ฉากนอกหน้าต่างเพิ่ม: ภูเขาหิมะ ทะเลทรายแดง ชายฝั่งเขียว เกาะและแนวปะการัง พายุเมฆคิวมูโลนิมบัส
+   และฉากภาคพื้นใหม่ทั้งหมด: ลานจอด ทางขับ รันเวย์ อาคารผู้โดยสาร หอบังคับการบิน เครื่องบินจอด ไฟสนามบินกลางคืน ===== */
+/* พื้นผิวโลกชุดใหม่ (แทนที่ของเดิม) */
+function fwWnTerr(key,S){const bk=S.night?'n':fwWnBk(),k='wn_ter3'+key+bk;if(FW[k])return FW[k];const N=256,P=8,[cv,c]=fwCv(N,N),im=c.createImageData(N,N),D=im.data;
+  const sea=[[20,64,112],[32,88,142],[64,124,172]],dim=S.night?.3:{dawn:.72,morn:.9,day:1,aft:.97,eve:.86,dusk:.62}[bk],LT=fwWnLight(S,0).lit,warm=S.night?[1,1,1]:LT.map(v=>v/255*1.04),lx=S.low?1:-1;
+  const hgt=(x,y)=>{let r=0,a=.5,f=1;for(let o=0;o<5;o++){const v=fwWnV(x/32*f,y/32*f,800+o*31,P*f,P*f);r+=a*(1-Math.abs(v*2-1));f*=2;a*=.5}return r/.97};/* ภูเขาแบบสันคม */
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const v=fwWnF(x/32,y/32,700,P,P,5),d2=fwWnF(x/8,y/8,710,P*4,P*4,3);let col;
+    const ocean=()=>{let o=fwWnMix(sea[0],sea[1],fwWnS(.3,.7,v));if(fwWnF(x/3,y/6,720,0,0,2)>.66)o=fwWnMix(o,sea[2],.45);if(fwWnH(x,y,730)>.996)o=[220,232,244];return o};
+    const farm=()=>{const fx=Math.floor(x/10+fwWnH(Math.floor(y/12),0,750)*3),fy=Math.floor(y/12),fh=fwWnH(fx,fy,760);let q=fh<.35?[118,142,72]:fh<.6?[150,160,90]:fh<.8?[176,156,108]:[96,120,64];q=fwWnMix(q,[60,90,50],fwWnS(.55,.75,v));if(x%10===0||y%12===0)q=fwWnMix(q,[90,100,70],.25);if(fwWnH(Math.floor(x/4),Math.floor(y/4),770)>.985)q=[200,190,180];return q};
+    if(key==='sea')col=ocean();
+    else if(key==='storm'){col=fwWnMix(ocean(),[40,50,70],.45)}
+    else if(key==='isle'){const e=v+d2*.08;col=e>.66?fwWnMix([52,104,52],[96,140,70],d2):e>.635?[226,214,176]:e>.6?fwWnMix([60,190,196],[120,210,200],d2):e>.55?fwWnMix(sea[1],[50,160,190],.6):ocean()}
+    else if(key==='desert'){const coast=N*.32+Math.sin(y/N*Math.PI*4)*14+(v-.5)*30;if(x<coast-3)col=ocean();else if(x<coast)col=[70,170,190];else{col=fwWnMix([206,170,120],[232,200,150],d2);if(fwWnF(x/12,y/3,740,0,0,2)>.62)col=fwWnMix(col,[244,220,176],.5);if(v>.68)col=fwWnMix(col,[160,120,90],.4)}}
+    else if(key==='red'){/* ทะเลทรายแดง: เนินทรายเป็นริ้ว ลำน้ำแห้ง พุ่มไม้แห้ง */col=fwWnMix([176,82,40],[214,120,64],d2);const dn=Math.sin(x*.35+fwWnF(x/40,y/40,745,0,0,3)*12);col=fwWnMix(col,dn>0?[230,140,80]:[150,66,34],Math.abs(dn)*.25);
+      const rv=Math.abs(x-N*.6-Math.sin(y/N*Math.PI*2)*30-fwWnF(0,y/16,746,0,0,3)*20);if(rv<1.6)col=[200,170,130];if(fwWnH(x,y,747)>.985)col=[110,96,60]}
+    else if(key==='snow'){/* ภูเขาหิมะ: สันเขา ร่องหุบ ธารน้ำแข็ง แรเงาตามทิศแสง */const h=hgt(x,y),hl=hgt(x+lx,y-1),sl=(h-hl)*14;let base=h>.72?[246,248,252]:h>.6?fwWnMix([150,140,130],[236,240,246],fwWnS(.6,.72,h)):h>.45?[110,104,92]:fwWnMix([60,86,56],[96,110,70],d2);
+      col=fwWnMix(base,sl>0?[255,255,255]:[70,80,110],Math.min(.6,Math.abs(sl)));if(h<.4&&Math.abs(v-.5)<.012)col=[90,130,160]}
+    else if(key==='coast'){const cst=N*.38+Math.sin(y/N*Math.PI*4)*16+(v-.5)*26;if(x<cst-4)col=ocean();else if(x<cst-1)col=fwWnMix([70,170,190],[230,236,240],fwWnS(cst-4,cst-1,x));else if(x<cst+2)col=[228,214,176];else{col=farm();if(fwWnH(Math.floor(x/3),Math.floor(y/3),780)>.93&&x<cst+30)col=[226,210,200]}}
+    else col=farm();
+    col=[col[0]*dim*warm[0],col[1]*dim*warm[1],col[2]*dim*warm[2]];const i=(y*N+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}
+  c.putImageData(im,0,0);return FW[k]=cv}
+/* เทือกเขาไกลบนขอบฟ้า สำหรับฉากภูเขาและแผ่นดิน */
+function fwWnRidge(BW,S,key){const k='wn_rdg'+BW+S.t+S.m+key;if(FW[k])return FW[k];const RW=BW*4,RH=Math.round(BW*.16),[cv,c]=fwCv(RW,RH),im=c.createImageData(RW,RH),D=im.data,snow=key==='snow',lx=S.low?1:-1,hb=fwWnHx(S.b);
+  const top=x=>{let r=0,a=.5,f=1;for(let o=0;o<5;o++){const v=fwWnV(x/RW*12*f,.5,880+o*13,12*f,0);r+=a*(1-Math.abs(v*2-1));f*=2;a*=.5}return RH-2-r/.97*(RH-3)*(snow?1:.45)};
+  for(let x=0;x<RW;x++){const t=top(x),tl=top(x-lx);for(let y=Math.floor(t);y<RH;y++){const dep=(y-t)/(RH-t+1);let col=snow&&dep<.35?[244,246,252]:[96,100,120];const lit=t<tl?1:.55;col=col.map(q=>q*lit);col=fwWnMix(col,hb,.45+dep*.3);if(S.night)col=col.map(q=>q*.45);const i=(y*RW+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}}
+  c.putImageData(im,0,0);return FW[k]={cv,W:RW,H:RH}}
+/* เมฆพายุคิวมูโลนิมบัส: หอเมฆสูงยอดแผ่เป็นทั่ง */
+function fwWnCb(BW,S){const k='wn_cb'+BW+S.t+S.m+fwWnBk();if(FW[k])return FW[k];const CW=BW*4,CH=Math.round(BW*.95),[cv,c]=fwCv(CW,CH),im=c.createImageData(CW,CH),D=im.data,L=fwWnLight(S,1),q=new Float32Array(CW*CH);
+  const towers=[[.12,.62],[.4,.42],[.64,.72],[.88,.5]];
+  for(let y=0;y<CH;y++)for(let x=0;x<CW;x++){const u=x/CW;let d=-1;for(const[tx,th] of towers){const dx=Math.min(Math.abs(u-tx),1-Math.abs(u-tx))*CW/BW,ty=(CH-y)/CH;if(ty>th)continue;const anvil=ty>th-.14?(1-(th-ty)/.14):0,wd=(.3+ty*.12+anvil*.9)*(1-Math.pow(ty/th,6)*.3);d=Math.max(d,1-dx/wd)}
+    d+=(fwWnF(x/CW*32,y/CH*14,960,32,0,5)-.5)*.55;q[y*CW+x]=fwWnS(0,.3,d)}
+  for(let y=0;y<CH;y++)for(let x=0;x<CW;x++){const d=q[y*CW+x];if(d<=.01)continue;const dl=q[Math.max(0,y-3)*CW+((x+3)%CW)];let lit=.5+(d-dl)*1.2+(1-y/CH)*.3;lit=Math.max(1-d*1.2,Math.min(1,lit));lit=Math.max(0,lit);let col=fwWnMix([96,92,118],[232,228,240],lit);if(S.night)col=col.map(v=>v*.5);else if(S.low)col=fwWnMix(col,[255,180,160],.25*(1-y/CH));
+    const i=(y*CW+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=fwWnS(0,.7,d)*235}
+  c.putImageData(im,0,0);return FW[k]={cv,W:CW,H:CH}}
+/* ===== ฉากภาคพื้น ===== */
+/* พื้นสนามบินมองจากหน้าต่างข้างเครื่อง แถบตามระยะ: ทางขับใกล้ หญ้า รันเวย์ หญ้า ลานจอด */
+function fwWnApt(S,onRwy){const k='wn_apt'+(onRwy?1:0)+(S.night?'n':fwWnBk());if(FW[k])return FW[k];const N=256,[cv,c]=fwCv(N,N),im=c.createImageData(N,N),D=im.data,bk=S.night?'n':fwWnBk(),LT=fwWnLight(S,0).lit,dim=S.night?.42:{dawn:.74,morn:.92,day:1,aft:.97,eve:.88,dusk:.64}[bk];
+  const bands=onRwy?[[0,46,'rwy'],[46,70,'grass'],[70,96,'twy'],[96,150,'grass'],[150,256,'apron']]:[[0,34,'twy'],[34,70,'grass'],[70,118,'rwy'],[118,160,'grass'],[160,256,'apron']];
+  for(let v=0;v<N;v++){const B=bands.find(b=>v>=b[0]&&v<b[1]),b0=B[0],b1=B[1],lv=v-b0,bw=b1-b0;for(let u=0;u<N;u++){let col;const n=fwWnF(u/16,v/16,990,16,16,3);
+    if(B[2]==='grass'){col=fwWnMix([96,128,66],[130,156,84],n);if(fwWnH(u,v,991)>.9)col=fwWnMix(col,[160,170,100],.5);if(lv<2||lv>bw-3)col=fwWnMix(col,[150,140,120],.4)}
+    else if(B[2]==='rwy'){col=fwWnMix([84,86,92],[110,112,118],n);if(fwWnH(u>>2,v,992)>.7)col=fwWnMix(col,[60,60,66],.35);/* รอยยางล้อ */
+      const cl=Math.abs(lv-bw/2)<1.2&&(u%32)<18;if(cl)col=[236,236,236];if(lv<2||lv>bw-3)col=[230,230,230];if((lv===3||lv===bw-4)&&u%16===0)col=S.night?[255,250,230]:[200,200,190]}
+    else if(B[2]==='twy'){col=fwWnMix([132,132,136],[150,150,154],n);if(Math.abs(lv-bw/2)<1)col=[226,220,200];if(lv===1||lv===bw-2){col=(u%12<2)?(S.night?[90,150,255]:[120,150,200]):col}if(u%40===0)col=fwWnMix(col,[100,100,104],.5)}
+    else{col=fwWnMix([170,168,166],[190,188,184],n);if(u%24===0||(lv%24)===0)col=fwWnMix(col,[140,138,136],.5);if(Math.abs((lv%48)-24)<1&&u%8<5)col=[226,220,206];if(fwWnH(u,v,993)>.996)col=[90,90,90]}
+    col=col.map((q,j)=>q*dim*(S.night?1:LT[j]/255*1.03));const i=(v*N+u)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}}
+  c.putImageData(im,0,0);return FW[k]=cv}
+/* อาคารผู้โดยสาร หอบังคับการบิน โรงซ่อม เครื่องบินจอด ต้นไม้ เมืองไกล ตามแนวขอบฟ้า */
+function fwWnTerm(BW,S,seed){const k='wn_trm'+BW+(S.night?'n':fwWnBk())+seed;if(FW[k])return FW[k];const TW=BW*4,TH=Math.round(BW*.42),[cv,c]=fwCv(TW,TH);c.imageSmoothingEnabled=true;const n=!!S.night,lo=!!S.low,base=TH-2,hb=fwWnHx(S.b);
+  const hz=(col,a)=>{const m=fwWnMix(col,hb,a);return n?`rgb(${m.map(v=>v*.5|0)})`:`rgb(${m.map(v=>v|0)})`};const rnd=srR(srH('trm'+seed));
+  /* เมืองไกล */for(let x=0;x<TW;){const w=6+rnd()*14,h=6+rnd()*TH*.35;c.fillStyle=hz([150,156,170],.62);c.fillRect(x,base-h-TH*.2,w,h+TH*.2);if(n)for(let yy=base-h-TH*.2+2;yy<base-4;yy+=3)for(let xx=x+1;xx<x+w-1;xx+=2)if(rnd()>.6){c.fillStyle='rgba(255,220,170,.8)';c.fillRect(xx,yy,1,1)}x+=w+rnd()*4}
+  /* ต้นไม้ */for(let x=0;x<TW;x+=3){const h=3+rnd()*5;c.fillStyle=hz([70,100,60],.4);c.beginPath();c.arc(x,base-h*.6-TH*.05,h*.7,0,7);c.fill()}
+  const blds=[];for(let x=20;x<TW-40;){const t=rnd();blds.push([x,t]);x+=t<.25?BW*.55:t<.45?BW*.35:BW*.22+rnd()*BW*.2}
+  for(const[x,t] of blds){if(t<.25){/* อาคารผู้โดยสารยาว หลังคาโค้ง ผนังกระจก งวงช้าง */const w=BW*.5,h=TH*.26,y=base-h;c.fillStyle=hz([196,200,210],.2);c.fillRect(x,y,w,h);const g=c.createLinearGradient(0,y,0,y+h);g.addColorStop(0,n?'rgba(255,220,170,.85)':'rgba(150,190,230,.9)');g.addColorStop(1,n?'rgba(255,200,150,.6)':'rgba(90,130,170,.9)');c.fillStyle=g;c.fillRect(x+2,y+h*.25,w-4,h*.6);
+      c.strokeStyle=hz([120,130,150],.2);c.lineWidth=.6;for(let xx=x+4;xx<x+w-2;xx+=4){c.beginPath();c.moveTo(xx,y+h*.25);c.lineTo(xx,y+h*.85);c.stroke()}
+      c.fillStyle=hz([230,232,236],.15);c.beginPath();c.moveTo(x-2,y+1);c.quadraticCurveTo(x+w/2,y-h*.45,x+w+2,y+1);c.lineTo(x+w+2,y+3);c.lineTo(x-2,y+3);c.closePath();c.fill();
+      for(let j=0;j<3;j++){const bx=x+w*(.2+j*.3);c.fillStyle=hz([170,170,178],.15);c.fillRect(bx,base-h*.35,BW*.06,h*.12);c.fillRect(bx+BW*.05,base-h*.35,2,h*.35)}}
+    else if(t<.45){/* หอบังคับการบิน */const h=TH*.8,y=base-h,w=BW*.025;const g=c.createLinearGradient(x,0,x+w,0);g.addColorStop(0,'#E8E6EC');g.addColorStop(1,'#B8B6C0');c.fillStyle=n?'#55546A':g;c.fillRect(x,y+TH*.12,w,h-TH*.12);
+      c.fillStyle=hz([210,212,220],.1);c.fillRect(x-w*.9,y+TH*.06,w*2.8,TH*.04);c.fillStyle=n?'rgba(255,230,190,.95)':'rgba(120,170,210,.95)';c.fillRect(x-w*.8,y+TH*.1,w*2.6,TH*.06);c.fillStyle=hz([200,202,210],.1);c.fillRect(x-w*.5,y+TH*.03,w*2,TH*.03);c.fillStyle='#FFFFFF';c.fillRect(x+w*.4,y-TH*.05,1,TH*.08);{c.fillStyle='#FF4D4D';c.fillRect(x+w*.4-1,y-TH*.06,2,2)}}
+    else if(t<.7){/* โรงซ่อมเครื่องบิน หลังคาโค้ง */const w=BW*.22,h=TH*.3,y=base-h;c.fillStyle=hz([206,206,210],.3);c.beginPath();c.moveTo(x,base);c.lineTo(x,y+h*.3);c.quadraticCurveTo(x+w/2,y-h*.2,x+w,y+h*.3);c.lineTo(x+w,base);c.closePath();c.fill();c.fillStyle=hz([150,150,158],.3);c.fillRect(x+w*.15,y+h*.45,w*.7,h*.55);for(let xx=x+w*.15;xx<x+w*.85;xx+=3){c.fillStyle=hz([130,130,140],.3);c.fillRect(xx,y+h*.45,1,h*.55)}}
+    else{/* เครื่องบินจอด: ลำตัวขาว หางสีพื้นไม่มีโลโก้ */const L=BW*.3,y=base-TH*.1,fh=TH*.07,tc=[[226,90,90],[90,120,170],[120,150,110],[200,200,206]][Math.floor(rnd()*4)];
+      c.fillStyle=n?'#6C6A7E':'#F4F4F6';c.beginPath();c.ellipse(x+L/2,y,L/2,fh/2,0,0,7);c.fill();c.fillStyle=n?'#4A4860':'#C8C8D0';c.fillRect(x+L*.1,y+fh*.1,L*.8,fh*.35);
+      c.fillStyle=n?'#FFE0A0':'#5A6A84';for(let xx=x+L*.15;xx<x+L*.8;xx+=2.2)c.fillRect(xx,y-fh*.18,1,1);
+      c.fillStyle=n?`rgb(${tc.map(v=>v*.5|0)})`:`rgb(${tc})`;c.beginPath();c.moveTo(x+L*.06,y-fh*.3);c.lineTo(x-L*.02,y-fh*2.6);c.lineTo(x+L*.1,y-fh*2.6);c.lineTo(x+L*.22,y-fh*.3);c.closePath();c.fill();
+      c.fillStyle=n?'#55546A':'#D8D8DE';c.fillRect(x+L*.42,y+fh*.2,L*.22,fh*.25);c.fillStyle='#3A3A44';c.fillRect(x+L*.3,y+fh*.4,2,fh*.5);c.fillRect(x+L*.7,y+fh*.4,2,fh*.5);c.fillRect(x+L*.92,y+fh*.4,1.5,fh*.5);
+      if(n){c.fillStyle='#FF4D4D';c.fillRect(x+L*.5,y-fh*.6,1.5,1.5)}}}
+  /* ไฟส่องลานจอดกลางคืน */if(n)for(let x=10;x<TW;x+=BW*.2){c.fillStyle='#8E8CA0';c.fillRect(x,base-TH*.55,1,TH*.55);const g=c.createRadialGradient(x,base-TH*.55,0,x,base-TH*.55,TH*.3);g.addColorStop(0,'rgba(255,236,200,.9)');g.addColorStop(1,'rgba(255,236,200,0)');c.fillStyle=g;c.fillRect(x-TH*.3,base-TH*.85,TH*.6,TH*.6)}
+  return FW[k]={cv,W:TW,H:TH}}
+function fwWinGround(c,BW,BH,w,now,S,st,rg,sy,hy0){FW._wnH=fwHour(w);const night=!!S.night,low=!!S.low,F=V.fly,SP=fwWnSun(BW,BH,FW._wnH),sunX=SP.sunX,sunH=SP.sunH;c.save();c.imageSmoothingEnabled=true;
+  const sky=fwWnSky(BW,BH,S,0,sunX,sunH),ox=-(sky.SW-BW)/2;c.drawImage(sky.cv,ox,hy0+sy-sky.HS);let sunP=null,moonP=null;if(S.sun)sunP=[Math.round(ox+sky.SW*sunX),Math.round(hy0-sunH)];if(S.star)moonP=[Math.round(BW*.8),Math.round(BH*.08)];
+  if(moonP){c.fillStyle='#FFF6F0';c.beginPath();c.arc(moonP[0],moonP[1],BW*.035,0,7);c.fill()}
+  /* เมฆบนฟ้าขณะอยู่บนพื้น */{const fr=fwWnFar(BW,S,0,SP.sunL,0),xs=((-w.winX*.05)%fr.W+fr.W)%fr.W;c.globalAlpha=.85;for(let x=-xs-fr.W;x<BW*1.4;x+=fr.W)c.drawImage(fr.cv,x,hy0+sy-fr.H-BH*.12);c.globalAlpha=1}
+  const seed=rg[0]==='ground2'?2:1,trm=fwWnTerm(BW,S,seed),xs=((-w.winX*.6)%trm.W+trm.W)%trm.W;for(let x=-xs-trm.W;x<BW*1.4;x+=trm.W)c.drawImage(trm.cv,x,hy0+sy-trm.H+2);
+  const onR=st.spd>.5||(F.i===11&&st.spd>.05),tex=fwWnApt(S,onR),pat=c.createPattern(tex,'repeat'),EW=BW*1.6,ex=-BW*.3;c.fillStyle=pat;
+  for(let y=hy0;y<BH*1.2;y++){const p=(y-hy0)/(BH-hy0+1),d=1/(p+.06),tw=d*18,sx=EW/tw,tv=d*24;pat.setTransform(new DOMMatrix([sx,0,0,1,ex+EW/2-(128+w.winX*3.2)*sx,y+sy-tv]));c.fillRect(ex,y+sy,EW,2)}
+  /* ความร้อนและหมอกจางตามระยะ */{const hb=fwWnHx(S.b),g=c.createLinearGradient(0,hy0+sy,0,hy0+sy+(BH-hy0)*.4);g.addColorStop(0,`rgba(${hb},.6)`);g.addColorStop(1,`rgba(${hb},0)`);c.fillStyle=g;c.fillRect(0,hy0+sy-1,BW,BH)}
+  /* ไฟขอบทางกลางคืน: ไฟฟ้าขอบทางขับ ไฟขาวขอบรันเวย์ ฟุ้งเป็นดวง */if(night){c.save();c.globalCompositeOperation='screen';for(const[vv,col,stp] of[[onR?2:1,'255,248,230',16],[onR?46:34,'110,160,255',12],[onR?96:70,'110,160,255',12],[onR?150:118,'255,248,230',16]]){for(let k=-6;k<14;k++){/* หาแถวจอที่ตรงกับระยะนี้ */const d=vv/24,p=1/d-.06;if(p<0||p>1.2)continue;const y=hy0+p*(BH-hy0+1),tw=d*18,sx=EW/tw,u=k*stp-((w.winX*3.2)%stp),X=ex+EW/2+(u-0)*sx;if(X<-4||X>BW+4)continue;const r=Math.max(1.2,3/d);const g=c.createRadialGradient(X,y+sy,0,X,y+sy,r*2.4);g.addColorStop(0,`rgba(${col},.95)`);g.addColorStop(1,`rgba(${col},0)`);c.fillStyle=g;c.fillRect(X-r*2.4,y+sy-r*2.4,r*4.8,r*4.8)}}c.restore()}
+  /* ความเร็วสูงบนรันเวย์: พื้นใกล้เบลอตามแนววิ่ง */if(st.spd>.6){c.globalAlpha=Math.min(.5,(st.spd-.6)*.6);const y0=hy0+(BH-hy0)*.45;c.drawImage(c.canvas,0,y0,BW,BH-y0,-BW*.04,y0,BW,BH-y0);c.drawImage(c.canvas,0,y0,BW,BH-y0,BW*.04,y0,BW,BH-y0);c.globalAlpha=1}
+  c.restore();return{sunP,moonP}}
+
 function fwWinPaint(cv,now){const w=fwW(),F=V.fly;if(!w||!F)return;const BW=cv.width/2,BH=cv.height/2;if(!FW.winB||FW.winB.width!==BW||FW.winB.height!==BH){const[b]=fwCv(BW,BH);FW.winB=b}const B=FW.winB,c=B.getContext('2d');c.imageSmoothingEnabled=false;const R=(col,x,y,ww,hh)=>{c.fillStyle=col;c.fillRect(Math.round(x),Math.round(y),Math.round(ww),Math.round(hh))};
   const h=fwHour(w),S=fwSkyCols(h),rg=fwRegion(),r=flyRt(),st=fwWinState(w,now),wx=r.wx&&r.wx[F.i],storm=rg[0]==='storm';let sunP=null,moonP=S.star?[Math.round(BW*.8),9]:null;
   w.winX=(w.winX||0)+(st.ground?st.spd*1.1:(.18+st.spd*.2))*(st.alt<.5?2:1);
   let sx=0,sy=0;if(st.roll){sx=Math.round(Math.sin(now/90));sy=Math.round(Math.sin(now/70)*1.5)}
   const tilt=st.roll?Math.sin(now/170)*.06:-(st.pitch||0)*.16,hy0=Math.round(st.ground?BH*.58:BH*(.42+.22*(1-st.alt)));const hyAt=x=>hy0+Math.round((x-BW/2)*tilt)+sy;
-  /* ท้องฟ้าไล่สีแบบแถบพิกเซล */
-  const NB=9;for(let k=0;k<NB;k++){const t=k/(NB-1),col=t<.6?fwMixC(S.t,S.m,t/.6):fwMixC(S.m,S.b,(t-.6)/.4),y0=Math.floor(k*BH/NB),y1=Math.floor((k+1)*BH/NB);R(col,0,y0,BW,y1-y0);if(k){const prev=t-1/(NB-1)<.6?fwMixC(S.t,S.m,Math.max(0,(t-1/(NB-1))/.6)):fwMixC(S.m,S.b,(t-1/(NB-1)-.6)/.4);c.fillStyle=prev;for(let x=(k%2);x<BW;x+=2)c.fillRect(x,y0,1,1)}}
-  if(S.star){for(let k=0;k<26;k++){const a=srR(srH('st'+k)),x=Math.floor(a()*BW),y=Math.floor(a()*hy0*.85);if(Math.sin(now/500+k*1.7)>-.3)R(k%5?'#FFFFFF':'#FFD6E0',x,y,1,1)}c.fillStyle='#FFF6F0';fwDisc(c,BW*.8,9,4);c.fillStyle=S.t;fwDisc(c,BW*.8+2,8,3)}
-  else if(S.sun){const px=Math.round(BW*(S.low?.18:.78)),py=Math.round(S.low?hy0-5:10);sunP=[px,py];c.fillStyle='rgba(255,255,255,.35)';fwDisc(c,px,py,7);c.fillStyle='rgba(255,255,255,.55)';fwDisc(c,px,py,5);c.fillStyle=S.sun;fwDisc(c,px,py,3)}
-  /* เมฆไกลเหนือขอบฟ้า */
-  if(!st.ground)for(let k=0;k<5;k++){const a=srR(srH('fc'+k)),cl=fwWinCloud(k,12+Math.floor(a()*6),S.night,storm),x=Math.round(((a()*BW*3-w.winX*.25)%(BW+cl.width*2)+BW+cl.width*2)%(BW+cl.width*2)-cl.width),y=Math.round(hy0-6-a()*14*(1-st.alt*.3)+sy);c.drawImage(cl,x,y)}
-  if(st.ground){const tm=fwTarmac();for(let y=hy0;y<BH;y++){const p=(y-hy0)/(BH-hy0+1),d=1/(p+.04),tw=Math.min(160,d*10),ty=Math.floor((w.winX*4+d*14)%320);c.drawImage(tm,Math.round(80-tw/2),ty<0?ty+320:ty,Math.max(1,Math.round(tw)),1,0,y+sy,BW,1)}
-    R('#E6D6D9',0,hy0-6+sy,BW,6);R('#D5C2C6',0,hy0-1+sy,BW,1);for(let k=0;k<6;k++){const a=srR(srH('tb'+k+r.id)),bw=10+Math.floor(a()*18),bh=3+Math.floor(a()*7),x=Math.round(((a()*BW*2-w.winX*.15)%(BW*1.5)+BW*1.5)%(BW*1.5)-BW*.25),y=hy0-6-bh+sy;R('#C9B2B7',x-1,y-1,bw+2,bh+1);R(k%2?'#F2E6E8':'#E8D9DC',x,y,bw,bh);for(let q=2;q<bw-1;q+=3)R(S.night?'#FFE1D6':'#BFD9F0',x+q,y+1,1,1)}
-    if(S.night){c.fillStyle='rgba(84,64,110,.38)';c.fillRect(0,hy0-6+sy,BW,BH)}if(S.night)for(let k=0;k<16;k++){const a=srR(srH('gl'+k)),x=Math.round(((a()*BW*3-w.winX*.6)%(BW*1.2)+BW*1.2)%(BW*1.2)-BW*.1);R(k%3?'#FFE1D6':'#FF7A7A',x,hy0+1+Math.floor(a()*4)+sy,1,1)}}
-  else{const key=rg[0]==='ground'||rg[0]==='ground2'?'sea':(rg[0]==='coast'?'desert':rg[0]),tex=fwTerrTex(key),TH=tex.height,TW=tex.width,zoom=.35+(1-st.alt)*1.6;
-    for(let y=hy0;y<BH;y++){const p=(y-hy0)/(BH-hy0+1),d=1/(p+.05),tw=Math.min(TW,d*20/zoom),ty=Math.floor((w.winX*1.6+d*26/zoom)%TH);c.drawImage(tex,Math.round((TW-tw)/2),ty<0?ty+TH:ty,Math.max(2,Math.round(tw)),1,0,y+sy,BW,1)}
-    c.fillStyle=S.b;for(let x=0;x<BW;x++){if(x%2===0)c.fillRect(x,hy0+sy,1,1)}R(S.b,0,hy0-1+sy,BW,1);
-    if(S.night){c.fillStyle='rgba(70,52,104,.5)';c.fillRect(0,hy0+sy,BW,BH-hy0);for(let k=0;k<34;k++){const a=srR(srH('cl'+k+key)),x=Math.round(((a()*BW*4-w.winX*1.2)%(BW*1.2)+BW*1.2)%(BW*1.2)-BW*.1),y=hy0+2+Math.round(Math.pow(a(),1.6)*(BH-hy0));R(k%4?'#FFD6C8':'#FF9A94',x,y+sy,1,1)}}
-    if(sunP&&(key==='sea'||key==='isle'||key==='storm')&&!storm){for(let y=hy0+1;y<BH;y++){const sp=(y-hy0)*.35+1;for(let q=0;q<2;q++){const gx=sunP[0]+Math.round((Math.sin(now/180+y*1.7+q*3)*sp));if(Math.sin(now/120+y*2.3+q)>.2)R(y-hy0<6?'#FFFFFF':'rgba(255,248,240,.85)',gx,y+sy,y-hy0<10?2:1,1)}}}
-    if(moonP&&(key==='sea'||key==='isle')){for(let y=hy0+1;y<BH;y+=2){if(Math.sin(now/200+y*1.9)>0)R('rgba(255,240,236,.55)',moonP[0]+Math.round(Math.sin(now/260+y)*((y-hy0)*.25+1)),y+sy,1,1)}}
-    /* เมฆชั้นกลางและใกล้ */
-    [[.6,hy0+4,15,'m',6],[1.2,hy0+16,24,'n',4]].forEach(([sp,y0,sz,key,n])=>{if(st.alt<.3&&key==='n')return;for(let k=0;k<n;k++){const a=srR(srH(key+k)),cl=fwWinCloud(k+(key==='n'?20:10),sz+Math.floor(a()*sz*.5),S.night,storm),span=BW+cl.width*2,x=Math.round(((a()*BW*3-w.winX*sp)%span+span)%span-cl.width),y=Math.round(y0+(a()-.5)*8+sy);c.drawImage(cl,x,y)}});
-    if(storm){c.fillStyle='rgba(120,100,130,.3)';c.fillRect(0,0,BW,BH);if(Math.sin(now/300)>.985){c.fillStyle='rgba(255,255,255,.55)';c.fillRect(0,0,BW,BH)}}}
-  /* ปีกเครื่องบิน */
-  if(st.alt>.05&&!st.ground&&F.i!==3){const wy=Math.round(BH*.84+Math.sin(now/900)*.6)+sy;for(let k=0;k<14;k++){const y=wy-k,x0=Math.round(BW*.55+k*2.6);R('#B9A9AE',x0-1,y,BW-x0+2,1);R(k%3?'#F4ECEE':'#E8DDE0',x0,y,BW-x0,1)}R('#E31414',BW-4,wy-17,3,4);R('#FFFFFF',BW-3,wy-16,1,1);if(S.night&&Math.floor(now/500)%2)R('#FF4D4D',BW-4,wy-18,3,1)}
+  if(!st.ground){const o=fwWinAir(c,BW,BH,w,now,S,st,rg,storm,sy,tilt,hy0);sunP=o.sunP;moonP=o.moonP}
+  else{const o=fwWinGround(c,BW,BH,w,now,S,st,rg,sy,hy0);sunP=o.sunP;moonP=o.moonP}
   if(wx==='rain'||storm){for(let k=0;k<18;k++){const a=srR(srH('rd'+k)),x=Math.floor(a()*BW),y=Math.floor((a()*BH+now*.03*(1+a()))%BH);R('rgba(255,255,255,.6)',x,y,1,2)}for(let k=0;k<10;k++){const a=srR(srH('dp'+k));R('rgba(255,255,255,.45)',Math.floor(a()*BW),Math.floor(a()*BH),1,1)}}
   if(wx==='dust'){c.fillStyle='rgba(238,196,178,.42)';c.fillRect(0,0,BW,BH);for(let k=0;k<14;k++){const a=srR(srH('du'+k));R('rgba(226,170,150,.6)',Math.floor((a()*BW+now*.02)%BW),Math.floor(a()*BH),1,1)}}
   if(wx==='cold'){c.fillStyle='rgba(244,248,253,.7)';for(let y=0;y<BH;y++)for(let x=0;x<BW;x++){const e=Math.min(x,y,BW-1-x,BH-1-y);if(e<3&&((x*7+y*13)%5)<3-e)c.fillRect(x,y,1,1)}}
@@ -21267,7 +21435,7 @@ function fwWinFx(c,W,H,B,o){const {S,sunP,moonP,st,storm,wx,now,hy,night,low}=o;
   /* แสงจากนอกหน้าต่างส่องฟุ้งออกมารอบกรอบ */
   {const gl=night?'rgba(160,130,210,.45)':low?'rgba(255,170,160,.55)':storm?'rgba(200,190,210,.35)':'rgba(190,225,255,.6)';FW.winGl=gl}}
 /* ผนังประตูลูกเรือแบบพิกเซล: แผงผนัง ขอบประตู ช่องหน้าต่างลึก ม่าน มือจับช่วยพยุง คันโยกอาร์มสไลด์ ป้าย EXIT และแสงจากนอกหน้าต่างตกกระทบผนัง */
-function fwDoorWall(nb,S,HB){HB=Math.max(150,HB||150);const key='dwall'+(nb?'n':'w')+S.door+HB;if(FW[key])return FW[key];const WB=120,[cv,c,R]=fwCv(WB,HB);
+function fwDoorWall(nb,S,HB,WBp){HB=Math.max(150,HB||150);const WB=Math.max(120,Math.round(WBp||120)),key='dwall'+(nb?'n':'w')+S.door+HB+'x'+WB;if(FW[key])return FW[key];const [cv,c,R]=fwCv(WB,HB);
   const iw=nb?50:52,ih=nb?68:74,wx=Math.round((WB-iw)/2)-6,wy=Math.round(Math.max(30,HB*.44-ih/2));
   for(let y=0;y<HB;y++){const t=y/HB;R(t<.25?'#F7F1EF':t<.55?'#F3EBE8':t<.8?'#EFE5E2':'#EADFDC',0,y,WB,1)}
   for(let k=0;k<160;k++){const x=(k*37)%WB,y=(k*53)%HB;R(k%2?'#EDE3E0':'#F9F4F2',x,y,1,1)}
@@ -21282,8 +21450,8 @@ function fwDoorWall(nb,S,HB){HB=Math.max(150,HB||150);const key='dwall'+(nb?'n':
   R('#E31414',dx+4,HB-14,dw-8,3);R('#B3122E',dx+4,HB-11,dw-8,1);R('#C9B8B5',dx+4,HB-10,dw-8,1);
   R('#D9CAC7',12,wy+ih/2-6,4,14);R('#BFAFAC',12,wy+ih/2-6,1,14);
   return FW[key]={cv,wx,wy,iw,ih,WB,HB}}
-function fwDoorPaint(cv,now){const S=fwSt(),nb=flyRt().ac==='nb',D=fwDoorWall(nb,S,Math.round(120*cv.height/cv.width)),c=cv.getContext('2d'),k=cv.width/D.WB;
-  if(!FW.winSc){FW.winSc=document.createElement('canvas')}const sc=FW.winSc;if(sc.width!==D.iw*2||sc.height!==D.ih*2){sc.width=D.iw*2;sc.height=D.ih*2}fwWinPaint(sc,now);
+function fwDoorPaint(cv,now){const S=fwSt(),nb=flyRt().ac==='nb',ar=cv.height/cv.width,HB0=Math.round(120*ar),D=HB0>=150?fwDoorWall(nb,S,HB0,120):fwDoorWall(nb,S,150,150/ar),c=cv.getContext('2d'),k=cv.width/D.WB;
+  if(!FW.winSc){FW.winSc=document.createElement('canvas')}const sc=FW.winSc;if(sc.width!==D.iw*6||sc.height!==D.ih*6){sc.width=D.iw*6;sc.height=D.ih*6}fwWinPaint(sc,now);
   c.imageSmoothingEnabled=false;c.clearRect(0,0,cv.width,cv.height);c.drawImage(D.cv,0,0,cv.width,cv.height);
   const X=D.wx*k,Y=D.wy*k,Wd=D.iw*k,Hd=D.ih*k,rad=12*k,gl=FW.winGl||'rgba(190,225,255,.6)';
   c.save();c.globalCompositeOperation='screen';const sp=c.createRadialGradient(X+Wd/2,Y+Hd/2,Math.min(Wd,Hd)*.4,X+Wd/2,Y+Hd*.6,Math.max(Wd,Hd)*1.15);sp.addColorStop(0,gl);sp.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=sp;c.fillRect(0,0,cv.width,cv.height);
@@ -21299,7 +21467,7 @@ function fwWinLoop(){fwWinRAF=0;const F=V.fly,w=F&&F.w,on=!!(F&&F.ph==='play'&&w
   const showBtn=!!(F&&w&&w.sit&&F.stage==='fly'&&V.fwWinHide);let bt=document.querySelector('.fw-winb');if(showBtn&&!bt){bt=document.createElement('button');bt.className='fw-winb';bt.textContent='มองหน้าต่าง';bt.onclick=()=>{V.fwWinHide=0};root.appendChild(bt)}if(!showBtn&&bt)bt.remove();
   if(on&&!el){const S=fwSt(),nb=flyRt().ac==='nb',WD=nb?'22.9 x 31.2':'24.2 x 34.3';el=document.createElement('div');el.className='fw-winv';el.innerHTML=`<canvas class="wv-cv" width="240" height="${Math.round(240*(root.clientHeight||844)/(root.clientWidth||390))}" aria-label="ผนังประตู ${esc(S.door)} และวิวนอกหน้าต่าง"></canvas><div class="wv-cap"><b>หน้าต่างประตู ${esc(S.door)}</b><small>ขนาดจริงราว ${WD} ซม.</small><span class="wv-st"></span><span class="wv-rg">${esc(fwRegion()[1])}</span></div><button class="wv-x" aria-label="ซ่อนหน้าต่าง">${flySv('<path d="M6 6l12 12M18 6L6 18"/>')}<span>ซ่อน</span></button>`;el.querySelector('.wv-x').onclick=()=>{V.fwWinHide=1};root.appendChild(el)}
   if(!on&&el){el.remove();el=null}
-  if(el){const cv=el.querySelector('canvas');{const cw=cv.clientWidth,ch=cv.clientHeight;if(cw&&ch){const nh=Math.round(240*ch/cw);if(cv.height!==nh){cv.width=240;cv.height=nh}}}const rgEl=el.querySelector('.wv-rg'),rt=fwRegion()[1];if(rgEl.textContent!==rt)rgEl.textContent=rt;try{fwDoorPaint(cv,Date.now())}catch(e){console.log('win',e)}}
+  if(el){const cv=el.querySelector('canvas');{const cw=cv.clientWidth,ch=cv.clientHeight;if(cw&&ch){const WW=cw>700?720:480,nh=Math.round(WW*ch/cw);if(cv.height!==nh||cv.width!==WW){cv.width=WW;cv.height=nh}}}const rgEl=el.querySelector('.wv-rg'),rt=fwRegion()[1];if(rgEl.textContent!==rt)rgEl.textContent=rt;try{fwDoorPaint(cv,Date.now())}catch(e){console.log('win',e)}}
   if(F&&F.ph==='play')fwWinRAF=requestAnimationFrame(fwWinLoop)}
 if(!window.__fwWinT)window.__fwWinT=setInterval(()=>{if(!fwWinRAF&&V.fly&&V.fly.ph==='play')fwWinRAF=requestAnimationFrame(fwWinLoop)},500);
 
@@ -24834,7 +25002,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v728';
+const FW_VER='v740';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -28335,69 +28503,212 @@ function fwPaStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,Gt,N,mix,night,dusk,dz}=
 /* ===== ภาพนิวยอร์ก v721: เทพีเสรีภาพแบบพิกเซลสไตล์เดียวกับตัวละครในเกม
    พิกเซลก้อนใหญ่ สีเรียบไม่ไล่เฉด แรเงาเป็นขั้น 4 โทน มีเส้นขอบเข้มรอบรูป แสงจากขวา
    คบเพลิง มงกุฎเจ็ดแฉก ผ้าคลุมพาดเฉียง จีบผ้าเป็นเส้น แผ่นจารึก แท่นหินเป็นก้อน เมฆก้อนพิกเซล ===== */
+/* ===== ภาพนิวยอร์ก v729: เทพีเสรีภาพมองตรงจากอ่าว ตามภาพอ้างอิง แบบพิกเซลสไตล์ตัวละครในเกม
+   เส้นขอบเข้ม สีเรียบเป็นขั้น 6 โทน แสงจากซ้ายบน ด้านขวาเงาอมฟ้า
+   คบเพลิงเปลวสีอำพัน ถ้วยมีระเบียง มือกำด้าม แขนยกสูง แขนเสื้อพับย่น มงกุฎเจ็ดแฉก ใบหน้าตรง ผมรวบข้างแก้ม
+   ผ้าคลุมพาดเฉียงจากไหล่ขวาลงสะโพกซ้าย จีบผ้ายาว ชายผ้าตกถึงฐาน แผ่นจารึกเอียงในแขนซ้าย
+   ฐานเขียว แท่นหินแกรนิตสีชมพูอมน้ำตาล ระเบียงชมวิว ช่องหน้าต่างและเสา ก้อนหินเรียงเป็นชั้น
+   ด้านหลังเป็นตึกระฟ้าแมนฮัตตัน ตึกกระจกสีฟ้า ตึกหินสีครีม ตึกยอดแหลมทองแดงเขียว น้ำในอ่าวเป็นคลื่น เมฆก้อน ===== */
 function fwNyStatic(W,H,hr){const B=fwR3Base(W,H,hr),{P,N,night,dusk}=B,CW=Math.max(1,Math.round(W/90)),GW=Math.ceil(W/CW),GH=Math.ceil(H/CW);
   const inPoly=(x,y,pts)=>{let c=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const[xi,yi]=pts[i],[xj,yj]=pts[j];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))c=!c}return c};
-  const ell=(x,y,cx,cy,rx,ry)=>((x-cx)/rx)**2+((y-cy)/ry)**2;
-  const robe=[[31,64],[29,70],[28.4,80],[29.2,92],[30.6,104],[31.6,118],[32.6,133],[62,133],[62.6,121],[63,108],[64,98],[65.4,86],[63.6,74],[58.6,66],[52,63.4],[40,63.4]];
-  const sleeve=[[28.6,64],[27.6,57],[29.4,50.5],[33.6,48.2],[38,51.4],[40.6,58],[37.6,66.4]],fore=[[26.4,31.5],[30.6,31.5],[33.8,48.6],[29.2,49.6]];
-  const tablet=[[60.2,80.4],[71.2,76.2],[74.4,101.4],[63.2,104.6]],tabE=[[71.2,76.2],[73.4,76.6],[76.4,101],[74.4,101.4]],drape=[[61.6,99],[69.6,103],[69,117],[65.6,121],[62.4,113]];
-  const rays=[[-170,9.4],[-147,10.6],[-121,10.2],[-95,10.6],[-68,11],[-42,10.6],[-15,9.6]].map(([ang,len])=>{const a=ang*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),bx=46+dx*4.4,by=54.6+dy*2.8,nx=-dy,ny=dx;return{tri:[[bx+nx*1.1,by+ny*1.1],[bx-nx*1.1,by-ny*1.1],[bx+dx*len,by+dy*len]],nx,ny,bx,by}});
-  const mT=x=>66+(x-30)*.62,mB=x=>90+(x-30)*.42;
-  /* ชุดสี: กลางวัน พลบค่ำ กลางคืน */
-  const PAL=night?{sky:[[22,30,70],[30,40,88],[44,52,104]],cl:[[64,72,120],[48,56,100]],cu:[[120,196,176],[84,160,146],[56,118,114],[36,82,86]],ol:[18,34,44],fl:[[255,240,170],[255,196,90]],gr:[[118,112,104],[92,88,84],[66,64,64]],gol:[30,30,36],win:[255,214,140]}
-   :dusk?{sky:[[86,92,160],[150,120,170],[232,156,160]],cl:[[255,214,206],[214,168,186]],cu:[[214,226,196],[164,196,172],[112,156,144],[72,110,110]],ol:[40,52,64],fl:[[255,236,160],[246,170,70]],gr:[[232,196,176],[192,160,146],[146,122,116]],gol:[86,70,72],win:[60,52,62]}
-   :{sky:[[56,104,176],[78,128,196],[112,160,216]],cl:[[246,250,255],[206,222,240]],cu:[[184,232,212],[128,198,174],[82,150,138],[50,104,104]],ol:[28,62,68],fl:[[255,226,120],[236,158,40]],gr:[[220,212,196],[180,172,156],[136,128,118]],gol:[86,80,76],win:[44,44,52]};
-  const G=new Array(GW*GH),T=new Uint8Array(GW*GH);/* T: 0 ฟ้า 1 เมฆ 2 รูปปั้น 3 แท่น 4 เปลวไฟ */
-  const cuT=k=>PAL.cu[Math.max(0,Math.min(3,k))];
+  const ell=(x,y,cx,cy,rx,ry)=>((x-cx)/rx)**2+((y-cy)/ry)**2,mix=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
+  /* ชุดสี */
+  const PAL=night?{sky:[[18,24,60],[24,32,74],[32,42,90],[44,54,104]],cl:[[70,78,124],[52,60,104],[40,48,90]],cu:[[150,214,196],[118,192,174],[92,166,154],[70,136,130],[52,106,106],[36,78,84]],ol:[16,30,40],fl:[[255,244,190],[255,206,110],[226,150,60]],gr:[[150,130,124],[124,106,102],[98,84,84],[72,62,64]],gol:[28,24,30],win:[255,214,140],wat:[[26,34,70],[36,46,88],[60,74,120]],bld:[[46,52,84],[38,44,74],[30,36,62]],bwin:[255,214,150],glass:[[40,60,104],[30,46,84]]}
+   :dusk?{sky:[[78,84,150],[120,104,164],[196,138,164],[240,170,160]],cl:[[255,226,214],[236,184,190],[196,150,176]],cu:[[226,236,206],[194,214,186],[156,190,168],[120,160,146],[88,124,120],[60,92,98]],ol:[38,48,60],fl:[[255,244,190],[255,206,110],[226,150,60]],gr:[[236,190,170],[208,162,146],[176,134,124],[136,104,100]],gol:[84,62,64],win:[70,56,66],wat:[[120,104,150],[150,124,164],[214,164,170]],bld:[[176,140,150],[150,118,134],[122,98,118]],bwin:[255,214,160],glass:[[150,150,190],[120,120,166]]}
+   :{sky:[[34,96,184],[52,118,200],[76,142,214],[110,168,226]],cl:[[255,255,255],[232,240,250],[200,216,236]],cu:[[196,240,222],[160,222,202],[124,198,180],[94,168,156],[66,132,128],[44,98,100]],ol:[26,58,66],fl:[[255,236,150],[240,178,52],[190,120,30]],gr:[[214,182,168],[188,154,142],[158,126,118],[122,96,92]],gol:[80,62,62],win:[40,36,44],wat:[[56,80,104],[74,100,124],[110,136,156]],bld:[[226,214,192],[196,182,160],[160,146,130]],bwin:[120,126,140],glass:[[120,170,214],[78,124,176]]};
+  const G=new Array(GW*GH),T=new Uint8Array(GW*GH);/* 0 ฟ้า 1 ฉากหลัง 2 รูปปั้น 3 แท่น 4 เปลวไฟ */
+  const cu=k=>PAL.cu[Math.max(0,Math.min(5,k))];
+  /* รูปทรง (พิกัด 90x150) */
+  const robe=[[30.5,40],[29,46],[29.6,56],[31.2,70],[31.8,86],[31,100],[30.2,112],[29.4,118.4],[56,118.4],[55,110],[54.2,98],[55.4,86],[56.6,76],[54.4,62],[52,52],[50.6,44],[47.6,41],[41,41.4],[36,40.6]];
+  const sleeve=[[29.4,40],[29,33.6],[31.4,30.4],[35.2,30.2],[37.4,33.6],[38.4,40.4],[36,43.4],[31,43]];
+  const fore=[[29.6,19.6],[33,19.6],[35.6,31],[30.8,31.4]];
+  const tablet=[[53.2,57],[62.4,54.6],[64.6,71.4],[55.6,74.2]],tabE=[[62.4,54.6],[63.8,55.4],[66,71],[64.6,71.4]];
+  const drape=[[53.8,73],[59.6,72.2],[58.4,90],[55.4,92],[53.6,86]];
+  const rays=[[-172,7.2],[-150,7.6],[-122,7.4],[-90,7.8],[-58,7.4],[-30,7.6],[-8,7.2]].map(([ang,len])=>{const a=ang*Math.PI/180,dx=Math.cos(a),dy=Math.sin(a),bx=43.2+dx*4.2,by=33.4+dy*1.8,nx=-dy,ny=dx;return{tri:[[bx+nx*.95,by+ny*.95],[bx-nx*.95,by-ny*.95],[bx+dx*len,by+dy*len]],nx,ny,bx,by}});
+  const mT=x=>48-(x-30)*.12+(x>44?(x-44)*.9:0),mB=x=>72-(x-30)*.55;/* ผ้าคลุมพาดเฉียงจากไหล่ขวาลงซ้าย */
+  /* อาคารฉากหลัง: [x0,x1,top,ชนิด] */
+  const BL=[[0,6,98,0],[5,9,103,1],[8,19,68,2],[13,20,76,2],[18,26,84,0],[20,27,74,3],[25,31,86,1],[27,32,90,2],[56,61,78,1],[58,64,84,0],[60,68,90,0],[66,80,79,4],[78,84,80,5],[82,90,86,0],[86,90,92,1],[63,70,96,0],[70,76,94,1]];
   for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const x=(gx+.5)*CW*90/W,y=(gy+.5)*CW*150/H,i=gy*GW+gx;let c=null,t=0;
-    /* แท่นหิน */
-    if(y>=133&&y<137.4&&x>19+(137.4-y)*.4&&x<64-(137.4-y)*.2){c=cuT(y<134.6?0:x>52?1:2);t=2}
-    else if(y>=137.4&&y<142.6&&x>16.5&&x<66){const rowY=Math.floor((y-137.4)/1.8),seam=((x+rowY*3)%8)<CW*90/W;c=PAL.gr[x>58?0:1];if(y<139)c=PAL.gr[0];if(seam&&y>=139)c=PAL.gr[2];if(x>40&&x<44&&y>139.4&&y<141.4)c=PAL.win;t=3}
-    else if(y>=142.6&&x>3&&x<84){c=PAL.gr[x>70?0:1];if(y<144.4)c=PAL.gr[0];const rowY=Math.floor((y-144.4)/2.2);if(y>=144.4&&((x+rowY*4)%10)<CW*90/W)c=PAL.gr[2];
-      for(const px of[6,18,33,51,68,80])if(Math.abs(x-px)<1.6&&y>=144.4)c=PAL.gr[0];if((x>24&&x<28.5||x>56&&x<60.5)&&y>146.4)c=PAL.win;t=3}
-    /* เปลวไฟคบเพลิง */
-    else if(ell(x,y,29.4,16.2,3.8,2.6)<1||ell(x,y,30.4,13,1.8,2.8)<1){c=PAL.fl[x>29.6||y<14?0:1];t=4}
-    /* ถ้วยคบเพลิง */
-    else if(y>=18&&y<23.6&&Math.abs(x-28.7)<6.2-(y-18)/5.6*3.6){c=y<19.6?cuT(1):cuT(x>30?2:3);if(y>=19.6&&y<20.6&&((gx)%2===0))c=cuT(1);t=2}
-    else if(y>=23.6&&y<28&&Math.abs(x-28.4)<1.7){c=cuT(x>28.6?1:2);t=2}
-    else if(ell(x,y,28.5,30,2.8,3)<1){c=cuT(x>29.4?0:x>27.4?1:2);if(gy%2===0&&x<28.6)c=cuT(2);t=2}
-    else if(inPoly(x,y,fore)){const tt=(y-31.5)/17,xl=26.4+tt*2.8,xr=30.6+tt*3.2,u=(x-xl)/(xr-xl);c=cuT(u>.62?0:u>.3?1:2);t=2}
-    else if(rays.some(r=>inPoly(x,y,r.tri))){const r=rays.find(r=>inPoly(x,y,r.tri)),side=(x-r.bx)*r.nx+(y-r.by)*r.ny;c=cuT(side>0?1:2);t=2}
-    else if(ell(x,y,46.2,58.8,4.9,5.8)<1){/* ศีรษะ */const u=(x-41.3)/9.8;if(y<56.6){c=cuT(u>.6?1:2);if(y>53.8&&y<55.6&&gx%2===0)c=PAL.ol}else{const face=ell(x,y,47,60.6,3,3.7)<1;c=face?cuT(u>.62?0:u>.38?1:2):cuT(u>.6?2:3);if(face&&y>61.6&&y<62.6&&x>46&&x<48.6)c=cuT(2)}t=2}
-    else if(y>=62.6&&y<65&&x>43.4&&x<49.6){c=cuT(x>47?1:2);t=2}
-    else if(inPoly(x,y,tabE)){c=cuT(0);t=2}
-    else if(inPoly(x,y,tablet)){c=cuT(1);const ln=y-(80.4-(x-60.2)*.38);if(ln>5&&ln<13&&Math.floor(ln/2.4)%2===0&&x>62&&x<70)c=cuT(2);t=2}
-    else if(ell(x,y,67.8,89.8,3,3.3)<1){c=cuT(x>67.4?0:1);t=2}
-    else if(inPoly(x,y,drape)){c=cuT(((x*.9+y*.15)|0)%3===0?2:1);t=2}
-    else if(inPoly(x,y,sleeve)){const u=(x-28)/12;c=cuT(u>.62?0:u>.32?1:2);if((((x*.8-y*.5)|0)%3)===0)c=cuT(u>.5?1:3);t=2}
-    else if(inPoly(x,y,robe)){/* แรเงาตามตำแหน่ง + จีบผ้า */let a=1e9,b=-1e9;for(let ii=0,jj=robe.length-1;ii<robe.length;jj=ii++){const[xi,yi]=robe[ii],[xj,yj]=robe[jj];if((yi>y)!==(yj>y)){const xc=xi+(xj-xi)*(y-yi)/(yj-yi);a=Math.min(a,xc);b=Math.max(b,xc)}}const u=(x-a)/(b-a);
-      let k=u>.72?0:u>.42?1:u>.16?2:3;const inM=y>mT(x)&&y<mB(x);
-      if(inM){const d=x-y*.62;if(((d+60)%5.2)<1.3)k=Math.min(3,k+1);if(Math.abs(y-mB(x))<1.4)k=3;if(Math.abs(y-mT(x))<1.1)k=Math.max(0,k-1)}
-      else{const wob=Math.sin(y*.11+x*.05)*1.2;if(((x+wob+40)%4.6)<1.25)k=Math.min(3,k+1);if(y>mB(x)&&y<mB(x)+2.2)k=Math.min(3,k+1)}
-      c=cuT(k);t=2}
-    else if(y>=131.4&&y<133.6&&ell(x,y,40,132.6,3.6,1.3)<1){c=cuT(1);t=2}
+    /* ---------- แท่นหิน ---------- */
+    if(y>=118.4&&y<121.6&&x>26.6&&x<58){c=cu(y<119.4?1:x>48?4:3);t=2}
+    else if(y>=121.6&&x>23.2+(y>129?-1.6:0)&&x<61.6+(y>129?1.6:0)){t=3;const lit=x<42?0:x<52?1:2;c=PAL.gr[lit];
+      if(y<123)c=PAL.gr[0];else if(y<124)c=PAL.gr[3];
+      else if(y>=129&&y<130.4)c=PAL.gr[0];else if(y>=130.4&&y<131.6)c=PAL.gr[3];
+      else if(y>=126&&y<129&&((gx%3)===0))c=PAL.gr[2];/* ราวระเบียง */
+      else if(y>=132){const rowY=Math.floor((y-132)/2.2),seam=((x+rowY*3)%6.4)<1;if(seam||((y-132)%2.2)<.6)c=PAL.gr[Math.min(3,lit+1)];
+        for(const wx of[28.4,35.4,42.4,49.4]) if(x>wx&&x<wx+4.6&&y>136&&y<148.6)c=PAL.win;for(const px of[33,40,47,54])if(Math.abs(x-px+.5)<1.1&&y>134.6)c=PAL.gr[lit===2?1:0]}
+      if(y>124&&y<126&&x>38&&x<41)c=PAL.win}
+    /* ---------- เปลวไฟคบเพลิง ---------- */
+    else if(ell(x,y,31.4,5.4,2.6,2.2)<1||ell(x,y,31.8,3,1.2,2)<1){c=PAL.fl[x<31?0:x<32.6?1:2];if(y>6.6)c=PAL.fl[2];t=4}
+    else if(y>=7&&y<12.2&&Math.abs(x-31.2)<4.4-(y-7)/5.2*2.4){c=y<8.6?cu(2):cu(x<31?3:4);if(y>=8.6&&y<9.6&&gx%2===0)c=cu(1);if(y>=9.6)c=mix(c,[44,70,74],.35);t=2}
+    else if(y>=12.2&&y<17&&Math.abs(x-31.2)<1.5){c=cu(x<31?3:4);if(gy%2===0)c=cu(x<31?2:3);t=2}
+    else if(ell(x,y,31.2,18.4,2.2,2.6)<1){c=cu(x<30.6?2:x<32?3:4);if(gy%2===1&&x>31)c=cu(5);t=2}
+    else if(inPoly(x,y,fore)){const tt=(y-19.6)/11.8,xl=29.6+tt*1.2,xr=33+tt*2.6,u=(x-xl)/(xr-xl);c=cu(u<.35?1:u<.7?2:4);t=2}
+    else if(rays.some(r=>inPoly(x,y,r.tri))){const r=rays.find(r=>inPoly(x,y,r.tri)),side=(x-r.bx)*r.nx+(y-r.by)*r.ny;c=cu(side>0?2:4);t=2}
+    else if(ell(x,y,43.2,37.2,4.4,5.2)<1){/* ศีรษะ */const u=(x-38.8)/8.8;
+      if(y<34.6){c=cu(u<.45?2:3);if(y>32.4&&y<34&&gx%2===0)c=PAL.ol;if(y<32.4)c=cu(1)}
+      else{const face=ell(x,y,43.4,38.6,2.8,3.6)<1;if(face){c=cu(u<.4?1:u<.66?2:3);if(y>36.4&&y<37.2&&(Math.abs(x-42.2)<.6||Math.abs(x-44.6)<.6))c=cu(5);if(y>38&&y<39.6&&Math.abs(x-43.4)<.5)c=cu(4);if(y>40.2&&y<40.9&&Math.abs(x-43.4)<1)c=cu(4)}else c=cu(u<.5?3:4)}t=2}
+    else if(y>=41&&y<43.4&&x>41&&x<46){c=cu(x<43?2:3);t=2}
+    else if(inPoly(x,y,tabE)){c=cu(1);t=2}
+    else if(inPoly(x,y,tablet)){c=cu(2);const ln=y-(57-(x-53.2)*.26);if(ln>4&&ln<12&&Math.floor(ln/2.2)%2===0&&x>55.4&&x<61.4)c=cu(4);t=2}
+    else if(ell(x,y,60.6,66.6,2.4,2.8)<1){c=cu(x<60.4?2:3);t=2}
+    else if(inPoly(x,y,drape)){c=cu(((x*.9+y*.2)|0)%3===0?5:4);t=2}
+    else if(inPoly(x,y,sleeve)){const u=(x-29)/9.4;let k=u<.35?1:u<.65?2:3;if((((x*.9-y*.6)|0)%3)===0)k++;c=cu(k);t=2}
+    else if(inPoly(x,y,robe)){let a=1e9,b=-1e9;for(let ii=0,jj=robe.length-1;ii<robe.length;jj=ii++){const[xi,yi]=robe[ii],[xj,yj]=robe[jj];if((yi>y)!==(yj>y)){const xc=xi+(xj-xi)*(y-yi)/(yj-yi);a=Math.min(a,xc);b=Math.max(b,xc)}}const u=(x-a)/(b-a);
+      let k=u<.22?1:u<.5?2:u<.78?3:4;const inM=y>mT(x)&&y<mB(x);
+      if(inM){const d=x+y*.55;if(((d+80)%4.4)<1.1)k++;if(Math.abs(y-mB(x))<1.2)k=5;if(Math.abs(y-mT(x))<1)k=Math.max(0,k-1)}
+      else{const wob=Math.sin(y*.13+x*.07)*1;if(((x+wob+40)%3.6)<1.05)k++;if(y>mB(x)&&y<mB(x)+1.8)k++;if(y>112&&((x*1.3|0)%3===0))k++}
+      if(y<46&&x>44)k=Math.max(k,3);c=cu(k);t=2}
     G[i]=c;T[i]=c?t:0}
-  /* เส้นขอบเข้มรอบรูปปั้นและแท่น (ไม่ทับเปลวไฟ) */
-  const O=new Uint8Array(GW*GH);for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i=gy*GW+gx;if(!G[i]||T[i]===4)continue;const nb=[[1,0],[-1,0],[0,1],[0,-1]].some(([dx,dy])=>{const xx=gx+dx,yy=gy+dy;return xx<0||yy<0||xx>=GW||yy>=GH||!G[yy*GW+xx]});if(nb)O[i]=1}
+  /* เส้นขอบเข้มรอบรูปปั้นและแท่น */
+  const O=new Uint8Array(GW*GH);for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i=gy*GW+gx;if(!G[i]||T[i]===4)continue;if([[1,0],[-1,0],[0,1],[0,-1]].some(([dx,dy])=>{const xx=gx+dx,yy=gy+dy;return xx<0||yy<0||xx>=GW||yy>=GH||!G[yy*GW+xx]}))O[i]=1}
   for(let i=0;i<O.length;i++)if(O[i])G[i]=T[i]===3?PAL.gol:PAL.ol;
-  /* ท้องฟ้าเป็นแถบสามโทน รอยต่อแถบเป็นขั้นบันได เมฆก้อนพิกเซล */
-  const clouds=[[10,40,7],[16,37,6],[22,41,5],[70,104,7],[78,100,6],[84,106,5],[64,108,4],[6,92,4],[12,90,5]];
-  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i=gy*GW+gx;if(G[i])continue;const x=(gx+.5)*CW*90/W,y=(gy+.5)*CW*150/H;
-    const by0=Math.floor(52/(CW*150/H)),by1=Math.floor(104/(CW*150/H));let band=gy<by0?0:gy<by1?1:2;if((gy===by0||gy===by1)&&((gx+gy)%2===0))band--;let c=PAL.sky[band];
-    for(const[cx,cy,r] of clouds){const e=ell(x,y,cx,cy,r*1.5,r*.8);if(e<1&&y<cy+r*.45){c=y>cy+r*.05?PAL.cl[1]:PAL.cl[0];break}}
+  /* ---------- ฉากหลัง: ฟ้า เมฆ ตึก น้ำ ---------- */
+  const clouds=[[6,38,6,0],[14,35,7,0],[2,48,5,0],[27,33,4,0],[62,26,6,0],[72,25,7,0],[84,27,6,0],[66,74,6,1],[76,72,7,1],[86,74,5,1],[4,93,4,1]];
+  const CLD2=[{b:[[4,40,4],[9,37,5],[15,38,4],[20,41,3],[1,43,3]],base:44,s:1},{b:[[19,34,3],[23,32,3.6],[27,34,3]],base:36,s:2},
+    {b:[[60,24,3],[66,22,4],[73,21,4.4],[80,22,4],[86,24,3.4],[90,26,3]],base:27,s:3},{b:[[50,38,3.4],[56,35,4.4],[63,36,4],[69,38,3]],base:40,s:4},
+    {b:[[66,76,4],[72,73,5],[79,72,5],[85,74,4],[90,76,3]],base:79,s:5},{b:[[1,93,3],[5,91,3.4],[9,93,2.6]],base:95,s:6},{b:[[36,30,2],[40,29,2.4]],base:31,s:7}];
+  CLD2.forEach(C=>{C.x0=Math.min(...C.b.map(b=>b[0]-b[2]*1.25));C.x1=Math.max(...C.b.map(b=>b[0]+b[2]*1.25))});
+  PAL.sky2=night?[[14,20,52],[18,26,62],[22,32,72],[28,40,84],[36,48,96],[46,58,108]]:dusk?[[70,76,146],[96,92,160],[132,108,168],[176,128,170],[214,150,168],[238,172,164]]:[[26,84,176],[36,100,190],[50,118,204],[70,138,214],[96,158,222],[132,182,232]];
+  PAL.cl2=night?[[84,92,140],[66,74,120],[52,60,104],[42,48,90]]:dusk?[[255,232,222],[246,204,200],[216,170,184],[180,140,166]]:[[255,255,255],[236,242,250],[206,218,236],[170,188,214]];
+  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i=gy*GW+gx;if(G[i])continue;const x=(gx+.5)*CW*90/W,y=(gy+.5)*CW*150/H;let c,tt=0;
+    if(y>=123){/* น้ำ: แถบคลื่น */const t2=(y-123)/27,wv=Math.sin(x*.9+y*2.1)+Math.sin(x*.37-y*1.3);c=PAL.wat[wv>1.1?2:wv>-.4?1:0];if(t2<.08)c=PAL.wat[2];tt=1}
+    else{c=null;/* ท้องฟ้าวาดละเอียดทีละพิกเซลภายหลัง */
+    }
     G[i]=c}
-  if(night)for(let k=0;k<46;k++){const gx=Math.floor(N(k,1,811)*GW),gy=Math.floor(N(k,2,811)*GH*.8),i=gy*GW+gx;if(!T[i]&&(G[i]===PAL.sky[0]||G[i]===PAL.sky[1]))G[i]=[236,236,255]}
-  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const c=G[gy*GW+gx];for(let j=0;j<CW;j++)for(let ii=0;ii<CW;ii++)P(gx*CW+ii,gy*CW+j,c)}
-  if(night){/* เปลวไฟเรืองแสง: ช่องฟ้ารอบเปลวไฟเป็นสีอุ่นหนึ่งช่อง */for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i2=gy*GW+gx;if(T[i2])continue;let near=false;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const xx=gx+dx,yy=gy+dy;if(xx>=0&&yy>=0&&xx<GW&&yy<GH&&T[yy*GW+xx]===4)near=true}if(near)for(let jj=0;jj<CW;jj++)for(let ii=0;ii<CW;ii++)P(gx*CW+ii,gy*CW+jj,[150,110,80])}}
+  function k0(gy,gx,band){if(band===0)return false;const bands=[0,30,62,96],by=Math.floor(bands[band]/(CW*150/H));return (gy===by||gy===by+1)&&((gx+gy)%2===0)}
+  /* ---------- ท้องฟ้าละเอียดทีละพิกเซล v732: ไล่เฉดนุ่ม แสงฟุ้ง เมฆปุยมีมิติแบบธรรมชาติ ---------- */
+  const hs=(i,j,s)=>{let h=(i*374761393+j*668265263+s*982451653)|0;h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296};
+  const sm=t=>t*t*(3-2*t),vn=(x,y,s)=>{const i=Math.floor(x),j=Math.floor(y),fx=sm(x-i),fy=sm(y-j),a=hs(i,j,s),b=hs(i+1,j,s),c2=hs(i,j+1,s),d=hs(i+1,j+1,s);return a+(b-a)*fx+(c2-a)*fy+(a-b-c2+d)*fx*fy};
+  const fbm=(x,y,s)=>{let v=0,a=.5,f=.32;for(let o=0;o<5;o++){v+=a*vn(x*f,y*f,s+o*17);f*=2.07;a*=.5}return v/.97};
+  const ss=(e0,e1,v)=>{const t=Math.max(0,Math.min(1,(v-e0)/(e1-e0)));return t*t*(3-2*t)};
+  const CLD3=CLD2.map(C=>({...C,b:C.b.map(([bx,by,r])=>[bx,by-r*.25,r*1.38])}));CLD3.forEach(C=>{C.x0=Math.min(...C.b.map(b=>b[0]-b[2]*1.3));C.x1=Math.max(...C.b.map(b=>b[0]+b[2]*1.3));C.y0=Math.min(...C.b.map(b=>b[1]-b[2]))-3;C.y1=C.base+3;C.top=C.y0+3});
+  const dens=(x,y)=>{let D=0,who=null;for(const C of CLD3){if(x<C.x0-4||x>C.x1+4||y<C.y0-2||y>C.y1+2)continue;let q=-1;for(const[bx,by,r] of C.b){const v=1-(((x-bx)/(r*1.32))**2+((y-by)/(r*1.05))**2);if(v>q)q=v}
+      q+=(fbm(x+C.s*31,y+C.s*13,700+C.s)-.5)*1.05+(fbm(x*2.6+C.s*7,y*2.6,760+C.s)-.5)*.32;if(y>C.base-1.2)q-=(y-C.base+1.2)*.38;q=ss(0,.7,q);if(q>D){D=q;who=C}}return[D,who]};
+  const SKC=night?{t:[10,16,44],m:[22,32,72],h:[46,58,104],hz:[70,78,120],sun:[200,210,255],sx:74,sy:14,sr:26,sa:.32,lit:[150,160,210],sh:[44,52,92],rim:[200,210,250]}
+    :dusk?{t:[62,64,138],m:[150,112,170],h:[250,176,150],hz:[255,206,170],sun:[255,214,170],sx:8,sy:70,sr:70,sa:.55,lit:[255,226,206],sh:[150,112,156],rim:[255,236,200]}
+    :{t:[22,76,168],m:[66,136,214],h:[166,204,238],hz:[214,230,246],sun:[255,252,236],sx:-6,sy:-8,sr:80,sa:.42,lit:[255,255,255],sh:[132,154,194],rim:[255,255,255]};
+  const LX=night?.7:-.62,LY=night?-.7:dusk?-.25:-.78;
+  /* ---------- ตึกแมนฮัตตันละเอียดทีละพิกเซล v733: ผนังรับแสงจากซ้ายบน ด้านข้างเป็นเงา หน้าต่างมีกรอบและเงาลึก หมอกตามระยะ ---------- */
+  const UX=W/90,UY=H/150;
+  const BLD=[
+    {x0:8,x1:19,top:68,k:'taper',d:0,sp:51,av:1},{x0:0,x1:6.5,top:97,k:'stone',d:0},{x0:4.5,x1:9.6,top:102,k:'brick',d:0,wt:1},
+    {x0:18.4,x1:26,top:85,k:'brick',d:0,wt:1},{x0:25,x1:31,top:88,k:'stone',d:0},{x0:57.6,x1:64,top:84,k:'stone',d:0,sb:[[87,.7]]},
+    {x0:63,x1:70,top:96,k:'brick',d:0,wt:1},{x0:69.6,x1:76,top:93,k:'glass',d:0},{x0:82,x1:90,top:86,k:'stone',d:0,sb:[[89,.8]]},{x0:86.4,x1:90,top:93,k:'brick',d:0},
+    {x0:20,x1:27.6,top:74,k:'deco',d:1,sb:[[78,.8],[82,1.5]],av:1},{x0:55.6,x1:61.4,top:77,k:'glass',d:1,av:1},{x0:65.6,x1:80,top:79,k:'slab',d:1},
+    {x0:77.8,x1:84.2,top:81,k:'copper',d:1},{x0:60,x1:68,top:88,k:'stone',d:1,wt:1},{x0:12,x1:21,top:90,k:'slab',d:1},
+    {x0:0,x1:8,top:93,k:'slab',d:2},{x0:24,x1:31,top:92,k:'glass',d:2},{x0:56,x1:66,top:95,k:'stone',d:2},{x0:72,x1:82,top:91,k:'glass',d:2},{x0:82,x1:90,top:90,k:'stone',d:2}];
+  BLD.forEach((b,i)=>{b.i=i;b.px0=Math.round(b.x0*UX);b.px1=Math.round(b.x1*UX);b.pt=Math.round(b.top*UY);b.sf=b.d===2?0:Math.max(2,Math.round((b.px1-b.px0)*.2))});
+  const roofTop=b=>b.k==='copper'?b.top-6:b.k==='deco'?b.top-9:b.k==='taper'?b.sp:b.wt?b.top-4.2:b.top;
+  /* ชนิดส่วน: 0 ผนังหน้า 1 ยอด/หลังคา 2 ถังน้ำ 3 ยอดเสา */
+  const inB=(b,x,y)=>{if(x<b.x0-.01||x>b.x1+.01||y<roofTop(b)-.5)return -1;const cx=(b.x0+b.x1)/2,hw=(b.x1-b.x0)/2;
+    if(b.k==='taper'){if(y<b.top){if(y>=b.top-1.6&&Math.abs(x-cx)<hw*.5)return 1;if(Math.abs(x-cx)<.32&&y>=b.sp)return 3;return -1}
+      const t=Math.max(0,Math.min(1,(y-b.top)/26)),h=hw*(.52+.48*t);return Math.abs(x-cx)<=h?0:-1}
+    if(y<b.top){if(b.k==='copper'){const f=(y-(b.top-6))/6;return Math.abs(x-cx)<hw*.86*f+.2?1:-1}
+      if(b.k==='deco'){const s=b.top-y;if(s<2.4)return Math.abs(x-cx)<hw*.72?1:-1;if(s<4.6)return Math.abs(x-cx)<hw*.5?1:-1;if(s<6.4)return Math.abs(x-cx)<hw*.3?1:-1;return Math.abs(x-cx)<.3?3:-1}
+      if(b.wt){const tx=b.x0+1.9;if(y>=b.top-4.2&&y<b.top-1.4&&Math.abs(x-tx)<1.15)return 2;if(y>=b.top-1.4&&(Math.abs(x-tx+.85)<.22||Math.abs(x-tx-.85)<.22))return 2;if(y<b.top-4.2+.01&&false)return 2}
+      return -1}
+    let ins=0;if(b.sb)for(const[yl,iv] of b.sb)if(y<yl)ins=Math.max(ins,iv);return x>=b.x0+ins&&x<=b.x1-ins?0:-1};
+  const hitB=(x,y)=>{for(const b of BLD){const r=inB(b,x,y);if(r>=0)return[b,r]}return null};
+  const BC={stone:[218,204,180],brick:[170,100,80],slab:[156,164,178],deco:[226,214,190],glass:[96,134,176],copper:[226,214,190],taper:[110,150,192]};
+  const lum=(c,f)=>c.map(v=>v*f);
+  const bldPx=(x,y,px,py,sky)=>{const H0=hitB(x,y);if(!H0)return null;const[b,part]=H0,lx=px-b.px0,wpx=b.px1-b.px0,ly=py-b.pt;
+    const side=part===0&&b.k!=='taper'&&lx>=wpx-b.sf;let c,win=0,lit=side?.66:1;
+    /* แสงตามเวลา */const SUN=night?[.34,.38,.56]:dusk?[1.06,.82,.8]:[1,1,1],warmF=dusk&&!side?.22:0;
+    if(part===3){c=night?[90,96,120]:[150,156,166];if(b.av&&y<roofTop(b)+1.2)c=(night||dusk)?[255,70,60]:[230,90,80]}
+    else if(part===2){const tx=b.x0+1.9;c=y>=b.top-1.4?[60,52,50]:mix([150,110,80],[96,70,56],Math.max(0,(x-tx+1.15)/2.3));if(y<b.top-3.7)c=[80,64,56];if(((py)%3)===0&&y<b.top-1.4)c=lum(c,.85)}
+    else if(part===1){if(b.k==='copper'){const cx=(b.x0+b.x1)/2;c=x<cx?[118,186,164]:[78,140,126];if((py%2)===0)c=lum(c,.93)}
+      else if(b.k==='taper'){c=[180,186,196]}
+      else{c=lum(BC[b.k],x<(b.x0+b.x1)/2?1:.78);const s=b.top-y;if(b.k==='deco'&&((px-b.px0)%3===1)&&s>.6&&s<6.4)c=[70,76,92]}}
+    else if(b.k==='taper'){/* หอกระจก: ผิวเฉียงสามเหลี่ยม สะท้อนฟ้า */const cx=(b.x0+b.x1)/2,t=Math.max(0,Math.min(1,(y-b.top)/26)),hw=(b.x1-b.x0)/2*(.52+.48*t),u=(x-cx)/hw;
+      const diag=(u+1)/2>(1-t)*.5+.5*t?0:1,face=u<0?(Math.abs(u)>(1-t)?0:1):(u>(1-t)?3:2);let base=mix(sky,[34,62,104],.42+face*.09);if(face===0)base=mix(base,[255,255,255],.12);
+      c=base;if(px%3===0)c=lum(c,.82);if(py%4===0)c=lum(c,.9);if((((px*1.3-py*.45)%26)+26)%26<4&&!night)c=mix(c,[255,255,255],.28);
+      if(night){c=[28,40,70];if(px%3===0)c=[40,56,92];if(hs(px,py>>2,77)>.82&&py%4)c=[255,226,170]}diag;return fin(b,c,x,y,px,py,1)}
+    else if(b.k==='glass'){let base=mix(sky,[30,58,96],side?.62:.44);c=base;if(lx%4===0)c=lum(c,.78);if(ly%4===0)c=mix(c,[200,214,230],.18);
+      if(!night&&((((px-py*.5)%20)+20)%20)<3&&!side)c=mix(c,[255,255,255],.3);if(dusk&&!side)c=mix(c,[255,170,120],.25*(1-ly/90));
+      if(night){c=side?[22,30,54]:[30,42,72];if(lx%4===0)c=[20,26,46];if(hs(lx>>2,ly>>2,b.i+40)>.6&&lx%4&&ly%4)c=hs(lx>>2,ly>>2,b.i+50)>.5?[255,222,160]:[200,220,255]}return fin(b,c,x,y,px,py,1)}
+    else{c=BC[b.k];
+      /* ลายผนังแต่ละชนิด */
+      if(b.k==='brick'&&(((py+(px>>1))%3)===0))c=lum(c,.93);
+      if(b.k==='stone'&&ly>0&&ly%15===0)c=mix(c,[255,250,236],.35);/* คิ้วชั้น */
+      if(b.k==='stone'&&ly>0&&ly%15===1)c=lum(c,.82);
+      if(b.k==='deco'&&lx%3===0)c=mix(c,[255,250,240],.25);
+      const m=2;if(lx>=m&&lx<wpx-m&&ly>=3){
+        if(b.k==='slab'){const r=ly%4;if(r===1||r===2){win=1;c=r===1?[120,150,180]:[92,120,156];if(lx%6===0)c=[70,80,96]}}
+        else if(b.k==='deco'){const r=ly%4,cc=lx%3;if(cc!==0&&(r===1||r===2)){win=1;c=r===1?[92,108,132]:[64,76,98]}}
+        else{const px2=b.k==='brick'?4:4,pyy=5,cc=lx%px2,r=ly%pyy;if(cc>=1&&cc<=2&&r>=1&&r<=3&&!(b.k==='stone'&&ly%15<3)){win=1;c=r===1?[120,140,166]:cc===2?[56,66,86]:[78,92,116];if(r===3)c=lum(c,.85)}}}
+      if(night&&win){const key=b.k==='slab'?hs(lx>>3,ly>>2,b.i):hs(lx>>2,(b.k==='deco'?ly>>2:Math.floor(ly/5)),b.i);c=key>.55?(key>.85?[255,240,200]:[255,206,128]):[26,30,48]}
+      else if(dusk&&win&&!side&&hs(lx>>2,ly>>2,b.i+9)>.6)c=mix(c,[255,176,120],.6)}
+    c=c.map((v,j)=>v*SUN[j]*lit);if(warmF)c=mix(c,[255,170,120],warmF*(1-y/123));
+    if(night&&!win&&part===0)c=mix(c,[24,30,56],.35);
+    return fin(b,c,x,y,px,py,0)};
+  const fin=(b,c,x,y,px,py,gl)=>{
+    /* ขอบเงาเข้มตรงรอยต่อ ทำให้ตึกแยกชั้นชัด และเงาตึกหน้าทับตึกหลัง */
+    const up=hitB(x,y-1/UY),lf=hitB(x-1/UX,y),rt=hitB(x+1/UX,y);
+    if(!up||up[0]!==b){if(!up)c=mix(c,night?[12,16,30]:[48,56,72],.45);else c=mix(c,[255,255,255],night?0:.16)}
+    if(!rt)c=mix(c,night?[12,16,30]:[48,56,72],.4);if(!lf&&!night)c=mix(c,[255,255,255],.12);
+    if(rt&&rt[0]!==b&&rt[0].d>b.d)c=lum(c,.9);if(lf&&lf[0]!==b&&lf[0].d<b.d&&!night){c=lum(c,.8)}/* เงาจากตึกที่อยู่ใกล้กว่า */
+    /* ฐานมืดลงจากเงาถนน และหมอกตามระยะ */const ao=ss(108,121,y);c=lum(c,1-ao*.28);
+    const hz=b.d*.2+ss(92,122,y)*.12;c=mix(c,SKC.hz,night?hz*.35:hz);return c};
+  /* ริมฝั่ง: แนวต้นไม้ กำแพงกันคลื่น ไฟทาง */
+  const shorePx=(x,y,px,py)=>{if(y<116.6||y>=123)return null;const top=118.4+(fbm(x*.9,3,1310)-.5)*2.2;
+    if(y>=121.8){let c=night?[60,62,80]:dusk?[200,170,160]:[186,182,170];if(y>=122.4)c=lum(c,.72);if(px%6===0)c=lum(c,.86);return c}
+    if(y>=top){const n=fbm(x*1.6,y*1.6,1320),l=ss(.3,.7,n)-(y-top)*.12;let c=mix(night?[14,30,30]:dusk?[70,80,60]:[42,92,58],night?[30,58,50]:dusk?[170,150,90]:[110,170,96],Math.max(0,Math.min(1,l)));
+      if(night&&(px%17===5)&&y>120.6&&y<121.4)c=[255,214,140];return c}
+    return null};
+  for(let py=0;py<H;py++){const y=(py+.5)*150/H;if(y>=123)break;for(let px=0;px<W;px++){const x=(px+.5)*90/W,gi=Math.min(GH-1,Math.floor(py/CW))*GW+Math.min(GW-1,Math.floor(px/CW));if(G[gi])continue;
+    const t=Math.min(1,y/123);let col=t<.55?mix(SKC.t,SKC.m,ss(0,.55,t)):mix(SKC.m,SKC.h,ss(.55,1,t));
+    col=mix(col,SKC.hz,ss(.78,1,t)*.6);
+    const sd=Math.hypot(x-SKC.sx,(y-SKC.sy)*1.1)/SKC.sr;col=mix(col,SKC.sun,Math.max(0,1-sd)**2.2*SKC.sa);
+    col=mix(col,SKC.m,(fbm(x*.5,y*1.6,950)-.5)*.12);/* ม่านฟ้าบางๆ */
+    if(night){const sh=hs(px,py,991);if(sh>.9965&&y<100)col=mix(col,[240,240,255],.4+hs(px,py,992)*.6)}
+    {const w=fbm(x*.11+y*.35,y*1.05,1200)*ss(.35,.75,fbm(x*.05,y*.08,1250)),band=ss(.42,.85,w)*ss(70,10,y)*ss(0,14,y);col=mix(col,SKC.lit,band*(night?.08:.28))}/* เมฆริ้วบางๆ ชั้นสูง */
+    if(!night){const ang=Math.atan2(y-SKC.sy,x-SKC.sx),ray=Math.max(0,Math.sin(ang*23+1.3)*.5+Math.sin(ang*9.7)*.5),dd=Math.hypot(x-SKC.sx,y-SKC.sy);col=mix(col,SKC.sun,ray*ray*ss(SKC.sr*1.6,SKC.sr*.2,dd)*(dusk?.1:.08))}/* ลำแสงฟุ้ง */
+    const[D,C]=dens(x,y);
+    if(D>0){const[Dl]=dens(x+LX*1.6,y+LY*1.6),[Dl2]=dens(x+LX*3.6,y+LY*3.6);
+      let lit=Math.max(0,Math.min(1,.58+(D-Dl)*1.5+(D-Dl2)*.7));const vy=Math.max(0,Math.min(1,(y-C.top)/Math.max(1,C.base-C.top)));
+      lit=lit*(1-vy*.6)+.16*(1-vy);lit=Math.max(0,Math.min(1,lit));
+      let cc=mix(SKC.sh,SKC.lit,lit**.85);cc=mix(cc,mix(SKC.h,SKC.t,.3),(1-D)*.35);/* ท้องเมฆรับแสงฟ้าสะท้อน */
+      if(D<.5)cc=mix(cc,SKC.rim,(1-D/.5)*Math.max(0,lit-.3)*.7);/* ขอบเงินรอบเมฆ */
+      col=mix(col,cc,ss(0,.62,D)*(night?.78:1))}
+    else{/* แสงฟุ้งรอบเมฆ */let g=0;for(const C of CLD3){if(x<C.x0-8||x>C.x1+8||y<C.y0-6||y>C.y1+4)continue;const cx=(C.x0+C.x1)/2,cy=(C.top+C.base)/2,rx=(C.x1-C.x0)/2+7,ry=(C.base-C.top)/2+5;const e=1-(((x-cx)/rx)**2+((y-cy)/ry)**2);if(e>g)g=e}
+      if(g>0)col=mix(col,SKC.lit,g*g*(night?.06:.13))}
+    {const bc=shorePx(x,y,px,py)||bldPx(x,y,px,py,col);if(bc)col=bc}
+    P(px,py,col)}}
+  for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){let c=G[gy*GW+gx];if(!c)continue;if(!T[gy*GW+gx]){const y=(gy+.5)*CW*150/H;if(y<123)c=mix(c,SKC.hz,ss(70,122,y)*.32)}for(let j=0;j<CW;j++)for(let ii=0;ii<CW;ii++)P(gx*CW+ii,gy*CW+j,c)}
+  /* ---------- ผิวน้ำอ่าวนิวยอร์ก v734: คลื่นตามระยะมองไกลใกล้ สะท้อนเมืองและฟ้า แสงระยิบตามดวงอาทิตย์ ฟองคลื่นรอบฐาน ---------- */{const Gt=B.Gt,wy0=Math.round(123*UY),HW=H-wy0,src=new Array(W*wy0);
+    for(let py=0;py<wy0;py++)for(let px=0;px<W;px++)src[py*W+px]=Gt(px,py);/* เก็บภาพเหนือน้ำไว้ก่อน ใช้สะท้อน */
+    const WC=night?{deep:[8,14,34],mid:[16,26,56],hz:[40,50,90],gl:[220,226,255],gx:74,foam:[150,160,200]}:dusk?{deep:[52,44,96],mid:[110,84,138],hz:[226,160,160],gl:[255,206,150],gx:10,foam:[255,230,220]}:{deep:[16,54,92],mid:[34,92,140],hz:[150,190,222],gl:[255,252,230],gx:6,foam:[244,250,255]};
+    const isPed=(px,py)=>{const gx=Math.floor(px/CW),gy=Math.floor(py/CW);return gx>=0&&gx<GW&&gy>=0&&gy<GH&&T[gy*GW+gx]===3};
+    let pedL=W,pedR=0;for(let px=0;px<W;px++)if(isPed(px,wy0+4)){pedL=Math.min(pedL,px);pedR=Math.max(pedR,px)}
+    const wave=(x,t)=>{const sc=.16+t*1.25,yy=t*HW;/* ไกลคลื่นเล็กถี่ ใกล้คลื่นใหญ่ */
+      return fbm(x/sc*.22,yy/sc*1.15,1500)*.72+fbm(x/sc*.6,yy/sc*2.4,1510)*.2+Math.sin(x/sc*.13+yy/sc*1.9)*.04+.02};
+    for(let py=wy0;py<H;py++){const t=(py-wy0)/HW,gyy=Math.floor(py/CW);for(let px=0;px<W;px++){if(T[gyy*GW+Math.min(GW-1,Math.floor(px/CW))])continue;const x=(px+.5)/UX;
+      const h=wave(x,t),hN=wave(x,Math.max(0,t-1/HW)),hR=wave(x+.4/UX,t),dy=(h-hN)*HW*.065,dx=(hR-h)*2.2+Math.sin(py*1.7+x*.05)*.8;
+      /* สีเนื้อน้ำ: ไกลอ่อนตามฟ้า ใกล้เข้มลึก */let c=t<.35?mix(WC.hz,WC.mid,ss(0,.35,t)):mix(WC.mid,WC.deep,ss(.35,1,t));
+      /* เงาสะท้อน: ยืดลงตามระยะ บิดตามคลื่น */const off=Math.round(dy*(2+t*9)),sxp=Math.max(0,Math.min(W-1,px+Math.round(dx*(1+t*5)))),syp=Math.max(0,Math.min(wy0-1,wy0-1-Math.round((py-wy0)*.92)+off));
+      const rc=src[syp*W+sxp],fres=(night?.82:.74)-t*.42;const br=ss(.25,.75,h);c=mix(c,rc,Math.max(.12,fres)*(.62+.38*br));c=mix(c,WC.hz,(1-br)*.16*(1-t));
+      /* ด้านคลื่นที่หันรับฟ้าสว่าง ร่องคลื่นเข้ม */const sl=Math.max(-1,Math.min(1,dy*3));c=sl>0?mix(c,WC.hz,sl*.22):c.map(v=>v*(1+sl*.22));
+      /* แสงระยิบเป็นแนวใต้ดวงอาทิตย์/จันทร์ */const gd=Math.abs(x-WC.gx-(t*6))/(6+t*22),path=Math.max(0,1-gd);const sk=Math.max(1,Math.round(1+t*5));if(path>0&&h>.6-path*.1&&h>.66-path*.1&&hs(Math.floor(px/sk),py,1600)>.82-path*.3)c=mix(c,WC.gl,Math.min(.85,path*(night?.6:.75)));
+      else if(h>.72&&!night&&hs(Math.floor(px/sk),py,1610)>.85)c=mix(c,WC.gl,.2);
+      /* ยอดคลื่นเล็กเป็นริ้วขาวบางในระยะใกล้ */if(t>.45&&h>.78&&hs(Math.floor(px/sk),py,1620)>.45)c=mix(c,WC.foam,.18*t);
+      /* ฟองคลื่นรอบฐานแท่นและแนวกำแพงกันคลื่น */if(pedL<pedR&&(px>=pedL-14&&px<=pedR+14)){const e=Math.min(Math.abs(px-pedL),Math.abs(px-pedR)),near=px>pedL&&px<pedR?0:e;const fz=ss(14,0,near)*ss(.5,0,t)+(py<wy0+6?ss(14,0,near)*.6:0);if(fz>0&&fbm(x*1.2,py*.9,1630)>.5)c=mix(c,WC.foam,Math.min(.45,fz*.6))}
+      if(py<wy0+2)c=mix(c,WC.foam,night?.12:.32);else if(py<wy0+4&&fbm(x*2.2,1,1640)>.55)c=mix(c,WC.foam,.25);/* ฟองแนวกำแพง */
+      /* เรือเฟอร์รี่ลำเล็กพร้อมแนวคลื่นท้ายเรือ */{const bx=74,by=128.6,bxx=x-bx,byy=(py/UY)-by;
+        if(byy>-1.6&&byy<0&&bxx>-3.4&&bxx<3.4-(-byy)*.4){c=night?(byy<-.8&&((px>>1)%2)?[255,220,150]:[40,44,70]):byy<-.9?[250,250,246]:byy<-.5?[230,120,60]:[60,66,84];if(byy<-.9&&((px)%3===0)&&!night)c=[70,90,120]}
+        else if(byy>-.8&&byy<.9&&bxx>3.4&&bxx<16){const wv=Math.abs(byy)-(bxx-3.4)*.06;if(Math.abs(wv)<.28+hs(px,py,1650)*.15)c=mix(c,WC.foam,.55*(1-(bxx-3.4)/12.6))}
+        else if(byy>=0&&byy<.7&&Math.abs(bxx)<3.6)c=c.map(v=>v*.7)}
+      P(px,py,c)}}}
+  if(night){for(let gy=0;gy<GH;gy++)for(let gx=0;gx<GW;gx++){const i2=gy*GW+gx;if(T[i2])continue;let near=false;for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++){const xx=gx+dx,yy=gy+dy;if(xx>=0&&yy>=0&&xx<GW&&yy<GH&&T[yy*GW+xx]===4)near=true}if(near)for(let jj=0;jj<CW;jj++)for(let ii=0;ii<CW;ii++)P(gx*CW+ii,gy*CW+jj,[150,110,80])}}
   return B.done()}
 
-window.FW_PXHI={bkkcdg:2};
-Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:14});
+window.FW_PXHI={bkkcdg:2,bkkjfk:3};
+Object.assign(FW_PXT,{bkkcai:'fwCaStatic',bkkcdg:'fwPaStatic',bkkjfk:'fwNyStatic'});Object.assign(FW_PXCROP,{bkkcai:50,bkkcdg:72,bkkjfk:20});
 
 /* ===== v723 ภาพเมืองที่วาดละเอียดไม่ทำให้หน้าค้าง
    วาดเบื้องหลังทีละภาพ ระหว่างนั้นแสดงท้องฟ้าตามเวลาไปก่อน วาดเสร็จแล้วเก็บไว้ในเครื่อง เปิดครั้งต่อไปขึ้นทันที
    แบ่งรอบแสงเป็นช่วง ไม่วาดใหม่ทุก 15 นาที ===== */
-{const MEM={},Q=[],busy={v:0},VER='pxa3:';
+{const MEM={},Q=[],busy={v:0},VER='pxa8:';
  const ph=(W,H,hr)=>{const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d'),S=fwHSky(hr),g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,S.top);g.addColorStop(1,S.bot);c.fillStyle=g;c.fillRect(0,0,W,H);return cv};
  const refresh=id=>{try{Object.keys(FW.pxtS||{}).forEach(k=>{if(k.indexOf(id)===0)delete FW.pxtS[k]})}catch(e){}try{fwCrPaint()}catch(e){}};
  const run=()=>{if(busy.v||!Q.length)return;busy.v=1;const job=Q.shift();setTimeout(()=>{try{const cv=job.real(job.W,job.H,job.hr);MEM[job.key]=cv;try{localStorage.setItem(VER+job.key,cv.toDataURL('image/png'))}catch(e){}refresh(job.id)}catch(e){}busy.v=0;setTimeout(run,40)},30)};
@@ -28419,7 +28730,7 @@ fwDeckName=function(w){const W2=(w&&w.decks)?w:(typeof fwW==='function'?fwW():nu
 /* ===== v719 แตะบนไอโฟนและไอแพด: ปุ่มในบรีฟ (รับทราบ PIL ตอบคำถาม ลงชื่อ) ทำงานทันทีที่ยกนิ้ว
    กันการแตะซ้อนเร็วที่ Safari ตีความเป็นการซูมแล้วไม่ส่งคลิก และกันคลิกซ้ำที่ตามมาหลังจากนั้น ===== */
 {/* แตะบนจอสัมผัส: ปุ่มทำงานทันทีที่ยกนิ้ว แตะติดกันเร็วๆ ได้ทุกครั้ง กันเฉพาะคลิกเงาที่ Safari ส่งตามมาจากการแตะเดียวกัน */
- const SEL='[data-fx],[data-rte],.qz-skip,[data-ck],.g2 button[data-act],.fw-hold button[data-act]';let sx=0,sy=0,st=0;window.__ghost=null;
+ const SEL='[data-fx],[data-rte],.qz-skip,[data-ck],[data-spseat],.g2 button[data-act],.fw-hold button[data-act]';let sx=0,sy=0,st=0;window.__ghost=null;
  document.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;sx=e.clientX;sy=e.clientY;st=Date.now()},true);
  document.addEventListener('pointerup',e=>{if(e.pointerType!=='touch')return;const b=e.target.closest&&e.target.closest(SEL);if(!b||b.disabled)return;if(Math.hypot(e.clientX-sx,e.clientY-sy)>12||Date.now()-st>800)return;
    window.__ghost={x:e.clientX,y:e.clientY,t:Date.now()};window.__fxSyn=1;try{b.click()}finally{window.__fxSyn=0}},true);
@@ -28502,6 +28813,150 @@ setInterval(()=>{try{const w=typeof fwW==='function'&&fwW();if(!w||!w.gl||!w.gl.
    บัญชีที่มีสิทธิ์ไม่ต้องทำขั้นตอนก่อนบินซ้ำ (ทำครั้งเดียวพอ) ===== */
 {const o=fwPreNeed;fwPreNeed=function(){const n=o.apply(this,arguments);try{if(window.__ckBypass||fwCkGrant()){n.eq=0;n.bag=0;n.qLeft=0;n.fail=false;n.fit=false;n.door=false;n.pil=false}}catch(e){}return n}}
 {const o=fwRteNeed;fwRteNeed=function(){try{if(window.__ckBypass||fwCkGrant())return false}catch(e){}return o.apply(this,arguments)}}
+/* ===== v730 อาหารพิเศษ: ผังที่นั่งมุมบน แตะที่นั่งเพื่อเสิร์ฟ ไม่ต้องจิ้มศีรษะผู้โดยสารในภาพ
+   แต่ละช่องบอกเลขที่นั่ง ผู้โดยสารนั่งอยู่ไหม รหัสอาหารพิเศษ เสิร์ฟแล้วหรือยัง ที่นั่งผู้แพ้ถั่ว และไฟเรียก
+   กรอบเลือกบนศีรษะในภาพเอาออก เพราะภาพเป็นมุมมองลึกทำให้กรอบเอียงไม่ตรง ===== */
+function fwSpSeatTap(lab){const w=fwW();if(!w||!w.vw||w.vw.k!=='spm')return;const S=w.vw.S,now=Date.now();
+  if(S.ph==='wait'&&S.call&&lab===S.alg.seat){S.ph='ana';S.sev=.9;S.t0=now;S.say='"Ms Prang, can you hear me?" ผู้โดยสารพยักหน้า พูดเสียงแหบ';fwSnd('alarm');render();return}
+  if(S.ph!=='srv'){S.say=lab===S.alg.seat?S.alg.nm+' ผู้โดยสารแพ้ถั่วรุนแรง':'ที่นั่ง '+lab+(S.occ[lab]?'':' ว่าง');render();return}
+  if(!S.occ[lab]){S.say='ที่นั่ง '+lab+' ว่าง ไม่มีผู้โดยสาร';render();return}
+  if(S.hand<0){const t=S.T.find(q=>q.seat===lab);S.say=t?(t.srv?'เสิร์ฟ '+t.code+' แล้ว':'ที่นั่ง '+lab+' สั่ง '+t.code+' แตะถาดบนรถเข็นก่อน'):'ที่นั่ง '+lab+' ไม่ได้สั่งอาหารพิเศษ รอรถเข็นอาหารหลัก';render();return}
+  const t=S.T[S.hand];if(lab!==t.seat){fwSpPen(S,'sv'+t.i+lab,0,2,'"Excuse me, are you '+t.nm.split(' ').slice(0,2).join(' ')+'?" ผู้โดยสาร '+lab+' ไม่ใช่เจ้าของถาด เกือบเสิร์ฟผิดคน ถาด '+t.code+' เป็นของที่นั่ง '+t.seat);render();return}
+  t.srv=1;S.hand=-1;S.fx={i:t.i,t0:now,lab};S.say='"Good afternoon, '+t.nm.split(' ').slice(0,2).join(' ')+'? Here is your '+{VGML:'vegan',MOML:'Muslim',CHML:'child',DBML:'diabetic',GFML:'gluten free'}[t.code]+' meal." ยื่นจากฝั่งทางเดิน';fwSnd('done');fwSpStage(S);render()}
+function fwSpMapHTML(S){const blink=Math.floor(Date.now()/500)%2,cell=lab=>{const t=S.T.find(q=>q.seat===lab),occ=S.occ[lab],al=lab===S.alg.seat,call=al&&S.call&&S.ph==='wait',h=S.hand>=0&&S.T[S.hand].seat===lab;
+    const cls=['spc',occ?'occ':'emp',t?'sp':'',t&&t.srv?'srv':'',al?'al':'',call?'call':'',h?'tg':''].filter(Boolean).join(' ');
+    return `<button class="${cls}" data-spseat="${lab}"><b>${lab.replace(/^\d+/,'')}</b>${t?`<i>${t.srv?'✓':t.code}</i>`:al?'<i>ถั่ว</i>':''}</button>`};
+  return `<div class="spm-map"><div class="spm-h"><span>ผังที่นั่ง มุมบน</span><small>${S.ph==='srv'?'แตะถาดบนรถเข็น แล้วเดินไปเสิร์ฟตามที่นั่งในผัง':S.ph==='wait'&&S.call?'แตะที่นั่งที่ไฟเรียกติด':'ดูตำแหน่งผู้โดยสาร'}</small></div>
+   <div class="spm-g"><span></span>${'ABC'.split('').map(L=>`<em>${L}</em>`).join('')}<span></span>${'DEF'.split('').map(L=>`<em>${L}</em>`).join('')}
+   ${S.rows.map(r=>`<em class="rn">${r}</em>${'ABC'.split('').map(L=>cell(r+L)).join('')}<span class="ai"></span>${'DEF'.split('').map(L=>cell(r+L)).join('')}`).join('')}</div></div>`}
+{const o=fwVwHTML;fwVwHTML=function(){let h=o.apply(this,arguments);try{const w=fwW();if(w&&w.vw&&w.vw.k==='spm'&&['srv','wait'].includes(w.vw.S.ph)){const t=document.createElement('template');t.innerHTML=h;const top=t.content.querySelector('.g2-top');t.content.querySelectorAll('.ty-pan,.spm-list').forEach(x=>x.remove());if(top){const d=document.createElement('div');d.innerHTML=fwSpMapHTML(w.vw.S);top.appendChild(d.firstElementChild)}
+  t.content.querySelectorAll('.g2-pop').forEach(p=>{p.innerHTML=p.innerHTML.replace(/แตะที่ผู้โดยสาร/g,'แตะที่นั่งในผัง').replace(/แตะศีรษะผู้โดยสาร/g,'แตะที่นั่งในผัง').replace(/แตะผู้โดยสาร/g,'แตะที่นั่งในผัง')});h=t.innerHTML}}catch(e){}return h}}
+{const D=FW_VW.spm;if(D){const ob=D.bar;D.bar=function(w,S){return ob.apply(this,arguments)};const oi=D.items;if(oi)D.items=function(S){return oi.apply(this,arguments).map(x=>Array.isArray(x)&&typeof x[1]==='string'?[x[0],x[1].replace(/แตะศีรษะผู้โดยสาร|แตะผู้โดยสาร/g,'แตะที่นั่งในผัง'),x[2],x[3]]:x)}}}
+{const o=fwVwHi;fwVwHi=function(c,L,keys,now){try{const w=fwW();if(w&&w.vw&&w.vw.k==='spm')keys=keys.map(k=>k&&k[0]&&String(k[0])[0]==='S'?[null,k[1],k[2]]:k)}catch(e){}return o.call(this,c,L,keys,now)}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-spseat]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();fwSpSeatTap(b.dataset.spseat)},true);
+setInterval(()=>{try{const w=fwW();if(w&&w.vw&&w.vw.k==='spm'&&w.vw.S.call&&w.vw.S.ph==='wait'){document.querySelectorAll('.spc.call').forEach(el=>el.classList.toggle('bl'))}}catch(e){}},500);
+/* ===== v731 อาหารพิเศษแบบเดินเสิร์ฟจริงทีละคน
+   แตะถาดบนรถเข็น ตัวละครถือถาดออกมาบนแผนที่ มีป้ายลอยเหนือที่นั่งเป้าหมาย เดินไปยืนในทางเดินข้างแถวแล้วกดใช้งานเพื่อเสิร์ฟ
+   เสิร์ฟแล้วกลับไปที่รถเข็น กดใช้งานเพื่อหยิบถาดถัดไป ครบทุกถาดฉากกลับมาให้ทำต่อ (ไฟเรียกผู้แพ้ถั่ว) ===== */
+function fwSpSeatObj(w,lab){try{const S0=fwSt(),d=S0.d,D=w.decks[d];let s=D.seats.find(q=>fwSeatLab(D,q)===lab);if(!s){const rn=parseInt(lab,10),L=lab.replace(/^\d+/,'');const row=D.rows.find(r=>parseInt(r.n,10)===rn);if(row){const cand=D.seats.filter(q=>Math.abs(q.y-row.y)<=1);s=cand.find(q=>fwSeatLab(D,q).endsWith(L))||cand[('ABCDEF'.indexOf(L)<3)?0:cand.length-1]}}return s?{s,d}:null}catch(e){return null}}
+{const D=FW_VW.spm,oh=D.hit;D.hit=function(L,x,y,S,w){const h0=S.hand,r=oh.apply(this,arguments);try{if(S.ph==='srv'&&S.hand>=0&&S.hand!==h0){const V0=w.vw;w.spWalk={V0,i:S.hand,pos:[w.x,w.y,w.deck]};w.vw=null;V.fly.pick=0;w.keys={};const t=S.T[S.hand];
+  setTimeout(()=>{try{render();fwMsg(w,'ถือถาด '+t.code+' ไปเสิร์ฟที่นั่ง '+t.seat+' ยืนในทางเดินข้างแถวแล้วกดใช้งาน')}catch(e){}},0)}}catch(e){}return r}}
+function fwSpWalkServe(w){const P=w.spWalk;if(!P)return false;const S=P.V0.S,t=S.T[P.i],tg=fwSpSeatObj(w,t.seat);
+  const near=tg&&tg.d===w.deck&&Math.abs(w.y-(tg.s.y+tg.s.h/2))<1.3&&Math.abs(w.x-((tg.s.ax!=null?tg.s.ax:tg.s.at?tg.s.at[0]:tg.s.x)+.5))<1.7;
+  if(!near){const back=Math.hypot(w.x-P.pos[0],w.y-P.pos[1])<2.2&&w.deck===P.pos[2];if(back){S.hand=-1;w.spWalk=null;w.vw=P.V0;V.fly.pick=1;S.say='วางถาด '+t.code+' คืนบนรถเข็นแล้ว';render();return true}
+    fwMsg(w,'ถาด '+t.code+' ของที่นั่ง '+t.seat+' เดินไปยืนในทางเดินข้างแถว '+parseInt(t.seat,10)+' แล้วกดใช้งาน');return true}
+  const now=Date.now();t.srv=1;S.hand=-1;S.fx={i:t.i,t0:now,lab:t.seat};w.spWalk=null;try{fwFx(w,tg.s.x+tg.s.w/2,tg.s.y,'meal')}catch(e){}fwSnd('done');
+  fwMsg(w,'"Good afternoon, '+t.nm.split(' ').slice(0,2).join(' ')+'? Here is your '+{VGML:'vegan',MOML:'Muslim',CHML:'child',DBML:'diabetic',GFML:'gluten free'}[t.code]+' meal." ยื่นจากฝั่งทางเดิน');
+  S.say='เสิร์ฟ '+t.code+' ที่นั่ง '+t.seat+' แล้ว';fwSpStage(S);
+  const left=S.T.filter(q=>!q.srv).length;if(!left){setTimeout(()=>{try{w.vw=P.V0;V.fly.pick=1;render()}catch(e){}},900)}else{w.spBack={V0:P.V0,pos:P.pos};setTimeout(()=>{try{fwMsg(w,'เหลืออีก '+left+' ถาด เดินกลับไปที่รถเข็นแล้วกดใช้งานเพื่อหยิบถาดถัดไป')}catch(e){}},1800)}
+  return true}
+{const o=fwA;fwA=function(){const w=fwW();try{if(w&&!w.vw&&!w.act&&!w.sit){if(w.spWalk){fwSpWalkServe(w);return}
+  if(w.spBack){const B=w.spBack;if(Math.hypot(w.x-B.pos[0],w.y-B.pos[1])<2.4&&w.deck===B.pos[2]){w.spBack=null;w.vw=B.V0;V.fly.pick=1;B.V0.S.say='หยิบถาดถัดไป แตะถาดบนรถเข็น';render();return}}}}catch(e){}return o.apply(this,arguments)}}
+{const o=fwHint;fwHint=function(n,w){try{if(w&&w.spWalk&&!w.vw)return 'เสิร์ฟถาด';if(w&&w.spBack&&!w.vw&&Math.hypot(w.x-w.spBack.pos[0],w.y-w.spBack.pos[1])<2.4)return 'หยิบถาดถัดไป'}catch(e){}return o.apply(this,arguments)}}
+/* ป้ายลอยเหนือที่นั่งเป้าหมาย และป้ายรถเข็นอาหารพิเศษ */
+{const o=fwDrawFx;fwDrawFx=function(c,w,cx,cy,now){o.apply(this,arguments);try{const Tz=FW.T,P=w.spWalk||w.spBack;if(!P)return;const S=P.V0.S;
+  if(w.spWalk){const t=S.T[w.spWalk.i],tg=fwSpSeatObj(w,t.seat);if(tg&&tg.d===w.deck){const X=Math.round((tg.s.x+tg.s.w/2)*Tz-cx),Y=Math.round(tg.s.y*Tz-cy-16-Math.sin(now/300)*2);
+    c.fillStyle='rgba(80,45,58,.25)';c.fillRect(X-12,Y-9,25,13);c.fillStyle=Math.floor(now/300)%2?'#E31414':'#FFFFFF';c.fillRect(X-13,Y-10,26,13);c.fillStyle='#FFFFFF';c.fillRect(X-12,Y-9,24,11);c.fillStyle='#E31414';c.fillRect(X-11,Y-8,22,5);c.fillStyle='#FFFFFF';c.font='bold 5px monospace';c.textAlign='center';c.fillText(t.code,X,Y-4);c.fillStyle='#C80F0F';c.fillText(t.seat,X,Y+1);c.fillStyle='#E31414';c.fillRect(X-1,Y+3,3,3)}}
+  if(w.spBack&&w.deck===P.pos[2]){const X=Math.round(P.pos[0]*Tz-cx),Y=Math.round(P.pos[1]*Tz-cy-20-Math.sin(now/300)*2);c.fillStyle='#FFFFFF';c.fillRect(X-10,Y-6,20,9);c.fillStyle='#E31414';c.font='bold 5px monospace';c.textAlign='center';c.fillText('SPML',X,Y)}}catch(e){}}}
+/* ป้ายในมือบนแผนที่ขณะถือถาดอาหารพิเศษ */
+{const o=fwHoldHTML;fwHoldHTML=function(w){let s=o(w);try{if(w&&w.spWalk){const t=w.spWalk.V0.S.T[w.spWalk.i];return `<div class="fw-hold"><span>ถือถาดอาหารพิเศษ</span><small class="ty-hold ty-hold2"><i style="background:#E31414"></i>${esc(t.code)} เสิร์ฟที่นั่ง ${esc(t.seat)} ยืนข้างแถวแล้วกดใช้งาน</small></div>`}if(w&&w.spBack&&!w.hold)return `<div class="fw-hold"><span>มือว่าง</span><small class="ty-hold ty-hold2"><i style="background:#E31414"></i>กลับไปที่รถเข็นอาหารพิเศษ หยิบถาดถัดไป</small></div>`}catch(e){}return s}}
+setInterval(()=>{try{const w=fwW();if(w&&(w.spWalk||w.spBack))fwHoldUI()}catch(e){}},700);
+
+/* ===== v739 ฉากนอกเครื่องบินบนแผนที่ตอนเดินทำภารกิจ: พื้นโลกสีธรรมชาติละเอียด ทะเลเมฆมีแสงเงาและเงาตกบนพื้น
+   แสงตามช่วงเวลาเดียวกับวิวหน้าต่าง ลานจอดคอนกรีตจริง และรันเวย์ตอนวิ่งขึ้นลง ===== */
+function fwWnSc(){const w=fwW&&fwW();const h=w?fwHour(w):12;FW._wnH=h;return fwSkyCols(h)}
+function fwWnPat(c,tex,K,ox,oy){const p=c.createPattern(tex,'repeat'),mw=tex.width*K,mh=tex.height*K;ox=((ox%mw)+mw)%mw;oy=((oy%mh)+mh)%mh;p.setTransform(new DOMMatrix([K,0,0,K,ox,oy]));return p}
+/* แผ่นคอนกรีตลานจอดมองจากด้านบน */
+function fwWnApron(S,warm){const bk=S.night?'n':fwWnBk(),k='wn_apr'+bk+(warm?1:0);if(FW[k])return FW[k];const N=256,[cv,c]=fwCv(N,N),im=c.createImageData(N,N),D=im.data,LT=fwWnLight(S,0).lit,dim=S.night?.5:{dawn:.8,morn:.94,day:1,aft:.98,eve:.9,dusk:.7}[bk];
+  const base=warm?[226,214,200]:[206,204,206];
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const n=fwWnF(x/16,y/16,1100,16,16,4),slab=fwWnH(x>>5,y>>5,1101);let col=fwWnMix(base,base.map(v=>v*.9),slab*.6+n*.4);
+    if(x%32===0||y%32===0)col=col.map(v=>v*.82);else if(x%32===1||y%32===1)col=col.map(v=>v*1.04);/* รอยต่อแผ่น */
+    const st=fwWnF(x/40,y/40,1102,6.4,6.4,3);if(st>.62)col=fwWnMix(col,[150,146,150],(st-.62)*1.4);/* คราบน้ำมันและรอยยาง */
+    if(fwWnH(x,y,1103)>.997)col=[120,118,122];if(fwWnH(x>>1,y>>1,1104)>.995)col=fwWnMix(col,[255,255,255],.4);
+    col=col.map((v,j)=>v*dim*(S.night?[.82,.84,1.05][j]:LT[j]/255*1.03));const i=(y*N+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}
+  c.putImageData(im,0,0);return FW[k]=cv}
+function fwWnGrass(S){const bk=S.night?'n':fwWnBk(),k='wn_grs'+bk;if(FW[k])return FW[k];const N=128,[cv,c]=fwCv(N,N),im=c.createImageData(N,N),D=im.data,LT=fwWnLight(S,0).lit,dim=S.night?.4:{dawn:.75,morn:.92,day:1,aft:.98,eve:.88,dusk:.66}[bk];
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const n=fwWnF(x/16,y/16,1110,8,8,4);let col=fwWnMix([92,128,62],[136,162,86],n);if(fwWnH(x,y,1111)>.85)col=fwWnMix(col,[170,180,110],.4);if((y+Math.round(n*4))%14<2)col=col.map(v=>v*.94);/* รอยตัดหญ้า */
+    col=col.map((v,j)=>v*dim*(S.night?1:LT[j]/255*1.03));const i=(y*N+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}
+  c.putImageData(im,0,0);return FW[k]=cv}
+function fwWnAsph(S){const bk=S.night?'n':fwWnBk(),k='wn_asp'+bk;if(FW[k])return FW[k];const N=128,[cv,c]=fwCv(N,N),im=c.createImageData(N,N),D=im.data,LT=fwWnLight(S,0).lit,dim=S.night?.5:{dawn:.78,morn:.94,day:1,aft:.98,eve:.9,dusk:.7}[bk];
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const n=fwWnF(x/12,y/12,1120,10.67,10.67,3);let col=fwWnMix([110,110,116],[134,134,140],n);if(fwWnH(x,y,1121)>.9)col=col.map(v=>v*1.1);const tr=Math.abs(((x+3)%64)-32);if(tr>20&&tr<26&&fwWnH(x>>2,y,1122)>.4)col=col.map(v=>v*.78);/* รอยยางล้อเครื่องบิน */
+    col=col.map((v,j)=>v*dim*(S.night?1:LT[j]/255*1.03));const i=(y*N+x)*4;D[i]=col[0];D[i+1]=col[1];D[i+2]=col[2];D[i+3]=255}
+  c.putImageData(im,0,0);return FW[k]=cv}
+/* พื้นโลกจากเพดานบิน */
+fwTerrain=function(c,R,CW,CH,cx,cy,now,L){const S=fwWnSc(),rg=fwRegion()[0],key=rg==='ground'||rg==='ground2'?'sea':rg,tex=fwWnTerr(key,S),K=1.2,scroll=now*.018,ox=-cx*.3,oy=-(cy*.3-scroll);
+  c.save();c.imageSmoothingEnabled=true;c.fillStyle=fwWnPat(c,tex,K,ox,oy);c.fillRect(0,0,CW,CH);
+  /* แสงแดดสะท้อนผิวน้ำเป็นประกาย */if((key==='sea'||key==='isle'||key==='coast')&&!S.night){c.globalCompositeOperation='screen';for(let i=0;i<60;i++){const r=srR(srH('gl'+i)),X=((r()*CW*1.5+ox*.2)%CW+CW)%CW,Y=((r()*CH*1.5+oy)%CH+CH)%CH;if(Math.sin(now/240+i*1.7)>.55){c.fillStyle='rgba(255,252,240,.7)';c.fillRect(Math.round(X),Math.round(Y),2,1)}}c.globalCompositeOperation='source-over'}
+  /* เรือกลางทะเล พร้อมคลื่นท้ายเรือ */if(key==='sea'||key==='desert'||key==='coast'||key==='storm'){for(let i=0;i<5;i++){const r=srR(srH('sh'+i)),X=Math.round(r()*CW),Y=Math.round(((r()*1600+scroll-cy*.3)%1600+1600)%1600-200);if(Y<-40||Y>CH)continue;
+      const g=c.createLinearGradient(X,Y+8,X,Y+40);g.addColorStop(0,'rgba(255,255,255,.75)');g.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=g;c.beginPath();c.moveTo(X+1,Y+8);c.lineTo(X+5,Y+8);c.lineTo(X+11,Y+40);c.lineTo(X-5,Y+40);c.closePath();c.fill();
+      c.fillStyle='rgba(20,30,50,.3)';c.fillRect(X+1,Y+1,6,10);c.fillStyle=S.night?'#8C8AA0':'#F4F4F6';c.fillRect(X,Y,6,10);c.fillStyle=S.night?'#5A5870':'#C8CCD6';c.fillRect(X+1,Y+5,4,3);if(S.night){c.fillStyle='#FFE0A0';c.fillRect(X+2,Y+2,2,1)}}}
+  /* ไฟเมืองตอนกลางคืน */if((key==='land'||key==='coast'||key==='desert')&&L.li>.4){for(let i=0;i<30;i++){const r=srR(srH('ct'+i)),X=((r()*CW*2+ox)%(CW*1.2)+CW*1.2)%(CW*1.2)-CW*.1,Y=((r()*CH*2+oy)%(CH*1.2)+CH*1.2)%(CH*1.2)-CH*.1;fwGlow(c,X,Y,5+r()*9,[255,214,160],.85*L.li)}}
+  /* หมอกบางตามระยะ */{const hb=fwWnHx(S.b);c.fillStyle=`rgba(${hb.map(v=>v|0)},${S.night?.12:.16})`;c.fillRect(0,0,CW,CH)}
+  if(rg==='storm'){c.fillStyle='rgba(90,84,110,.3)';c.fillRect(0,0,CW,CH);if((now%2900)<110){c.fillStyle='rgba(255,255,255,.6)';c.fillRect(0,0,CW,CH)}c.fillStyle='rgba(255,255,255,.55)';for(let i=0;i<70;i++){const r=srR(srH('rn'+i));c.fillRect(Math.round((r()*CW+now*.05)%CW),Math.round((r()*CH+now*.6)%CH),1,4)}}
+  c.restore()};
+/* ทะเลเมฆใต้เครื่อง: แสงเงาตามเวลา ด้านรับแสงสว่าง ขอบเงิน เงาตกบนพื้น ไม่ทับห้องโดยสาร */
+fwFog=function(c,CW,CH,cx,cy,now,L,rg){const S=fwWnSc(),storm=rg==='storm',SP=fwWnSun(100,100,FW._wnH),cov=storm?.36:rg==='sea'?.5:rg==='land'||rg==='coast'?.52:rg==='snow'?.56:.6,fld=fwWnField(S,storm,SP.sunL,cov),K=1.6,ox=-cx*.45,oy=-(cy*.45-now*.022);
+  const T=FW.T,a0=-cx+T,a1=(FW.cabW||0)-cx-T;c.save();c.beginPath();c.rect(0,0,Math.max(0,a0),CH);c.rect(a1,0,Math.max(0,CW-a1),CH);c.clip();c.imageSmoothingEnabled=true;
+  c.globalAlpha=.35;c.fillStyle=fwWnPat(c,fld,K*1.6,ox*.7,oy*.7);c.fillRect(0,0,CW,CH);/* ชั้นเมฆบางสูงกว่า */
+  c.globalAlpha=1;c.fillStyle=fwWnPat(c,fld,K,ox,oy);c.fillRect(0,0,CW,CH);c.restore();fwFogTop(c,CW,CH,now,L)};
+/* ลานจอดและรันเวย์ */
+{const o=fwOutside;fwOutside=function(c,R,CW,CH,cx,cy,w,now,L){const F=V.fly;if(fwPhase()==='air')return o.apply(this,arguments);
+  if(F&&F.stage==='fly'&&w.advT&&(F.i===3||F.i===10)&&w.deck<2)return o.apply(this,arguments);
+  const S=fwWnSc(),apr=fwWnApron(S,fwPhase()!=='bkk'),R0=R;const Rx=(col,x,y,ww,hh)=>{if(col==='#E6D6D6'||col==='#EED8CC'){c.save();c.imageSmoothingEnabled=false;c.fillStyle=fwWnPat(c,apr,2,-cx,-cy);c.fillRect(x,y,ww,hh);c.restore();
+      const T=FW.T,mW=w.decks[w.deck].W*T,gr=fwWnGrass(S);c.save();c.fillStyle=fwWnPat(c,gr,2,-cx,-cy);c.fillRect(-cx-430,0,140,CH);c.fillRect(mW-cx+330,0,160,CH);c.restore();return}
+    if(col==='rgba(255,255,255,.35)')return R0('rgba(255,255,255,.12)',x,y,ww,hh);R0(col,x,y,ww,hh)};
+  o.call(this,c,Rx,CW,CH,cx,cy,w,now,L);
+  if(S.night||S.low){const T=FW.T,mW=w.decks[w.deck].W*T;for(let y=((-cy)%120+120)%120-120;y<CH;y+=120)for(const x of[-cx-300,mW-cx+310]){fwGlow(c,x,y,10,[120,170,255],.9)}}}}
+/* รันเวย์ตอนวิ่งขึ้นและลงจอด: ยางมะตอยจริง หญ้าข้างรันเวย์ */
+{const o=fwRunway;fwRunway=function(c,R,CW,CH,cx,cy,w,now,L){const S=fwWnSc(),as=fwWnAsph(S),gr=fwWnGrass(S),F=V.fly;let off=0;if(F&&w.advT){const k=Math.max(0,Math.min(1,1-(w.advT-now)/6500));off=F.i===3?k*k*5200:(1-(1-k)*(1-k))*5200}
+  const Rx=(col,x,y,ww,hh)=>{if(col==='#EADFD9'){c.save();c.imageSmoothingEnabled=false;c.fillStyle=fwWnPat(c,gr,2,-cx,off-cy);c.fillRect(x,y,ww,hh);c.restore();return}if(col==='#DDD3D6'){c.save();c.imageSmoothingEnabled=false;c.fillStyle=fwWnPat(c,as,2,-cx,off-cy);c.fillRect(x,y,ww,hh);c.restore();return}R(col,x,y,ww,hh)};
+  const r=o.call(this,c,Rx,CW,CH,cx,cy,w,now,L);if(r&&S.night){const T=FW.T,mW=w.decks[w.deck].W*T,mid=mW/2-cx,hw=mW/2+150;for(let y=((off-cy)%60+60)%60-60;y<CH;y+=60){fwGlow(c,mid-hw+7,y+11,8,[255,250,230],.9);fwGlow(c,mid+hw-8,y+11,8,[255,250,230],.9)}}return r}}
+/* ===== v740 ปีกเครื่องบินบนแผนที่ (มองจากด้านบน): ปีกกวาดหลัง แผ่นผิวโลหะไล่แสงตามทิศดวงอาทิตย์ แผ่นสแลตขอบหน้า สปอยเลอร์ แฟลปและครีบรางแฟลป
+   เอเลอรอน เส้นทางเดินบนปีก ฝาถังน้ำมัน วิงเล็ต ไฟนำทางแดงซ้ายเขียวขวา ไฟกะพริบ เครื่องยนต์ใต้ปีกพร้อมเสาค้ำ และเงาตกบนพื้น
+   แฟลปยืดตอนขึ้นลง สปอยเลอร์ยกตอนแตะพื้น สีตามช่วงเวลา ===== */
+function fwDkWingSpr(D,S,cfg){const T=FW.T,bk=S.night?'n':fwWnBk(),k='dkw'+D.W+'_'+D.H+bk+cfg;if(FW[k])return FW[k];
+  const nb=D.W<=10,Wc=D.W*T,span=Wc*(nb?3.3:3.6),H=D.H*T,yL0=H*(nb?.4:.38),sweep=span*.4,ch0=Wc*(nb?1.25:1.1),yT0=yL0+ch0,ch1=ch0*.32,flap=cfg.includes('f')?ch0*.16:0,spl=cfg.includes('s');
+  const pad=T*2,CWd=Math.ceil(span+pad*2),CHd=Math.ceil(ch0+sweep+flap+T*6),[cv,c]=fwCv(CWd,CHd);c.imageSmoothingEnabled=true;const ox=0,oy=T*3;
+  const L=fwWnLight(S,0),lit=L.lit,shd=L.sh,dim=S.night?.62:1,rgb=(a,f)=>`rgb(${a.map(v=>Math.max(0,Math.min(255,v*(f||1)*dim))|0)})`;
+  const LE=x=>[x,oy+sweep*(x/span)],TE=x=>[x,oy+ch0+(sweep+ch1-ch0)*(x/span)+0];/* ขอบหน้าและขอบท้ายตามระยะจากโคนปีก */
+  const le=x=>LE(x)[1],te=x=>oy+ch0+(sweep+ch1-ch0)*(x/span);
+  /* เงาใต้ปีกบนพื้น (ใช้ภายหลัง) วาดเป็นภาพแยก */
+  /* แผ่นปีกหลัก */const g=c.createLinearGradient(0,oy,0,oy+ch0+sweep);g.addColorStop(0,rgb(lit,1.02));g.addColorStop(.18,rgb(lit,.98));g.addColorStop(.55,rgb(fwWnMix(lit,shd,.35)));g.addColorStop(1,rgb(fwWnMix(lit,shd,.62)));
+  c.fillStyle=g;c.beginPath();c.moveTo(0,le(0));c.lineTo(span,le(span));c.lineTo(span,te(span));c.lineTo(0,te(0));c.closePath();c.fill();
+  /* แสงสะท้อนผิวโลหะตามแนวช่วงปีก */const sh2=c.createLinearGradient(0,0,span,0);sh2.addColorStop(0,'rgba(255,255,255,0)');sh2.addColorStop(.45,`rgba(255,255,255,${S.night?.05:.22})`);sh2.addColorStop(.6,'rgba(255,255,255,0)');c.fillStyle=sh2;c.fill();
+  const line=(pts,col,w)=>{c.strokeStyle=col;c.lineWidth=w||1;c.beginPath();pts.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.stroke()};const pl=S.night?'rgba(20,20,40,.45)':'rgba(60,70,100,.45)';
+  /* แผ่นสแลตขอบหน้า */for(let k=0;k<6;k++){const a=span*(.08+k*.15),b=a+span*.14;c.fillStyle=rgb(fwWnMix(lit,shd,.15));c.beginPath();c.moveTo(a,le(a));c.lineTo(b,le(b));c.lineTo(b,le(b)+ch0*.09);c.lineTo(a,le(a)+ch0*.09);c.closePath();c.fill();line([[a,le(a)],[a,le(a)+ch0*.09]],pl)}
+  line([[span*.08,le(span*.08)+ch0*.09],[span,le(span)+ch0*.09*.6]],pl);c.strokeStyle=S.night?'rgba(255,255,255,.12)':'rgba(255,255,255,.9)';c.lineWidth=1.4;c.beginPath();c.moveTo(0,le(0));c.lineTo(span,le(span));c.stroke();/* ขอบหน้ารับแสง */
+  /* แนวรอยต่อแผ่นผิวตามช่วงปีก */for(const f of[.3,.55]){line([[0,le(0)+ch0*f],[span,le(span)+(te(span)-le(span))*f]],pl,.8)}for(let k=1;k<9;k++){const x=span*k/9;line([[x,le(x)+ch0*.09],[x,te(x)]],'rgba(60,70,100,.22)',.7)}
+  /* แถวหมุดย้ำตามรอยต่อ */c.fillStyle=S.night?'rgba(200,200,230,.18)':'rgba(70,80,110,.35)';for(const f of[.3,.55])for(let x=T;x<span-T;x+=4){c.fillRect(x,le(x)+(te(x)-le(x))*f+2,1,1)}
+  /* ทางเดินบนปีกใกล้โคน */c.setLineDash([3,3]);line([[T*.6,le(T*.6)+ch0*.25],[span*.14,le(span*.14)+ch0*.25]],S.night?'rgba(200,200,220,.3)':'rgba(120,120,140,.7)',1);line([[T*.6,le(T*.6)+ch0*.62],[span*.14,le(span*.14)+ch0*.62]],S.night?'rgba(200,200,220,.3)':'rgba(120,120,140,.7)',1);c.setLineDash([]);
+  /* ฝาถังน้ำมัน */for(const f of[.32,.5,.66]){const x=span*f,y=le(x)+(te(x)-le(x))*.45;c.fillStyle=rgb(shd,.95);c.beginPath();c.arc(x,y,T*.18,0,7);c.fill()}
+  /* สปอยเลอร์ */for(let k=0;k<5;k++){const a=span*(.12+k*.1),b=a+span*.09,f0=.68,f1=.8;const P=(x,f)=>[x,le(x)+(te(x)-le(x))*f];c.fillStyle=spl?rgb(shd,.85):rgb(fwWnMix(lit,shd,.3));c.beginPath();c.moveTo(...P(a,f0));c.lineTo(...P(b,f0));c.lineTo(...P(b,f1));c.lineTo(...P(a,f1));c.closePath();c.fill();
+    line([P(a,f0),P(b,f0)],spl?'rgba(255,255,255,.7)':pl,.8);if(spl){c.fillStyle='rgba(40,40,60,.25)';c.beginPath();c.moveTo(...P(a,f1));c.lineTo(...P(b,f1));c.lineTo(...P(b,f1+.08));c.lineTo(...P(a,f1+.08));c.closePath();c.fill()}}
+  /* แฟลปขอบท้าย (ยืดออกตอนขึ้นลง) และเอเลอรอนช่วงปลายปีก */const fz=(a,b,ext,col)=>{c.fillStyle=col;c.beginPath();c.moveTo(a,te(a)-ch0*.12);c.lineTo(b,te(b)-ch0*.12);c.lineTo(b,te(b)+ext);c.lineTo(a,te(a)+ext);c.closePath();c.fill();line([[a,te(a)-ch0*.12],[b,te(b)-ch0*.12]],pl,.9);line([[a,te(a)-ch0*.12],[a,te(a)+ext]],pl,.8)};
+  if(flap){c.fillStyle='rgba(30,30,50,.35)';for(const[a,b] of[[span*.04,span*.32],[span*.34,span*.66]]){c.beginPath();c.moveTo(a,te(a));c.lineTo(b,te(b));c.lineTo(b,te(b)+flap*.25);c.lineTo(a,te(a)+flap*.25);c.closePath();c.fill()}}
+  fz(span*.04,span*.32,flap,rgb(fwWnMix(lit,shd,.35)));fz(span*.34,span*.66,flap,rgb(fwWnMix(lit,shd,.35)));fz(span*.68,span*.9,0,rgb(fwWnMix(lit,shd,.3)));
+  /* ครีบครอบรางแฟลป */for(const f of[.12,.26,.42,.56]){const x=span*f,y=te(x)+flap;c.fillStyle=rgb(fwWnMix(lit,shd,.2));c.beginPath();c.ellipse(x,y+T*.5,T*.22,T*1.1,0,0,7);c.fill();line([[x+T*.22,y],[x+T*.22,y+T*1.3]],pl,.7)}
+  /* เส้นคายประจุไฟฟ้าสถิตที่ขอบท้ายปลายปีก */for(let k=0;k<4;k++){const x=span*(.76+k*.06);line([[x,te(x)],[x+T*.15,te(x)+T*.6]],S.night?'rgba(160,160,190,.6)':'rgba(60,60,80,.75)',.8)}
+  /* วิงเล็ต: มองจากด้านบนเป็นแผ่นแคบ ปลายแดง */c.fillStyle=S.night?'#6A2236':'#E31414';c.beginPath();c.moveTo(span-T*.3,le(span));c.lineTo(span+T*.4,le(span)+ch1*.2);c.lineTo(span+T*.5,te(span)+T*.3);c.lineTo(span-T*.3,te(span));c.closePath();c.fill();
+  /* เครื่องยนต์ใต้ปีก ยื่นไปข้างหน้าขอบปีก */{const ex=span*.34,nw=T*(nb?1.6:2),nl=T*(nb?4.4:5.6),ny=le(ex)-nl*.62,ng=c.createLinearGradient(ex-nw/2,0,ex+nw/2,0);ng.addColorStop(0,rgb(lit,1.02));ng.addColorStop(.5,rgb(fwWnMix(lit,shd,.25)));ng.addColorStop(1,rgb(shd,.85));
+    c.fillStyle='rgba(30,30,50,.25)';c.beginPath();c.ellipse(ex+T*.3,ny+nl/2+T*.4,nw/2,nl/2,0,0,7);c.fill();
+    c.fillStyle=ng;c.beginPath();c.moveTo(ex-nw/2,ny+nw*.3);c.quadraticCurveTo(ex-nw/2,ny,ex,ny);c.quadraticCurveTo(ex+nw/2,ny,ex+nw/2,ny+nw*.3);c.lineTo(ex+nw*.38,ny+nl);c.lineTo(ex-nw*.38,ny+nl);c.closePath();c.fill();
+    c.fillStyle=S.night?'#3A3A50':'#B8BCC8';c.fillRect(ex-nw/2,ny+nw*.28,nw,T*.22);/* แนวต่อฝาครอบ */c.fillStyle=S.night?'#2A2A3A':'#6E7286';c.fillRect(ex-nw*.2,ny+nl-T*.1,nw*.4,T*.5);/* ปลายท่อไอเสีย */
+    c.fillStyle=rgb(fwWnMix(lit,shd,.2));c.fillRect(ex-T*.18,ny+nl*.6,T*.36,le(ex)-ny-nl*.6+ch0*.25);/* เสาค้ำเครื่องยนต์ */}
+  /* เงาลำตัวเครื่องทอดบนโคนปีก */{const gg=c.createLinearGradient(0,0,T*3,0);gg.addColorStop(0,'rgba(30,20,50,.3)');gg.addColorStop(1,'rgba(30,20,50,0)');c.fillStyle=gg;c.fillRect(0,0,T*3,CHd)}
+  /* ไฟนำทางปลายปีก */c.fillStyle=cfg.includes('L')?'#FF3B3B':'#3BE07A';c.beginPath();c.arc(span+T*.1,le(span)+T*.5,T*.18,0,7);c.fill();
+  const[sc,scx]=fwCv(CWd,CHd);scx.drawImage(cv,0,0);scx.globalCompositeOperation='source-in';scx.fillStyle='#14102A';scx.fillRect(0,0,CWd,CHd);
+  return FW[k]={cv,sh:sc,ox,oy,span,H,yL0}}
+function fwDeckWings(c,cx,cy,w,now){const D=w.decks[w.deck];if(!D||w.deck>=2)return;const T=FW.T,S=fwWnSc(),F=V.fly,i=F?F.i:0;if(i<=1&&fwPhase()!=='air'&&!(F&&F.stage==='fly'))return;
+  const flaps=(i===3||i===10||i===11||i===2),spl=i===11&&fwPhase()==='dxb',mW=D.W*T,air=fwPhase()==='air'||!!w.advT;
+  for(const sd of[-1,1]){const cfg=(flaps?'f':'')+(spl?'s':'')+(sd<0?'L':'R'),sp=fwDkWingSpr(D,S,cfg),y=sp.yL0-sp.oy-cy;
+    if(!air){/* เงาปีกบนลานจอด */c.save();c.globalAlpha=S.night?.16:.26;if(sd>0)c.drawImage(sp.sh,mW-cx+T*1.2,y+T*1.4);else{c.translate(-cx-T*1.2,y+T*1.4);c.scale(-1,1);c.drawImage(sp.sh,0,0)}c.restore()}
+    c.save();if(sd>0)c.drawImage(sp.cv,mW-cx-T*.5,y);else{c.translate(-cx+T*.5,y);c.scale(-1,1);c.drawImage(sp.cv,0,0)}c.restore();
+    /* ไฟนำทางฟุ้ง และไฟกะพริบขาว */const tipX=sd>0?mW-cx-T*.5+sp.span+T*.1:-cx+T*.5-sp.span-T*.1,tipY=y+sp.oy+(sp.span*.4)+T*.5;
+    if(S.night||S.low)fwGlow(c,tipX,tipY,T*1.6,sd<0?[255,70,70]:[70,230,130],S.night?.8:.4);if((now%1300)<70)fwGlow(c,tipX,tipY+T*.6,T*2.4,[255,255,255],.9);
+    if(S.night){/* ไฟส่องปีกจากลำตัว */const rx=sd>0?mW-cx+T*1.5:-cx-T*1.5,ry=y+sp.oy+T*1.5;c.save();c.globalCompositeOperation='screen';const gg=c.createRadialGradient(rx,ry,0,rx,ry,T*9);gg.addColorStop(0,'rgba(255,240,220,.35)');gg.addColorStop(1,'rgba(255,240,220,0)');c.fillStyle=gg;c.fillRect(rx-T*9,ry-T*9,T*18,T*18);c.restore()}}}
+{const o2=fwOutside;fwOutside=function(c,R,CW,CH,cx,cy,w,now,L){const r=o2.apply(this,arguments);try{fwDeckWings(c,cx,cy,w,now)}catch(e){console.log('wing',e)}return r}}
 
 /* ===== โหมดสำรวจเครื่องบิน: ไม่มีภารกิจ เดินดูทั้งลำ และเปิดทุกฉากได้จากเมนู ===== */
 const FW_FREE=[
