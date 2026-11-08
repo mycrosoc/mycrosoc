@@ -6112,6 +6112,57 @@ body .g2 .g2-bar button{min-height:36px!important;padding:0 12px!important}body 
 body .g2 .spm-map .spc{min-height:0!important;height:19px!important;padding:0 2px!important;margin:0!important;box-shadow:none;border-radius:5px!important;font-size:inherit!important;width:auto!important;line-height:1!important}
 body .g2 .spm-map .spc.occ{box-shadow:inset 0 0 0 1px #F2C6CC!important}body .g2 .spm-map .spc.al{box-shadow:inset 0 0 0 2px #E8A23A!important}body .g2 .spm-map .spc.sp.srv{box-shadow:inset 0 0 0 1.5px #9ED8B4!important}
 body .g2 .spm-map .spm-g{grid-auto-rows:19px!important;gap:2px 3px!important}body .g2 .spm-map .spm-g em{height:12px}
+
+/* ===== v741 เขียนบนชีท ===== */
+.shf-pg canvas.shf-an{z-index:2}
+.sha-on .shf-pg.ok canvas.shf-an{pointer-events:auto}
+.sha-on:not(.sha-pen) .shf-pages{touch-action:none}
+.sha-on .shf-pg.ok{cursor:crosshair}
+.sha-hd{display:flex;align-items:center;gap:4px}
+.sha-hd button{font:inherit;height:32px;min-width:32px;border:0;border-radius:999px;background:#FFF1EF;color:#E31414;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;box-shadow:inset 0 0 0 1px #F7C9C4;padding:0 6px}
+.sha-hd button svg{width:18px;height:18px}
+.sha-hd [data-sha=star] svg{fill:none}.sha-hd [data-sha=star].on svg{fill:#E31414}
+.sha-hd .sha-wb{padding:0 10px;font-weight:800;font-size:.74rem}
+.sha-hd .sha-wb.on{color:#fff;background:linear-gradient(155deg,#FF7A7A 0%,#F24A4A 50%,#E31414 100%);box-shadow:none}
+body .shf-bar{grid-template-columns:auto minmax(0,1fr) auto auto}
+@media (max-width:520px){.sha-hd .sha-wb span{display:none}body .shf-rd .shf-zm{display:none!important}body .shf-bar{grid-template-columns:auto minmax(0,1fr) auto}}
+.sha-chip{font-size:.62rem;font-weight:800;color:#fff;background:#E31414;border-radius:999px;padding:1px 7px}
+.sha-pins{position:absolute;inset:0;z-index:3;pointer-events:none}
+.sha-pin{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;border:0;background:none;padding:0;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 2px 3px rgba(160,30,30,.35))}
+.sha-pin svg{width:100%;height:100%}
+.sha-npop{position:absolute;z-index:5;width:min(260px,70%);background:#fff;border-radius:12px;padding:8px;box-shadow:0 0 0 1.5px #F24A4A,0 14px 28px -12px rgba(160,30,30,.55);transform:translateY(12px)}
+.sha-npop textarea{width:100%;min-height:84px;box-sizing:border-box;border:1px solid #F2D4D0;border-radius:8px;padding:8px;font:inherit;font-size:.86rem;resize:vertical;color:var(--ink);background:#FFFBFA;-webkit-user-select:text;user-select:text}
+.sha-npop div{display:flex;justify-content:space-between;gap:6px;margin-top:6px}
+.sha-npop button{font:inherit;font-size:.78rem;font-weight:700;border:0;border-radius:999px;padding:6px 12px;cursor:pointer;background:#FFF1EF;color:#C81010}
+.sha-npop button.ok{color:#fff;background:linear-gradient(155deg,#FF7A7A 0%,#F24A4A 50%,#E31414 100%)}
+.sha-bar{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 12px);transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 16px);box-sizing:border-box;padding:6px 8px;border-radius:18px;background:#fff;box-shadow:0 0 0 1px #F2D4D0,0 14px 30px -14px rgba(160,30,30,.6)}
+.sha-g{display:flex;align-items:center;gap:2px;padding:2px;border-radius:12px;background:#FFF5F4}
+.sha-g button{font:inherit;border:0;background:none;cursor:pointer;color:#B8102A;border-radius:10px;min-width:34px;height:38px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:0 4px}
+.sha-g button svg{width:19px;height:19px}
+.sha-g button small{font-size:.54rem;font-weight:700}
+.sha-g button.on{background:#fff;box-shadow:0 0 0 1.5px #F24A4A;color:#E31414}
+.sha-g button:disabled{opacity:.35}
+.sha-cl button i{width:18px;height:18px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2px #fff,0 0 0 1px rgba(0,0,0,.08)}
+.sha-wd button i{width:18px;border-radius:9px;background:#E31414}
+.sha-done{font:inherit;border:0;cursor:pointer;border-radius:999px;padding:9px 14px;font-weight:800;font-size:.78rem;color:#fff;background:linear-gradient(155deg,#FF7A7A 0%,#F24A4A 50%,#E31414 100%)}
+@media (max-width:520px){.sha-g button small{display:none}.sha-g button{min-width:30px;height:34px}}
+.sha-on .shf-end{padding-bottom:120px}
+.sha-list{position:fixed;inset:0;z-index:7;background:rgba(80,20,30,.25);display:flex;align-items:flex-end;justify-content:center}
+.sha-lc{width:min(520px,100%);max-height:72vh;overflow:auto;background:#fff;border-radius:18px 18px 0 0;padding:12px 12px calc(env(safe-area-inset-bottom,0px) + 14px);box-sizing:border-box}
+.sha-lc header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.sha-lc header b{font-size:.92rem;color:var(--ink)}
+.sha-lc header button{font:inherit;border:0;background:#FFF1EF;color:#E31414;border-radius:50%;width:32px;height:32px;font-size:1.2rem;cursor:pointer}
+.sha-li{display:flex;flex-direction:column;gap:6px}
+.sha-li button{font:inherit;display:flex;gap:10px;align-items:flex-start;text-align:left;border:0;cursor:pointer;background:#FFF7F6;border-radius:12px;padding:8px 10px;box-shadow:inset 0 0 0 1px #F7DCD8}
+.sha-li .pn{flex:none;width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;background:linear-gradient(155deg,#FF7A7A,#E31414)}
+.sha-li .tx{display:flex;flex-direction:column;min-width:0}
+.sha-li .tx b{font-size:.84rem;color:var(--ink);display:flex;align-items:center;gap:4px}
+.sha-li .tx b .st svg{width:14px;height:14px;fill:#E31414;stroke:#E31414}
+.sha-li .tx small{font-size:.72rem;color:#9A6670}
+.sha-li .tx em{font-style:normal;font-size:.74rem;color:#5A2A33;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sha-emp{font-size:.82rem;color:#9A6670;text-align:center;padding:16px 8px}
+.sha-tst{position:fixed;left:50%;top:calc(env(safe-area-inset-top,0px) + 64px);transform:translate(-50%,-8px);z-index:8;background:#fff;color:#C81010;font-size:.76rem;font-weight:700;padding:7px 14px;border-radius:999px;box-shadow:0 0 0 1px #F2D4D0,0 10px 20px -10px rgba(160,30,30,.5);opacity:0;transition:.25s;pointer-events:none}
+.sha-tst.on{opacity:1;transform:translate(-50%,0)}
 </style></head><body><style id="boot-css">#boot{position:fixed;inset:0;z-index:2147483000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;background:radial-gradient(120% 70% at 50% 0%,#FFFFFF 0%,#FFF1F0 45%,#FFE0DE 100%);font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;color:#2B1A1F;transition:opacity .45s ease,visibility .45s}
 #boot.out{opacity:0;visibility:hidden}
 #boot .bt-orb{position:relative;width:132px;height:132px;display:grid;place-items:center}
@@ -25002,7 +25053,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v740';
+const FW_VER='v741';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -28957,6 +29008,108 @@ function fwDeckWings(c,cx,cy,w,now){const D=w.decks[w.deck];if(!D||w.deck>=2)ret
     if(S.night||S.low)fwGlow(c,tipX,tipY,T*1.6,sd<0?[255,70,70]:[70,230,130],S.night?.8:.4);if((now%1300)<70)fwGlow(c,tipX,tipY+T*.6,T*2.4,[255,255,255],.9);
     if(S.night){/* ไฟส่องปีกจากลำตัว */const rx=sd>0?mW-cx+T*1.5:-cx-T*1.5,ry=y+sp.oy+T*1.5;c.save();c.globalCompositeOperation='screen';const gg=c.createRadialGradient(rx,ry,0,rx,ry,T*9);gg.addColorStop(0,'rgba(255,240,220,.35)');gg.addColorStop(1,'rgba(255,240,220,0)');c.fillStyle=gg;c.fillRect(rx-T*9,ry-T*9,T*18,T*18);c.restore()}}}
 {const o2=fwOutside;fwOutside=function(c,R,CW,CH,cx,cy,w,now,L){const r=o2.apply(this,arguments);try{fwDeckWings(c,cx,cy,w,now)}catch(e){console.log('wing',e)}return r}}
+
+/* ===== v741 เขียนบนชีทในชั้นหนังสือ: ปากกา ไฮไลต์ ยางลบทั้งเส้น ย้อนกลับ ทำซ้ำ โน้ตแปะ คั่นหน้า
+   เก็บใน S.ann ของบัญชี บันทึกอัตโนมัติ และซิงก์ไปกับความคืบหน้าของบัญชี ไม่แตะไฟล์ชีทต้นฉบับ ===== */
+const SHA_C=['#E31414','#FF7A7A','#2B1A1F','#2F6FD0'],SHA_PW=[1.6,3,5.2],SHA_HW=[12,18,26];
+const SHA_IC={
+  pen:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M14 6l3 3"/></svg>',
+  hl:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14l-3 5h5l2-3"/><path d="M9 14l7-9 4 3-7 9z"/><path d="M4 21h16"/></svg>',
+  er:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20h12"/><path d="M5 15l8-9 6 6-7 8H9z"/><path d="M9 11l6 6"/></svg>',
+  note:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v11l-5 5H5z"/><path d="M14 20v-5h5"/><path d="M8 9h8M8 12h5"/></svg>',
+  undo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7L4 12l5 5"/><path d="M4 12h10a6 6 0 010 12h-2" transform="translate(0 -6)"/></svg>',
+  redo:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7l5 5-5 5"/><path d="M20 12H10a6 6 0 000 12h2" transform="translate(0 -6)"/></svg>',
+  write:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg>',
+  star:'<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+  list:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h12M8 12h12M8 18h12"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg>',
+  pin:'<svg viewBox="0 0 24 24"><path d="M5 3h14v12l-6 6H5z" fill="#FF7A7A" stroke="#E31414" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 21v-6h6" fill="#FFD3D0" stroke="#E31414" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 8h8M8 11h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>'};
+function shaBook(id){S.ann=S.ann||{};const a=S.ann[id]||(S.ann[id]={p:{},n:{},bm:[]});a.p=a.p||{};a.n=a.n||{};a.bm=a.bm||[];return a}
+function shaSave(){clearTimeout(SHF._annT);SHF._annT=setTimeout(()=>{try{save()}catch(e){}},700)}
+function shaEnc(pts){return pts.map(v=>Math.round(v)).join(',')}
+function shaDec(d){return d?d.split(',').map(Number):[]}
+/* วาดทุกเส้นของหน้าลงชั้นเขียน */
+function shaPaint(R,i){const pg=R.el.querySelector(`.shf-pg[data-i="${i}"]`);if(!pg)return;let cv=pg.querySelector('canvas.shf-an');const W=pg.clientWidth,H=pg.clientHeight;if(!W||!H)return;
+  if(!cv){cv=document.createElement('canvas');cv.className='shf-an'}pg.appendChild(cv);
+  const dpr=Math.min(2,window.devicePixelRatio||1),cw=Math.round(W*dpr),ch=Math.round(H*dpr);if(cv.width!==cw||cv.height!==ch){cv.width=cw;cv.height=ch}
+  const c=cv.getContext('2d');c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,cw,ch);const k=cw/1000,A=shaBook(R.b.id),L=(A.p[i]||[]).concat(R.live&&R.live.i===i?[R.live.s]:[]);
+  for(const s of L){const p=s.pts||shaDec(s.d);if(p.length<2)continue;c.save();c.lineCap=s.t==='h'?'butt':'round';c.lineJoin='round';c.strokeStyle=SHA_C[s.c]||SHA_C[0];c.lineWidth=(s.t==='h'?SHA_HW:SHA_PW)[s.w||0]*k;
+    if(s.t==='h'){c.globalAlpha=.32;c.globalCompositeOperation='multiply'}c.beginPath();c.moveTo(p[0]*k,p[1]*k);
+    if(p.length===2){c.lineTo(p[0]*k+.01,p[1]*k)}else for(let j=2;j<p.length-2;j+=2){const mx=(p[j]+p[j+2])/2,my=(p[j+1]+p[j+3])/2;c.quadraticCurveTo(p[j]*k,p[j+1]*k,mx*k,my*k)}if(p.length>=4)c.lineTo(p[p.length-2]*k,p[p.length-1]*k);c.stroke();c.restore()}
+  shaPins(R,i,pg)}
+/* ไอคอนโน้ตแปะ */
+function shaPins(R,i,pg){let box=pg.querySelector('.sha-pins');if(!box){box=document.createElement('div');box.className='sha-pins'}pg.appendChild(box);const np=pg.querySelector('.sha-npop');if(np)pg.appendChild(np);const N=shaBook(R.b.id).n[i]||[];
+  box.innerHTML=N.map((n,j)=>`<button class="sha-pin" data-sha="pin" data-i="${i}" data-j="${j}" style="left:${n.x/10}%;top:${n.y/10*R.b.w/R.b.h}%" aria-label="โน้ต ${esc((n.t||'').slice(0,30))}">${SHA_IC.pin}</button>`).join('')}
+function shaAll(R){R.el.querySelectorAll('.shf-pg').forEach(pg=>{const i=+pg.dataset.i,A=shaBook(R.b.id);if((A.p[i]&&A.p[i].length)||(A.n[i]&&A.n[i].length)||pg.querySelector('canvas.shf-an'))shaPaint(R,i)})}
+/* แถบเครื่องมือ */
+function shaBarHTML(R){const T=R.tool,col=R.col,w=R.w;return `<div class="sha-bar" role="toolbar" aria-label="เครื่องมือเขียน">
+  <div class="sha-g">${[['pen','ปากกา'],['hl','ไฮไลต์'],['er','ยางลบ'],['note','โน้ตแปะ']].map(([k,t])=>`<button data-sha="tool" data-v="${k}" class="${T===k?'on':''}" aria-pressed="${T===k}" aria-label="${t}">${SHA_IC[k]}<small>${t}</small></button>`).join('')}</div>
+  <div class="sha-g sha-cl">${SHA_C.map((cc,j)=>`<button data-sha="col" data-v="${j}" class="sw${col===j?' on':''}" aria-label="สี ${['แดง','ชมพู','ดำ','ฟ้า'][j]}" style="--c:${cc}"><i></i></button>`).join('')}</div>
+  <div class="sha-g sha-wd">${[0,1,2].map(j=>`<button data-sha="w" data-v="${j}" class="${w===j?'on':''}" aria-label="ความหนา ${['บาง','กลาง','หนา'][j]}"><i style="height:${[2,4,7][j]}px"></i></button>`).join('')}</div>
+  <div class="sha-g"><button data-sha="undo" aria-label="ย้อนกลับ" ${R.un.length?'':'disabled'}>${SHA_IC.undo}</button><button data-sha="redo" aria-label="ทำซ้ำ" ${R.re.length?'':'disabled'}>${SHA_IC.redo}</button></div>
+  <button class="sha-done" data-sha="done">เสร็จ</button></div>`}
+function shaBarUp(R){const b=R.el.querySelector('.sha-bar');if(b)b.outerHTML=shaBarHTML(R);else R.el.insertAdjacentHTML('beforeend',shaBarHTML(R))}
+function shaMode(R,on){R.wr=!!on;R.el.classList.toggle('sha-on',R.wr);const wb=R.el.querySelector('[data-sha="mode"]');if(wb){wb.classList.toggle('on',R.wr);wb.setAttribute('aria-pressed',R.wr)}
+  if(R.wr){shaBarUp(R);R.el.querySelectorAll('.shf-pg.ok').forEach(pg=>shaPaint(R,+pg.dataset.i))}else{const b=R.el.querySelector('.sha-bar');if(b)b.remove();shaNoteClose(R)}}
+function shaStar(R){const st=R.el.querySelector('[data-sha="star"]');if(!st)return;const on=shaBook(R.b.id).bm.includes(R.cur);st.classList.toggle('on',on);st.setAttribute('aria-pressed',on);st.setAttribute('aria-label',on?'เอาหน้านี้ออกจากที่คั่น':'คั่นหน้านี้')}
+/* ตำแหน่งในหน้า เป็นหน่วย 0 ถึง 1000 ตามความกว้าง */
+function shaPt(pg,e){const r=pg.getBoundingClientRect();return[(e.clientX-r.left)/r.width*1000,(e.clientY-r.top)/r.width*1000]}
+function shaHit(s,x,y,tol){const p=s.pts||shaDec(s.d),r=tol+(s.t==='h'?SHA_HW:SHA_PW)[s.w||0]/2;for(let j=0;j<p.length-2;j+=2){const ax=p[j],ay=p[j+1],bx=p[j+2],by=p[j+3],dx=bx-ax,dy=by-ay,L=dx*dx+dy*dy;let t=L?((x-ax)*dx+(y-ay)*dy)/L:0;t=Math.max(0,Math.min(1,t));if(Math.hypot(x-(ax+dx*t),y-(ay+dy*t))<=r)return true}return p.length===2&&Math.hypot(x-p[0],y-p[1])<=r}
+function shaDo(R,op,redo){const A=shaBook(R.b.id),L=A.p[op.i]||(A.p[op.i]=[]);if(op.k==='add')L.push(op.s);else if(op.k==='del'){const j=L.indexOf(op.s);if(j>=0)L.splice(j,1)}
+  else if(op.k==='nadd'){(A.n[op.i]=A.n[op.i]||[]).push(op.n)}else if(op.k==='ndel'){const N=A.n[op.i]||[],j=N.indexOf(op.n);if(j>=0)N.splice(j,1)}else if(op.k==='nedit'){op.n.t=op.to}
+  if(!redo)R.re=[];if(!L.length)delete A.p[op.i];shaPaint(R,op.i);shaSave()}
+function shaInv(op){return op.k==='add'?Object.assign({},op,{k:'del'}):op.k==='del'?Object.assign({},op,{k:'add'}):op.k==='nadd'?Object.assign({},op,{k:'ndel'}):op.k==='ndel'?Object.assign({},op,{k:'nadd'}):Object.assign({},op,{to:op.from,from:op.to})}
+function shaPush(R,op){R.un.push(op);if(R.un.length>200)R.un.shift();R.re=[];shaDo(R,op,1);shaBarUp(R)}
+/* โน้ตแปะ: กล่องพิมพ์ */
+function shaNoteClose(R){const p=R.el.querySelector('.sha-npop');if(p)p.remove()}
+function shaNoteOpen(R,i,n,isNew){shaNoteClose(R);const pg=R.el.querySelector(`.shf-pg[data-i="${i}"]`);if(!pg)return;const d=document.createElement('div');d.className='sha-npop';d.style.left=Math.min(70,n.x/10)+'%';d.style.top=(n.y/10*R.b.w/R.b.h)+'%';
+  d.innerHTML=`<textarea maxlength="600" placeholder="พิมพ์โน้ตตรงนี้" aria-label="ข้อความโน้ต">${esc(n.t||'')}</textarea><div><button data-sha="ndel">ลบโน้ต</button><button data-sha="nok" class="ok">บันทึก</button></div>`;pg.appendChild(d);{const pw=pg.clientWidth,dw=d.offsetWidth,lx=Math.max(4,Math.min(pw-dw-4,n.x/1000*pw-dw/2));d.style.left=lx+'px'}
+  d.addEventListener('pointerdown',e=>e.stopPropagation());R.np={i,n,isNew,el:d};const ta=d.querySelector('textarea');ta.style.userSelect='text';ta.style.webkitUserSelect='text';setTimeout(()=>ta.focus(),30)}
+function shaNoteDone(R,del){const P=R.np;if(!P)return;const t=P.el.querySelector('textarea').value.trim();R.np=null;shaNoteClose(R);
+  if(P.isNew){if(!del&&t){P.n.t=t;shaPush(R,{k:'nadd',i:P.i,n:P.n})}}else if(del||!t){shaPush(R,{k:'ndel',i:P.i,n:P.n})}else if(t!==P.n.t){shaPush(R,{k:'nedit',i:P.i,n:P.n,from:P.n.t,to:t})}}
+/* รายการที่คั่นและหน้าที่มีการเขียน */
+function shaList(R){const A=shaBook(R.b.id),pages=new Set([...A.bm,...Object.keys(A.p).map(Number),...Object.keys(A.n).filter(k=>A.n[k].length).map(Number)]);const L=[...pages].sort((a,b)=>a-b);
+  const d=document.createElement('div');d.className='sha-list';d.setAttribute('role','dialog');d.setAttribute('aria-label','หน้าที่คั่นและโน้ต');
+  d.innerHTML=`<div class="sha-lc"><header><b>หน้าที่คั่นและโน้ต</b><button data-sha="lx" aria-label="ปิด">×</button></header>${L.length?`<div class="sha-li">${L.map(i=>{const st=A.bm.includes(i),nn=(A.n[i]||[]).length,ss=(A.p[i]||[]).length,nt=(A.n[i]||[])[0];
+     return `<button data-sha="go" data-i="${i}"><span class="pn">${i+1}</span><span class="tx"><b>หน้า ${i+1}${st?' <span class="sha-chip">คั่นไว้</span>':''}</b><small>${[ss?'เขียน '+ss+' เส้น':'',nn?'โน้ต '+nn+' รายการ':''].filter(Boolean).join(' และ ')||'คั่นไว้'}</small>${nt?`<em>${esc(nt.t.slice(0,60))}</em>`:''}</span></button>`}).join('')}</div>`:`<p class="sha-emp">ยังไม่มีหน้าที่คั่นหรือเขียนไว้ กดดาวด้านบนเพื่อคั่นหน้าที่กำลังอ่าน</p>`}</div>`;
+  R.el.appendChild(d)}
+function shaGo(R,i){const pg=R.el.querySelector(`.shf-pg[data-i="${i}"]`);if(pg)R.sc.scrollTop=pg.offsetTop-8}
+/* ผูกกับหน้าอ่าน */
+function shaMount(R){if(R.sha||R.b.demo)return;R.sha=1;R.tool='pen';R.col=0;R.w=1;R.un=[];R.re=[];R.wr=false;R.pen=false;
+  const zm=R.el.querySelector('.shf-zm');zm.insertAdjacentHTML('beforebegin',`<div class="sha-hd"><button data-sha="star" aria-pressed="false" aria-label="คั่นหน้านี้">${SHA_IC.star}</button><button data-sha="list" aria-label="หน้าที่คั่นและโน้ต">${SHA_IC.list}</button><button data-sha="mode" class="sha-wb" aria-pressed="false" aria-label="โหมดเขียน">${SHA_IC.write}<span>เขียน</span></button></div>`);
+  shaStar(R);R.sc.addEventListener('scroll',()=>shaStar(R),{passive:true});
+  R.el.addEventListener('click',e=>{const t=e.target.closest('[data-sha]');if(!t)return;e.stopPropagation();const a=t.dataset.sha,A=shaBook(R.b.id);
+    if(a==='mode')shaMode(R,!R.wr);else if(a==='done')shaMode(R,false);
+    else if(a==='tool'){R.tool=t.dataset.v;shaBarUp(R)}else if(a==='col'){R.col=+t.dataset.v;if(R.tool==='er'||R.tool==='note')R.tool='pen';shaBarUp(R)}else if(a==='w'){R.w=+t.dataset.v;if(R.tool==='er'||R.tool==='note')R.tool='pen';shaBarUp(R)}
+    else if(a==='undo'){const op=R.un.pop();if(op){R.re.push(op);shaDo(R,shaInv(op),1);shaBarUp(R)}}else if(a==='redo'){const op=R.re.pop();if(op){R.un.push(op);shaDo(R,op,1);shaBarUp(R)}}
+    else if(a==='star'){const j=A.bm.indexOf(R.cur);if(j>=0)A.bm.splice(j,1);else{A.bm.push(R.cur);A.bm.sort((x,y)=>x-y)}shaStar(R);shaSave();shaToast(R,j>=0?'เอาที่คั่นหน้า '+(R.cur+1)+' ออกแล้ว':'คั่นหน้า '+(R.cur+1)+' แล้ว')}
+    else if(a==='list')shaList(R);else if(a==='lx'){const l=R.el.querySelector('.sha-list');if(l)l.remove()}else if(a==='go'){const l=R.el.querySelector('.sha-list');if(l)l.remove();shaGo(R,+t.dataset.i)}
+    else if(a==='pin'){const i=+t.dataset.i,n=(A.n[i]||[])[+t.dataset.j];if(n)shaNoteOpen(R,i,n,false)}else if(a==='nok')shaNoteDone(R,false);else if(a==='ndel')shaNoteDone(R,true)},true);
+  /* วาดด้วยนิ้วหรือปากกา */
+  const pages=R.el.querySelector('.shf-pages');let cur=null;
+  pages.addEventListener('pointerdown',e=>{if(!R.wr||e.target.closest('.sha-pin,.sha-npop'))return;const pg=e.target.closest('.shf-pg');if(!pg||!pg.classList.contains('ok'))return;
+    if(e.pointerType==='pen'&&!R.pen){R.pen=true;R.el.classList.add('sha-pen');shaToast(R,'ตรวจพบปากกา ใช้นิ้วเลื่อนหน้า ใช้ปากกาเขียน')}
+    if(R.pen&&e.pointerType==='touch')return;/* กันฝ่ามือ: เมื่อใช้ปากกาแล้ว นิ้วใช้เลื่อนหน้าเท่านั้น */
+    if(!e.isPrimary)return;e.preventDefault();const i=+pg.dataset.i,[x,y]=shaPt(pg,e);
+    if(R.tool==='note'){const n={x:Math.round(x),y:Math.round(y),t:''};shaNoteOpen(R,i,n,true);return}
+    try{pg.setPointerCapture(e.pointerId)}catch(_){}
+    if(R.tool==='er'){cur={er:1,i,pg};shaErase(R,i,x,y);return}
+    cur={i,pg,s:{t:R.tool==='hl'?'h':'p',c:R.col,w:R.w,pts:[x,y]}};R.live={i,s:cur.s};shaPaint(R,i)},{passive:false});
+  pages.addEventListener('pointermove',e=>{if(!cur)return;if(R.pen&&e.pointerType==='touch')return;e.preventDefault();const[x,y]=shaPt(cur.pg,e);if(cur.er){shaErase(R,cur.i,x,y);return}
+    const P=cur.s.pts,lx=P[P.length-2],ly=P[P.length-1];if(Math.hypot(x-lx,y-ly)<1.2)return;P.push(x,y);shaPaint(R,cur.i)},{passive:false});
+  const end=e=>{if(!cur)return;const C=cur;cur=null;R.live=null;if(C.er){shaBarUp(R);return}const s=C.s,P=s.pts;
+    if(s.t==='h'&&P.length>=4){/* ไฮไลต์ที่ลากแนวนอนจะตรงให้เอง */let y0=1e9,y1=-1e9,x0=1e9,x1=-1e9;for(let j=0;j<P.length;j+=2){x0=Math.min(x0,P[j]);x1=Math.max(x1,P[j]);y0=Math.min(y0,P[j+1]);y1=Math.max(y1,P[j+1])}
+      if(y1-y0<Math.max(14,(x1-x0)*.18)){const ym=(y0+y1)/2;s.pts=[P[0],ym,P[P.length-2],ym]}}
+    const S2={t:s.t,c:s.c,w:s.w,d:shaEnc(s.pts)};shaPush(R,{k:'add',i:C.i,s:S2})};
+  pages.addEventListener('touchstart',e=>{if(R.wr&&e.touches[0]&&e.touches[0].touchType==='stylus'&&!e.target.closest('.sha-pin,.sha-npop'))e.preventDefault()},{passive:false});pages.addEventListener('touchmove',e=>{if(R.wr&&e.touches[0]&&e.touches[0].touchType==='stylus')e.preventDefault()},{passive:false});
+  pages.addEventListener('pointerup',end);pages.addEventListener('pointercancel',end);
+  /* วาดชั้นเขียนใหม่เมื่อซูมหรือหมุนจอ */
+  R.ro=new ResizeObserver(()=>{clearTimeout(R.rt);R.rt=setTimeout(()=>shaAll(R),120)});R.ro.observe(pages)}
+function shaErase(R,i,x,y){const A=shaBook(R.b.id),L=A.p[i]||[];for(let j=L.length-1;j>=0;j--){if(shaHit(L[j],x,y,6)){const s=L[j];R.un.push({k:'del',i,s});R.re=[];shaDo(R,{k:'del',i,s},1);return}}}
+function shaToast(R,t){let m=R.el.querySelector('.sha-tst');if(!m){m=document.createElement('div');m.className='sha-tst';R.el.appendChild(m)}m.textContent=t;m.classList.add('on');clearTimeout(R.tt);R.tt=setTimeout(()=>m.classList.remove('on'),1800)}
+/* ต่อเข้ากับหน้าอ่านเดิม */
+{const o=shfOpen;shfOpen=async function(id){const r=await o.apply(this,arguments);const R=SHF.open;if(R&&R.b&&R.b.id===id&&R.key)try{shaMount(R);shaAll(R)}catch(e){console.log('sha',e)}return r}}
+{const o=shfDraw;shfDraw=async function(R,i){const r=await o.apply(this,arguments);try{if(R&&R.sha&&SHF.open===R){const pg=R.el.querySelector(`.shf-pg[data-i="${i}"]`);if(pg&&pg.classList.contains('ok'))shaPaint(R,i)}}catch(e){}return r}}
+{const o=shfClose;shfClose=function(){const R=SHF.open;if(R&&R.ro)try{R.ro.disconnect()}catch(e){}if(R&&R.np)shaNoteDone(R,false);return o.apply(this,arguments)}}
 
 /* ===== โหมดสำรวจเครื่องบิน: ไม่มีภารกิจ เดินดูทั้งลำ และเปิดทุกฉากได้จากเมนู ===== */
 const FW_FREE=[
