@@ -6601,8 +6601,8 @@ for(const id in F){const q=by[id];if(!q)continue;for(const o of F[id]){const k=o
 const qById=id=>QUESTIONS.find(x=>x.id===id)||EXAMQ.find(x=>x.id===id);
 const TNUM=['๑','๒','๓','๔','๕'];const optL=(q,k)=>q&&q.n1?String(k+1):q&&/^(en|tg1)/.test(q.t||'')?'ABCD'[k]:q&&q.th?'กขคงจ'[k]:q&&q.x?(/^(ss|th)70/.test(q.x)?String(k+1):TNUM[k]):LET[k];
 function setQs(id){return EXAMQ.filter(q=>q.x===id)}
-const MOCK_TRIAL='ss70',MOCK_FREE=['ss70','th70','en70','tg70','g370'];/* ชุดที่ 1 ของทุกวิชา TCAS70 เปิดให้ทุกคนทำได้ */
-function startSet(id,mode){const s=EXAM_SETS.find(x=>x.id===id);if(!s)return;if(!isPearl()&&!MOCK_FREE.includes(id)&&!s.real){plGate('สนามสอบจำลอง TCAS (เฉพาะบัตร PEARL)');return}if(!unlocked()&&!s.real&&!MOCK_FREE.includes(id)){const s0=s;go('mock',{yr:s0?s0.yr:null,sid:id,lockSet:1});return}
+const MOCK_TRIAL='ss70',MOCK_FREE=['ss70','th70','en70','tg70','g370'];/* ชุดที่ 1 ของทุกวิชา TCAS70 เปิดให้บัตร RUBY ขึ้นไป */
+function startSet(id,mode){const s=EXAM_SETS.find(x=>x.id===id);if(!s)return;if(MOCK_FREE.includes(id)&&gTier()<1){go('ruby',{what:'สนามสอบจำลอง TCAS70 ชุดที่ 1 ทุกวิชา'});return}if(!isPearl()&&!MOCK_FREE.includes(id)&&!s.real){plGate('สนามสอบจำลอง TCAS (เฉพาะบัตร PEARL)');return}if(!unlocked()&&!s.real&&!MOCK_FREE.includes(id)){const s0=s;go('mock',{yr:s0?s0.yr:null,sid:id,lockSet:1});return}
   let ids=setQs(id).map(q=>q.id);if(mode==='wrong')ids=ids.filter(x=>S.ans[x]&&!S.ans[x].ok);if(!ids.length)return;
   if(mode==='exam'){let ess=null;if(s.essay){if(!S.mdraw){S.mdraw=MESS69[Math.floor(Math.random()*MESS69.length)].y;save()}ess=S.mdraw}
    Q={mode:'mock',set:id,ids,i:0,picks:{},label:s.title,limit:s.mins*60,left:s.mins*60,essay:ess,part:1};touch();go('quiz');
@@ -25160,7 +25160,7 @@ if(!window.__fwhud){window.__fwhud=1;setInterval(()=>{try{if(V.view==='fly')fwHu
 /* ===== แผงตั้งค่าแบบละเอียด 6 หมวด: การแสดงผล เสียง การควบคุม การเล่น ภาษา และการเข้าถึง ===== */
 const FW_OPTD={bri:100,lq:'hi',big:0,meter:1,mm:'on',vAmb:80,vSig:100,vPa:100,vTap:60,hap:1,move:'both',padR:0,padFloat:0,spd:'norm',goAct:1,diff:'norm',ev:'norm',lang:'both',gls:1,txt:'norm',rm:0,hc:0,cap:0};
 try{window.FWOPT=Object.assign({},FW_OPTD,JSON.parse(localStorage.getItem('fwOpt')||'{}'))}catch(e){window.FWOPT=Object.assign({},FW_OPTD)}
-const FW_VER='v757';
+const FW_VER='v760';
 function fwOpt(k){return(window.FWOPT||FW_OPTD)[k]}
 function fwOptSet(k,v){window.FWOPT[k]=v;try{localStorage.setItem('fwOpt',JSON.stringify(window.FWOPT))}catch(e){}fwOptApply();if(k==='lang')try{render()}catch(e){}}
 /* ---------- นำค่าไปใช้ ---------- */
@@ -31880,7 +31880,7 @@ const ROSE_VIEWS=['life','shop','avatar','wkrep','game','home','cal','learn','le
 function needOf(a,b){const v=b.dataset.v,t=b.dataset.t;if(a==='tgseq-open')return 2;if(a==='care-go'||a==='care-pbrk')return 1;
   if(a==='lesson')return isSS(t)?2:(t===FREE_T()?0:1);
   if(a==='start-topic')return isSS(t)?2:1;
-  if(a==='start-set'){if(MOCK_FREE.includes(v))return 0;const s=EXAM_SETS.find(x=>x.id===v);if(s&&s.real)return 0}
+  if(a==='start-set'){if(MOCK_FREE.includes(v))return 1;const s=EXAM_SETS.find(x=>x.id===v);if(s&&s.real)return 0}
   if(a==='start-set')return 2;if(a==='mock-subj')return 0;if(a==='start-full')return 2;if(a==='mock-year')return 0;
   if(a==='start-all')return S.subj==='ss'||S.subj==='th'||S.subj==='en'||S.subj==='tg'?2:1;
   if(['start-full','start-review','mock-year','fin-open','iv-open','set-new','pq-mode'].includes(a))return 1;
@@ -33431,7 +33431,7 @@ function vMock(){const yr=V.yr,sid=V.sid;const back=(act,v,lab)=>`<button class=
   if(!sid){return `<div class="stack practice">${back('mock-year','0','สนามสอบจำลองทั้งหมด')}
    <div class="pagehd"><span class="eyebrow">สนามสอบจำลอง MYCROSOC</span><h1>TCAS${yr}</h1><p class="muted">${L.length?'เลือกชุดที่จะสอบ จับเวลาเหมือนสนามจริง':'ข้อสอบปีนี้กำลังเตรียม'}</p></div>
    ${L.length?(()=>{const K=V.msj||'all',LL=K==='all'?L:L.filter(s=>mkSubjK(s)===K);const nm=(PJ_SUBJ.find(x=>x[0]===K)||['',''])[1];return mkStripM(L,K)+mkSum([[LL.length,'ชุด'],[LL.reduce((a,s)=>a+setQs(s.id).length,0),'ข้อทั้งหมด'],[LL.reduce((a,s)=>a+setQs(s.id).filter(q=>S.ans[q.id]).length,0),'ข้อที่ทำแล้ว']])+(LL.length?`<div class="mq-list">${LL.map((s,i)=>{const qs=setQs(s.id),n=qs.length,done=qs.filter(q=>S.ans[q.id]).length,ok=qs.filter(q=>S.ans[q.id]&&S.ans[q.id].ok).length,wr=done-ok;const R=(S.sets||{})[s.id]||[];const best=R.length?Math.max(...R.map(r=>r.score)):null,last=R.length?R[R.length-1].score:null;const no=mkNo(s);
-     return `<article class="mq-card"><div class="mq-top"><span class="mq-no"><small>ชุดที่</small><b>${no||i+1}</b></span><div class="mq-tt"><span class="mq-tag">ANSWER SHEET · ${n} ข้อ · ${s.mins} นาที</span><b>${s.title.replace('แนวข้อสอบ','').replace('สนามสอบจำลอง','').trim()}</b><small>${s.code}${MOCK_FREE.includes(s.id)?' · เปิดให้ทำฟรี':isPearl()||s.real?'':' · เฉพาะ PEARL'}</small></div></div>${mkOmrQ(qs)}
+     return `<article class="mq-card"><div class="mq-top"><span class="mq-no"><small>ชุดที่</small><b>${no||i+1}</b></span><div class="mq-tt"><span class="mq-tag">ANSWER SHEET · ${n} ข้อ · ${s.mins} นาที</span><b>${s.title.replace('แนวข้อสอบ','').replace('สนามสอบจำลอง','').trim()}</b><small>${s.code}${MOCK_FREE.includes(s.id)?' · เปิดให้บัตร RUBY':isPearl()||s.real?'':' · เฉพาะ PEARL'}</small></div></div>${mkOmrQ(qs)}
       <div class="mq-st"><span><small>คะแนนสูงสุด</small><b>${best!=null?best+'%':'—'}</b></span><span><small>ครั้งล่าสุด</small><b>${last!=null?last+'%':'—'}</b></span><span><small>สอบไปแล้ว</small><b>${R.length} ครั้ง</b></span></div>
       <div class="mq-pr"><span class="tc-bar"><i style="width:${n?Math.round(done/n*100):0}%"></i></span><small>ทำแล้ว ${done}/${n} ข้อ${done?` · ถูก ${ok}`:''}</small></div>
       <div class="mq-bt"><button class="pri" data-act="start-set" data-v="${s.id}" data-m="exam"><b>สอบจับเวลา</b><small>${s.mins} นาที · ส่งแล้วดูคะแนน</small></button><button data-act="start-set" data-v="${s.id}" data-m="learn"><b>ฝึกดูเฉลย</b><small>เฉลยทันทีทีละข้อ</small></button>${s.id==='sw'&&yr===69?`<button class="wr" data-act="mock-subj" data-v="${s.id}"><b>ตอนที่ 2 ข้อเขียน</b><small>สุ่มโจทย์ 2 ข้อ</small></button>`:''}${wr?`<button class="wr" data-act="start-set" data-v="${s.id}" data-m="wrong"><b>ทำข้อที่ผิด</b><small>${wr} ข้อ</small></button>`:''}</div></article>`}).join('')}</div>`:`<div class="v-empty"><span class="ve-ic">${ICO.cal}</span><h3>วิชา${nm} TCAS${yr} กำลังจัดทำ</h3><p>พี่วอลส์กำลังเตรียมข้อสอบวิชานี้ ระหว่างนี้ลองทำวิชาอื่นไปก่อนได้</p><button class="btn small" data-act="msj" data-v="all">ดูทุกวิชา</button></div>`)})()
