@@ -665,4 +665,431 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-xq-a],[dat
 /* ตอบแต่ละข้อแล้ว ระบบแทนที่กล่องคำถามด้วยผลของ fwL2Quiz ซึ่งมีการ์ดปุ่มข้ามติดมาด้วย ทำให้การ์ดซ้อนเพิ่มทุกครั้ง จึงตัดการ์ดออกตอนแทนที่ */
 {const o=fwL2Swap;fwL2Swap=function(id,h){if(id==='l2-qz'&&typeof h==='string')h=h.replace(/<section class="l2-box qsk5"[\s\S]*?<\/section>/,'');return o.apply(this,[id,h].concat([].slice.call(arguments,2)))}}
 
+/* ===== v761 เพลงประกอบเกมเครื่องบิน (ชิปทูนแต่งใหม่ สังเคราะห์สดด้วย Web Audio ไม่มีไฟล์เสียง) ===== */
+(function(){
+/* ===== เครื่องเล่นเพลงชิปทูน ===== */
+const NOTE={C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11};
+const midi=s=>{const m=s.match(/^([A-G](?:#|b)?)(-?\d)$/);return 12*(+m[2]+1)+NOTE[m[1]]};
+const hz=m=>440*Math.pow(2,(m-69)/12);
+const QUAL={'':[0,4,7],'m':[0,3,7],'7':[0,4,7,10],'maj7':[0,4,7,11],'m7':[0,3,7,10],'6':[0,4,7,9],'m6':[0,3,7,9],'sus4':[0,5,7],'dim':[0,3,6],'5':[0,7],'9':[0,4,7,10,14],'add9':[0,4,7,14]};
+function chordOf(sym,oct){const m=sym.match(/^([A-G](?:#|b)?)(.*)$/);const r=12*(oct+1)+NOTE[m[1]];return (QUAL[m[2]]||QUAL['']).map(i=>r+i)}
+
+/* ===== เพลง =====
+   lead: โน้ตทีละช่อง  - = ลากเสียงต่อ  . = เงียบ
+   arp: ลำดับเสียงในคอร์ดต่อช่อง (-1 เงียบ 9 ทั้งคอร์ด)
+   bass: r ราก 3 เสียงที่สาม 5 เสียงที่ห้า 6 เสียงที่หก 7 เสียงที่เจ็ด o คู่แปด
+   drums: k กระเดื่อง s สแนร์ h ไฮแฮต z เชคเกอร์ t กลองต่ำ d ดุม T เต็ก c ฉิ่ง C ฉับ w เกราะ b ระฆัง */
+const TR=[
+{id:'lobby',g:'fl',n:'ห้องพักนักบิน',u:'หน้าเลือกไฟต์และห้องพัก',mood:'แจ๊สช้า อบอุ่น',bpm:92,spb:8,swing:.3,
+ ch:'Dm7 G7 Cmaj7 A7 Dm7 G7 Em7 A7',
+ lead:{i:'piano',v:.22,s:'F5 - A5 - C6 - A5 . | B5 - - G5 F5 - D5 . | E5 - - - G5 - B5 - | C#6 - A5 - E5 - G5 . | F5 . A5 . D6 - C6 - | B5 - A5 - G5 - F5 . | G5 - - E5 D5 - B4 . | C#5 - E5 - A5 - - .'},
+ arp:{i:'piano',v:.09,o:4,p:[-1,-1,9,-1,-1,-1,9,-1]},bass:{i:'bass',v:.3,o:2,p:'r . 3 . 5 . 6 .'},
+ dr:['. . h . . . h h','k . . . s . . .']},
+{id:'brief',g:'fl',n:'ลงชื่อและบรีฟฟิง',u:'ก่อนขึ้นเครื่อง',mood:'ตื่นตัว พร้อมทำงาน',bpm:108,spb:8,
+ ch:'Am F C G Am F C G',
+ lead:{i:'sq',v:.12,s:'A4 . C5 . E5 - D5 . | C5 - A4 . F4 - . . | G4 . C5 . E5 - G5 . | F5 - E5 - D5 - . . | A5 . G5 . E5 - D5 . | C5 - D5 . E5 - . . | G5 - E5 . C5 - E5 . | D5 - - - B4 - . .'},
+ arp:{i:'tri',v:.1,o:4,p:[0,1,2,1,0,1,2,1]},bass:{i:'sqbass',v:.16,o:2,p:'r . r r . r 5 .'},
+ dr:['k . . . s . . k','h . h . h . h h']},
+{id:'board',g:'fl',n:'ผู้โดยสารขึ้นเครื่อง',u:'ตรวจบัตรและพาผู้โดยสารไปที่นั่ง',mood:'วุ่นแต่สนุก',bpm:128,spb:8,
+ ch:'C Am F G C Am F G',
+ lead:{i:'pluck',v:.2,s:'E5 G5 . E5 C5 . G4 . | A4 C5 . E5 A5 . G5 . | F5 . A5 . G5 F5 E5 . | D5 . G5 . F5 E5 D5 . | E5 G5 . C6 . B5 A5 . | G5 . E5 . C5 D5 E5 . | F5 E5 D5 . C5 . A4 . | B4 . D5 . G5 - . .'},
+ arp:{i:'tri',v:.08,o:4,p:[-1,0,-1,1,-1,2,-1,1]},bass:{i:'bass',v:.3,o:2,p:'r . 5 . r . 5 .'},
+ dr:['k . s . k k s .','h h h h h h h h']},
+{id:'takeoff',g:'fl',n:'ขึ้นบิน',u:'เครื่องเร่งเครื่องยนต์และไต่ระดับ',mood:'ยิ่งใหญ่ เปิดกว้าง',bpm:100,spb:8,
+ ch:'D G Bm A D G A A',
+ lead:{i:'brass',v:.16,s:'D5 - - - F#5 - - - | G5 - - - B5 - - - | D6 - - - C#6 - B5 - | A5 - - - - - E5 - | F#5 - - - A5 - - - | B5 - - - D6 - - - | E6 - - - C#6 - - - | A5 - - - - - - .'},
+ arp:{i:'str',v:.07,o:4,p:[0,1,2,3,2,1,0,1]},bass:{i:'bass',v:.3,o:2,p:'r - - - r - 5 -'},
+ dr:['k . . . s . . k','. . h . . . h .']},
+{id:'cruise',g:'fl',n:'ระหว่างบิน',u:'ช่วงเสิร์ฟและทำข้อสอบ',mood:'สบาย ๆ ไม่รบกวนสมาธิ',bpm:80,spb:8,
+ ch:'Fmaj7 Em7 Dm7 Cmaj7 Fmaj7 Em7 Bbmaj7 C',
+ lead:{i:'bell',v:.13,s:'A5 - - - C6 - - - | B5 - - G5 - - - - | F5 - - - A5 - - - | G5 - - - - - E5 - | F5 - A5 - C6 - - - | B5 - - - G5 - - - | D6 - - - C6 - Bb5 - | A5 - - - - - - .'},
+ arp:{i:'tri',v:.08,o:4,p:[0,2,1,3,0,2,1,3]},bass:{i:'bass',v:.24,o:2,p:'r - - - 5 - - -'},
+ dr:['k . . . . . . .','. . . z . . z .']},
+{id:'turb',g:'fl',n:'อากาศแปรปรวนและเหตุฉุกเฉิน',u:'แทรกเข้ามาตอนเกิดเหตุ',mood:'ตึงเครียด เร่งเร้า',bpm:140,spb:8,
+ ch:'Em Em C B Em Em C B',
+ lead:{i:'sq',v:.12,s:'E5 . . E5 . . F5 . | E5 . . G5 . F5 E5 . | C5 . . C5 . . D5 . | D#5 - - - F#5 - - - | B5 . . B5 . . C6 . | B5 . . G5 . F#5 E5 . | C6 . . B5 . . A5 . | F#5 - - - D#5 - - -'},
+ arp:{i:'str',v:.06,o:3,p:[0,0,1,1,2,2,1,1]},bass:{i:'sqbass',v:.2,o:1,p:'r r o r r o r r'},
+ dr:['k . s . k k s .','h h h h h h h h','t . . . . . t .']},
+{id:'land',g:'fl',n:'ลงจอดและสรุปผล',u:'หน้ารายงานหลังบิน',mood:'โล่งใจ ภูมิใจ',bpm:116,spb:8,
+ ch:'C F G C C F G C',
+ lead:{i:'brass',v:.16,s:'G4 . C5 . E5 . G5 - | A5 - G5 - F5 - A5 - | G5 . E5 . D5 . B4 . | C5 - - - - - - . | E5 . G5 . C6 . E6 - | F6 - E6 - D6 - F6 - | E6 . C6 . D6 . B5 . | C6 - - - - - - .'},
+ arp:{i:'str',v:.07,o:4,p:[0,1,2,1,0,1,2,1]},bass:{i:'bass',v:.3,o:2,p:'r . 5 . r . 5 .'},
+ dr:['k . s . k . s k','h . h . h . h .']},
+
+{id:'hkt',g:'ct',n:'ภูเก็ต',u:'โรงแรมภูเก็ต',mood:'บันไดเสียงไทยห้าเสียง สำเนียงระนาด ฉิ่ง และกลอง',bpm:112,spb:8,
+ ch:'C5 C5 C5 G5 C5 C5 F5 C5',
+ lead:{i:'ranat',v:.2,s:'C5 D5 E5 G5 A5 G5 E5 D5 | C5 . A4 . G4 . A4 C5 | D5 E5 G5 A5 C6 A5 G5 E5 | G5 . E5 . D5 . C5 . | E5 G5 A5 C6 D6 C6 A5 G5 | A5 . G5 . E5 . D5 E5 | G5 A5 G5 E5 D5 C5 D5 E5 | C5 - - - . . . .'},
+ arp:{i:'ranat',v:.07,o:3,p:[0,-1,1,-1,0,-1,1,-1]},bass:{i:'bass',v:.22,o:2,p:'r . . . 5 . . .'},
+ dr:['c . C . c . C .','t . . t . . t .']},
+{id:'sin',g:'ct',n:'สิงคโปร์',u:'โรงแรมสิงคโปร์',mood:'กลิ่นอายเปอรานากันผสมจีน สำเนียงพิณดีด',bpm:96,spb:8,
+ ch:'G Em C D G Em C G',
+ lead:{i:'koto',v:.2,s:'D5 - E5 G5 A5 - G5 E5 | D5 - B4 - A4 - - - | G4 A4 B4 D5 E5 - D5 B4 | A4 - - - G4 - - - | B5 - A5 G5 E5 - G5 A5 | B5 - - - A5 - G5 - | E5 G5 E5 D5 B4 - A4 B4 | G4 - - - - - . .'},
+ arp:{i:'pluck',v:.08,o:3,p:[0,1,2,-1,1,2,0,-1]},bass:{i:'bass',v:.22,o:2,p:'r . . . 5 . . .'},
+ dr:['w . . w . w . .']},
+{id:'dxb',g:'ct',n:'ดูไบ',u:'โรงแรมดูไบ',mood:'บันไดเสียงแบบอาหรับ สำเนียงอู๊ดและกลองมือ',bpm:100,spb:8,
+ ch:'D5 D5 D5 D5 G5 G5 C5 D5',
+ lead:{i:'oud',v:.2,s:'D5 Eb5 F#5 - G5 F#5 Eb5 D5 | A5 - - G5 F#5 - Eb5 - | D5 . Eb5 F#5 G5 A5 Bb5 A5 | G5 F#5 Eb5 - D5 - - - | A5 Bb5 C6 - Bb5 A5 G5 A5 | F#5 - G5 F#5 Eb5 - D5 - | C5 D5 Eb5 - D5 C5 Bb4 C5 | D5 - - - - - . .'},
+ arp:{i:'oud',v:.06,o:3,p:[0,-1,-1,-1,1,-1,-1,-1]},bass:{i:'bass',v:.24,o:2,p:'r - - - 5 - - -'},
+ dr:['d T . T d . T .']},
+{id:'hnd',g:'ct',n:'โตเกียว',u:'โรงแรมโตเกียว',mood:'บันไดเสียงญี่ปุ่น สำเนียงโคโตะ ช้าและสงบ',bpm:70,spb:8,
+ ch:'D5 D5 Eb5 D5 G5 G5 Eb5 D5',
+ lead:{i:'koto',v:.22,s:'D5 - Eb5 - G5 - - - | A5 - Bb5 - A5 - G5 - | Eb5 - - - D5 - - - | A4 - Bb4 - D5 - - - | G5 - A5 - Bb5 - D6 - | Bb5 - A5 - G5 - - - | Eb5 - D5 - Bb4 - A4 - | D5 - - - - - - .'},
+ arp:{i:'koto',v:.07,o:3,p:[0,-1,-1,1,-1,-1,-1,-1]},bass:{i:'bass',v:.18,o:2,p:'r - - - - - - -'},
+ dr:['b . . . . . . .']},
+{id:'syd',g:'ct',n:'ซิดนีย์',u:'โรงแรมซิดนีย์',mood:'อะคูสติกริมทะเล สดใส',bpm:116,spb:8,
+ ch:'G D Em C G D C G',
+ lead:{i:'whistle',v:.12,s:'B5 - - A5 G5 - D5 - | F#5 - - E5 D5 - - - | E5 - G5 - B5 - A5 G5 | E5 - - - - - . . | B5 - D6 - B5 - A5 G5 | A5 - - F#5 D5 - - - | E5 - G5 - A5 - B5 - | G5 - - - - - . .'},
+ arp:{i:'pluck',v:.1,o:3,p:[0,1,2,1,3,1,2,1]},bass:{i:'bass',v:.26,o:2,p:'r . . r 5 . . .'},
+ dr:['k . . k s . . .','z z z z z z z z']},
+{id:'lhr',g:'ct',n:'ลอนดอน',u:'โรงแรมลอนดอน',mood:'สำเนียงเครื่องสายและเครื่องทองเหลืองแบบคลาสสิก',bpm:96,spb:8,
+ ch:'G C D G Em C D G',
+ lead:{i:'brass',v:.15,s:'D5 - G5 - B5 - - A5 | G5 - E5 - C5 - - - | D5 - F#5 - A5 - D6 - | B5 - - - - - . . | G5 - B5 - E6 - D6 C6 | B5 - A5 - G5 - E5 - | D5 - A5 - G5 - F#5 - | G5 - - - - - . .'},
+ arp:{i:'str',v:.08,o:3,p:[0,1,2,1,0,1,2,1]},bass:{i:'bass',v:.26,o:2,p:'r . . . 5 . . .'},
+ dr:['k . s . k k s .']},
+{id:'cai',g:'ct',n:'ไคโร',u:'โรงแรมไคโร',mood:'บันไดเสียงตะวันออกกลาง ลึกลับ สำเนียงขลุ่ยนาย',bpm:84,spb:8,
+ ch:'E E Dm E E Am Dm E',
+ lead:{i:'flute',v:.16,s:'E5 - F5 - G#5 - - - | A5 - G#5 - F5 - E5 - | B5 - C6 - B5 A5 G#5 - | F5 - - - E5 - - - | E5 F5 G#5 A5 B5 - C6 - | D6 - C6 B5 A5 - G#5 - | A5 G#5 F5 - E5 - D5 - | E5 - - - - - . .'},
+ arp:{i:'oud',v:.06,o:3,p:[0,-1,-1,-1,0,-1,1,-1]},bass:{i:'bass',v:.24,o:2,p:'r - - - - - - -'},
+ dr:['d . T . d d T .']},
+{id:'cdg',g:'ct',n:'ปารีส',u:'โรงแรมปารีส',mood:'วอลซ์สามจังหวะ สำเนียงแอคคอร์เดียน',bpm:160,spb:6,
+ ch:'Am Dm E7 Am Am Dm E7 Am',
+ lead:{i:'acc',v:.13,s:'C6 - - - B5 A5 | D6 - - - C6 B5 | B5 - G#5 - E5 - | A5 - - - - . | E5 - A5 - C6 - | F6 - E6 - D6 - | C6 - B5 - G#5 B5 | A5 - - - - .'},
+ arp:{i:'acc',v:.06,o:4,p:[-1,-1,9,-1,9,-1]},bass:{i:'bass',v:.28,o:2,p:'r . . . . .'},
+ dr:[]},
+{id:'jfk',g:'ct',n:'นิวยอร์ก',u:'โรงแรมนิวยอร์ก',mood:'สวิงแจ๊สแบบอาร์ตเดโค สำเนียงทรัมเป็ตใส่หมวก',bpm:150,spb:8,swing:.33,
+ ch:'C6 A7 Dm7 G7 E7 A7 D7 G7',
+ lead:{i:'mute',v:.13,s:'E5 . G5 . A5 - C6 . | C#6 - A5 . G5 - E5 . | F5 . A5 . C6 - D6 . | B5 - - . G5 - . . | G#5 . B5 . D6 - B5 . | C#6 - A5 . E5 - G5 . | F#5 . A5 . C6 - A5 . | G5 - - - . . . .'},
+ arp:{i:'piano',v:.08,o:4,p:[-1,-1,9,-1,-1,-1,9,-1]},bass:{i:'bass',v:.3,o:2,p:'r . 3 . 5 . 6 .'},
+ dr:['h . h h h . h h','k . s . k . s .']},
+
+{id:'ok',g:'jg',n:'ตอบถูก',u:'หน้าข้อสอบระหว่างบิน',mood:'สั้น สดใส',bpm:300,spb:8,once:1,
+ ch:'C',lead:{i:'sq',v:.14,s:'C6 E6 G6 C7 - - - .'}},
+{id:'bad',g:'jg',n:'ตอบผิด',u:'หน้าข้อสอบระหว่างบิน',mood:'สั้น นุ่ม ไม่ซ้ำเติม',bpm:220,spb:8,once:1,
+ ch:'C',lead:{i:'tri',v:.2,s:'E4 - D#4 - D4 - - .'}},
+{id:'pass',g:'jg',n:'ผ่านเหตุการณ์ลูกเรือ',u:'จบเหตุการณ์ในวิชาลูกเรือ',mood:'ฉลองสั้น ๆ',bpm:200,spb:8,once:1,
+ ch:'C F G C',lead:{i:'brass',v:.15,s:'G5 C6 E6 G6 | - - E6 G6 | A6 - G6 - | C7 - - .'},arp:{i:'str',v:.06,o:4,p:[0,1,2,3]},spb2:4},
+{id:'gift',g:'jg',n:'ได้ของที่ระลึกจากเมือง',u:'ห้องพักนักบิน',mood:'ประกายเหมือนเปิดกล่องของขวัญ',bpm:240,spb:8,once:1,
+ ch:'C Am F G',lead:{i:'bell',v:.14,s:'C6 E6 G6 C7 | B6 G6 D6 B5 | A5 C6 F6 A6 | G6 - - .'},spb2:4}
+];
+
+/* ===== สังเคราะห์เสียง ===== */
+let AC=null,MAST=null,DST=null,noiseBuf=null;
+function ctx(){if(AC)return AC;AC=new (window.AudioContext||window.webkitAudioContext)();const comp=AC.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=3;
+ MAST=AC.createGain();MAST.gain.value=.55;MAST.connect(comp);comp.connect(AC.destination);DST=MAST;
+ noiseBuf=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return AC}
+function osc(type,f,t,detune){const o=AC.createOscillator();o.type=type;o.frequency.setValueAtTime(f,t);if(detune)o.detune.value=detune;return o}
+function env(g,t,a,peak,hold,rel){g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(peak,t+a);g.gain.setValueAtTime(peak,t+Math.max(a,hold));g.gain.exponentialRampToValueAtTime(0.0001,t+Math.max(a,hold)+rel)}
+function dec(g,t,peak,len){g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(peak,t+0.004);g.gain.exponentialRampToValueAtTime(0.0001,t+len)}
+function lp(f,q){const b=AC.createBiquadFilter();b.type='lowpass';b.frequency.value=f;b.Q.value=q||0.7;return b}
+function play(inst,m,t,dur,v){const f=hz(m),g=AC.createGain();g.connect(DST);let os=[],end=t+dur+0.05;
+ const add=(type,fr,det,dest)=>{const o=osc(type,fr,t,det);o.connect(dest||g);os.push(o);return o};
+ switch(inst){
+  case 'sq':{const l=lp(3200);l.connect(g);add('square',f,0,l);env(g,t,.005,v,dur*.85,.06);end=t+dur+.1;break}
+  case 'tri':add('triangle',f);env(g,t,.005,v,dur*.85,.08);end=t+dur+.12;break;
+  case 'pluck':add('triangle',f);dec(g,t,v,Math.min(.6,dur+.25));end=t+.65;break;
+  case 'ranat':{add('sine',f);const g2=AC.createGain();g2.gain.value=.35;g2.connect(g);add('triangle',f*2,0,g2);dec(g,t,v,.38);end=t+.42;break}
+  case 'koto':{const l=lp(2000,1.2);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(3200,t);l.frequency.exponentialRampToValueAtTime(700,t+.6);dec(g,t,v*.8,1.3);end=t+1.35;break}
+  case 'oud':{const l=lp(1400,2);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(2400,t);l.frequency.exponentialRampToValueAtTime(500,t+.35);dec(g,t,v*.9,.7);end=t+.75;break}
+  case 'piano':{add('triangle',f);const g2=AC.createGain();g2.gain.value=.25;g2.connect(g);add('sine',f*2,0,g2);dec(g,t,v,Math.min(1.6,dur+.9));end=t+1.65;break}
+  case 'bell':{add('sine',f);const g2=AC.createGain();g2.gain.value=.22;g2.connect(g);add('sine',f*2.76,0,g2);dec(g,t,v,1.8);end=t+1.85;break}
+  case 'brass':{const l=lp(600,1.5);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(600,t);l.frequency.linearRampToValueAtTime(2600,t+.06);l.frequency.linearRampToValueAtTime(1500,t+.3);env(g,t,.04,v,dur*.9,.12);end=t+dur+.16;break}
+  case 'str':{const l=lp(1500);l.connect(g);add('sawtooth',f,-7,l);add('sawtooth',f,7,l);env(g,t,.08,v,dur*.9,.25);end=t+dur+.3;break}
+  case 'acc':{const l=lp(2400);l.connect(g);add('square',f,-6,l);add('square',f,6,l);env(g,t,.02,v,dur*.92,.06);end=t+dur+.1;break}
+  case 'mute':{const l=lp(1300,3);l.connect(g);add('square',f,0,l);env(g,t,.01,v,dur*.8,.07);end=t+dur+.1;break}
+  case 'flute':case 'whistle':{const o=add('sine',f);const lfo=osc('sine',5.4,t),ld=AC.createGain();ld.gain.value=f*.006;lfo.connect(ld);ld.connect(o.frequency);os.push(lfo);
+    if(inst==='flute'){const n=AC.createBufferSource();n.buffer=noiseBuf;const bp=AC.createBiquadFilter();bp.type='bandpass';bp.frequency.value=f*2;bp.Q.value=4;const ng=AC.createGain();ng.gain.value=.08;n.connect(bp);bp.connect(ng);ng.connect(g);n.start(t);n.stop(t+dur+.2)}
+    env(g,t,.06,v,dur*.9,.12);end=t+dur+.16;break}
+  case 'bass':add('triangle',f);env(g,t,.005,v,dur*.9,.06);end=t+dur+.1;break;
+  case 'sqbass':{const l=lp(700);l.connect(g);add('square',f,0,l);env(g,t,.005,v,dur*.85,.05);end=t+dur+.08;break}
+ }
+ os.forEach(o=>{o.start(t);o.stop(end)})}
+function noise(t,len,type,freq,v,q){const n=AC.createBufferSource();n.buffer=noiseBuf;const b=AC.createBiquadFilter();b.type=type;b.frequency.value=freq;if(q)b.Q.value=q;const g=AC.createGain();n.connect(b);b.connect(g);g.connect(DST);dec(g,t,v,len);n.start(t);n.stop(t+len+.02)}
+function tone(t,f0,f1,len,v,type){const o=osc(type||'sine',f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+len);const g=AC.createGain();o.connect(g);g.connect(DST);dec(g,t,v,len);o.start(t);o.stop(t+len+.02)}
+function drum(c,t){switch(c){
+ case 'k':tone(t,140,45,.25,.55);break;
+ case 's':noise(t,.16,'bandpass',1800,.28,.8);tone(t,220,150,.08,.12,'triangle');break;
+ case 'h':noise(t,.04,'highpass',7000,.12);break;
+ case 'z':noise(t,.06,'bandpass',5500,.08,1.5);break;
+ case 't':tone(t,120,80,.3,.4);break;
+ case 'd':tone(t,110,70,.32,.5);break;
+ case 'T':noise(t,.05,'highpass',3000,.18);tone(t,600,420,.05,.08,'triangle');break;
+ case 'c':tone(t,2350,2340,.7,.08);tone(t,3520,3500,.5,.04);break;
+ case 'C':noise(t,.05,'highpass',5000,.12);tone(t,2350,2340,.06,.05);break;
+ case 'w':tone(t,950,900,.06,.18,'square');break;
+ case 'b':tone(t,1180,1170,1.4,.07);tone(t,2950,2940,.8,.03);break}}
+
+/* ===== แปลงเพลงเป็นลำดับเหตุการณ์ ===== */
+function build(T){const spb=T.spb,ch=T.ch.split(' '),bars=ch.length,ev=[];
+ const tok=s=>s.replace(/\|/g,' ').trim().split(/\s+/);
+ if(T.lead){let last=null;tok(T.lead.s).forEach((x,i)=>{if(x==='-'){if(last)last.d++;return}if(x==='.'){last=null;return}last={s:i,d:1,m:midi(x),i:T.lead.i,v:T.lead.v};ev.push(last)})}
+ const per=T.spb2||spb;const L=Math.max(T.lead?tok(T.lead.s).length:0,bars*per);
+ if(T.arp)for(let b=0;b<bars;b++){const tones=chordOf(ch[b],T.arp.o);T.arp.p.forEach((p,j)=>{if(p<0||b*per+j>=L)return;const s=b*per+j;
+   if(p===9)tones.forEach(m=>ev.push({s,d:1,m,i:T.arp.i,v:T.arp.v*.8}));else{const n=tones.length;ev.push({s,d:1,m:tones[p%n]+12*Math.floor(p/n),i:T.arp.i,v:T.arp.v})}})}
+ if(T.bass){const P=tok(T.bass.p);for(let b=0;b<bars;b++){const c=chordOf(ch[b],T.bass.o),r=c[0];let last=null;
+   P.forEach((x,j)=>{if(x==='-'){if(last)last.d++;return}if(x==='.'){last=null;return}
+    const m=x==='r'?r:x==='o'?r+12:x==='3'?(c[1]!==undefined&&c.length>2?c[1]:r+4):x==='5'?r+7:x==='6'?r+9:x==='7'?(c[3]||r+10):r;last={s:b*spb+j,d:1,m,i:T.bass.i,v:T.bass.v};ev.push(last)})}}
+ const dr=[];(T.dr||[]).forEach(lane=>{const P=tok(lane);for(let b=0;b<bars;b++)P.forEach((x,j)=>{if(x!=='.')dr.push({s:b*spb+j,c:x})})});
+ return {ev,dr,L}}
+
+
+/* ===== ตัวเล่นในเกม: เพลงพื้นหลังเปลี่ยนตามช่วงของเกมแบบค่อย ๆ จาง และเพลงสั้นแทรกได้ ===== */
+let cur=null,tm=null,want=null,duckOn=false;const BYID={};TR.forEach(T=>BYID[T.id]=T);
+function on(){return true}
+function sched(P){if(P.done)return;const now=AC.currentTime;while(true){const st=P.t0+P.step*P.sd;if(st>now+.15)break;const k=P.step%P.B.L,off=(P.T.swing&&k%2===1)?P.T.swing*P.sd:0;DST=P.bus;
+  P.B.ev.forEach(e=>{if(e.s===k)play(e.i,e.m,st+off,e.d*P.sd,e.v)});P.B.dr.forEach(e=>{if(e.s===k)drum(e.c,st+off)});P.step++;if(P.T.once&&P.step>=P.B.L){P.done=1;break}}}
+function startT(id,once){const T=BYID[id];if(!T)return null;ctx();const bus=AC.createGain();bus.connect(MAST);const P={T,B:build(T),sd:60/T.bpm/2,step:0,t0:AC.currentTime+.06,bus};
+ bus.gain.setValueAtTime(.0001,AC.currentTime);bus.gain.linearRampToValueAtTime(once?1:(duckOn?.35:1),AC.currentTime+(once?.02:.8));return P}
+function fadeKill(P,t){if(!P)return;try{P.bus.gain.cancelScheduledValues(AC.currentTime);P.bus.gain.setValueAtTime(P.bus.gain.value,AC.currentTime);P.bus.gain.linearRampToValueAtTime(.0001,AC.currentTime+t);setTimeout(()=>{try{P.bus.disconnect()}catch(e){}},t*1000+2000)}catch(e){}}
+let jg=null;
+function loop(){if(!AC)return;if(cur)sched(cur);if(jg){sched(jg);if(jg.done&&AC.currentTime>jg.t0+jg.step*jg.sd+.6){jg=null;if(cur)cur.bus.gain.setTargetAtTime(duckOn?.35:1,AC.currentTime,.2)}}}
+function set(id){want=id;if(!on()||!id){if(cur){fadeKill(cur,.6);cur=null}return}if(!AC||AC.state!=='running')return;if(cur&&cur.T.id===id)return;
+ if(cur)fadeKill(cur,.8);cur=startT(id);if(!tm)tm=setInterval(loop,25)}
+function jingle(id){if(!on()||!AC||AC.state!=='running')return;jg=startT(id,1);if(cur)cur.bus.gain.setTargetAtTime(.2,AC.currentTime,.05);if(!tm)tm=setInterval(loop,25)}
+function duck(b){if(b===duckOn)return;duckOn=b;if(cur&&AC)cur.bus.gain.setTargetAtTime(b?.35:1,AC.currentTime,.25)}
+function unlock(){if(!on())return;ctx();if(AC.state==='suspended')AC.resume().then(()=>{if(want)set(want)});else if(want&&!cur)set(want)}
+function toggle(){try{localStorage.setItem('fwMus',on()?'0':'1')}catch(e){}if(on()){unlock();set(want)}else if(cur){fadeKill(cur,.4);cur=null}}
+window.MZ={set,jingle,duck,toggle,on,unlock,stop:()=>set(null),now:()=>cur&&cur.T.id,jg:()=>jg&&jg.T.id};
+document.addEventListener('visibilitychange',()=>{if(!AC)return;if(document.hidden)AC.suspend();else if(on())AC.resume()});
+})();
+
+/* ===== v761 เลือกเพลงตามช่วงของเกม ปุ่มเปิดปิดเพลง และเพลงสั้นในข้อสอบ ===== */
+var MZ_CITY={bkkhkt:'hkt',bkksin:'sin',bkkdxb:'dxb',bkkhnd:'hnd',bkksyd:'syd',bkklhr:'lhr',bkkcai:'cai',bkkcdg:'cdg',bkkjfk:'jfk'};
+function mzIn(){return !!document.querySelector('.flyw,.l2-tabs,.fly-rep')}
+function mzWant(){if(!mzIn())return null;const F=V.fly;
+ if(!F||!F.ph||F.ph==='lobby')return 'lobby';
+ if(F.ph==='rep'||F.res)return 'land';
+ if(F.ph!=='play')return 'lobby';
+ if(F.stage==='hotel'){let id='';try{id=flyRt().id}catch(e){}return MZ_CITY[id]||'cruise'}
+ if(F.stage==='apt')return 'brief';
+
+ let ph='';try{ph=FW_PHI[F.i]}catch(e){}
+ return {pre:'brief',board:'board',secure:'takeoff',svc:'cruise',turb:'turb',cruise:'cruise',desc:'cruise',arr:'land'}[ph]||'cruise'}
+if(!window.__mzT)window.__mzT=setInterval(()=>{try{if(!window.MZ)return;MZ.set(mzWant());const F=V.fly;MZ.duck(!!(F&&F.xq&&F.xq.cur))}catch(e){}},500);
+document.addEventListener('pointerdown',()=>{try{if(window.MZ&&mzIn())MZ.unlock()}catch(e){}},true);
+{const o=xqAnswer;xqAnswer=function(j){const F=V.fly,C=F&&F.xq&&F.xq.cur,was=C&&C.pick==null;const r=o.apply(this,arguments);try{if(was&&C.pick!=null)MZ.jingle(C.pick===C.a?'ok':'bad')}catch(e){}return r}}
+{const o=xqNext;xqNext=function(){const F=V.fly,C=F&&F.xq&&F.xq.cur;let fin=false;try{fin=C&&C.k==='cw'&&C.pick!=null&&C.step+1>=C.sc[6].length}catch(e){}const r=o.apply(this,arguments);try{if(fin)MZ.jingle('pass')}catch(e){}return r}}
+
+/* ===== v763 เพลงประกอบเกมนักสังคมสงเคราะห์ แต่งใหม่ คนละชุดกับเกมเครื่องบิน (ชิปทูนแต่งใหม่ สังเคราะห์สดด้วย Web Audio ไม่มีไฟล์เสียง) ===== */
+(function(){
+/* ===== เครื่องเล่นเพลงชิปทูน ===== */
+const NOTE={C:0,'C#':1,Db:1,D:2,'D#':3,Eb:3,E:4,F:5,'F#':6,Gb:6,G:7,'G#':8,Ab:8,A:9,'A#':10,Bb:10,B:11};
+const midi=s=>{const m=s.match(/^([A-G](?:#|b)?)(-?\d)$/);return 12*(+m[2]+1)+NOTE[m[1]]};
+const hz=m=>440*Math.pow(2,(m-69)/12);
+const QUAL={'':[0,4,7],'m':[0,3,7],'7':[0,4,7,10],'maj7':[0,4,7,11],'m7':[0,3,7,10],'6':[0,4,7,9],'m6':[0,3,7,9],'sus4':[0,5,7],'dim':[0,3,6],'5':[0,7],'9':[0,4,7,10,14],'add9':[0,4,7,14]};
+function chordOf(sym,oct){const m=sym.match(/^([A-G](?:#|b)?)(.*)$/);const r=12*(oct+1)+NOTE[m[1]];return (QUAL[m[2]]||QUAL['']).map(i=>r+i)}
+
+/* ===== เพลง =====
+   lead: โน้ตทีละช่อง  - = ลากเสียงต่อ  . = เงียบ
+   arp: ลำดับเสียงในคอร์ดต่อช่อง (-1 เงียบ 9 ทั้งคอร์ด)
+   bass: r ราก 3 เสียงที่สาม 5 เสียงที่ห้า 6 เสียงที่หก 7 เสียงที่เจ็ด o คู่แปด
+   drums: k กระเดื่อง s สแนร์ h ไฮแฮต z เชคเกอร์ t กลองต่ำ d ดุม T เต็ก c ฉิ่ง C ฉับ w เกราะ b ระฆัง */
+const TR=[
+{id:'hub',g:'hm',n:'เวรเช้าวันใหม่',u:'หน้าหลักของเกม',mood:'มาริมบาสดใส เดินสบาย ๆ',bpm:112,spb:8,
+ ch:'F C Dm Bb F C Bb C',
+ lead:{i:'marimba',v:.24,s:'C5 . F5 . A5 . G5 F5 | E5 . G5 . C6 - . . | D5 . F5 . A5 . F5 D5 | D5 - Bb4 . F5 - . . | A5 . C6 . A5 . G5 F5 | G5 . E5 . C5 - E5 . | F5 . D5 . Bb4 . D5 F5 | E5 - G5 - C6 - . .'},
+ arp:{i:'pluck',v:.07,o:4,p:[0,-1,1,-1,2,-1,1,-1]},bass:{i:'bass',v:.28,o:2,p:'r . . r 5 . . .'},
+ dr:['k . . k s . . .','. z . z . z . z']},
+{id:'house',g:'hm',n:'ห้องเล็กของฉัน',u:'ในบ้านช่วงกลางวัน',mood:'โลไฟเปียโนช้า ๆ อ่านหนังสือได้',bpm:76,spb:8,swing:.3,
+ ch:'Cmaj7 Am7 Dm7 G7 Cmaj7 Am7 Fmaj7 G',
+ lead:{i:'piano',v:.2,s:'E5 - - G5 B5 - G5 . | C6 - A5 - E5 - - . | F5 - - A5 C6 - A5 . | B5 - G5 - F5 - D5 . | E5 - G5 - B5 - D6 . | C6 - - B5 A5 - E5 . | A5 - C6 - E6 - D6 C6 | B5 - - - - - . .'},
+ arp:{i:'piano',v:.07,o:4,p:[-1,-1,9,-1,-1,-1,9,-1]},bass:{i:'bass',v:.26,o:2,p:'r - - . 5 - - .'},
+ dr:['k . . . s . . k','. . h . . . h .']},
+{id:'housen',g:'hm',n:'ไฟดวงสุดท้าย',u:'ในบ้านช่วงกลางคืน',mood:'กล่องดนตรีก่อนนอน สามจังหวะ',bpm:84,spb:6,
+ ch:'G Em C D G Em C D',
+ lead:{i:'mbox',v:.16,s:'B5 - D6 - G6 - | E6 - D6 - B5 - | C6 - E6 - G6 - | F#6 - - - D6 - | B5 - D6 - G6 - | B6 - A6 - G6 - | E6 - C6 - A5 - | D6 - - - - .'},
+ arp:{i:'mbox',v:.06,o:4,p:[0,-1,1,-1,2,-1]},bass:{i:'bass',v:.2,o:2,p:'r - - - - -'}},
+{id:'campus',g:'hm',n:'ลานคณะ',u:'มหาวิทยาลัยและคณะ',mood:'กีตาร์โปร่งกับเสียงปรบมือ วัยเรียน',bpm:120,spb:8,
+ ch:'D A Bm G D A G A',
+ lead:{i:'gtr',v:.2,s:'F#5 . A5 . D6 . A5 . | C#6 - B5 A5 E5 - . . | D5 . F#5 . B5 . A5 F#5 | G5 - - B5 D6 - . . | A5 . F#5 . D5 . F#5 A5 | E6 - C#6 - A5 - . . | B5 . G5 . D5 . G5 B5 | A5 - - - C#6 - - .'},
+ arp:{i:'gtr',v:.07,o:3,p:[0,1,2,1,0,1,2,1]},bass:{i:'bass',v:.28,o:2,p:'r . r . 5 . r .'},
+ dr:['k . . k p . k .','h h h h h h h h']},
+{id:'class',g:'hm',n:'ห้องเรียนชั้น 3',u:'ตอนมีคาบเรียน',mood:'เปียโนเบา ไม่รบกวนสมาธิ',bpm:88,spb:8,
+ ch:'Am F C G Am F G E',
+ lead:{i:'piano',v:.18,s:'E5 - A5 - C6 - B5 A5 | A5 - F5 - C5 - . . | G5 - E5 - C5 - E5 G5 | D5 - - - B4 - . . | E5 - A5 - C6 - E6 D6 | C6 - A5 - F5 - . . | D6 - B5 - G5 - B5 D6 | G#5 - - - E5 - . .'},
+ arp:{i:'piano',v:.06,o:3,p:[0,2,1,2,0,2,1,2]},bass:{i:'bass',v:.22,o:2,p:'r - - - - - - -'},
+ dr:['. . z . . . z .']},
+
+{id:'opd',g:'hs',n:'โถงผู้ป่วยนอก',u:'ชั้น 1 โถงหลักและผู้ป่วยนอก',mood:'มีชีวิตชีวาเหมือนช่วงเช้าในโรงพยาบาล',bpm:104,spb:8,
+ ch:'C G Am Em F C F G',
+ lead:{i:'marimba',v:.22,s:'G5 . E5 G5 C6 . G5 . | D6 . B5 . G5 - . . | C6 . A5 C6 E6 . C6 . | B5 . G5 . E5 - . . | A5 . F5 A5 C6 . A5 . | G5 . E5 . C5 - E5 . | F5 . A5 . C6 . A5 F5 | G5 - B5 - D6 - . .'},
+ arp:{i:'tri',v:.06,o:4,p:[0,-1,1,-1,2,-1,1,-1]},bass:{i:'bass',v:.28,o:2,p:'r . 5 . r . 5 .'},
+ dr:['k . . . s . . .','. h . h . h . h']},
+{id:'er',g:'hs',n:'ไซเรนเงียบ',u:'ห้องฉุกเฉินและ ICU',mood:'เร็ว ตึง แต่ไม่น่ากลัว มีเสียงเครื่องวัดชีพจร',bpm:132,spb:8,
+ ch:'Dm Bb C Am Dm Bb C A',
+ lead:{i:'sq',v:.1,s:'D5 . D5 . F5 . A5 . | Bb5 . A5 . F5 . D5 . | C5 . E5 . G5 . C6 . | A5 - - - E5 - - - | D6 . D6 . C6 . A5 . | Bb5 . F5 . D5 . F5 . | G5 . E5 . C5 . E5 . | C#5 - - - E5 - A5 -'},
+ arp:{i:'str',v:.05,o:3,p:[0,0,1,1,2,2,1,1]},bass:{i:'sqbass',v:.18,o:1,p:'r r o r r o r r'},
+ dr:['k . s . k k s .','h h h h h h h h','m . . . m . . .']},
+{id:'mch',g:'hs',n:'ชั้นแม่และเด็ก',u:'ศูนย์แม่และเด็ก ห้องคลอด และ NICU',mood:'กล่องดนตรีนุ่ม ๆ คล้ายเพลงกล่อม',bpm:90,spb:6,
+ ch:'F C Dm Bb F C Bb C',
+ lead:{i:'mbox',v:.15,s:'A5 - C6 - F6 - | E6 - - - C6 - | D6 - F6 - A6 - | G6 - F6 - D6 - | C6 - A5 - F5 - | G5 - C6 - E6 - | D6 - Bb5 - F5 - | C6 - - - - .'},
+ arp:{i:'pad',v:.05,o:4,p:[9,-1,-1,-1,-1,-1]},bass:{i:'bass',v:.18,o:2,p:'r - - 5 - -'}},
+{id:'ward',g:'hs',n:'ระเบียงหอผู้ป่วย',u:'หอผู้ป่วยใน',mood:'เปียโนช้า อบอุ่น',bpm:84,spb:8,
+ ch:'G D Em C G D C D',
+ lead:{i:'piano',v:.2,s:'B4 - D5 - G5 - - B5 | A5 - F#5 - D5 - - . | G5 - - E5 B5 - - G5 | E5 - - - C5 - . . | D5 - G5 - B5 - D6 - | C6 - - B5 A5 - F#5 - | G5 - E5 - C5 - E5 G5 | A5 - - - - - . .'},
+ arp:{i:'piano',v:.06,o:4,p:[0,2,1,2,0,2,1,2]},bass:{i:'bass',v:.24,o:2,p:'r - - - 5 - - -'}},
+{id:'pall',g:'hs',n:'แสงยามบ่าย',u:'ไตเทียม ประคับประคอง และผู้สูงอายุ',mood:'เครื่องสายกับพิณ อ่อนโยน',bpm:70,spb:8,
+ ch:'D Bm G A D Bm Em A',
+ lead:{i:'str',v:.11,s:'F#5 - - - A5 - - - | B5 - - - - - F#5 - | G5 - - - B5 - D6 - | C#6 - - - A5 - - - | D6 - - - F#5 - A5 - | B5 - - - D6 - - - | G5 - - - E5 - B5 - | A5 - - - - - - .'},
+ arp:{i:'harp',v:.08,o:4,p:[0,1,2,3,2,1,0,1]},bass:{i:'bass',v:.22,o:2,p:'r - - - - - - -'}},
+{id:'room',g:'hs',n:'ห้องสัมภาษณ์',u:'ศูนย์สังคมสงเคราะห์และห้องคุยส่วนตัว',mood:'มินิมอล เบามาก ให้รู้สึกปลอดภัย',bpm:66,spb:8,
+ ch:'Cmaj7 Fmaj7 Cmaj7 Fmaj7 Am7 Fmaj7 Dm7 G',
+ lead:{i:'bell',v:.1,s:'E5 - - - - - - . | A5 - - - G5 - - . | E5 - - - - - B4 . | C5 - - - - - - . | C5 - - - E5 - - . | F5 - - - E5 - - . | D5 - - - F5 - - . | G5 - - - - - - .'},
+ arp:{i:'pad',v:.06,o:4,p:[9,-1,-1,-1,-1,-1,-1,-1]},bass:{i:'bass',v:.16,o:2,p:'r - - - - - - -'}},
+{id:'admin',g:'hs',n:'ชั้นบริหาร',u:'ห้องสมุด ห้องประชุม และเวชระเบียน',mood:'จังหวะเรียบ มีเสียงพิมพ์งานคลอ',bpm:100,spb:8,swing:.2,
+ ch:'Am7 D7 Gmaj7 Cmaj7 Am7 D7 Bm7 E7',
+ lead:{i:'mute',v:.12,s:'C5 . E5 . G5 . A5 . | F#5 . A5 . C6 . A5 . | B5 - - . D6 - B5 . | G5 - E5 - . . . . | A5 . C6 . E6 . C6 . | D6 . C6 . A5 . F#5 . | D6 - B5 . F#5 - A5 . | G#5 - - - E5 - . .'},
+ arp:{i:'piano',v:.06,o:4,p:[-1,-1,9,-1,-1,-1,9,-1]},bass:{i:'bass',v:.26,o:2,p:'r . 3 . 5 . 6 .'},
+ dr:['k . . . s . . .','x x . x x . x x']},
+
+{id:'uh',g:'pl',n:'ศูนย์การแพทย์ธรรมราชบดินทร์',u:'โรงพยาบาลมหาวิทยาลัย 10 ชั้น',mood:'ซินธ์ใส ทันสมัย',bpm:110,spb:8,
+ ch:'E C#m A B E C#m A B',
+ lead:{i:'bell',v:.12,s:'B5 . E6 . G#6 . E6 . | C#6 - - . G#5 - . . | A5 . C#6 . E6 . C#6 . | D#6 - F#6 - B5 - . . | G#6 . F#6 . E6 . B5 . | C#6 - E6 - G#6 - . . | A6 . G#6 . F#6 . E6 . | D#6 - - - F#6 - . .'},
+ arp:{i:'tri',v:.07,o:4,p:[0,1,2,1,0,1,2,1]},bass:{i:'bass',v:.28,o:2,p:'r . r . 5 . r .'},
+ dr:['k . . . s . . .','h . h . h . h .']},
+{id:'cmh',g:'pl',n:'บ้านสุขใจ',u:'รพ.ชุมชนที่ฝึกงาน',mood:'กีตาร์โปร่งแบบชนบท อบอุ่น',bpm:96,spb:8,
+ ch:'G C G D G C D G',
+ lead:{i:'gtr',v:.2,s:'D5 . G5 . B5 - A5 G5 | E5 - G5 - C6 - . . | B5 . A5 . G5 - D5 . | F#5 - - - A5 - . . | B5 . D6 . B5 - A5 G5 | E6 - D6 - C6 - . . | A5 . B5 . C6 - A5 . | G5 - - - - - . .'},
+ arp:{i:'gtr',v:.07,o:3,p:[0,-1,1,2,0,-1,1,2]},bass:{i:'bass',v:.24,o:2,p:'r . . . 5 . . .'},
+ dr:['k . . . . . . .','. . z . . . z .']},
+{id:'village',g:'pl',n:'ทางเข้าหมู่บ้าน',u:'ลงชุมชนและเยี่ยมบ้าน',mood:'สำเนียงพิณกับแคนที่แต่งใหม่ บันไดเสียงห้าเสียง',bpm:124,spb:8,
+ ch:'A5 A5 D5 A5 A5 A5 E5 A5',
+ lead:{i:'phin',v:.2,s:'A5 . C6 . A5 G5 E5 . | G5 . A5 . E5 . D5 . | D5 . E5 . G5 . A5 G5 | E5 - - . C5 . D5 . | E5 . G5 . A5 . C6 . | D6 . C6 A5 G5 . E5 . | D5 . E5 . G5 . E5 . | A5 - - - - - . .'},
+ arp:{i:'khaen',v:.05,o:3,p:[9,-1,-1,-1,9,-1,-1,-1]},bass:{i:'bass',v:.24,o:2,p:'r . . r . . 5 .'},
+ dr:['k . . k . . k .','. w . w . w . w']},
+{id:'court',g:'pl',n:'บัลลังก์',u:'ศาลเยาวชนและครอบครัว',mood:'ช้า หนักแน่น จริงจัง',bpm:72,spb:8,
+ ch:'Cm Ab Eb Bb Cm Ab G G',
+ lead:{i:'cello',v:.14,s:'G4 - - - C5 - - - | Eb5 - - - C5 - - - | Bb4 - - - G4 - - - | D5 - - - F5 - - - | Eb5 - - - G5 - - - | C5 - - - Ab4 - - - | B4 - - - D5 - - - | G4 - - - - - - .'},
+ arp:{i:'piano',v:.07,o:3,p:[9,-1,-1,-1,-1,-1,-1,-1]},bass:{i:'bass',v:.26,o:1,p:'r - - - - - - -'},
+ dr:['t . . . . . . .']},
+{id:'night',g:'pl',n:'เวรดึก',u:'กลางคืนในโรงพยาบาล',mood:'เงียบ มีเสียงเครื่องวัดชีพจรเบา ๆ',bpm:64,spb:8,
+ ch:'Am7 Fmaj7 Am7 Em7 Am7 Fmaj7 Dm7 E',
+ lead:{i:'bell',v:.1,s:'E5 - - - C5 - - - | A4 - - - - - . . | G5 - - - E5 - - - | B4 - - - - - . . | C5 - - - E5 - - - | A5 - - - G5 - - - | F5 - - - D5 - - - | G#4 - - - - - . .'},
+ arp:{i:'pad',v:.06,o:3,p:[9,-1,-1,-1,-1,-1,-1,-1]},
+ dr:['m . . . . . . .']},
+
+{id:'case',g:'st',n:'รับเคสใหม่',u:'เปิดเรื่องแต่ละวัน',mood:'อยากรู้ ชวนติดตาม',bpm:96,spb:8,
+ ch:'Am F C G Am F G G',
+ lead:{i:'pluck',v:.2,s:'A5 . E5 . A5 . C6 . | B5 . A5 . F5 - . . | G5 . E5 . C6 . E6 . | D6 - - . B5 - . . | A5 . C6 . E6 . D6 . | C6 . A5 . F5 - A5 . | G5 . B5 . D6 . F6 . | D6 - - - B5 - . .'},
+ arp:{i:'tri',v:.06,o:4,p:[0,-1,1,-1,2,-1,1,-1]},bass:{i:'bass',v:.26,o:2,p:'r . . r 5 . . .'},
+ dr:['k . . . s . . .','h . h h h . h h']},
+{id:'meet',g:'st',n:'ประชุมครอบครัว',u:'ฉากที่ครอบครัวเห็นไม่ตรงกัน',mood:'ตึงขึ้นทีละนิด',bpm:100,spb:8,
+ ch:'Em C G D Em C B B',
+ lead:{i:'str',v:.1,s:'E5 - - - G5 - F#5 - | E5 - - - C5 - - - | D5 - - - G5 - B5 - | A5 - - - F#5 - - - | G5 - - - B5 - A5 - | G5 - - - E5 - C6 - | B5 - - - A5 - G5 - | F#5 - - - D#5 - - -'},
+ arp:{i:'pluck',v:.08,o:4,p:[0,0,1,1,2,2,1,1]},bass:{i:'bass',v:.26,o:2,p:'r . r . r . r .'},
+ dr:['k . . . k . . .','. . . . s . . .','t . . . . . t .']},
+{id:'homeend',g:'st',n:'ทางกลับบ้าน',u:'วันที่ 7 คุณชาญได้กลับบ้าน',mood:'เพลงปิดเรื่อง ซึ้งและอบอุ่น',bpm:80,spb:8,
+ ch:'C G Am Em F C Dm G',
+ lead:{i:'piano',v:.2,s:'E5 - G5 - C6 - - E6 | D6 - - B5 G5 - - . | C6 - E6 - A6 - G6 E6 | G6 - - - E6 - . . | F6 - E6 - C6 - A5 - | G5 - - E5 C6 - - . | D6 - E6 - F6 - A6 - | G6 - - - - - - .'},
+ arp:{i:'str',v:.05,o:4,p:[9,-1,-1,-1,9,-1,-1,-1]},bass:{i:'bass',v:.24,o:2,p:'r - - - 5 - - -'},
+ dr:['k . . . . . . .','. . . . s . . .']},
+
+{id:'ex',g:'jg',n:'ปิดเคสผลดีเยี่ยม',u:'สรุปผลเคส',mood:'ฉลองสดใส',bpm:200,spb:8,once:1,spb2:4,
+ ch:'C F G C',lead:{i:'marimba',v:.24,s:'C6 E6 G6 C7 | A6 F6 A6 C7 | B6 G6 D7 B6 | C7 - - .'},arp:{i:'str',v:.05,o:4,p:[0,1,2,3]}},
+{id:'good',g:'jg',n:'ปิดเคสผลดี',u:'สรุปผลเคส',mood:'สั้น อบอุ่น',bpm:220,spb:8,once:1,
+ ch:'C',lead:{i:'marimba',v:.24,s:'E6 G6 C7 - - - . .'}},
+{id:'improve',g:'jg',n:'ปิดเคสแต่ควรปรับปรุง',u:'สรุปผลเคส',mood:'นุ่ม ให้กำลังใจ ไม่ซ้ำเติม',bpm:200,spb:8,once:1,
+ ch:'C',lead:{i:'piano',v:.2,s:'G5 - E5 - F5 - D5 - | C5 - - - . . . .'}},
+{id:'rank',g:'jg',n:'เลื่อนตำแหน่ง',u:'เมื่อได้ตำแหน่งใหม่',mood:'ยิ่งใหญ่ ภูมิใจ',bpm:180,spb:8,once:1,spb2:4,
+ ch:'C F G C',lead:{i:'brass',v:.15,s:'C6 - E6 G6 | F6 - A6 C7 | G6 - B6 D7 | C7 - - .'},arp:{i:'str',v:.06,o:4,p:[0,1,2,3]}},
+{id:'item',g:'jg',n:'ได้อุปกรณ์ใหม่',u:'กระเป๋านักสังคมสงเคราะห์',mood:'ประกายเหมือนเปิดกล่อง',bpm:260,spb:8,once:1,
+ ch:'C',lead:{i:'mbox',v:.16,s:'G6 C7 E7 G7 - - - .'}},
+{id:'phone',g:'jg',n:'โทรศัพท์ในเกม',u:'มีสายหรือข้อความเข้า',mood:'เสียงเรียกสั้น ๆ',bpm:300,spb:8,once:1,
+ ch:'C',lead:{i:'ring',v:.1,s:'E6 C6 E6 C6 E6 C6 . . | . . . . . . . . | E6 C6 E6 C6 E6 C6 . . | . . . . . . . .'}},
+{id:'lift',g:'jg',n:'ลิฟต์ถึงชั้น',u:'เปลี่ยนชั้นในอาคาร',mood:'เสียงติ๊งเบา ๆ',bpm:160,spb:8,once:1,
+ ch:'C',lead:{i:'bell',v:.14,s:'E6 - - C6 - - - .'}}
+];
+
+/* ===== สังเคราะห์เสียง ===== */
+let AC=null,MAST=null,DST=null,noiseBuf=null,MG=null,SG=null;const VOL={m:.7,s:.8,on:true};
+function ctx(){if(AC)return AC;AC=new (window.AudioContext||window.webkitAudioContext)();const comp=AC.createDynamicsCompressor();comp.threshold.value=-14;comp.ratio.value=3;
+ MAST=AC.createGain();MAST.gain.value=.55;MAST.connect(comp);comp.connect(AC.destination);DST=MAST;MG=AC.createGain();SG=AC.createGain();MG.connect(MAST);SG.connect(MAST);MG.gain.value=VOL.m;SG.gain.value=VOL.s;
+ noiseBuf=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;return AC}
+function osc(type,f,t,detune){const o=AC.createOscillator();o.type=type;o.frequency.setValueAtTime(f,t);if(detune)o.detune.value=detune;return o}
+function env(g,t,a,peak,hold,rel){g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(peak,t+a);g.gain.setValueAtTime(peak,t+Math.max(a,hold));g.gain.exponentialRampToValueAtTime(0.0001,t+Math.max(a,hold)+rel)}
+function dec(g,t,peak,len){g.gain.setValueAtTime(0.0001,t);g.gain.linearRampToValueAtTime(peak,t+0.004);g.gain.exponentialRampToValueAtTime(0.0001,t+len)}
+function lp(f,q){const b=AC.createBiquadFilter();b.type='lowpass';b.frequency.value=f;b.Q.value=q||0.7;return b}
+function play(inst,m,t,dur,v){const f=hz(m),g=AC.createGain();g.connect(DST);let os=[],end=t+dur+0.05;
+ const add=(type,fr,det,dest)=>{const o=osc(type,fr,t,det);o.connect(dest||g);os.push(o);return o};
+ switch(inst){
+  case 'sq':{const l=lp(3200);l.connect(g);add('square',f,0,l);env(g,t,.005,v,dur*.85,.06);end=t+dur+.1;break}
+  case 'tri':add('triangle',f);env(g,t,.005,v,dur*.85,.08);end=t+dur+.12;break;
+  case 'pluck':add('triangle',f);dec(g,t,v,Math.min(.6,dur+.25));end=t+.65;break;
+  case 'ranat':{add('sine',f);const g2=AC.createGain();g2.gain.value=.35;g2.connect(g);add('triangle',f*2,0,g2);dec(g,t,v,.38);end=t+.42;break}
+  case 'koto':{const l=lp(2000,1.2);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(3200,t);l.frequency.exponentialRampToValueAtTime(700,t+.6);dec(g,t,v*.8,1.3);end=t+1.35;break}
+  case 'oud':{const l=lp(1400,2);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(2400,t);l.frequency.exponentialRampToValueAtTime(500,t+.35);dec(g,t,v*.9,.7);end=t+.75;break}
+  case 'piano':{add('triangle',f);const g2=AC.createGain();g2.gain.value=.25;g2.connect(g);add('sine',f*2,0,g2);dec(g,t,v,Math.min(1.6,dur+.9));end=t+1.65;break}
+  case 'bell':{add('sine',f);const g2=AC.createGain();g2.gain.value=.22;g2.connect(g);add('sine',f*2.76,0,g2);dec(g,t,v,1.8);end=t+1.85;break}
+  case 'brass':{const l=lp(600,1.5);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(600,t);l.frequency.linearRampToValueAtTime(2600,t+.06);l.frequency.linearRampToValueAtTime(1500,t+.3);env(g,t,.04,v,dur*.9,.12);end=t+dur+.16;break}
+  case 'str':{const l=lp(1500);l.connect(g);add('sawtooth',f,-7,l);add('sawtooth',f,7,l);env(g,t,.08,v,dur*.9,.25);end=t+dur+.3;break}
+  case 'acc':{const l=lp(2400);l.connect(g);add('square',f,-6,l);add('square',f,6,l);env(g,t,.02,v,dur*.92,.06);end=t+dur+.1;break}
+  case 'mute':{const l=lp(1300,3);l.connect(g);add('square',f,0,l);env(g,t,.01,v,dur*.8,.07);end=t+dur+.1;break}
+  case 'flute':case 'whistle':{const o=add('sine',f);const lfo=osc('sine',5.4,t),ld=AC.createGain();ld.gain.value=f*.006;lfo.connect(ld);ld.connect(o.frequency);os.push(lfo);
+    if(inst==='flute'){const n=AC.createBufferSource();n.buffer=noiseBuf;const bp=AC.createBiquadFilter();bp.type='bandpass';bp.frequency.value=f*2;bp.Q.value=4;const ng=AC.createGain();ng.gain.value=.08;n.connect(bp);bp.connect(ng);ng.connect(g);n.start(t);n.stop(t+dur+.2)}
+    env(g,t,.06,v,dur*.9,.12);end=t+dur+.16;break}
+  case 'marimba':{add('sine',f);const g2=AC.createGain();g2.gain.value=.18;g2.connect(g);add('sine',f*4,0,g2);dec(g,t,v,.5);end=t+.55;break}
+  case 'mbox':{add('sine',f);const g2=AC.createGain();g2.gain.value=.3;g2.connect(g);add('sine',f*3,0,g2);dec(g,t,v,1.1);end=t+1.15;break}
+  case 'gtr':{const l=lp(2600,1);l.connect(g);add('sawtooth',f,0,l);add('triangle',f,4);l.frequency.setValueAtTime(3400,t);l.frequency.exponentialRampToValueAtTime(900,t+.5);dec(g,t,v*.7,Math.min(1.1,dur+.6));end=t+1.15;break}
+  case 'harp':{add('triangle',f);const g2=AC.createGain();g2.gain.value=.15;g2.connect(g);add('sine',f*2,0,g2);dec(g,t,v,1.2);end=t+1.25;break}
+  case 'phin':{const l=lp(1800,4);l.connect(g);add('sawtooth',f,0,l);l.frequency.setValueAtTime(3000,t);l.frequency.exponentialRampToValueAtTime(800,t+.25);dec(g,t,v*.8,.5);end=t+.55;break}
+  case 'khaen':{const l=lp(1100,1.2);l.connect(g);add('square',f,-5,l);add('square',f,5,l);add('square',f*2,0,l);env(g,t,.12,v,Math.max(dur,1.2),.4);end=t+Math.max(dur,1.2)+.45;break}
+  case 'pad':{const l=lp(1200);l.connect(g);add('sine',f,-4,l);add('triangle',f,4,l);env(g,t,.6,v,2.4,1.2);end=t+3.7;break}
+  case 'cello':{const l=lp(900,1.2);l.connect(g);const o=add('sawtooth',f,0,l);const lfo=osc('sine',5,t),ld=AC.createGain();ld.gain.value=f*.005;lfo.connect(ld);ld.connect(o.frequency);os.push(lfo);env(g,t,.15,v,dur*.92,.3);end=t+dur+.35;break}
+  case 'ring':{const l=lp(2400);l.connect(g);add('square',f,0,l);env(g,t,.003,v,dur*.7,.02);end=t+dur+.05;break}
+  case 'bass':add('triangle',f);env(g,t,.005,v,dur*.9,.06);end=t+dur+.1;break;
+  case 'sqbass':{const l=lp(700);l.connect(g);add('square',f,0,l);env(g,t,.005,v,dur*.85,.05);end=t+dur+.08;break}
+ }
+ os.forEach(o=>{o.start(t);o.stop(end)})}
+function noise(t,len,type,freq,v,q){const n=AC.createBufferSource();n.buffer=noiseBuf;const b=AC.createBiquadFilter();b.type=type;b.frequency.value=freq;if(q)b.Q.value=q;const g=AC.createGain();n.connect(b);b.connect(g);g.connect(DST);dec(g,t,v,len);n.start(t);n.stop(t+len+.02)}
+function tone(t,f0,f1,len,v,type){const o=osc(type||'sine',f0,t);o.frequency.exponentialRampToValueAtTime(f1,t+len);const g=AC.createGain();o.connect(g);g.connect(DST);dec(g,t,v,len);o.start(t);o.stop(t+len+.02)}
+function drum(c,t){switch(c){
+ case 'k':tone(t,140,45,.25,.55);break;
+ case 's':noise(t,.16,'bandpass',1800,.28,.8);tone(t,220,150,.08,.12,'triangle');break;
+ case 'h':noise(t,.04,'highpass',7000,.12);break;
+ case 'z':noise(t,.06,'bandpass',5500,.08,1.5);break;
+ case 't':tone(t,120,80,.3,.4);break;
+ case 'd':tone(t,110,70,.32,.5);break;
+ case 'T':noise(t,.05,'highpass',3000,.18);tone(t,600,420,.05,.08,'triangle');break;
+ case 'c':tone(t,2350,2340,.7,.08);tone(t,3520,3500,.5,.04);break;
+ case 'C':noise(t,.05,'highpass',5000,.12);tone(t,2350,2340,.06,.05);break;
+ case 'w':tone(t,950,900,.06,.18,'square');break;
+ case 'b':tone(t,1180,1170,1.4,.07);tone(t,2950,2940,.8,.03);break;
+ case 'p':noise(t,.1,'bandpass',1400,.26,1.2);noise(t+.012,.08,'bandpass',1600,.18,1.2);break;
+ case 'm':tone(t,1000,1000,.09,.06);break;
+ case 'x':noise(t,.02,'highpass',4500,.07);tone(t,1800,1700,.015,.03,'square');break}}
+
+/* ===== แปลงเพลงเป็นลำดับเหตุการณ์ ===== */
+function build(T){const spb=T.spb,ch=T.ch.split(' '),bars=ch.length,ev=[];
+ const tok=s=>s.replace(/\|/g,' ').trim().split(/\s+/);
+ if(T.lead){let last=null;tok(T.lead.s).forEach((x,i)=>{if(x==='-'){if(last)last.d++;return}if(x==='.'){last=null;return}last={s:i,d:1,m:midi(x),i:T.lead.i,v:T.lead.v};ev.push(last)})}
+ const per=T.spb2||spb;const L=Math.max(T.lead?tok(T.lead.s).length:0,bars*per);
+ if(T.arp)for(let b=0;b<bars;b++){const tones=chordOf(ch[b],T.arp.o);T.arp.p.forEach((p,j)=>{if(p<0||b*per+j>=L)return;const s=b*per+j;
+   if(p===9)tones.forEach(m=>ev.push({s,d:1,m,i:T.arp.i,v:T.arp.v*.8}));else{const n=tones.length;ev.push({s,d:1,m:tones[p%n]+12*Math.floor(p/n),i:T.arp.i,v:T.arp.v})}})}
+ if(T.bass){const P=tok(T.bass.p);for(let b=0;b<bars;b++){const c=chordOf(ch[b],T.bass.o),r=c[0];let last=null;
+   P.forEach((x,j)=>{if(x==='-'){if(last)last.d++;return}if(x==='.'){last=null;return}
+    const m=x==='r'?r:x==='o'?r+12:x==='3'?(c[1]!==undefined&&c.length>2?c[1]:r+4):x==='5'?r+7:x==='6'?r+9:x==='7'?(c[3]||r+10):r;last={s:b*spb+j,d:1,m,i:T.bass.i,v:T.bass.v};ev.push(last)})}}
+ const dr=[];(T.dr||[]).forEach(lane=>{const P=tok(lane);for(let b=0;b<bars;b++)P.forEach((x,j)=>{if(x!=='.')dr.push({s:b*spb+j,c:x})})});
+ return {ev,dr,L}}
+
+
+/* ===== ตัวเล่นในเกม: เพลงพื้นหลังเปลี่ยนตามช่วงของเกมแบบค่อย ๆ จาง และเพลงสั้นแทรกได้ ===== */
+let cur=null,tm=null,want=null,duckOn=false;const BYID={};TR.forEach(T=>BYID[T.id]=T);
+function on(){return VOL.on!==false}
+function sched(P){if(P.done)return;const now=AC.currentTime;while(true){const st=P.t0+P.step*P.sd;if(st>now+.15)break;const k=P.step%P.B.L,off=(P.T.swing&&k%2===1)?P.T.swing*P.sd:0;DST=P.bus;
+  P.B.ev.forEach(e=>{if(e.s===k)play(e.i,e.m,st+off,e.d*P.sd,e.v)});P.B.dr.forEach(e=>{if(e.s===k)drum(e.c,st+off)});P.step++;if(P.T.once&&P.step>=P.B.L){P.done=1;break}}}
+function startT(id,once){const T=BYID[id];if(!T)return null;ctx();const bus=AC.createGain();bus.connect(once?SG:MG);const P={T,B:build(T),sd:60/T.bpm/2,step:0,t0:AC.currentTime+.06,bus};
+ bus.gain.setValueAtTime(.0001,AC.currentTime);bus.gain.linearRampToValueAtTime(once?1:(duckOn?.35:1),AC.currentTime+(once?.02:.8));return P}
+function fadeKill(P,t){if(!P)return;try{P.bus.gain.cancelScheduledValues(AC.currentTime);P.bus.gain.setValueAtTime(P.bus.gain.value,AC.currentTime);P.bus.gain.linearRampToValueAtTime(.0001,AC.currentTime+t);setTimeout(()=>{try{P.bus.disconnect()}catch(e){}},t*1000+2000)}catch(e){}}
+let jg=null;
+function loop(){if(!AC)return;if(cur)sched(cur);if(jg){sched(jg);if(jg.done&&AC.currentTime>jg.t0+jg.step*jg.sd+.6){jg=null;if(cur)cur.bus.gain.setTargetAtTime(duckOn?.35:1,AC.currentTime,.2)}}}
+function set(id){want=id;if(!on()||!id){if(cur){fadeKill(cur,.6);cur=null}return}if(!AC||AC.state!=='running')return;if(cur&&cur.T.id===id)return;
+ if(cur)fadeKill(cur,.8);cur=startT(id);if(!tm)tm=setInterval(loop,25)}
+function jingle(id){if(!AC){ctx()}if(AC.state!=='running'){AC.resume();}if(VOL.s<=0)return;jg=startT(id,1);if(cur)cur.bus.gain.setTargetAtTime(.2,AC.currentTime,.05);if(!tm)tm=setInterval(loop,25)}
+function duck(b){if(b===duckOn)return;duckOn=b;if(cur&&AC)cur.bus.gain.setTargetAtTime(b?.35:1,AC.currentTime,.25)}
+function unlock(){ctx();if(!on()){if(AC.state==='suspended')AC.resume();return}if(AC.state==='suspended')AC.resume().then(()=>{if(want)set(want)});else if(want&&!cur)set(want)}
+function toggle(){}
+function vol(m,sx,o){const sq=v=>Math.max(0,Math.min(1,v))**2*1.1;VOL.m=sq(m);VOL.s=sq(sx);const was=VOL.on;VOL.on=o!==false;if(AC){MG.gain.setTargetAtTime(VOL.m,AC.currentTime,.05);SG.gain.setTargetAtTime(VOL.s,AC.currentTime,.05)}if(was&&!VOL.on&&cur){fadeKill(cur,.4);cur=null}else if(!was&&VOL.on){unlock()}}
+window.SWZ={set,jingle,duck,vol,on,unlock,stop:()=>set(null),now:()=>cur&&cur.T.id,jg:()=>jg&&jg.T.id,ids:TR.map(t=>t.id)};
+document.addEventListener('visibilitychange',()=>{if(!AC)return;if(document.hidden)AC.suspend();else AC.resume()});
+})();
+
 ;(function(){var s=document.createElement("style");s.textContent="/* v756 \u0e02\u0e49\u0e2d\u0e2a\u0e2d\u0e1a\u0e23\u0e30\u0e2b\u0e27\u0e48\u0e32\u0e07\u0e1a\u0e34\u0e19 */\n.xq-sh{z-index:9}\n.fw-pk.xq{max-height:90%;border-radius:0;clip-path:polygon(0 6px,6px 6px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 6px,100% 6px,100% 100%,0 100%);box-shadow:inset 0 3px 0 #FF7A7A}\n.xq-h{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:2px 2px 6px;border-bottom:2px dashed #F6D3CF}\n.xq-h b{font-size:.78rem;color:#2B1A1F;font-weight:900}\n.xq-h small{margin-left:auto;font-size:.6rem;color:#B5636A;font-weight:800}\n.xq-tg{display:inline-block;font-size:.58rem;font-weight:900;letter-spacing:.02em;padding:3px 7px;color:#fff;background:#E31414;box-shadow:2px 2px 0 #F7B5B0}\n.xq-tg.xq-t1{background:#F24A4A}.xq-tg.xq-t2{background:#E31414}.xq-tg.xq-t3{background:#FF7A7A}.xq-tg.xq-al{background:#C93A4A}\n.xq-ctx{font-size:.62rem;color:#9C5A61;margin:8px 2px 4px;line-height:1.5}\n.xq-q{background:#FFF6F4;box-shadow:inset 0 0 0 2px #F8DCD8;padding:10px 11px;margin:6px 0 10px;font-size:.72rem;line-height:1.65;color:#2B1A1F;font-weight:700}\n.xq-q span{display:block}.xq-q span+span{margin-top:3px}\n.xq-q em{font-style:normal;font-weight:900;color:#E31414;margin-right:5px}\n.xq-dl span{padding-left:2px}\n.xq-bl{display:inline-block;min-width:74px;border-bottom:2px solid #E31414;text-decoration:none;vertical-align:-2px}\n.fw-pk.xq .bq-b{border-radius:0;box-shadow:2px 2px 0 #F6D3CF}\n.fw-pk.xq .bq-b i{border-radius:0}\n.xq-ex{margin-top:10px;padding:10px 11px;background:#FFF0EE;box-shadow:inset 3px 0 0 #E31414}\n.xq-ex.n{background:#FFF7F6;box-shadow:inset 3px 0 0 #FF7A7A}\n.xq-ex b{font-size:.7rem;color:#E31414;font-weight:900}\n.xq-ex p{font-size:.64rem;line-height:1.6;color:#4A2A30;margin:4px 0 0}\n.fw-pk.xq .xq-go{width:100%;justify-content:center;margin-top:10px;border-radius:0}\n.xq-chip{position:absolute;right:10px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:5;font:inherit;font-size:.6rem;font-weight:900;color:#E31414;background:#fff;border:0;padding:7px 10px;box-shadow:inset 0 0 0 2px #F24A4A,3px 3px 0 #F7B5B0;cursor:pointer}\n.xq-rep{margin:14px 0 4px;text-align:left}\n.xq-rep h3{font-size:.8rem;font-weight:900;color:#2B1A1F;margin:0 0 8px}\n.xq-rg{display:grid;grid-template-columns:1fr 1fr;gap:8px}\n.xq-rg>div{background:#FFF6F4;box-shadow:inset 0 0 0 2px #F8DCD8;padding:9px;display:flex;flex-direction:column;gap:3px}\n.xq-rg small{font-size:.58rem;color:#9C5A61;font-weight:800}\n.xq-rg b{font-size:1.1rem;color:#E31414;font-weight:900}.xq-rg b i{font-style:normal;font-size:.7rem;color:#B5636A}\n.xq-rg em{font-style:normal;font-size:.56rem;color:#9C5A61}\n.xq-rn{font-size:.62rem;color:#9C5A61;margin:6px 0 0}\n.xq-q span.xq-gap{white-space:nowrap}\n.xq-bl{display:inline-block;width:96px;min-width:0;height:1.05em;vertical-align:-.15em}\n.xq-rg .xq-tg{align-self:flex-start}\n.xq-chip{right:auto;left:14px;bottom:calc(332px + env(safe-area-inset-bottom))}\n/* v757 \u0e27\u0e34\u0e0a\u0e32\u0e25\u0e39\u0e01\u0e40\u0e23\u0e37\u0e2d */\n.xq-tg.xq-cw{background:#B8202A}\n.xq-who{display:flex;align-items:center;gap:10px;margin:10px 0 6px}\n.xq-who img{width:64px;height:68px;image-rendering:pixelated;background:#FFF0EE;box-shadow:inset 0 0 0 2px #F8DCD8;object-fit:contain;padding:2px}\n.xq-who b{display:block;font-size:.78rem;font-weight:900;color:#2B1A1F}\n.xq-who small{display:block;font-size:.6rem;font-weight:800;color:#B5636A;margin-top:2px}\n.xq-who i{display:inline-block;font-style:normal;font-size:.56rem;font-weight:900;color:#E31414;background:#FFF0EE;padding:2px 6px;margin-top:4px}\n.xq-log{display:flex;flex-direction:column;gap:6px;margin:4px 0 8px}\n.xq-ln{margin:0;background:#fff;box-shadow:inset 0 0 0 2px #F8DCD8;padding:7px 9px;font-size:.66rem;line-height:1.6;color:#2B1A1F;font-weight:700}\n.xq-ln em{display:block;font-style:normal;font-size:.56rem;font-weight:900;color:#E31414;margin-bottom:1px}\n.xq-ln.xq-nr{background:#FFF6F4;box-shadow:none;color:#7A4A50;font-weight:600}\n.xq-cq{font-size:.7rem}\n.xq-re{font-weight:800;color:#2B1A1F!important;background:#fff;padding:6px 8px;box-shadow:inset 0 0 0 2px #F8DCD8}\n.xq-r-cw{grid-column:1/-1}\n.xq-chip.xq-callc{color:#fff;background:#E31414;box-shadow:inset 0 0 0 2px #E31414,3px 3px 0 #F7B5B0;animation:xqP 1s steps(2) infinite}\n@keyframes xqP{50%{transform:translateY(-2px)}}\n/* v758 \u0e01\u0e31\u0e19\u0e0b\u0e39\u0e21\u0e04\u0e49\u0e32\u0e07\u0e43\u0e19\u0e40\u0e01\u0e21 */\n.flyw input,.flyw textarea,.flyw select{font-size:16px!important}\n.flyw button,.flyw .fw-k,.flyw [data-act]{touch-action:manipulation}\n/* v760 \u0e15\u0e2d\u0e1a\u0e04\u0e33\u0e16\u0e32\u0e21\u0e01\u0e48\u0e2d\u0e19\u0e1a\u0e34\u0e19\u0e44\u0e14\u0e49\u0e41\u0e21\u0e49\u0e40\u0e1b\u0e34\u0e14\u0e02\u0e49\u0e32\u0e21\u0e2d\u0e22\u0e39\u0e48 */\n.qsk5-dim{pointer-events:auto!important;cursor:pointer}\n";document.head.appendChild(s)})();
