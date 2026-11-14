@@ -1,6 +1,6 @@
 
-@font-face{font-family:"Chulalongkorn";src:url(fonts/chula-1.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Chulalongkorn";src:url(fonts/chula-2.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Chulalongkorn";src:url(fonts/chula-1.woff) format("woff"),url(chula-1.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Chulalongkorn";src:url(fonts/chula-2.woff) format("woff"),url(chula-2.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}
 /* Layout: single study column (max 760px), fixed bottom tab bar. Brand: MYCROSOC sticker red on blush paper; one bold pink hero (TU countdown) and a pink footer bookend. */
 :root{
   --paper:#FBF3F2; --surface:#FFFFFF; --sunk:#F5E6E4;
