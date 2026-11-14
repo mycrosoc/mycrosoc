@@ -1888,15 +1888,259 @@ function swpRoomFlash(rn){try{hud()}catch(e){}if(!root)return;const H=root.query
  if(!el){toast(rn);return}el.classList.remove('sw-flash');void el.offsetWidth;el.classList.add('sw-flash');setTimeout(()=>{try{el.classList.remove('sw-flash')}catch(e){}},1500)}
 try{swpCss()}catch(e){}
 
-/* v768 ภาพพิกเซลศูนย์การแพทย์ โรงพยาบาลธรรมราชบดินทร์ จากภาพต้นแบบ แปลงเป็นพิกเซลแบบภาพเมืองในเกมเครื่องบิน 96x120 */
-const SW_UH_IMG='data:image/png;base64,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';
-let SW_UH_EL=null;function swUHImg(cb){if(SW_UH_EL&&SW_UH_EL.complete){cb&&cb(SW_UH_EL);return SW_UH_EL}if(!SW_UH_EL){SW_UH_EL=new Image();SW_UH_EL.src=SW_UH_IMG}if(cb)SW_UH_EL.addEventListener('load',()=>cb(SW_UH_EL),{once:true});return SW_UH_EL}
-function swUHArt(sc){if(!document.getElementById('swuh-css')){const s=document.createElement('style');s.id='swuh-css';s.textContent=`.gl-pl.pl-uh .sl-th{height:200px!important;background:#C9D8F0!important}.gl-pl.pl-uh .sl-th:after,.gl-pl.pl-uh .sl-sky,.gl-pl.pl-uh .sl-bld{display:none!important}.gl-pl.pl-uh .sl-th .sw-uhart{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 52%;image-rendering:pixelated;image-rendering:crisp-edges}.gl-pl.pl-uh .sl-ty{z-index:2}.gl-pl.pl-uh.gl-lkd .sw-uhart{filter:saturate(.75) brightness(1.04)}`;document.head.appendChild(s)}
- (sc||document).querySelectorAll('.gl-pl.pl-uh .sl-th').forEach(th=>{if(th.querySelector('.sw-uhart'))return;const im=document.createElement('img');im.className='sw-uhart';im.alt='ศูนย์การแพทย์ โรงพยาบาลธรรมราชบดินทร์';im.src=SW_UH_IMG;th.insertBefore(im,th.firstChild)})}
+/* ===== v783 ภาพพิกเซลโรงพยาบาลอนามัยชุมชน (บ้านสุขใจ) ละเอียดขึ้น วาดแบบเดียวกับภาพเมืองในเกมสายการบิน
+   วาดสามชั้น: สีพื้นผิวตอนกลางวัน เงาตกจากชายคา หลังคาทางเข้า และต้นไม้ตามทิศดวงอาทิตย์ แสงไฟในอาคารตอนค่ำ
+   แล้วปรับแสงทั้งภาพตามเวลาจริง เมฆก้อนมีด้านรับแสงและฐานเมฆเงา ท้องฟ้าไล่สีแบบเนียน แสงฟุ้งรอบไฟและดวงอาทิตย์ ===== */
+function swPrHash(x,y,s){let n=(x*374761393+y*668265263+s*982451653)|0;n=(n^(n>>>13))*1274126177|0;return((n^(n>>>16))>>>0)/4294967296}
+const SWPR_BAY=[0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
+function swPrKey(hr,K){let a=K[0],b=K[K.length-1];for(let i=0;i<K.length-1;i++)if(hr>=K[i][0]&&hr<=K[i+1][0]){a=K[i];b=K[i+1];break}const t=(hr-a[0])/Math.max(.001,b[0]-a[0]);return a.slice(1).map((v,i)=>Array.isArray(v)?v.map((q,j)=>q+(b[i+1][j]-q)*t):v+(b[i+1]-v)*t)}
+function swPrEnv(hr){/* [ชม., ฟ้าบน, ฟ้าล่าง, แสงรอบตัว, ความแรงแดด, ไฟในอาคาร, สีเมฆสว่าง, สีเมฆเงา] */
+  const K=[[0,[18,24,62],[40,52,100],[.30,.34,.55],0,1,[150,160,200],[60,66,110]],[5,[20,26,66],[46,58,106],[.32,.36,.56],0,1,[150,160,200],[60,66,110]],
+   [6,[92,108,176],[255,190,158],[.78,.70,.80],.35,.6,[255,214,196],[150,130,170]],[7.2,[110,164,228],[255,228,200],[.98,.92,.88],.75,0,[255,246,232],[176,184,206]],
+   [9,[86,150,226],[196,226,250],[1,1,1],1,0,[255,255,255],[188,202,224]],[15,[84,148,224],[196,226,250],[1,1,1],1,0,[255,255,255],[188,202,224]],
+   [16.8,[96,150,222],[255,226,186],[1.04,.94,.82],.85,0,[255,244,222],[196,182,196]],[17.9,[96,104,180],[255,164,120],[.92,.72,.66],.5,.3,[255,200,170],[170,120,140]],
+   [18.8,[52,58,128],[220,120,120],[.62,.52,.62],.1,.9,[230,150,150],[110,80,120]],[19.6,[26,32,80],[70,72,130],[.38,.40,.60],0,1,[160,160,210],[70,72,120]],[24,[18,24,62],[40,52,100],[.30,.34,.55],0,1,[150,160,200],[60,66,110]]];
+  const v=swPrKey(hr,K);return{top:v[0],bot:v[1],amb:v[2],sun:v[3],lamp:v[4],cl:v[5],cs:v[6],night:hr<5.3||hr>19.4,sunX:Math.max(0,Math.min(1,(hr-6)/12))}}
+function swPrDraw(hr){const W=192,H=96,E=swPrEnv(hr),N=(x,y,s)=>swPrHash(x|0,y|0,s);
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  /* ชั้นพื้นผิว: เก็บสีแต่ละพิกเซลไว้ในอาร์เรย์ แล้วค่อยลงแสง */
+  const A=new Float32Array(W*H*3),SH=new Float32Array(W*H),EM=new Float32Array(W*H*3),SK=new Uint8Array(W*H);
+  const hex=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];const HX={};const P=(col,x,y)=>{x|=0;y|=0;if(x<0||y<0||x>=W||y>=H)return;const v=HX[col]||(HX[col]=hex(col)),i=(y*W+x)*3;A[i]=v[0];A[i+1]=v[1];A[i+2]=v[2];SK[y*W+x]=0;SH[y*W+x]=0};
+  const R=(col,x,y,w,h)=>{for(let b=0;b<(h||1);b++)for(let a=0;a<(w||1);a++)P(col,x+a,y+b)};
+  const shade=(x,y,v)=>{x|=0;y|=0;if(x<0||y<0||x>=W||y>=H)return;SH[y*W+x]=Math.max(SH[y*W+x],v)};
+  const glow=(x,y,r,g,b)=>{x|=0;y|=0;if(x<0||y<0||x>=W||y>=H)return;const i=(y*W+x)*3;EM[i]+=r;EM[i+1]+=g;EM[i+2]+=b};
+  const sunL=E.sunX<.5,dir=sunL?1:-1;
+  /* ท้องฟ้าไล่สีเนียนด้วยการกระจายจุด */
+  const HZ=46;for(let y=0;y<HZ+20;y++)for(let x=0;x<W;x++){const k=Math.min(1,y/(HZ+4)),q=k*k*.4+k*.6,t=(SWPR_BAY[(y&3)*4+(x&3)]/16-.5)*.06,u=Math.max(0,Math.min(1,q+t));const i=(y*W+x)*3;for(let j=0;j<3;j++)A[i+j]=E.top[j]+(E.bot[j]-E.top[j])*u;SK[y*W+x]=1}
+  /* ดวงดาวและดวงจันทร์ */
+  if(E.night){for(let i=0;i<60;i++){const x=Math.floor(N(i,1,2)*W),y=Math.floor(N(i,2,2)*34),b=N(i,3,2)<.2?255:200;const j=(y*W+x)*3;A[j]=b;A[j+1]=b;A[j+2]=255}
+    for(let y=-4;y<=4;y++)for(let x=-4;x<=4;x++){const d=x*x+y*y;if(d>17)continue;const j=((8+y)*W+150+x)*3;const v=d>12?200:244;A[j]=v;A[j+1]=v;A[j+2]=255;if(x>1&&y<-1&&d<10){A[j]=210;A[j+1]=214;A[j+2]=240}}}
+  /* เมฆก้อน: ด้านรับแสงสว่าง ฐานเมฆแบนสีเงา ขอบนุ่มผสมกับฟ้า */
+  if(!E.night||true){const sx=sunL?-1:1,cl=E.cl,cs=E.cs;
+    const cloud=(cx,cy,w,h,seed)=>{const puffs=[];const n=4+Math.floor(w/7);for(let i=0;i<n;i++){const px=cx-w/2+(i+.5)*w/n+(N(i,seed,30)-.5)*4,r=h*(.55+N(i,seed,31)*.55)*(1-Math.abs(i-(n-1)/2)/n*.9);puffs.push([px,cy-r*.35,r])}
+      for(let y=Math.floor(cy-h*1.4);y<=cy+2;y++)for(let x=Math.floor(cx-w/2-h);x<=cx+w/2+h;x++){if(x<0||x>=W||y<0)continue;let inside=0,lit=0;for(const[px,py,r]of puffs){const dx=x-px,dy=y-py,d=Math.sqrt(dx*dx+dy*dy);if(d<r){inside=Math.max(inside,1-d/r);lit=Math.max(lit,(-dx*sx*.6-dy)/r)}}
+        if(!inside||y>cy+1)continue;const base=Math.max(0,(y-(cy-2))/4);let l=Math.max(0,Math.min(1,.55+lit*.6-base*.7));const t=(SWPR_BAY[(y&3)*4+(x&3)]/16-.5)*.18;l=Math.max(0,Math.min(1,l+t));const a=Math.min(1,inside*3.2)*(E.night?.35:1);
+        const j=(y*W+x)*3;for(let k=0;k<3;k++){const col=cs[k]+(cl[k]-cs[k])*l;A[j+k]=A[j+k]*(1-a)+col*a}}};
+    cloud(34,25,48,10,1);cloud(80,14,26,6,2);cloud(152,27,56,11,3);cloud(188,14,26,6,4);cloud(118,8,18,4,5)}
+  /* ต้นไม้ด้านหลังอาคาร */
+  const leaf=(cx,cy,r,s,pal,dens)=>{for(let y=-r;y<=r;y++)for(let x=-r;x<=r;x++){const d=Math.sqrt(x*x+y*y)/r+(N(cx+x,cy+y,s)-.5)*(dens||.6);if(d>1)continue;const l=(x*-dir*.7-y)/(1.6*r)+(N(cx+x,cy+y,s+1)-.5)*.35;R(l>.42?pal[0]:l>.12?pal[1]:l>-.2?pal[2]:pal[3],cx+x,cy+y)}};
+  const G0=['#8DB860','#5E9644','#3E7434','#2A5228'],G1=['#A8D070','#6FAE4C','#468A38','#2C602A'],G3=['#7FA650','#4E8638','#33622C','#1E4020'];
+  for(let i=0;i<22;i++)leaf(4+i*9+Math.floor(N(i,0,4)*5),36+Math.floor(N(i,1,4)*4),4+Math.floor(N(i,2,4)*3),40+i,G0);
+  /* ปีกอาคาร: หลังคากระเบื้องดินเผา */
+  const rT=30,rB=42;for(let y=rT;y<=rB;y++){const k=(y-rT)/(rB-rT);for(let x=0;x<W;x++){if(x<Math.round((1-k)*5)||x>W-1-Math.round((1-k)*5))continue;const row=Math.floor((y-rT)/2),off=row%2?3:0;let col=(y-rT)%2?'#C2563C':'#D46A4C';if((x+off)%6===0)col='#A94832';else if((x+off)%6===1)col='#DE7A5A';if(y===rT)col='#E99070';if(N(x,y,5)<.05)col='#B04C36';if(N(x,y,6)<.03)col='#E4826A';R(col,x,y)}}
+  R('#E99070',0,rT,W,1);for(let x=0;x<W;x+=2)R('#B85038',x,rT+1);
+  R('#6A2A22',0,rB+1,W,2);R('#8A3A2E',0,rB+1,W,1);R('#EDE4D6',0,rB+3,W,1);
+  for(let x=0;x<W;x++)for(let y=rB+3;y<rB+6;y++)shade(x,y,.35-(y-rB-3)*.1);
+  /* ชั้นบน */
+  const wall='#F6F1E8',wl2='#E8E0D2';R(wall,0,rB+4,W,34);
+  const winU=(x0,y0,w,h,seed)=>{R('#6E4A3A',x0-1,y0-1,w+2,h+2);for(let b=0;b<h;b++)for(let a=0;a<w;a++){let col=b<h*.45?'#4E6A74':'#33464E';if((a+b*2)%9===0&&b<h*.5)col='#8EB0BA';if(a%5===4)col='#5A3E32';if(b===Math.floor(h*.45))col='#5A3E32';R(col,x0+a,y0+b);if(N(x0+a,seed,7)<.8)glow(x0+a,y0+b,(b<2?150:200)+N(a,b,8)*40,(b<2?110:150)+N(a,b,9)*30,60)}};
+  [[3,0],[36,1],[134,2],[167,3]].forEach(([x,s])=>winU(x,rB+7,24,10,s));
+  [0,29,33,62,127,131,160,189].forEach(x=>{R('#FFFFFF',x,rB+4,3,34);R('#E2DACC',x+2,rB+4,1,34);R('#F2ECE0',x,rB+4,3,1);for(let y=rB+4;y<rB+38;y++)shade(x+(sunL?3:-1),y,.22)});
+  /* ระเบียงลูกกรงขาว */
+  for(let x=0;x<W;x++){if(x>66&&x<126)continue;R('#FFFFFF',x,rB+12,1,1);R('#D9D2C6',x,rB+13,1,1);if(x%3!==2){R('#F4EFE6',x,rB+14,1,3)}else R('#C9C0B4',x,rB+14,1,3);R('#FFFFFF',x,rB+17,1,1)}
+  /* แถบไม้คาดชั้น */R('#7A3E30',0,rB+19,W,2);R('#9A5242',0,rB+19,W,1);for(let x=0;x<W;x++)shade(x,rB+21,.25);
+  /* ชั้นล่าง */
+  [[3,4],[36,5],[134,6],[167,7]].forEach(([x,s])=>winU(x,rB+23,24,9,s));
+  for(let x=0;x<W;x++){if(x>62&&x<130)continue;R('#FFFFFF',x,rB+31,1,1);R(x%3===2?'#C9C0B4':'#F4EFE6',x,rB+32,1,2)}
+  /* โคมไฟผนังข้างเสา */[30,62,130,160].forEach(x=>{R('#3A3030',x+1,rB+24,1,2);R('#FFF2D0',x+1,rB+26,1,1);glow(x+1,rB+26,255,220,150)});
+  R('#E6DED0',0,rB+33,W,2);
+  /* หน้าจั่วกลาง */
+  const cx=96,ap=14,eav=42,tipY=57,tipX=56,bmY=34,ig=31,sb0=54;
+  /* หลังคาจั่วใหญ่: ขอบปั้นลมไม้สีน้ำตาลแดง ใต้หลังคาเป็นเพดานไม้สีครีม */
+  const fasc=x=>ap+Math.abs(x-cx)*(tipY-ap)/tipX;/* แนวบนของปั้นลม */
+  const sofB=x=>{const d=Math.abs(x-cx);return d<=ig?bmY+3:sb0+(d-ig)*(tipY-sb0)/(tipX-ig)};/* ขอบล่างเพดาน */
+  for(let x=cx-tipX;x<=cx+tipX;x++){const f=Math.round(fasc(x)),d=Math.abs(x-cx);
+    /* กระเบื้องขอบหลังคาและปั้นลมหนา */R('#D46A4C',x,f-1);R('#5E221C',x,f);R('#8E3A2E',x,f+1);R('#7A3226',x,f+2);R('#5E221C',x,f+3);
+    /* เพดานใต้หลังคา */const yb=Math.round(sofB(x));for(let y=f+4;y<=yb;y++){if(d<ig){const innerTop=ap+5+d*(bmY-ap-5)/ig;if(y>=innerTop)continue}
+      const k=(y-f-4)/Math.max(1,yb-f-4);let col=((Math.abs(x-cx)+y*2)%5===0)?'#CDB48A':'#E9D3A6';if(k<.15)col='#B99C70';if(y===yb)col='#A88A62';R(col,x,y);shade(x,y,.16*(1-k)+((x-cx)*dir>0?0:.1))}
+    if(d>ig&&d<tipX){const yb2=Math.round(sofB(x));R('#B89E78',x,yb2)}}
+  /* ไส้จั่วไม้ระแนงตั้ง กรอบไม้เข้ม */
+  for(let y=ap+5;y<bmY;y++){const hw=Math.round((y-ap-5)*ig/(bmY-ap-5));for(let x=cx-hw;x<=cx+hw;x++){const e=hw-Math.abs(x-cx);let col;if(e<=1)col='#5E221C';else if(y===ap+16||y===ap+17)col='#6E2E24';else col=(x%2===0)?'#ECE2D0':'#7A3A2E';R(col,x,y)}shade(cx+(sunL?1:-1)*0,y,0)}
+  R('#5E221C',cx,ap+5,1,12);R('#8E3A2E',cx-1,ap+6,1,10);R('#6E2A22',cx-2,ap+15,5,2);
+  /* คานใหญ่ใต้ไส้จั่ว */R('#5E221C',cx-ig-2,bmY,2*ig+5,4);R('#8E4A3A',cx-ig-2,bmY,2*ig+5,1);R('#4A1A16',cx-ig-2,bmY+3,2*ig+5,1);
+  /* ก้อนปูนขาวปลายคานและเสาไม้ใต้ */[cx-ig-5,cx+ig+1].forEach(x=>{R('#FFFFFF',x,bmY+1,5,5);R('#E2DACC',x+(sunL?4:0),bmY+1,1,5);R('#6E2E24',x+2,bmY+6,1,5);R('#8E3A2E',x+1,bmY+6,1,5)});
+  /* ยอดจั่วประดับ */R('#5E221C',cx-2,ap-3,5,3);R('#8E3A2E',cx-1,ap-5,3,2);R('#6E2A22',cx-3,ap-2,1,1);R('#6E2A22',cx+3,ap-2,1,1);R('#7A3226',cx,ap-12,1,7);R('#A85A44',cx,ap-12,1,2);R('#C9963A',cx,ap-13,1,1);
+  /* เงาใต้หลังคาลงบนผนัง */for(let x=cx-tipX+4;x<=cx+tipX-4;x++){const yb=Math.round(sofB(x));for(let y=yb+1;y<yb+5;y++)shade(x,y,.36-(y-yb-1)*.08)}
+  /* เสาหน้าอาคาร */
+  const pil=(x)=>{R('#FFFFFF',x,eav-4,6,40);R('#F2EDE4',x+1,eav-4,1,40);for(let y=eav-4;y<eav+36;y++){shade(x+(sunL?5:0),y,.3);shade(x+(sunL?4:1),y,.12)}R('#E6DFD2',x-1,eav-4,8,2)};pil(77);pil(110);
+  /* ผนังกระจก 6x4 ช่อง สะท้อนฟ้าและต้นไม้ */
+  for(let y=eav-4;y<=eav+15;y++)for(let x=cx-13;x<=cx+13;x++){const gx=(x-cx+13)%9===8||(x-cx+13)%9===4&&false,gy=(y-eav+4)%5===4;const gx2=[cx-9,cx-5,cx-1,cx+1,cx+5,cx+9].includes(x);let col;if(gx2||gy)col='#2E3436';else{const t=(y-eav+4)/20;col=t<.3?'#7FA4B4':t<.55?'#5E8494':'#466674';if((x+y)%11===0)col='#A8C6D0';if(y>eav+9&&N(x,y,12)<.35)col='#4E7458'}R(col,x,y);if(!gx2&&!gy)glow(x,y,230+N(x,y,13)*25,190,110)}
+  /* ตราโรงพยาบาลกลางผนังกระจก: กากบาทขาว คทาสีน้ำเงินมีปีก */R('#FFFFFF',cx-4,eav-2,9,9);R('#FFFFFF',cx-6,eav,13,5);R('#E8EEF4',cx-6,eav+5,13,1);R('#2E6FB4',cx,eav-1,1,7);R('#5E9AD6',cx-3,eav+1,3,1);R('#5E9AD6',cx+1,eav+1,3,1);R('#2E6FB4',cx-2,eav+2,2,1);R('#2E6FB4',cx+1,eav+2,2,1);R('#1E4E8A',cx-1,eav+3,1,1);R('#1E4E8A',cx+1,eav+4,1,1);R('#1E4E8A',cx-1,eav+5,1,1);R('#7FB2E5',cx,eav-1,1,1);
+  /* หิ้งใต้กระจก */R('#FFFFFF',cx-21,eav+16,43,2);R('#DCD4C6',cx-21,eav+18,43,1);for(let x=cx-19;x<=cx+19;x++)shade(x,eav+19,.25);
+  /* ป้ายไม้สีน้ำตาลเรียบ */R('#4E201A',cx-14,eav+20,29,9);R('#7A3A2E',cx-13,eav+21,27,7);R('#9A5242',cx-13,eav+21,27,1);R('#5E2A22',cx-13,eav+27,27,1);
+  R('#6A3226',cx-12,eav+22,25,1);R('#8A4434',cx-12,eav+26,25,1);
+  /* หลังคาทางเข้า */R('#FFFFFF',cx-30,eav+31,61,4);R('#F0EAE0',cx-30,eav+34,61,1);R('#D9D0C2',cx-30,eav+35,61,1);for(let x=cx-28;x<=cx+28;x++)for(let y=eav+36;y<eav+40;y++)shade(x,y,.42-(y-eav-36)*.08);
+  R('#3A3030',96,eav+36,1,2);R('#FFE6A8',95,eav+38,3,1);glow(96,eav+38,255,230,170);
+  /* ทางเข้า ประตูกระจก */
+  for(let y=eav+36;y<=eav+46;y++)for(let x=cx-14;x<=cx+14;x++){const fr=(x-cx+14)%7===0&&x!==cx-14||x===cx;let col=fr?'#4A3A34':y<eav+38?'#4A3E38':'#6A5A4E';if(!fr&&(x+y)%9===0)col='#9AB0B4';R(col,x,y);if(!fr)glow(x,y,255,200,120)}
+  [cx-23,cx+20].forEach(x=>{R('#FFFFFF',x,eav+35,4,12);R('#E2DACC',x+3,eav+35,1,12)});
+  /* บันได */for(let k=0;k<4;k++){R(k%2?'#CFC8BC':'#E8E2D8',cx-16-k*2,eav+47+k,33+k*4,1)}
+  /* เสากระถางต้นไม้ */
+  [66,122].forEach(x=>{R('#FFFFFF',x,eav+39,5,9);R('#DCD4C6',x+4,eav+39,1,9);R('#9A5A3E',x-1,eav+36,7,3);R('#B87050',x,eav+36,5,1);leaf(x+2,eav+34,2,120+x,G1,.3);R('#E86AA0',x+1,eav+33);R('#F2A0C8',x+3,eav+34);R('#C84A8A',x+2,eav+32)});
+  /* ต้นลีลาวดี: ลำต้นแตกกิ่ง ใบเป็นกลุ่ม ดอกขาวไส้เหลือง */
+  const plum=(x0,y0,s)=>{R('#7E6250',x0,y0,2,16);R('#9A7E6A',x0,y0,1,16);[[-1,-1,-5,-4],[1,-1,6,-5],[0,-1,-2,-7],[1,0,3,-8]].forEach(([dx,dy,ex,ey])=>{const n=Math.max(Math.abs(ex),Math.abs(ey));for(let k=0;k<=n;k++)R('#7E6250',x0+dx+Math.round(ex*k/n),y0+dy+Math.round(ey*k/n),1,1)});
+    for(let i=0;i<26;i++){const x=x0-11+Math.floor(N(i,s,15)*24),y=y0-14+Math.floor(N(i,s,16)*10);leaf(x,y,2+Math.floor(N(i,s,17)*2),150+s*30+i,G1,.4)}
+    for(let i=0;i<22;i++){const x=x0-10+Math.floor(N(i,s,18)*22),y=y0-15+Math.floor(N(i,s,19)*10);R('#FFFFFF',x,y);R('#FFF8E6',x+1,y);if(N(i,s,20)<.5)R('#F6D86A',x,y+1)}
+    for(let y=y0+14;y<y0+18;y++)for(let x=x0-6;x<x0+8;x++)shade(x+dir*3,y,.25)};
+  plum(28,60,1);plum(164,60,2);
+  /* แนวพุ่มไม้และพุ่มกลม */
+  for(let x=0;x<W;x++){if(x>62&&x<130)continue;const t=78+Math.round(Math.sin(x*.4)*.8);for(let y=t;y<84;y++){const n=N(x,y,21);R(y===t?'#78B652':y===t+1?'#5A9E44':n<.5?'#3A7E34':'#2E6A2C',x,y)}}
+  const ball=(x0,y0,r,s)=>{for(let y=-r;y<=r;y++)for(let x=-r;x<=r;x++){const d=Math.sqrt(x*x+y*y)/r+(N(x0+x,y0+y,s)-.5)*.2;if(d>1)continue;const l=(-x*dir*.6-y)/r;R(l>.5?'#A8D078':l>.15?'#6FAE4C':l>-.3?'#468A38':'#2C602A',x0+x,y0+y)}for(let x=-r;x<=r;x++)shade(x0+x+dir*2,y0+r+1,.35)};
+  const cyp=(x0,y0,h)=>{for(let y=0;y<h;y++){const w=Math.max(1,Math.round(Math.sin(Math.min(1,(y+2)/h)*Math.PI*.9)*4));for(let x=-w;x<=w;x++){const l=(-x*dir)/w-.2+(N(x0+x,y0+y,33)-.5)*.6;R(l>.4?'#5E8A44':l>0?'#3E6E34':l>-.4?'#2A5228':'#1C3C1E',x0+x,y0+y)}}};
+  cyp(60,52,26);cyp(132,52,26);
+  ball(52,76,6,22);ball(140,76,6,23);ball(8,77,4,24);ball(184,77,4,25);
+  /* วงเวียนดอกไม้ */
+  const rcx=96,rcy=89,rx=70,ry=8;for(let y=-ry;y<=ry;y++)for(let x=-rx;x<=rx;x++){const e=(x/rx)**2+(y/ry)**2;if(e>1)continue;let col;
+    if(e>.86)col=y<0?'#ECE6DC':'#C9C2B6';else if(e>.66)col=y<-2?'#5EA046':N(x,y,25)<.5?'#3E8A36':'#4E9A3E';else{const r=N(x+rcx,y+rcy,26);col=r<.24?'#C860B8':r<.46?'#E890C8':r<.58?'#F4B8DA':r<.68?'#FFFFFF':r<.82?'#8AC058':'#A87ACC';if(y<-3&&r>.82)col='#6FAE4C'}R(col,rcx+x,rcy+y)}
+  /* ถนนยางมะตอยมีเงาใบไม้ */
+  for(let y=82;y<H;y++)for(let x=0;x<W;x++){const e=((x-rcx)/rx)**2+((y-rcy)/ry)**2;if(e<=1)continue;if(y<84&&!(x>62&&x<130))continue;const n=N(x,y,27);R(n<.08?'#6A666C':n<.16?'#9A969C':'#86828A',x,y)}
+  for(let i=0;i<260;i++){const x=Math.floor(N(i,0,28)*W)+dir*6,y=84+Math.floor(N(i,1,28)*12),w=2+Math.floor(N(i,2,28)*6);for(let a=0;a<w;a++){const e=((x+a-rcx)/rx)**2+((y-rcy)/ry)**2;if(e>1)shade(x+a,y,.4)}}
+  /* ใบไม้ใหญ่หน้ากรอบ */
+  for(let i=0;i<16;i++){leaf(Math.floor(N(i,0,29)*34),Math.floor(N(i,1,29)*14),3+Math.floor(N(i,2,29)*3),200+i,G3,.7);leaf(W-1-Math.floor(N(i,3,29)*36),Math.floor(N(i,4,29)*16),3+Math.floor(N(i,5,29)*3),220+i,G3,.7)}
+  for(let i=0;i<10;i++){leaf(Math.floor(N(i,6,29)*7),14+Math.floor(N(i,7,29)*50),3+Math.floor(N(i,8,29)*2),240+i,G3,.6);leaf(W-1-Math.floor(N(i,9,29)*7),16+Math.floor(N(i,10,29)*48),3+Math.floor(N(i,11,29)*2),250+i,G3,.6)}
+  /* ลงแสงตามเวลา: แสงรอบตัว แดดตรง เงา และไฟในอาคาร */
+  const img=c.createImageData(W,H),D=img.data,amb=E.amb,sun=E.sun,lamp=E.lamp;
+  const warm=[1+.06*sun*(E.sunX<.15||E.sunX>.85?2:1),1,1-.08*sun];
+  for(let p=0;p<W*H;p++){const i=p*3;let r=A[i],g=A[i+1],b=A[i+2];
+    if(!SK[p]){const s=SH[p]*sun,l=(1-s);r=r*amb[0]*warm[0]*l+r*s*.18*amb[0];g=g*amb[1]*warm[1]*l+g*s*.2*amb[1];b=b*amb[2]*warm[2]*l+b*s*.28*amb[2];
+      if(lamp>0){r+=EM[i]*lamp*.9;g+=EM[i+1]*lamp*.9;b+=EM[i+2]*lamp*.9}}
+    D[p*4]=Math.min(255,r);D[p*4+1]=Math.min(255,g);D[p*4+2]=Math.min(255,b);D[p*4+3]=255}
+  c.putImageData(img,0,0);
+  /* แสงฟุ้ง: แดดจากด้านดวงอาทิตย์ และวงแสงรอบไฟ */
+  c.save();c.globalCompositeOperation='screen';
+  if(sun>0){const sx=E.sunX*W,g=c.createRadialGradient(sx,-6,0,sx,-6,W*.8);g.addColorStop(0,`rgba(255,240,200,${.28*sun})`);g.addColorStop(.4,`rgba(255,236,196,${.12*sun})`);g.addColorStop(1,'rgba(255,236,196,0)');c.fillStyle=g;c.fillRect(0,0,W,H);
+    const h=c.createLinearGradient(0,HZ-14,0,HZ+6);h.addColorStop(0,'rgba(255,250,240,0)');h.addColorStop(1,`rgba(255,248,236,${.12*sun})`);c.fillStyle=h;c.fillRect(0,HZ-14,W,20)}
+  if(lamp>.05){const gl=(x,y,r,a)=>{const g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(255,206,130,${a*lamp})`);g.addColorStop(1,'rgba(255,206,130,0)');c.fillStyle=g;c.fillRect(x-r,y-r,r*2,r*2)};
+    gl(96,eav+6,26,.35);gl(96,eav+42,20,.5);[15,48,146,179].forEach(x=>{gl(x,rB+12,12,.22);gl(x,rB+28,12,.22)});[31,63,131,161].forEach(x=>gl(x,rB+26,6,.6));gl(96,eav+38,8,.6)}
+  c.restore();
+  {const s1=document.createElement('canvas');s1.width=W/6;s1.height=H/6;const a1=s1.getContext('2d');a1.drawImage(cv,0,0,s1.width,s1.height);c.save();c.globalCompositeOperation='screen';c.globalAlpha=E.night?.26:.1;c.imageSmoothingEnabled=true;c.drawImage(s1,0,0,W,H);c.restore()}
+  {const v=c.createRadialGradient(W/2,H*.5,H*.45,W/2,H*.5,W*.72);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,E.night?'rgba(14,16,48,.45)':'rgba(50,34,40,.22)');c.fillStyle=v;c.fillRect(0,0,W,H)}
+  return cv}
+function swPrHour(){const n=new Date(),u=n.getTime()+n.getTimezoneOffset()*60000,b=new Date(u+7*3600000);return b.getHours()+b.getMinutes()/60}
+const SWPR={k:-1,cv:null};
+function swPrPaint(cv){const hr=swPrHour(),key=Math.floor(hr*4);if(!SWPR.cv||SWPR.k!==key){SWPR.cv=swPrDraw(hr);SWPR.k=key}if(cv.width!==192){cv.width=192;cv.height=96}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.clearRect(0,0,cv.width,cv.height);c.drawImage(SWPR.cv,0,0)}
+function swPRArt(sc){if(!document.getElementById('swpr-css')){const s=document.createElement('style');s.id='swpr-css';s.textContent='.gl-pl.pl-pr .sl-th{position:relative;overflow:hidden}.gl-pl.pl-pr .sl-sky,.gl-pl.pl-pr .sl-bld{display:none!important}.gl-pl.pl-pr .sl-th:after{display:none!important}.gl-pl.pl-pr .sl-ty{position:relative;z-index:2}.gl-pl.pl-pr .sw-prart{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated;image-rendering:crisp-edges;z-index:0}';document.head.appendChild(s)}
+ (sc||document).querySelectorAll('.gl-pl.pl-pr .sl-th').forEach(th=>{let cv=th.querySelector('canvas.sw-prart');if(!cv){cv=document.createElement('canvas');cv.width=192;cv.height=96;cv.className='sw-prart';cv.setAttribute('role','img');cv.setAttribute('aria-label','โรงพยาบาลอนามัยชุมชน บ้านสุขใจ');th.insertBefore(cv,th.firstChild)}try{swPrPaint(cv)}catch(e){console.log('swpr',e)}})}
+{const _o=swHub;swHub=function(sc){const r=_o.apply(this,arguments);try{swPRArt(sc)}catch(e){}return r}}
+if(!window.__swprT)window.__swprT=setInterval(()=>{try{document.querySelectorAll('canvas.sw-prart').forEach(swPrPaint)}catch(e){}},60000);
+
+/* ===== v784 ภาพพิกเซลศูนย์การแพทย์ โรงพยาบาลธรรมราชบดินทร์ วาดแบบเดียวกับภาพเมืองในเกมสายการบิน
+   ด้านหน้าเป็นอาคารเก่าทรงยุโรปสีครีม หลังคากระเบื้องแดง มุขกลางหน้าจั่วปั้นลาย ป้ายโรงพยาบาล หน้าต่างบานเกล็ดมีกรอบปูนปั้น
+   มุขทางเข้าเสากลมสี่ต้น ประตูไม้ บันได กระถางดอกไม้บนแท่น โคมไฟเสา ต้นไม้ตัดทรงกลม
+   ด้านหลังเป็นอาคารการแพทย์สมัยใหม่ ผนังกระจก อาคารทรงกระบอกกระจกกลาง ลานจอดเฮลิคอปเตอร์ และป้ายกากบาทสีน้ำเงิน
+   แสงตามเวลาจริงชุดเดียวกับภาพโรงพยาบาลบ้านสุขใจ ===== */
+function swUhDraw(hr){const W=192,H=96,E=swPrEnv(hr),N=(x,y,s)=>swPrHash(x|0,y|0,s+500);
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  const A=new Float32Array(W*H*3),SH=new Float32Array(W*H),EM=new Float32Array(W*H*3),SK=new Uint8Array(W*H),HZm=new Float32Array(W*H);
+  const hex=h=>[parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)],HX={};
+  const P=(col,x,y)=>{x|=0;y|=0;if(x<0||y<0||x>=W||y>=H)return;const v=HX[col]||(HX[col]=hex(col)),i=(y*W+x)*3;A[i]=v[0];A[i+1]=v[1];A[i+2]=v[2];SK[y*W+x]=0;SH[y*W+x]=0;HZm[y*W+x]=0;EM[i]=EM[i+1]=EM[i+2]=0};
+  const R=(col,x,y,w,h)=>{for(let b=0;b<(h||1);b++)for(let a=0;a<(w||1);a++)P(col,x+a,y+b)};
+  const shade=(x,y,v)=>{x|=0;y|=0;if(x<0||y<0||x>=W||y>=H)return;SH[y*W+x]=Math.max(SH[y*W+x],v)};
+  const glow=(x,y,r,g,b)=>{x|=0;y|=0;if(x<0||y<0||x>=W||y>=H)return;const i=(y*W+x)*3;EM[i]=r;EM[i+1]=g;EM[i+2]=b};
+  const sunL=E.sunX<.5,dir=sunL?1:-1,cx=96;
+  /* ท้องฟ้า */
+  for(let y=0;y<70;y++)for(let x=0;x<W;x++){const k=Math.min(1,y/52),q=k*k*.4+k*.6,t=(SWPR_BAY[(y&3)*4+(x&3)]/16-.5)*.06,u=Math.max(0,Math.min(1,q+t)),i=(y*W+x)*3;for(let j=0;j<3;j++)A[i+j]=E.top[j]+(E.bot[j]-E.top[j])*u;SK[y*W+x]=1}
+  if(E.night){for(let i=0;i<50;i++){const x=Math.floor(N(i,1,2)*W),y=Math.floor(N(i,2,2)*20),j=(y*W+x)*3,b=N(i,3,2)<.2?255:200;A[j]=b;A[j+1]=b;A[j+2]=255}}
+  /* เมฆบางแบบริ้ว และเมฆก้อนเล็ก */
+  {const sx=sunL?-1:1,cl=E.cl,cs=E.cs;const cloud=(cx0,cy,w,h,seed,al)=>{const n=4+Math.floor(w/7),pf=[];for(let i=0;i<n;i++){const px=cx0-w/2+(i+.5)*w/n+(N(i,seed,30)-.5)*4,r=h*(.55+N(i,seed,31)*.55)*(1-Math.abs(i-(n-1)/2)/n*.9);pf.push([px,cy-r*.35,r])}
+      for(let y=Math.floor(cy-h*1.4);y<=cy+2;y++)for(let x=Math.floor(cx0-w/2-h);x<=cx0+w/2+h;x++){if(x<0||x>=W||y<0)continue;let ins=0,lit=0;for(const[px,py,r]of pf){const dx=x-px,dy=y-py,d=Math.sqrt(dx*dx+dy*dy);if(d<r){ins=Math.max(ins,1-d/r);lit=Math.max(lit,(-dx*sx*.6-dy)/r)}}
+        if(!ins||y>cy+1)continue;let l=Math.max(0,Math.min(1,.55+lit*.6-Math.max(0,(y-(cy-2))/4)*.7+(SWPR_BAY[(y&3)*4+(x&3)]/16-.5)*.18));const a=Math.min(1,ins*3.2)*(E.night?.3:al),j=(y*W+x)*3;for(let k=0;k<3;k++){const col=cs[k]+(cl[k]-cs[k])*l;A[j+k]=A[j+k]*(1-a)+col*a}}};
+    cloud(70,12,30,5,11,.8);cloud(120,9,22,4,12,.7);cloud(176,20,22,5,13,.9);cloud(22,26,20,4,14,.75)}
+  /* ===== อาคารการแพทย์สมัยใหม่ด้านหลัง ===== */
+  const Wt='#F4F6F8',Wm='#E2E7EC',Wd='#C4CDD6',Gl=y=>E.night?((y&1)?'#24304A':'#2C3A58'):((y&1)?'#6E9CBC':'#86B2CE'),Gd='#4E7894';
+  const lightOn=(x,y,s,p)=>{if(N(x>>1,y,s)<p)glow(x,y,255,226,170)};
+  /* พื้นแต่ละชั้น: แผ่นพื้นขาว 1 แถว กระจก 2 แถว เสาครีบทุก 4 ช่อง */
+  const floors=(x0,y0,w,y1,s,fin,p)=>{for(let y=y0;y<y1;y++){const f=(y-y0)%3;for(let x=x0;x<x0+w;x++){let col;if(f===0)col=(x-x0)%2?Wt:Wm;else{col=Gl(y);if((x-x0)%fin===0)col=Wd;else if(f===1&&(x+y)%5===0)col='#A8CCE0'}R(col,x,y);if(f&&(x-x0)%fin)lightOn(x,y,s,p)}}
+    for(let y=y0;y<y1;y++){shade(sunL?x0+w-1:x0,y,.28);shade(sunL?x0+w-2:x0+1,y,.12)}for(let x=x0;x<x0+w;x++){R('#FFFFFF',x,y0-1);R(Wd,x,y0-2)}};
+  /* ตึกซ้าย มุมโค้งและขั้นลดระดับ */
+  floors(0,30,26,62,1,4,.5);floors(10,22,20,30,2,4,.5);
+  for(let y=22;y<26;y++)for(let x=10;x<13-(y-22);x++){const i=(y*W+x)*3,t=y/52;A[i]=E.top[0]+(E.bot[0]-E.top[0])*t;A[i+1]=E.top[1]+(E.bot[1]-E.top[1])*t;A[i+2]=E.top[2]+(E.bot[2]-E.top[2])*t;SK[y*W+x]=1}
+  R(Wt,26,30,6,32);for(let y=30;y<62;y+=3)R(Wd,26,y,6,1);
+  /* ตึกที่สอง ครีบตั้งสีขาว */
+  floors(32,16,22,62,3,3,.55);for(let y=16;y<62;y++){R(Wt,32,y,2,1);R(Wt,52,y,2,1)}R('#B8C0C8',38,13,6,3);R('#9AA2AA',39,12,4,1);R('#D8DEE4',46,14,3,2);
+  /* อาคารฐานกระจกยาวด้านหลัง มีไฟเป็นแถว */
+  for(let y=44;y<60;y++)for(let x=54;x<150;x++){const f=(y-44)%4;let col=f===0?Wt:Gl(y);if(f&&(x-54)%5===0)col=Wd;R(col,x,y);if(f===2&&(x-54)%5)glow(x,y,255,232,180);else if(f&&(x-54)%5)lightOn(x,y,4,.35)}for(let x=54;x<150;x++){R('#FFFFFF',x,43);R(Wd,x,42)}
+  /* อาคารทรงกระบอกกระจกกลาง */
+  const rc=96,rr=21;for(let y=33;y<56;y++)for(let x=rc-rr;x<=rc+rr;x++){const u=(x-rc)/rr,l=Math.sqrt(Math.max(0,1-u*u)),ph=Math.asin(Math.max(-1,Math.min(1,u)));const mull=Math.abs(((ph*8/Math.PI)%1+1)%1-.5)<.09;const band=(y-33)%5===0;
+    let col;if(band)col=l>.5?'#F4F6F8':'#D2DAE2';else if(mull)col=E.night?'#3A4660':'#C9D6E0';else{const t=l*(sunL?(1-u*.3):(1+u*.3));col=E.night?'#22304A':t>.95?'#B4D4E6':t>.75?'#94BED6':t>.5?'#76A4C2':'#5A86A6';if(!E.night&&Math.abs(u+.35*dir)<.08)col='#D6EAF4'}
+    R(col,x,y);if(!band&&!mull)lightOn(x,y,5,.5)}
+  /* ชั้นบนทรงกระบอกและลานจอดเฮลิคอปเตอร์ */
+  for(let y=28;y<33;y++)for(let x=rc-13;x<=rc+13;x++){const u=(x-rc)/13;R(y===28?'#FFFFFF':y===32?Wd:(Math.abs(u)>.85?Wm:Gl(y)),x,y);if(y>28&&y<32)lightOn(x,y,6,.6)}
+  for(let x=rc-19;x<=rc+19;x++){const e=Math.abs(x-rc)/19;R('#FFFFFF',x,26);R(e>.8?Wd:Wm,x,27)}for(let x=rc-16;x<=rc+16;x+=4){R('#FFE6A8',x,27);glow(x,27,255,240,190)}
+  R('#5E6A74',rc-1,24,4,1);R('#3E4852',rc,23,2,1);R('#3E4852',rc-3,22,9,1);R('#E31414',rc+2,24,1,1);
+  /* ตึกสูงขวา ผนังกระจกและผนังทึบขาวมีกากบาท */
+  floors(126,14,24,62,7,4,.55);for(let y=14;y<62;y++){R(Wt,124,y,2,1)}
+  for(let y=10;y<62;y++)for(let x=150;x<170;x++){let col=(x-150)%2?Wt:'#EEF1F4';if(y>40&&(y-40)%3===0)col=Wd;R(col,x,y)}for(let y=10;y<62;y++)shade(sunL?169:150,y,.22);R('#FFFFFF',150,9,20,1);R(Wd,150,8,20,1);
+  R('#2E6FD6',157,16,5,14);R('#2E6FD6',153,20,13,5);R('#5A8FE6',157,16,1,14);R('#5A8FE6',153,20,13,1);if(E.lamp>.2)for(let y=16;y<30;y++)for(let x=153;x<166;x++)if(x>=157&&x<162||y>=20&&y<25)glow(x,y,110,170,255);
+  floors(170,24,22,62,8,3,.45);for(let y=24;y<62;y+=6)R('#FFFFFF',170,y,22,1);
+  for(let p=0;p<W*64;p++)if(!SK[p])HZm[p]=.24;
+  /* ===== ต้นไม้ ===== */
+  const leaf=(x0,y0,r,s,pal,dn)=>{for(let y=-r;y<=r;y++)for(let x=-r;x<=r;x++){const d=Math.sqrt(x*x+y*y)/r+(N(x0+x,y0+y,s)-.5)*(dn||.6);if(d>1)continue;const l=(x*-dir*.7-y)/(1.6*r)+(N(x0+x,y0+y,s+1)-.5)*.35;R(l>.42?pal[0]:l>.12?pal[1]:l>-.2?pal[2]:pal[3],x0+x,y0+y)}};
+  const G1=['#A8D070','#6FAE4C','#468A38','#2C602A'],G3=['#7FA650','#4E8638','#33622C','#1E4020'];
+  /* ===== อาคารเก่าสีครีม ===== */
+  const rT=55,rB=62;for(let y=rT;y<=rB;y++){const k=(y-rT)/(rB-rT),ins=Math.round((1-k)*7);for(let x=0;x<W;x++){if(x<ins-3||x>W-1-ins+3)continue;let col=(y-rT)%2?'#B04434':'#C25444';if((x+((y>>1)%2?2:0))%4===0)col='#9C3A2C';else if((x+((y>>1)%2?2:0))%4===1)col='#CE6450';if(y===rT)col='#D87862';if(N(x,y,9)<.05)col='#943428';R(col,x,y);shade(x,y,(sunL?x>W/2:x<W/2)?.0:.05)}}
+  /* บัวชายคา บัวฟันปลา และแถบลายใต้ชายคา */
+  R('#FFFCF4',0,rB+1,W,1);R('#F2E8D4',0,rB+2,W,1);for(let x=0;x<W;x++){R(x%3===0?'#D8CCB2':'#FFF8EA',x,rB+3);R(x%3===0?'#C8BA9E':'#F0E6D0',x,rB+4)}R('#FFFAF0',0,rB+5,W,1);for(let x=0;x<W;x++)for(let y=rB+5;y<rB+8;y++)shade(x,y,.3-(y-rB-5)*.09);
+  R('#F6EEDC',0,rB+6,W,24);
+  /* หน้าต่างบานเกล็ดทรงสูง มีซุ้มปูนปั้นหน้าจั่วเล็ก กรอบ และขอบล่างมีค้ำ */
+  const winC=(x,y,w,h,s,ped)=>{if(ped){for(let k=0;k<=3;k++)R(k===0?'#FFFFFF':'#F4ECDA',x+1-k+2,y-3+k,w-2+2*k-2,1);R('#E2D6BE',x-1,y-1,w+2,1)}else{R('#FFFBF2',x-1,y-2,w+2,1);R('#E2D6BE',x-1,y-1,w+2,1)}
+    R('#FFFFFF',x-1,y,1,h);R('#FFFFFF',x+w,y,1,h);R('#FFFCF4',x-2,y+h,w+4,1);R('#E2D6BE',x-1,y+h+1,1,1);R('#E2D6BE',x+w,y+h+1,1,1);
+    for(let b=0;b<h;b++)for(let a=0;a<w;a++){let col=a===Math.floor(w/2)?'#F2EAD8':(b%2?'#5A6C64':'#788A7E');if(b<2)col=b?'#3A4A4C':'#52646A';R(col,x+a,y+b);if(a!==Math.floor(w/2))glow(x+a,y+b,255,212-(b<2?20:0),140)}
+    for(let b=0;b<h;b++)shade(x+(sunL?w-1:0),y+b,.2);for(let a=-1;a<=w;a++)shade(x+a,y+h+2,.12)};
+  const bayX=[2,14,26,38,50,62,126,138,150,162,174,186];
+  bayX.forEach((x,i)=>{if(x>66&&x<124)return;winC(x,rB+9,5,8,20+i,1);winC(x,rB+21,5,7,40+i,0)});
+  /* เสาอิงมีหัวเสา */[0,10,22,34,46,58,122,134,146,158,170,182].forEach(x=>{R('#FFFAF0',x,rB+6,2,24);R('#FFFFFF',x-1,rB+6,4,1);R('#E2D6BE',x-1,rB+7,4,1);for(let y=rB+6;y<rB+30;y++)shade(x+(sunL?2:-1),y,.2)});
+  /* บัวคาดระหว่างชั้น */R('#FFFCF4',0,rB+18,W,1);R('#E2D6BE',0,rB+19,W,1);for(let x=0;x<W;x++)shade(x,rB+20,.18);
+  R('#E8DEC8',0,rB+29,W,2);
+  /* ===== มุขกลาง ===== */
+  const L=70,Rr=122;R('#FBF5E8',L,46,Rr-L+1,46);for(let y=46;y<92;y++){shade(sunL?Rr:L,y,.2)}
+  /* หน้าจั่ว: บัวขอบ ลายวงกลมนาฬิกา ลายเถา */const pa=37,pb=46;for(let y=pa;y<=pb;y++){const hw=Math.round((y-pa)*(Rr-L+6)/2/(pb-pa));for(let x=cx-hw;x<=cx+hw;x++){const e=hw-Math.abs(x-cx);R(e<=1?'#FFFFFF':e<=2?'#D8CCB2':'#F4ECDA',x,y)}}
+  R('#FFFFFF',L-3,pb,Rr-L+7,1);R('#F2E8D4',L-3,pb+1,Rr-L+7,1);R('#D8CCB2',L-3,pb+2,Rr-L+7,1);for(let x=L-3;x<=Rr+3;x++)shade(x,pb+3,.28);
+  for(let y=-4;y<=4;y++)for(let x=-4;x<=4;x++){const d=x*x+y*y;if(d<=18)R(d>13?'#C8BA9E':d>9?'#FFFFFF':'#FFF8EE',cx+x,42+y)}R('#D83A3A',cx-1,39,3,7);R('#D83A3A',cx-3,41,7,3);R('#F06060',cx-1,39,1,7);for(let x=L-2;x<=Rr+2;x+=3){R('#D8CCB2',x,pb+3);R('#C8BA9E',x,pb+4)}
+  for(let k=0;k<5;k++){const xx=6+k*3;R('#E2D6BE',cx-xx,44-(k%2),2,1);R('#E2D6BE',cx+xx-1,44-(k%2),2,1);R('#FFFFFF',cx-xx,43-(k%2));R('#FFFFFF',cx+xx,43-(k%2))}
+  R('#FFFFFF',cx,34,1,3);R('#F2E8D4',cx-1,36,3,1);[L-2,Rr+2].forEach(x=>{R('#FFFFFF',x-1,pb-2,3,2)});
+  /* แผงป้ายเรียบ */R('#E2D6BE',cx-18,50,37,8);R('#FFFAF0',cx-17,51,35,6);R('#F2E8D4',cx-17,56,35,1);for(let x=cx-17;x<=cx+17;x++)shade(x,51,.12);
+  R('#FFFCF4',L-1,59,Rr-L+3,1);R('#E2D6BE',L-1,60,Rr-L+3,1);
+  /* เสาอิงคู่ของมุข */[L,L+4,Rr-5,Rr-1].forEach(x=>{R('#FFFFFF',x,48,2,44);R('#EDE2CC',x-1,48,4,1);R('#EDE2CC',x-1,61,4,1);for(let y=48;y<92;y++)shade(x+(sunL?2:-1),y,.22)});
+  /* หน้าต่างโค้งสามช่อง มีศิลาหัวซุ้ม */for(let y=63;y<=74;y++)for(let x=cx-13;x<=cx+13;x++){const top=63+Math.round(Math.pow(Math.abs(x-cx)/13,2)*3);if(y<top)continue;const fr=x===cx-5||x===cx+5||x===cx-13||x===cx+13||y===68;R(fr?'#FFFFFF':(y<66?'#34444A':(x+y)%4===0?'#6E8088':'#52646A'),x,y);if(!fr)glow(x,y,255,214,150)}
+  R('#FFFFFF',cx-1,61,3,2);[cx-13,cx-9,cx+9,cx+13].forEach(x=>{R('#D8CCB2',x,61,1,2);R('#FFFFFF',x-1,61)});[cx-16,cx+15].forEach(x=>{R('#FFFFFF',x,62,2,13);R('#EDE2CC',x-1,62,4,1);for(let y=62;y<75;y++)shade(x+(sunL?2:-1),y,.25)});R('#E2D6BE',cx-14,62,1,1);R('#E2D6BE',cx+14,62,1,1);R('#FFFCF4',cx-15,75,31,1);R('#E2D6BE',cx-15,76,31,1);
+  /* มุขทางเข้า หลังคาขอบแดง */R('#A83E30',cx-20,77,41,1);R('#C25444',cx-20,78,41,1);R('#FFFFFF',cx-20,79,41,1);R('#E2D6BE',cx-20,80,41,1);for(let x=cx-19;x<=cx+19;x++)for(let y=81;y<84;y++)shade(x,y,.36-(y-81)*.1);
+  /* เสากลมคู่ มีหัวเสาและฐาน */[cx-17,cx-12,cx+10,cx+15].forEach(x=>{R('#F0E6D2',x-1,81,4,1);for(let y=82;y<90;y++){R('#FFFFFF',x,y);R('#FFFFFF',x+1,y);R('#E8DEC8',x+(sunL?2:-1)+(sunL?0:1),y)}R('#F0E6D2',x-1,90,4,1);for(let y=82;y<90;y++)shade(x+(sunL?2:-1),y,.3)});
+  /* ประตูไม้คู่ ช่องแสงโค้ง หน้าต่างข้างประตู */for(let y=81;y<=90;y++)for(let x=cx-8;x<=cx+8;x++){const side=Math.abs(x-cx)>5,fr=x===cx||x===cx-8||x===cx+8||x===cx-6||x===cx+6||(y===83&&!side);let col=fr?'#3A2018':y<83?'#E8D8B8':side?'#C8D0C8':(x-cx)%2?'#5A3424':'#6E4430';if(y<83&&!fr||side&&!fr)glow(x,y,255,220,150);R(col,x,y)}
+  R('#3A3030',cx,81,1,2);R('#FFE6A8',cx-1,83,3,1);glow(cx,83,255,230,170);
+  /* บันไดหินกว้าง */for(let k=0;k<3;k++)R(k%2?'#D8D0C2':'#ECE6DA',cx-16-k*3,91+k,33+k*6,1);
+  /* แท่นกระถางดอกไม้ */[cx-31,cx+27].forEach((x,i)=>{R('#FFFFFF',x,84,5,9);R('#E2D6BE',x+(sunL?4:0),84,1,9);R('#F2EADA',x-1,83,7,1);R('#FFFFFF',x,80,5,3);R('#E2D6BE',x+1,82,3,1);leaf(x+2,78,3,70+i,['#F4A0D0','#D860A8','#4E9A3E','#2E6A2C'],.5);for(let k=0;k<6;k++)R(N(k,i,71)<.5?'#F28AC4':'#C84A98',x+Math.floor(N(k,i,72)*5),76+Math.floor(N(k,i,73)*3))});
+  /* โคมไฟเสา */[40,152].forEach(x=>{R('#2E2A2E',x,84,1,8);R('#2E2A2E',x-1,91,3,1);R('#3A3438',x-1,81,3,3);R('#FFE6A8',x,82,1,1);R('#2E2A2E',x-1,80,3,1);R('#2E2A2E',x,79,1,1);glow(x,82,255,230,160)});
+  /* ต้นไม้ตัดทรงกลม */[[12,80,6],[180,80,6]].forEach(([x,y,r],i)=>{R('#7E6250',x,y+r,1,7);leaf(x,y,r,80+i,G1,.3);for(let k=-r;k<=r;k++)shade(x+k+dir*2,y+r+7,.3)});
+  /* พุ่มไม้ ดอกไม้ */for(let x=0;x<W;x++){if(x>cx-21&&x<cx+21)continue;const t=89+Math.round(Math.sin(x*.5)*.6);for(let y=t;y<92;y++){const n=N(x,y,90);R(y===t?'#78B652':n<.5?'#3E8A36':'#2E6A2C',x,y)}if(N(x,1,91)<.4)R(N(x,2,91)<.5?'#E880C0':'#C860B0',x,t-1)}
+  for(let i=0;i<10;i++){const x=Math.floor(N(i,3,91)*60)+(i%2?120:0);leaf(x,88,2,95+i,G1,.4)}
+  /* ลานปู */for(let y=92;y<H;y++)for(let x=0;x<W;x++){const n=N(x,y,92);R(n<.1?'#7E7A82':(x+y*2)%7===0?'#A09CA4':'#928E96',x,y)}R('#D8D2C8',0,92,W,1);
+  for(let i=0;i<120;i++){const x=Math.floor(N(i,0,93)*W)+dir*5,y=93+Math.floor(N(i,1,93)*3),w=2+Math.floor(N(i,2,93)*6);for(let a=0;a<w;a++)shade(x+a,y,.42)}
+  /* กิ่งไม้ด้านหน้า */
+  for(let i=0;i<16;i++){leaf(Math.floor(N(i,0,94)*40),Math.floor(N(i,1,94)*14),3+Math.floor(N(i,2,94)*3),300+i,G3,.7);leaf(W-1-Math.floor(N(i,3,94)*42),Math.floor(N(i,4,94)*12),3+Math.floor(N(i,5,94)*3),320+i,G3,.7)}
+  for(let i=0;i<8;i++)leaf(Math.floor(N(i,6,94)*6),18+Math.floor(N(i,7,94)*30),3+Math.floor(N(i,8,94)*2),340+i,G3,.6);
+  for(let i=0;i<6;i++){leaf(Math.floor(N(i,9,94)*8),88+Math.floor(N(i,10,94)*6),3,360+i,['#F4A0D0','#5E9A44','#3E7A34','#2A5228'],.6);leaf(W-1-Math.floor(N(i,11,94)*8),88+Math.floor(N(i,12,94)*6),3,370+i,['#F4A0D0','#5E9A44','#3E7A34','#2A5228'],.6)}
+  /* ลงแสง */
+  const img=c.createImageData(W,H),D=img.data,amb=E.amb,sun=E.sun,lamp=E.lamp,warm=[1+.06*sun*(E.sunX<.15||E.sunX>.85?2:1),1,1-.08*sun];
+  for(let p=0;p<W*H;p++){const i=p*3;let r=A[i],g=A[i+1],b=A[i+2];if(!SK[p]){const s=SH[p]*sun,l=1-s;r=r*amb[0]*warm[0]*l+r*s*.18*amb[0];g=g*amb[1]*warm[1]*l+g*s*.2*amb[1];b=b*amb[2]*warm[2]*l+b*s*.28*amb[2];if(lamp>0){r+=EM[i]*lamp*.9;g+=EM[i+1]*lamp*.9;b+=EM[i+2]*lamp*.9}const h=HZm[p]*(E.night?.5:1);if(h){r=r*(1-h)+E.bot[0]*h;g=g*(1-h)+E.bot[1]*h;b=b*(1-h)+E.bot[2]*h}}
+    D[p*4]=Math.min(255,r);D[p*4+1]=Math.min(255,g);D[p*4+2]=Math.min(255,b);D[p*4+3]=255}
+  c.putImageData(img,0,0);
+  c.save();c.globalCompositeOperation='screen';
+  if(sun>0){const el=Math.sin(Math.PI*E.sunX),low=1-el,sx=E.sunX*W,sy=-8+low*44,col=low>.6?'255,190,120':low>.3?'255,222,170':'255,244,214';
+    const g=c.createRadialGradient(sx,sy,0,sx,sy,W*(.5+low*.5));g.addColorStop(0,`rgba(${col},${(.3+low*.25)*sun})`);g.addColorStop(.35,`rgba(${col},${(.1+low*.12)*sun})`);g.addColorStop(1,`rgba(${col},0)`);c.fillStyle=g;c.fillRect(0,0,W,H);
+    /* ลำแสงลอดใบไม้ */for(let k=0;k<7;k++){const a0=(sx<W/2?.15:Math.PI-.15)+(sx<W/2?1:-1)*(.12+k*.11),len=W*1.3,w=.025+swPrHash(k,3,77)*.03;const x1=sx+Math.cos(a0-w)*len,y1=sy+Math.sin(a0-w)*len*.9,x2=sx+Math.cos(a0+w)*len,y2=sy+Math.sin(a0+w)*len*.9;const lg=c.createLinearGradient(sx,sy,(x1+x2)/2,(y1+y2)/2);lg.addColorStop(0,`rgba(${col},${(.1+low*.12)*sun})`);lg.addColorStop(1,`rgba(${col},0)`);c.fillStyle=lg;c.beginPath();c.moveTo(sx,sy);c.lineTo(x1,y1);c.lineTo(x2,y2);c.closePath();c.fill()}}
+  if(lamp>.05){const gl=(x,y,r,a,col)=>{const g=c.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,`rgba(${col||'255,206,130'},${a*lamp})`);g.addColorStop(1,`rgba(${col||'255,206,130'},0)`);c.fillStyle=g;c.fillRect(x-r,y-r,r*2,r*2)};
+    gl(cx,86,14,.5);gl(cx,68,14,.3);const pool=(x,y,rx,a)=>{c.save();c.translate(x,y);c.scale(1,.35);const g=c.createRadialGradient(0,0,0,0,0,rx);g.addColorStop(0,`rgba(255,200,130,${a*lamp})`);g.addColorStop(1,'rgba(255,200,130,0)');c.fillStyle=g;c.fillRect(-rx,-rx,rx*2,rx*2);c.restore()};pool(40,93,12,.5);pool(152,93,12,.5);pool(cx,94,22,.55);for(let x=8;x<W;x+=24)gl(x,68,7,.12);[40,152].forEach(x=>gl(x,82,7,.7));gl(159,22,14,.45,'110,160,255');gl(96,27,16,.3,'255,236,180')}
+  c.restore();
+  [[4,E.night?.2:.1],[10,E.night?.24:.12]].forEach(([d,a])=>{const s1=document.createElement('canvas');s1.width=Math.round(W/d);s1.height=Math.round(H/d);const a1=s1.getContext('2d');a1.imageSmoothingEnabled=true;a1.drawImage(cv,0,0,s1.width,s1.height);c.save();c.globalCompositeOperation='screen';c.globalAlpha=a;c.imageSmoothingEnabled=true;c.drawImage(s1,0,0,W,H);c.restore()});
+  {const v=c.createRadialGradient(W/2,H*.5,H*.45,W/2,H*.5,W*.72);v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,E.night?'rgba(14,16,48,.45)':'rgba(50,34,40,.22)');c.fillStyle=v;c.fillRect(0,0,W,H)}
+  return cv}
+const SWUH={k:-1,cv:null};
+function swUhPaint(cv){const hr=swPrHour(),key=Math.floor(hr*4);if(!SWUH.cv||SWUH.k!==key){SWUH.cv=swUhDraw(hr);SWUH.k=key}if(cv.width!==192){cv.width=192;cv.height=96}const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.clearRect(0,0,cv.width,cv.height);c.drawImage(SWUH.cv,0,0)}
+function swUHArt(sc){if(!document.getElementById('swuh2-css')){const s=document.createElement('style');s.id='swuh2-css';s.textContent='.gl-pl.pl-uh .sl-th{position:relative;overflow:hidden}.gl-pl.pl-uh .sl-sky,.gl-pl.pl-uh .sl-bld{display:none!important}.gl-pl.pl-uh .sl-th:after{display:none!important}.gl-pl.pl-uh .sl-ty{position:relative;z-index:2}.gl-pl.pl-uh .sw-uhart{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated;image-rendering:crisp-edges;z-index:0}';document.head.appendChild(s)}
+ (sc||document).querySelectorAll('.gl-pl.pl-uh .sl-th').forEach(th=>{let cv=th.querySelector('canvas.sw-uhart');if(!cv){cv=document.createElement('canvas');cv.width=192;cv.height=96;cv.className='sw-uhart';cv.setAttribute('role','img');cv.setAttribute('aria-label','ศูนย์การแพทย์ โรงพยาบาลธรรมราชบดินทร์');th.insertBefore(cv,th.firstChild)}try{swUhPaint(cv)}catch(e){console.log('swuh',e)}})}
 {const _o=swHub;swHub=function(sc){const r=_o.apply(this,arguments);try{swUHArt(sc)}catch(e){}return r}}
-{const _o=swhMap;swhMap=function(cv,sc){_o.apply(this,arguments);try{const el=sc.querySelector('.gl-pl.pl-uh');if(!el)return;const T=20,P=SWH_PL.uh,x=P[1]*T,y=P[2]*T,w=2.6*T,h=2.6*T,top=y-T*.85,bh=h+T*.85;
- swUHImg(img=>{const c=cv.getContext('2d');c.imageSmoothingEnabled=false;c.fillStyle='#CFE8C0';c.fillRect(x-4,top-2,w+8,bh+2);const sw=68,sh=Math.round(sw*bh/w),sx=14,sy=28;c.drawImage(img,sx,sy,sw,Math.min(sh,120-sy),x-3,top,w+6,bh);
-  if(el.classList.contains('gl-lkd')){c.fillStyle='rgba(255,255,255,.5)';c.fillRect(x-3,top,w+6,bh);c.fillStyle='#E31414';c.fillRect(x+w/2-7,y+h*.42,14,11);c.strokeStyle='#E31414';c.lineWidth=2;c.beginPath();c.arc(x+w/2,y+h*.42,5,Math.PI,0);c.stroke()}})}catch(e){}}}
+if(!window.__swuhT)window.__swuhT=setInterval(()=>{try{document.querySelectorAll('canvas.sw-uhart').forEach(swUhPaint)}catch(e){}},60000);
 
 
 function PRCARD(PC){const n=prDoneN(),N=PR_IDS.length;const pill=!n&&!S.pr?'เริ่มที่นี่':n>=N?'เก็บครบแล้ว':'เก็บเคส '+n+'/'+N;return PC('pr','cmhgo','โรงพยาบาลอนามัยชุมชน','โรงพยาบาลชุมชน เก็บเคสฝึกงานกับพี่เลี้ยง '+N+' เคส',pill,!n&&!S.pr&&!Object.keys(S.csDone||{}).length)}
