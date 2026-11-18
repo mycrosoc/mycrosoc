@@ -1,5 +1,5 @@
 /* MYCROSOC service worker: เปิดเร็วและใช้งานออฟไลน์ได้ */
-const VERSION='mycrosoc-v787';
+const VERSION='mycrosoc-v800';
 const CORE=['./','./index.html','./app.css','./game.js','./tgz.js','./tg1.js','./thfc.js','./lsim.js','./xq.js','./lz1.js','./fonts/chula-1.woff','./fonts/chula-2.woff'];
 // เก็บทีละไฟล์ ไฟล์ไหนโหลดไม่ขึ้นไม่ทำให้แคชทั้งชุดว่าง
 self.addEventListener('install',e=>{e.waitUntil(caches.open(VERSION).then(c=>Promise.all(CORE.map(u=>fetch(u,{cache:'no-cache'}).then(r=>{if(r&&r.ok)return c.put(u,r)}).catch(()=>{})))).then(()=>self.skipWaiting()))});
@@ -9,7 +9,7 @@ const OFF='<h1 style="font-family:sans-serif;text-align:center;margin-top:30vh;c
 self.addEventListener('fetch',e=>{const req=e.request;if(req.method!=='GET')return;const url=new URL(req.url);
   if(url.origin!==location.origin){if(/fonts\.(googleapis|gstatic)\.com$/.test(url.hostname)){e.respondWith(caches.open(VERSION).then(async c=>{const hit=await c.match(req);if(hit)return hit;try{const r=await fetch(req);if(r&&(r.ok||r.type==='opaque'))c.put(req,r.clone());return r}catch(err){return hit||Response.error()}}))}return}
   if(url.search)return; // คำขอที่มี ?r= เป็นการโหลดซ้ำแบบไม่ใช้แคช ให้ไปเน็ตตรง
-  const isPage=req.mode==='navigate'||url.pathname.endsWith('/')||url.pathname.endsWith('.html');
+  if(/\.html$/.test(url.pathname)&&!/\/index\.html$/.test(url.pathname))return;if(url.pathname.indexOf('/aud/')>=0&&/\.json$/.test(url.pathname)){e.respondWith(fetch(req,{cache:'no-cache'}).then(r=>{if(r&&r.ok){const c2=r.clone();caches.open(VERSION).then(c=>c.put(req,c2))}return r}).catch(()=>caches.open(VERSION).then(c=>c.match(req)).then(h=>h||Response.error())));return}const isPage=req.mode==='navigate'||url.pathname.endsWith('/')||url.pathname.endsWith('/index.html');
   e.respondWith(caches.open(VERSION).then(async c=>{const key=isPage?'./index.html':req;
     const hit=await c.match(key);
     const net=fetch(req,{cache:'no-cache'}).then(async r=>{if(r&&r.ok){const old=hit?(hit.headers.get('etag')||hit.headers.get('last-modified')||hit.headers.get('content-length')):null;const neu=r.headers.get('etag')||r.headers.get('last-modified')||r.headers.get('content-length');await c.put(key,r.clone());if(isPage&&hit&&old&&neu&&old!==neu)notify()}return r}).catch(()=>null);

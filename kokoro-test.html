@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ทดลองเสียง AI ภาษาอังกฤษ MYCROSOC</title>
+<style>
+:root{--r1:#FF7A7A;--r2:#F24A4A;--r3:#E31414;--bg:#FFF6F6;--ink:#3A2328;--mut:#8C6E73;--line:#F6D3D3}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Sarabun","Noto Sans Thai",system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+.hero{background:linear-gradient(135deg,var(--r1),var(--r3));color:#fff;border-radius:22px;padding:22px 20px}
+.hero small{letter-spacing:.08em;font-weight:700;opacity:.9}
+.hero h1{margin:6px 0;font-size:25px}
+.hero p{margin:0;line-height:1.55}
+.sec{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}
+.sec h2{margin:0 0 10px;font-size:17px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--r2);border-color:var(--r2);color:#fff;font-weight:700}
+textarea{width:100%;min-height:70px;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;font-size:15px;color:var(--ink);background:#FFFBFB;margin-top:10px}
+.big{border:0;border-radius:14px;background:linear-gradient(135deg,var(--r1),var(--r3));color:#fff;font:inherit;font-weight:700;padding:13px 20px;cursor:pointer;font-size:16px}
+.big:disabled{opacity:.5}
+.bar{height:10px;border-radius:99px;background:#FFE3E3;overflow:hidden;margin-top:12px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--r1),var(--r3));transition:width .2s}
+.st{margin-top:8px;font-size:14px;color:var(--mut)}
+.grp h3{margin:14px 0 8px;font-size:14px;color:var(--r3)}
+.v{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;margin-bottom:8px}
+.v .nm{flex:1}
+.v .nm b{display:block;font-size:15px}
+.v .nm span{font-size:12px;color:var(--mut)}
+.pl{border:0;border-radius:12px;background:linear-gradient(135deg,var(--r1),var(--r3));color:#fff;font:inherit;font-weight:700;padding:9px 16px;cursor:pointer;min-width:84px}
+.pl:disabled{opacity:.45}
+.pl.dev{background:#fff;color:var(--r3);border:1px solid var(--r2)}
+.note{font-size:14px;line-height:1.6;color:var(--mut)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <small>MYCROSOC ENGLISH</small>
+    <h1>ทดลองเสียง AI ภาษาอังกฤษ</h1>
+    <p>เสียง Kokoro ทำงานในเครื่องนี้เอง ใช้ฟรี ครั้งแรกต้องโหลดโมเดลประมาณ 90 MB ควรต่อ Wi‑Fi ครั้งต่อไปเปิดได้เร็วขึ้น</p>
+  </section>
+
+  <section class="sec">
+    <h2>ขั้นที่ 1 โหลดเสียง AI</h2>
+    <button class="big" id="load">โหลดเสียง AI</button>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="st" id="st">ยังไม่ได้โหลด</div>
+  </section>
+
+  <section class="sec">
+    <h2>ขั้นที่ 2 เลือกประโยคและความเร็ว</h2>
+    <div class="chips" id="samples"></div>
+    <textarea id="txt" aria-label="ข้อความที่จะอ่าน"></textarea>
+    <div class="chips" id="rates" style="margin-top:10px"></div>
+  </section>
+
+  <section class="sec">
+    <h2>ขั้นที่ 3 กดฟัง</h2>
+    <p class="note">ปุ่ม "ฟัง AI" คือเสียง Kokoro ส่วนปุ่ม "เทียบเสียงเครื่อง" คือเสียงที่มีอยู่ใน iPhone สำเนียงเดียวกัน ใช้เทียบกันได้</p>
+    <div id="list"></div>
+  </section>
+</div>
+<script type="module">
+const VOICES=[
+ ['en-US','af_heart','Heart','หญิง อบอุ่น ชัด'],
+ ['en-US','af_bella','Bella','หญิง สดใส'],
+ ['en-US','af_nicole','Nicole','หญิง นุ่ม พูดเบา'],
+ ['en-US','af_sarah','Sarah','หญิง เป็นทางการ'],
+ ['en-US','am_michael','Michael','ชาย ทุ้ม ชัด'],
+ ['en-US','am_adam','Adam','ชาย สบายๆ'],
+ ['en-GB','bf_emma','Emma','หญิง อังกฤษ ชัด'],
+ ['en-GB','bf_isabella','Isabella','หญิง อังกฤษ นุ่ม'],
+ ['en-GB','bm_george','George','ชาย อังกฤษ ทุ้ม'],
+ ['en-GB','bm_lewis','Lewis','ชาย อังกฤษ สบายๆ']];
+const SAMPLES=[
+ ['ทักทาย','Hello! My name is Walt. Nice to meet you.'],
+ ['ขั้นเริ่มต้น','I wake up at six. I drink water and go to school.'],
+ ['สังคมสงเคราะห์','The social worker meets the patient and the family to plan a safe discharge.'],
+ ['แบบข้อสอบ','Could you tell me where the nearest pharmacy is? Sure, it is right next to the bank.']];
+const RATES=[['ช้า',0.8],['กลาง',0.9],['ปกติ',1.0]];
+let speed=0.9,tts=null,ctx=null,src=null,busy=false;
+const $=id=>document.getElementById(id);
+const txt=$('txt');txt.value=SAMPLES[0][1];
+function chips(el,arr,isOn,onPick){arr.forEach((a,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=a[0];b.setAttribute('aria-pressed',isOn(a,i)?'true':'false');b.onclick=()=>{[...el.children].forEach(c=>c.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');onPick(a)};el.appendChild(b)})}
+chips($('samples'),SAMPLES,(a,i)=>i===0,a=>txt.value=a[1]);
+chips($('rates'),RATES,a=>a[1]===speed,a=>speed=a[1]);
+function unlock(){try{ctx=ctx||new (window.AudioContext||window.webkitAudioContext)();if(ctx.state==='suspended')ctx.resume()}catch(e){}}
+function stop(){try{src&&src.stop()}catch(e){}src=null}
+function devVoice(lang){const S=window.speechSynthesis;if(!S)return null;const vs=S.getVoices().filter(v=>v.lang.replace('_','-')===lang);const sc=v=>(/premium/i.test(v.name)?50:0)+(/enhanced/i.test(v.name)?35:0)+(/ava|zoe|evan|nathan|serena|jamie|stephanie|daniel|samantha/i.test(v.name)?5:0);return vs.sort((a,b)=>sc(b)-sc(a))[0]||null}
+const L=$('list');const btns=[];
+['en-US','en-GB'].forEach(lang=>{const g=document.createElement('div');g.className='grp';g.innerHTML='<h3>'+(lang==='en-US'?'สำเนียงอเมริกัน':'สำเนียงอังกฤษ')+'</h3>';
+ VOICES.filter(v=>v[0]===lang).forEach(([_,id,name,desc])=>{const r=document.createElement('div');r.className='v';
+  const nm=document.createElement('div');nm.className='nm';const b=document.createElement('b');b.textContent=name;const s=document.createElement('span');s.textContent=desc;nm.append(b,s);
+  const p=document.createElement('button');p.className='pl';p.textContent='ฟัง AI';p.disabled=true;btns.push(p);
+  p.onclick=async()=>{if(!tts||busy)return;unlock();stop();if(window.speechSynthesis)speechSynthesis.cancel();busy=true;const old=p.textContent;p.textContent='กำลังสร้าง';$('st').textContent='กำลังสร้างเสียง '+name;
+   const t0=performance.now();
+   try{const a=await tts.generate(txt.value||SAMPLES[0][1],{voice:id,speed});
+    const buf=ctx.createBuffer(1,a.audio.length,a.sampling_rate);buf.copyToChannel(a.audio,0);src=ctx.createBufferSource();src.buffer=buf;src.connect(ctx.destination);src.start();
+    $('st').textContent='เสียง '+name+' ใช้เวลาสร้าง '+((performance.now()-t0)/1000).toFixed(1)+' วินาที';
+   }catch(e){$('st').textContent='สร้างเสียงไม่สำเร็จ '+(e&&e.message||e)}
+   p.textContent=old;busy=false};
+  const d=document.createElement('button');d.className='pl dev';d.textContent='เทียบเสียงเครื่อง';
+  d.onclick=()=>{stop();const S=window.speechSynthesis;if(!S)return;S.cancel();const u=new SpeechSynthesisUtterance(txt.value||SAMPLES[0][1]);const v=devVoice(lang);if(v){u.voice=v;$('st').textContent='เสียงเครื่อง: '+v.name}else $('st').textContent='ไม่พบเสียงเครื่องสำเนียงนี้';u.lang=lang;u.rate=speed*0.95;S.speak(u)};
+  r.append(nm,p,d);g.appendChild(r)});L.appendChild(g)});
+if(window.speechSynthesis){speechSynthesis.getVoices();speechSynthesis.onvoiceschanged=()=>{}}
+$('load').onclick=async()=>{unlock();const lb=$('load');lb.disabled=true;$('st').textContent='กำลังเตรียมตัวโหลด';
+ try{
+  const {KokoroTTS}=await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm');
+  const files={};
+  tts=await KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm',progress_callback:p=>{
+    if(p&&p.file&&p.total){files[p.file]=[p.loaded||0,p.total];let a=0,b=0;Object.values(files).forEach(([x,y])=>{a+=x;b+=y});const pc=Math.round(a/b*100);$('bar').style.width=pc+'%';$('st').textContent='กำลังโหลด '+(a/1048576).toFixed(0)+' จาก '+(b/1048576).toFixed(0)+' MB ('+pc+'%)'}}});
+  $('bar').style.width='100%';$('st').textContent='พร้อมแล้ว กดฟัง AI ที่เสียงไหนก็ได้';lb.textContent='โหลดแล้ว';btns.forEach(b=>b.disabled=false);
+ }catch(e){$('st').textContent='โหลดไม่สำเร็จ '+(e&&e.message||e)+' ลองต่อ Wi‑Fi แล้วกดใหม่';lb.disabled=false}};
+</script>
+</body>
+</html>
