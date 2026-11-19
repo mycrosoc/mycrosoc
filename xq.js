@@ -1820,7 +1820,7 @@ const HLC=['#FFE45C','#FF9EC4','#9EF0B0','#9ED8FF','#FFC27A','#D9B8FF'];
 
 /* ---------- หน้าชั้นสมุด ---------- */
 const LIB={folder:'all',q:'',menu:null,modal:null};
-const pearlOK=()=>{try{return typeof isPearl==='function'?isPearl():true}catch(e){return true}};
+const pearlOK=()=>{try{return (typeof isPearl==='function'?isPearl():true)||(typeof __SEC!=='undefined'&&!!__SEC.notes)}catch(e){return true}};const sheetOK=()=>{try{return typeof isPearl==='function'?isPearl():true}catch(e){return true}};
 const NB_GATE='สมุดโน้ต จดสรุปด้วยปากกา (เฉพาะบัตร PEARL)';
 window.vNotes=function(){if(!pearlOK()){setTimeout(()=>{try{plGate(NB_GATE)}catch(e){}},0);return `<div class="nb-lib"><div class="nb-load">สมุดโน้ตเปิดใช้ได้เฉพาะบัตร PEARL</div></div>`}return `<div class="nb-lib" id="nb-lib"><div class="nb-load">กำลังเปิดชั้นสมุด</div></div>`};
 window.nbMount=async function(){const root=document.getElementById('nb-lib');if(!root||!pearlOK())return;await loadIx();libRender()};
@@ -2453,7 +2453,7 @@ async function importPDF(book){const i=document.createElement('input');i.type='f
 const NB_SHEETS=[[1,'ความรู้เกี่ยวกับนักสังคมสงเคราะห์',7],[2,'จรรยาบรรณวิชาชีพนักสังคมสงเคราะห์',8],[3,'กระบวนการทางสังคมสงเคราะห์',8],[4,'สวัสดิการและนโยบายสังคม',8],[5,'สมรรถนะทักษะการเขียนเรียงความ',16]];
 function blobURL(b){return new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>ok(r.result);r.onerror=no;r.readAsDataURL(b)})}
 let SHEET_BUSY=0;
-async function openSheet(n){if(!pearlOK()){try{plGate(NB_GATE)}catch(e){}return}if(SHEET_BUSY)return;const S=NB_SHEETS.find(x=>x[0]===n);if(!S)return;await loadIx();
+async function openSheet(n){if(!sheetOK()){try{plGate(NB_GATE)}catch(e){}return}if(SHEET_BUSY)return;const S=NB_SHEETS.find(x=>x[0]===n);if(!S)return;await loadIx();
  const ex=IX.books.find(b=>b.sheet===n);if(ex){openBook(ex.id,0);return}
  SHEET_BUSY=1;nbToast('กำลังเตรียมชีท บทที่ '+n);try{const pages=[];for(let k=1;k<=S[2];k++){let r=await fetch('pt/fin'+n+'-'+k+'.webp');if(!r.ok)r=await fetch('fin'+n+'-'+k+'.webp');if(!r.ok)throw 0;const p=newPage('blank','p');p.bg=await blobURL(await r.blob());pages.push(p)}
   const b=await createBook({title:'ชีทแบบฝึกหัด บทที่ '+n+' '+S[1],folder:'gen',c:'#E31414',p:'plain'},pages);b.sheet=n;saveIx(1);nbToast('พร้อมเขียนแล้ว '+pages.length+' หน้า');openBook(b.id,0)}
